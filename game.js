@@ -28,6 +28,81 @@
     };
   }
 
+  // ---------- ภาพพิกเซล (วาดเอง) : '.' = โปร่งใส ตัวอักษรอื่นดูสีจาก palette ----------
+  const SPRITES = {
+    misha: {
+      palette: { k: "#0b0f6e", h: "#3dff8f", s: "#ffd9c2", b: "#ffffff", y: "#ffe066", r: "#ff3b30" },
+      rows: [
+        "....hhhh......",
+        "...hhhhhh.....",
+        "..hhsssshh..y.",
+        "..hskssksh..y.",
+        "...ssssss...y.",
+        "....srrs....y.",
+        "...bbbbbb..yy.",
+        "..bbbbbbbbkkk.",
+        "..sbbbbbb.....",
+        "....bbbb......",
+        "....bk.bk.....",
+        "...kk..kk.....",
+      ],
+    },
+    nova: {
+      palette: { k: "#0b0f6e", h: "#6ff3ff", s: "#ffd9c2", w: "#ffffff", y: "#ffe066", g: "#3dff8f" },
+      rows: [
+        ".y...hhhh.....",
+        "ygy.hhhhhh....",
+        ".y.hhsssshh...",
+        ".k.hskssksh...",
+        ".k..ssssss.h..",
+        ".k...ssss.....",
+        ".k.wwwwwwww...",
+        ".kwwwwggwwww..",
+        ".k.wwwwwwww...",
+        ".k.wwwwwwww...",
+        ".k..ww..ww....",
+        "...kk...kk....",
+      ],
+    },
+    boss: {
+      palette: { k: "#05083a", w: "#f4f5ff", b: "#0b0f6e", r: "#ff3b30", g: "#3dff8f" },
+      rows: [
+        ".kkkkkkkkkkkkkk.",
+        "kwwwwwwwwwwwwwwk",
+        "kwbbbbbbbbbbbbwk",
+        "kwbbrbbbbbbrbbwk",
+        "kwbbrbbbbbbrbbwk",
+        "kwbbbbbbbbbbbbwk",
+        "kwbbbbrrrrbbbbwk",
+        "kwbbbrbbbbrbbbwk",
+        "kwbgbbbbbbbbbbwk",
+        "kwwwwwwwwwwwwgwk",
+        ".kkkkkkkkkkkkkk.",
+        ".....kkkkkk.....",
+        "...kkkkkkkkkk...",
+        "..k.k..kk..k.k..",
+      ],
+    },
+  };
+
+  function pixelSvg({ palette, rows }) {
+    const w = Math.max(...rows.map((r) => r.length));
+    let rects = "";
+    rows.forEach((row, y) => [...row].forEach((ch, x) => {
+      if (palette[ch]) rects += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${palette[ch]}"/>`;
+    }));
+    return `<svg viewBox="0 0 ${w} ${rows.length}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+  }
+
+  function fighterHtml(id, name, sprite, withEnergy) {
+    return `<div class="fighter${id === "boss" ? " boss" : ""}" data-f="${id}">
+        <div class="f-sprite">${pixelSvg(SPRITES[sprite])}</div>
+        <div class="f-label"><span class="f-name">${name}</span> <span class="f-hp">0</span></div>
+        <div class="meter hp"><i class="ghost"></i><i class="fill"></i></div>
+        ${withEnergy ? '<div class="meter en"><i class="fill"></i></div>' : ""}
+      </div>`;
+  }
+
   function createGame(root) {
     const term = root.querySelector("[data-term]");
     const cmds = root.querySelector("[data-cmds]");
@@ -39,6 +114,97 @@
     const section = root.closest("section");
     const langTabs = section ? [...section.querySelectorAll('[role="tab"][data-lang]')] : [];
     let lang = "C";
+
+    // ---------- เวทีแอนิเมชัน (อยู่เหนือเทอร์มินัล อ่านสถานะจากเกม ไม่ได้ตัดสินอะไรเอง) ----------
+    const stageEl = document.createElement("div");
+    stageEl.className = "stage";
+    stageEl.setAttribute("aria-hidden", "true");
+    stageEl.innerHTML = `<div class="stage-party">${fighterHtml(0, "Misha", "misha", true)}${fighterHtml(1, "Nova", "nova", true)}</div>
+      <div class="stage-vs">VS</div>
+      ${fighterHtml("boss", "SEGFAULT", "boss", false)}
+      <div class="stage-banner"></div>`;
+    term.before(stageEl);
+    const fEl = { 0: stageEl.querySelector('[data-f="0"]'), 1: stageEl.querySelector('[data-f="1"]'), boss: stageEl.querySelector('[data-f="boss"]') };
+    const banner = stageEl.querySelector(".stage-banner");
+    let fxToken = 0; // เริ่มเกมใหม่ = ยกเลิกเอฟเฟกต์ที่ค้างอยู่
+
+    function later(ms, fn) {
+      const token = fxToken;
+      setTimeout(() => { if (token === fxToken) fn(); }, ms);
+    }
+    function pulse(el, cls, ms = 600) {
+      el.classList.remove(cls);
+      void el.offsetWidth; // รีสตาร์ตแอนิเมชัน
+      el.classList.add(cls);
+      later(ms, () => el.classList.remove(cls));
+    }
+    function float(el, text, cls) {
+      const span = document.createElement("span");
+      span.className = `float ${cls}`;
+      span.textContent = text;
+      span.style.left = `${40 + Math.random() * 20}%`;
+      el.append(span);
+      setTimeout(() => span.remove(), 1200);
+    }
+    const idxOf = (a) => g.party.indexOf(a);
+
+    const fx = {
+      attack(i, dmg, move) {
+        pulse(fEl[i], "lunge", 500);
+        if (move === "ULTIMATE") { pulse(stageEl, "flash", 500); float(fEl[i], "ULTIMATE!", "shout"); }
+        later(170, () => {
+          pulse(fEl.boss, "hit", 450);
+          float(fEl.boss, `-${dmg}`, move === "ULTIMATE" ? "dmg big" : move === "Skill" ? "dmg crit" : "dmg");
+        });
+      },
+      heal(i, healed) {
+        if (healed >= 0) { pulse(fEl[i], "healed", 800); float(fEl[i], `+${healed}`, "heal"); }
+        else float(fEl[i], "KO", "miss");
+      },
+      energy(i, n) { pulse(fEl[i], "charged", 700); float(fEl[i], `+${n} EN`, "en"); },
+      boss(kind) {
+        pulse(fEl.boss, kind === "big" ? "boss-big" : "boss-lunge", 550);
+        if (kind === "big") { pulse(stageEl, "flash-red", 500); later(150, () => pulse(stageEl, "quake", 500)); }
+        if (kind === "storm") pulse(stageEl, "glitchy", 650);
+      },
+      hurt(i, d) {
+        later(200, () => { pulse(fEl[i], "hurt", 450); float(fEl[i], `-${d}`, "dmg red"); });
+      },
+      end(victory) {
+        banner.textContent = victory ? "VICTORY!" : "DEFEAT";
+        banner.className = `stage-banner show ${victory ? "win" : "lose"}`;
+        if (victory) fEl.boss.classList.add("dead");
+      },
+    };
+
+    function syncStage() {
+      if (!g) return;
+      const setMeter = (el, sel, v, max) => {
+        const m = el.querySelector(sel);
+        if (!m) return;
+        const pct = `${(Math.max(0, Math.min(v, max)) / max) * 100}%`;
+        m.querySelector(".fill").style.width = pct;
+        const ghost = m.querySelector(".ghost");
+        if (ghost) ghost.style.width = pct;
+      };
+      g.party.forEach((a, i) => {
+        const el = fEl[i];
+        setMeter(el, ".hp", a.hp, MAX_HP);
+        setMeter(el, ".en", a.energy, MAX_ENERGY);
+        const hp = el.querySelector(".f-hp");
+        hp.textContent = a.hp;
+        hp.classList.toggle("neg", a.hp < 0);
+        el.classList.toggle("ko", isDown(a));
+        el.classList.toggle("glitch", !isDown(a) && a.hp < 0);  // BUGGY: ติดลบแต่ยังยืน
+        el.classList.toggle("active", ["ally", "target", "item"].includes(ui.phase) && g.current === i);
+        el.classList.toggle("targeted", g.boss.charging && g.boss.target === i);
+        el.classList.toggle("ult-ready", a.energy >= MAX_ENERGY && !isDown(a));
+      });
+      setMeter(fEl.boss, ".hp", g.boss.hp, BOSS_MAX_HP);
+      fEl.boss.querySelector(".f-hp").textContent = g.boss.hp;
+      fEl.boss.classList.toggle("charging", g.boss.charging);
+      stageEl.classList.toggle("boss-turn", ui.phase === "boss");
+    }
 
     let g;          // สถานะเกม
     let rand;       // ตัวสุ่ม
@@ -118,9 +284,11 @@
 
     function hitBoss(a, dmg, move) {
       g.boss.hp = Math.max(0, g.boss.hp - dmg);
+      fx.attack(idxOf(a), dmg, move);
       print(`  ${esc(a.name)} uses ${esc(move)} -> ${c("yellow", `${dmg} DMG`)} to ${esc(g.boss.name)}`);
     }
     function reportHeal(t, healed) {
+      fx.heal(idxOf(t), healed);
       if (healed >= 0) print(`  ${c("green", `${t.name} +${healed} HP`)} (now ${t.hp})`);
       else print(`  ${c("grey", `${t.name} is knocked down: can't heal!`)}`);
     }
@@ -191,6 +359,7 @@
         if (isDown(target)) { print(`  ${esc(target.name)} is knocked down`); return 0; }
         g.drinks--;
         addEnergy(target, 20);             // กฎ 5
+        fx.energy(t, 20);
         print(`  ${esc(target.name)} drinks an Energy Drink: EN ${target.energy}`);
         return 1;
       }
@@ -227,7 +396,9 @@
           if (other < 0) return;
           t = g.party[other];
         }
+        fx.boss("big");
         takeDamage(t, BIG_ATTACK);
+        fx.hurt(idxOf(t), BIG_ATTACK);
         print(`  ${c("yellow", "BIG ATTACK!")} ${esc(t.name)} takes ${BIG_ATTACK} DMG -> HP ${t.hp}${isDown(t) ? "  (knocked down)" : ""}`);
         return;
       }
@@ -240,10 +411,12 @@
       }
       if (Math.floor(rand() * 4) === 0) {  // ตีทั้งทีม
         print("  Memory Leak hits everyone!");
+        fx.boss("storm");
         g.party.forEach((a) => {
           if (isDown(a)) return;
           const d = roll(8, 12);
           takeDamage(a, d);
+          fx.hurt(idxOf(a), d);
           print(`  ${esc(a.name)} takes ${d} DMG -> HP ${a.hp}`);
         });
         return;
@@ -251,7 +424,9 @@
       const i = randomAlive();
       if (i < 0) return;
       const d = roll(BOSS_HIT_MIN, BOSS_HIT_MAX);
+      fx.boss("hit");
       takeDamage(g.party[i], d);
+      fx.hurt(i, d);
       print(`  ${esc(b.name)} attacks ${esc(g.party[i].name)}: ${d} DMG -> HP ${g.party[i].hp}${isDown(g.party[i]) ? "  (knocked down)" : ""}`);
     }
 
@@ -271,7 +446,7 @@
       render();
       setTimeout(() => {
         bossTurn();
-        if (aliveCount() === 0) return end(c("red", "*** DEFEAT: everyone is knocked down ***"));
+        if (aliveCount() === 0) { fx.end(false); return end(c("red", "*** DEFEAT: everyone is knocked down ***")); }
         g.round++;
         nextAlly(0);
         render();
@@ -288,7 +463,7 @@
     function afterAction(result) {
       if (result === 0) { promptAlly(); return; } // เลือกใหม่: ถามซ้ำแบบในเทอร์มินัล
       if (result !== 1) return;            // null = รอเลือกต่อ (เป้า / ไอเทม)
-      if (g.boss.hp === 0) return end(c("green", `*** VICTORY! ${g.boss.name} is defeated in ${g.round} turns ***`));
+      if (g.boss.hp === 0) { fx.end(true); return end(c("green", `*** VICTORY! ${g.boss.name} is defeated in ${g.round} turns ***`)); }
       nextAlly(g.current + 1);
     }
 
@@ -314,6 +489,7 @@
     // ---------- ปุ่มคำสั่ง ----------
     function render() {
       flush();
+      syncStage();
       const a = g.party[g.current];
       let list = [];
       if (ui.phase === "ally") {
@@ -357,6 +533,10 @@
       buggy = buggyBox.checked;
       lines = [];
       ui = { phase: "ally", pending: null };
+      fxToken++;
+      banner.className = "stage-banner";
+      stageEl.querySelectorAll(".float").forEach((f) => f.remove());
+      Object.values(fEl).forEach((el) => el.classList.remove("dead", "lunge", "hit", "hurt", "healed", "charged", "boss-big", "boss-lunge"));
       g = {
         party: [
           { name: "Misha", path: ATTACKER, hp: MAX_HP, energy: 0 },
