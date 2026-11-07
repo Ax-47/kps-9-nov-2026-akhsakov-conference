@@ -1,7 +1,7 @@
 // ลูกเล่นของหน้าเว็บ เขียนด้วย JavaScript ล้วน ไม่มี library
 // - สีพื้นเปลี่ยนตามส่วนที่อยู่กลางจอ + บอกว่าอยู่หัวข้อไหน
 // - แถบ .hscroll: เลื่อนลง = เนื้อหาเลื่อนไปด้านข้าง (เฉพาะจอกว้าง จอเล็กใช้ปัดซ้าย-ขวาเอง)
-// - ตัวอักษรใหญ่วิ่งตามการเลื่อน, ของค่อย ๆ โผล่, แท็บโค้ด, เกมจำตัวเลข
+// - ตัวอักษรใหญ่วิ่งตามการเลื่อน, ของค่อย ๆ โผล่, แท็บโค้ด, เกมจำตัวเลข, นาฬิกาจับเวลาพัก
 (() => {
   "use strict";
 
@@ -202,6 +202,28 @@
       digits.dataset.state = "show";
       msg.textContent = "12 ตัวแยกกัน = เกินที่ short-term จุได้ (ราว 4 ก้อน) แต่พอจับเป็น 3 ก้อนที่มีความหมาย — ปีเกิดของ C, Java และ Rust — จำง่ายขึ้นทันที นี่คือ chunking";
       reveal.hidden = true;
+    });
+  });
+  // ===================== นาฬิกาจับเวลาพัก =====================
+  document.querySelectorAll("[data-timer]").forEach((box) => {
+    const out = box.querySelector(".timer-time");
+    const btn = box.querySelector("[data-timer-start]");
+    const total = parseInt(box.dataset.timer, 10) || 600;
+    const fmt = (sec) => `${String(Math.floor(sec / 60)).padStart(2, "0")}:${String(sec % 60).padStart(2, "0")}`;
+    let timer = 0;
+    let endAt = 0;
+    const stop = (label) => { clearInterval(timer); timer = 0; btn.textContent = label; };
+    btn.addEventListener("click", () => {
+      if (timer) { stop("เริ่มจับเวลาพัก"); out.textContent = fmt(total); return; }
+      endAt = Date.now() + total * 1000;
+      btn.textContent = "หยุด / เริ่มใหม่";
+      const tick = () => {
+        const left = Math.max(0, Math.round((endAt - Date.now()) / 1000));
+        out.textContent = fmt(left);
+        if (!left) { stop("พักอีกรอบ"); out.textContent = "RESTART!"; }
+      };
+      tick();
+      timer = setInterval(tick, 250);
     });
   });
 })();

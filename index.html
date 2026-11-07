@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1f2eff">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans+Thai:wght@400;600&amp;family=JetBrains+Mono:wght@400;600&amp;family=Trirong:wght@400;600;700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans+Thai:wght@400;600&amp;family=JetBrains+Mono:wght@400;600&amp;family=Kanit:wght@500;700;800&amp;family=Silkscreen&amp;display=swap">
   <link rel="stylesheet" href="style.css">
   <script>document.documentElement.classList.add("js")</script>
   <script src="main.js" defer></script>
@@ -31,20 +31,30 @@
   <main>
     <!-- ===================== เปิดเรื่อง ===================== -->
     <section class="hero" id="top" data-bg="blue" data-label="เปิดเรื่อง">
-      <div class="window hero-window reveal">
-        <div class="window-bar"><span>guide.exe —✦— C → Rust —✦— brain</span><span aria-hidden="true">_ □ ×</span></div>
-        <div class="hero-body">
-          <img class="hero-cat" src="assets/ascii-cat.webp" width="1100" height="1035" alt="ภาพแมวที่วาดด้วยตัวอักษร ASCII มีเส้นสีพุ่งออกมาเหมือนสายฝนโค้ด">
-          <div class="hero-text">
-            <p class="kicker">GUIDE.EXE · แนะแนวรุ่นน้อง ม.ปลาย</p>
-            <h1>How to master and History of problem solving</h1>
-            <p class="lede">ภาษาโปรแกรมแก้ปัญหาอะไรมาบ้าง · เริ่มทำแอป เว็บ เกม · ซ้อมแข่งให้สมองจำได้จริง</p>
-            <p class="mono tagline">EVERY LANGUAGE IS VERY SIMPLE <em>IT JUST SOLVES THE PROBLEM OF ITS ERA</em> AND MAKES YOU PAY</p>
-            <p class="byline">มิช่า · วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</p>
-          </div>
+      <div class="hero-meta mono" aria-hidden="true"><span>GUIDE.EXE</span><span>KPS · 09/11/2026</span><span>แนะแนวรุ่นน้อง ม.ปลาย</span></div>
+      <h1 class="hero-title">
+        <span class="sr-only">How to master and History of problem solving — แนะแนว Programming จาก C ถึง Rust และสมองที่เรียนรู้</span>
+        <span class="hl" aria-hidden="true">HOW TO MASTER</span>
+        <span class="hl small" aria-hidden="true"><i class="stripes"></i>&amp; HISTORY OF</span>
+        <span class="hl" aria-hidden="true">PROBLEM</span>
+        <span class="hl" aria-hidden="true">SOLVING</span>
+      </h1>
+      <div class="hero-art" aria-hidden="true">
+        <svg class="deco-globe" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/><ellipse cx="50" cy="50" rx="20" ry="48"/><ellipse cx="50" cy="50" rx="36" ry="48"/><path d="M2 50h96M8 26h84M8 74h84"/></svg>
+        <img class="hero-cat" src="assets/ascii-cat.webp" width="1100" height="1035" alt="">
+        <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
+      </div>
+      <div class="win hero-win reveal">
+        <div class="win-bar"><span>readme.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <div class="win-body">
+          <p class="lede">ภาษาโปรแกรมแก้ปัญหาอะไรมาบ้าง · เริ่มทำแอป เว็บ เกม · ซ้อมแข่งให้สมองจำได้จริง</p>
+          <p class="mono tagline">EVERY LANGUAGE IS VERY SIMPLE <em>IT JUST SOLVES THE PROBLEM OF ITS ERA</em> AND MAKES YOU PAY</p>
+          <p class="loading mono" aria-hidden="true">LOADING BRAIN.EXE <span class="bar"><i></i></span> <b>72%</b></p>
+          <p class="byline">มิช่า · วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</p>
         </div>
       </div>
-      <p class="scroll-hint mono" aria-hidden="true">เลื่อนลง ↓</p>
+      <span class="deco-vert" aria-hidden="true">C → C++ → GO → RUST → BRAIN</span>
+      <p class="scroll-hint mono" aria-hidden="true">SCROLL ↓</p>
     </section>
 
     <div class="marquee" data-speed="0.35" aria-hidden="true">
@@ -68,18 +78,20 @@
     </section>
 
     <!-- ===================== PART 1 ===================== -->
-    <section class="part-intro" id="part1" data-bg="ink" data-label="01 · ประวัติภาษา">
+    <section class="part-intro" id="part1" data-bg="night" data-label="01 · ประวัติภาษา">
       <div class="wrap">
-        <p class="part-no" aria-hidden="true">01</p>
+        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 01 / 04</p><p class="mega">HISTORY</p></div>
         <p class="kicker reveal">Part 1 · ประวัติ paradigm และภาษา</p>
         <h2 class="giant reveal">ภาษาไหน<br>ดีที่สุด?</h2>
         <p class="answer reveal">คำตอบของพี่: <strong>ไม่มี</strong> — แต่ละภาษาเกิดมาเพื่อแก้ปัญหาของยุคมัน</p>
         <p class="lede reveal">เราจะดูว่าแต่ละยุคเจอปัญหาอะไร แก้ยังไง แล้วต้องจ่ายอะไรแลก เข้าใจตรงนี้แล้ว จะเลือกเครื่องมือเป็นเอง
           สังเกตไว้: <em>ทุกภาษาใหม่ เกิดจากความเจ็บปวดของภาษาก่อนหน้า</em></p>
       </div>
+      <span class="deco-vert" aria-hidden="true">PARADIGM · 1950 → 2025</span>
+      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
     </section>
 
-    <section class="block" data-bg="ink" data-label="01 · ประวัติภาษา" aria-labelledby="spec-title">
+    <section class="block" data-bg="night" data-label="01 · ประวัติภาษา" aria-labelledby="spec-title">
       <div class="wrap two-col">
         <div>
           <p class="kicker reveal">โจทย์ · ใช้ตลอด Part 1</p>
@@ -97,7 +109,7 @@
     </section>
 
     <!-- เลื่อนลง = แถบยุคเลื่อนไปทางขวา -->
-    <section class="hscroll" data-bg="ink" data-label="01 · ประวัติภาษา" aria-label="ยุคของภาษาโปรแกรม เลื่อนไปด้านข้าง">
+    <section class="hscroll" data-bg="night" data-label="01 · ประวัติภาษา" aria-label="ยุคของภาษาโปรแกรม เลื่อนไปด้านข้าง">
       <div class="hscroll-sticky">
         <div class="hscroll-head wrap">
           <p class="kicker">ไทม์ไลน์ · 1940s → ปัจจุบัน</p>
@@ -105,7 +117,9 @@
         </div>
         <div class="hscroll-track">
 
-          <article class="panel panel-wide">
+          <article class="panel win panel-wide">
+            <div class="win-bar"><span>era0.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ERA 0 · 1940s–1950s · ยุคบุกเบิก</p>
             <h3 class="panel-title">จากการเสียบสายไฟ สู่ภาษาที่คนอ่านออก</h3>
             <p>ยุคนั้นเครื่องแพง คนถูก — เลยยอมเขียนภาษาที่ยาก แต่ใกล้เครื่องและเร็วที่สุด</p>
@@ -115,6 +129,7 @@
               <div class="gen"><b class="mono">3GL · FORTRAN 1957</b><code>HP = HP - DMG</code><p>เขียนเป็นสูตร ให้ compiler แปลให้ ย้ายเครื่องแค่ compile ใหม่</p></div>
             </div>
             <p class="punch">ทุกขั้น คือย้ายงานยาก ๆ จาก “คน” ไปให้ “เครื่องมือ” ทำแทน</p>
+            </div>
           </article>
 
           <article class="panel panel-photo">
@@ -123,7 +138,9 @@
             <p class="note">Grace Hopper ผู้บุกเบิกแนวคิด compiler — A-0 ให้เครื่องประกอบโปรแกรมเอง</p>
           </article>
 
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>goto.c</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ERA 1 · 1960s–1970s · ยุคเมนเฟรม</p>
             <h3 class="panel-title">ปัญหาแรก: โค้ดกระโดดไปมาด้วย GOTO</h3>
             <ul class="ticks">
@@ -135,9 +152,12 @@
               <img src="assets/dijkstra.webp" width="562" height="698" loading="lazy" alt="ภาพขาวดำของ Edsger Dijkstra ใส่แว่น มีหนวดเครา สวมเสื้อกั๊ก">
               <figcaption><span class="bubble">“เลิกใช้ goto เถอะนะ”</span><span class="mono small">Edsger Dijkstra · ถอดความจากจดหมาย Go To Statement Considered Harmful (1968)</span></figcaption>
             </figure>
+            </div>
           </article>
 
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>crisis_1968.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">1966–1968 · วิกฤตซอฟต์แวร์</p>
             <h3 class="panel-title">ทางออก: แค่ 3 โครงสร้างก็พอ</h3>
             <p>ปี 1968 ที่ประชุมวิศวกรรมซอฟต์แวร์ของ NATO ใช้คำว่า <em>software crisis</em> — โปรเจกต์ช้า เกินงบ บั๊กเต็มไปหมด
@@ -152,9 +172,12 @@
     if (hp &lt;= 0) break;
 }
 // อ่านบนลงล่าง ไม่มีลูกศร</code></pre>
+            </div>
           </article>
 
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>c_1972.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">C · 1972 · Dennis Ritchie, Bell Labs</p>
             <h3 class="panel-title">C: ภาษาที่สร้างมาเพื่อเขียน Unix</h3>
             <dl class="pfc">
@@ -162,9 +185,12 @@
               <div><dt>ทางแก้</dt><dd>ภาษาระดับสูงที่ยังใกล้ฮาร์ดแวร์พอเขียน OS ได้ ย้ายเครื่องแค่ compile ใหม่ (ปี 1973 เขียนเคอร์เนล Unix ใหม่ด้วย C)</dd></div>
               <div><dt>ยังเห็นวันนี้</dt><dd>Linux และแกนของ Windows · เฟิร์มแวร์ในเครื่องใช้ไฟฟ้า · syntax ที่ C++ Java Go Rust ยืมไปใช้</dd></div>
             </dl>
+            </div>
           </article>
 
-          <article class="panel">
+          <article class="panel win warn">
+            <div class="win-bar"><span>⚠ malloc.c</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ราคาที่ต้องจ่าย</p>
             <h3 class="panel-title">ราคาของ C: ดูแลหน่วยความจำเอง</h3>
             <pre class="code"><code>char *name = malloc(8);
@@ -178,9 +204,12 @@ printf("%s", name);</code></pre>
             </details>
             <p class="stat"><span class="big">~70%</span> ของช่องโหว่ความปลอดภัยที่ Microsoft แพตช์แต่ละปี มาจากปัญหา memory safety</p>
             <p class="source">Matt Miller, Microsoft Security Response Center · BlueHat IL 2019</p>
+            </div>
           </article>
 
-          <article class="panel">
+          <article class="panel win warn">
+            <div class="win-bar"><span>⚠ hp_bug.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ERA 2 · 1980s–2000s · ยุคพีซี</p>
             <h3 class="panel-title">โปรแกรมใหญ่ขึ้น ข้อมูลพันกัน</h3>
             <p>ตัวแปร <span class="mono">int hp = 100;</span> อยู่ใน <span class="mono">game.h</span> ทุกไฟล์แก้ได้หมด ทีมศัตรูลดเลือด ทีมไอเทมเพิ่มเลือด ทีมตัวละครเช็กล้ม
@@ -192,9 +221,12 @@ printf("%s", name);</code></pre>
             </div>
             <p>ผลคือ <strong>บั๊กตัวละครอมตะ</strong>: โดนบอสตีจนเลือด −70 แต่เช็ก <span class="mono">hp == 0</span> เลยไม่ล้ม พอกินอาหารฮีลก็ “ฟื้น” กลับมาเป็น 5</p>
             <p class="source">ตัวเลขสมมติ เกมจริงอาจใหญ่กว่านี้อีก</p>
+            </div>
           </article>
 
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>oop.java</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ทางแก้ที่ 2 · Simula 1967 → Smalltalk → C++ 1985</p>
             <h3 class="panel-title">OOP: ให้ข้อมูลมีเจ้าของ</h3>
             <p><span class="mono">Ally</span> เก็บ hp ไว้เอง คนอื่นแก้ได้แค่ผ่าน <span class="mono">takeDamage()</span> กับ <span class="mono">heal()</span> แก้ที่เดียว ทั้ง 200 จุดได้กฎเดียวกันทันที</p>
@@ -204,9 +236,12 @@ printf("%s", name);</code></pre>
               <li><b>Inheritance</b> Food กับ EnergyDrink สืบทอดจาก Item</li>
               <li><b>Polymorphism</b> สั่ง <span class="mono">it.use(me)</span> เหมือนกัน แต่แต่ละชิ้นทำต่างกัน</li>
             </ol>
+            </div>
           </article>
 
-          <article class="panel">
+          <article class="panel win warn">
+            <div class="win-bar"><span>⚠ class_tree.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ราคาที่ต้องจ่าย</p>
             <h3 class="panel-title">ต้นไม้คลาสที่ลึกเกินไป</h3>
             <pre class="code tree"><code>GameObject
@@ -216,9 +251,12 @@ printf("%s", name);</code></pre>
          └─ TrailblazerV2</code></pre>
             <p>แก้ Character ทีเดียว ลูกหลานพังทั้งตระกูล และโค้ดมีพิธีเยอะ (boilerplate)</p>
             <blockquote class="pull">อยากได้แค่กล้วยลูกเดียว แต่ได้กอริลลาที่ถือกล้วย พร้อมทั้งป่ามาด้วย<cite>Joe Armstrong ผู้สร้างภาษา Erlang (ถอดความ)</cite></blockquote>
+            </div>
           </article>
 
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>composition.go</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ERA 3 · 2000s–ปัจจุบัน</p>
             <h3 class="panel-title">ประกอบชิ้นส่วน ดีกว่าสืบทอด</h3>
             <p>หลัก <em>composition over inheritance</em> จากหนังสือ Design Patterns (1994) ที่ Go กับ Rust ใส่ลงไปในตัวภาษาเลย — ตัด class inheritance ทิ้ง ใช้ struct + interface/trait</p>
@@ -229,9 +267,12 @@ printf("%s", name);</code></pre>
             <dl class="pfc">
               <div><dt>Go · 2009</dt><dd>Griesemer, Pike, Thompson ที่ Google: ภาษาเล็ก compile เร็ว goroutine ทำงานพร้อมกันง่าย · อยู่ใน Docker, Kubernetes</dd></div>
             </dl>
+            </div>
           </article>
 
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>ownership.rs</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">Rust · 2015 · Graydon Hoare, Mozilla</p>
             <h3 class="panel-title">เร็วแบบ C และปลอดภัยกว่า</h3>
             <p><strong>ownership</strong>: ทุกค่ามีเจ้าของคนเดียว ส่งต่อ = ย้ายเจ้าของ ยืมด้วย <span class="mono">&amp;</span> ได้ ผิดกฎ = compile ไม่ผ่าน บั๊กไม่หลุดไปถึงผู้ใช้</p>
@@ -242,6 +283,7 @@ printf("%s", name);</code></pre>
 }</code></pre>
             <p class="mono err">error[E0382]: borrow of moved value: `a`</p>
             <p class="small">ราคา: เรียนยาก ช่วงแรกจะ “ทะเลาะกับ borrow checker” และ compile ช้ากว่า Go · อยู่ใน Linux kernel, Firefox, Android</p>
+            </div>
           </article>
 
         </div>
@@ -398,7 +440,7 @@ for x in xs:
     <!-- ===================== PART 2 ===================== -->
     <section class="part-intro" id="part2" data-bg="paper" data-label="02 · เริ่มต้น">
       <div class="wrap">
-        <p class="part-no" aria-hidden="true">02</p>
+        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 02 / 04</p><p class="mega">START</p></div>
         <p class="kicker reveal">Part 2 · เริ่มต้นยังไง</p>
         <h2 class="giant reveal">ก้าวแรก<br>เลือกตามสิ่งที่อยากได้</h2>
         <div class="cards three">
@@ -408,6 +450,8 @@ for x in xs:
         </div>
         <p class="note reveal">เลือกหนึ่งภาษา แล้วอยู่กับมันให้ได้ 3 เดือน — ภาษาที่สองจะง่ายขึ้นมาก</p>
       </div>
+      <span class="deco-vert" aria-hidden="true">WEB · APP · GAME</span>
+      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
     </section>
 
     <section class="block" data-bg="paper" data-label="02 · เริ่มต้น" aria-labelledby="tool-title">
@@ -431,7 +475,9 @@ for x in xs:
           <div class="hscroll-progress" aria-hidden="true"><i></i></div>
         </div>
         <div class="hscroll-track">
-          <article class="panel track-panel">
+          <article class="panel win track-panel">
+            <div class="win-bar"><span>web.html</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">สายเว็บ</p>
             <h3 class="panel-title">จากหน้าเดียว สู่เว็บที่ใช้จริง</h3>
             <ol class="steps">
@@ -443,8 +489,11 @@ for x in xs:
             </ol>
             <p class="first"><span class="mono">โปรเจกต์แรก</span> หน้าเว็บแนะนำตัวเอง · to-do list ที่ปิดเว็บแล้วข้อมูลไม่หาย · เว็บที่เพื่อนในห้องใช้จริง เช่น ตารางเวร โหวตเมนู</p>
             <p class="small">เริ่มจาก HTML/CSS/JS ล้วน ๆ ก่อน (แบบเว็บนี้) แล้วค่อยไป framework</p>
+            </div>
           </article>
-          <article class="panel track-panel">
+          <article class="panel win track-panel">
+            <div class="win-bar"><span>app.dart</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">สายแอปมือถือ</p>
             <h3 class="panel-title">เขียนครั้งเดียว ได้สองระบบ</h3>
             <ol class="steps">
@@ -456,8 +505,11 @@ for x in xs:
             </ol>
             <p class="first"><span class="mono">โปรเจกต์แรก</span> แอปจดรายรับรายจ่าย · นับถอยหลังวันสอบ · flashcard ทวนศัพท์แบบเว้นระยะ</p>
             <p class="small">อยากลงลึก native: Kotlin สำหรับ Android, Swift สำหรับ iOS (ต้องใช้ Mac)</p>
+            </div>
           </article>
-          <article class="panel track-panel">
+          <article class="panel win track-panel">
+            <div class="win-bar"><span>game.gd</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">สายเกม</p>
             <h3 class="panel-title">เริ่มจากเข้าใจ game loop</h3>
             <ol class="steps">
@@ -469,8 +521,11 @@ for x in xs:
             </ol>
             <p class="first"><span class="mono">โปรเจกต์แรก</span> Pong · เกมนกบินลอดท่อฉบับของเรา · platformer 1 ด่าน</p>
             <p class="small">ชอบ Rust: ลอง engine ชื่อ Bevy</p>
+            </div>
           </article>
-          <article class="panel track-panel">
+          <article class="panel win track-panel">
+            <div class="win-bar"><span>more_tracks.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ยังมีอีก</p>
             <h3 class="panel-title">สายอื่นที่น่าสนใจ</h3>
             <dl class="pfc">
@@ -479,6 +534,7 @@ for x in xs:
               <div><dt>Backend / Cloud</dt><dd>Go · Python · Database · Linux — ระบบหลังบ้านที่รองรับคนใช้พร้อมกันเยอะ ๆ</dd></div>
               <div><dt>Security</dt><dd>เข้าใจระบบให้ลึก + จริยธรรม ฝึกแบบถูกกฎหมายผ่านการแข่ง CTF</dd></div>
             </dl>
+            </div>
           </article>
         </div>
       </div>
@@ -496,10 +552,13 @@ for x in xs:
             <li class="reveal"><b>เพิ่มทีละฟีเจอร์ และ commit ทุกครั้ง</b></li>
           </ol>
         </div>
-        <aside class="callout reveal">
-          <p class="kicker">ระวัง Tutorial Hell</p>
-          <p>ดูคลิปสอนวนไปเรื่อย ๆ รู้สึกว่าเข้าใจ แต่พอเปิดจอว่าง กลับเขียนเองไม่ได้</p>
-          <p class="rule"><span>ดูคลิป</span><b>1 ชม.</b><span>เขียนเอง</span><b>2 ชม.</b></p>
+        <aside class="dialog reveal" aria-label="คำเตือน: Tutorial Hell">
+          <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>WARNING</div>
+          <div class="dialog-body">
+            <p class="dialog-q">ระวัง <b>Tutorial Hell</b> — ดูคลิปสอนวนไปเรื่อย ๆ รู้สึกว่าเข้าใจ แต่พอเปิดจอว่าง กลับเขียนเองไม่ได้</p>
+            <p class="rule"><span>ดูคลิป</span><b>1 ชม.</b><span>→ เขียนเอง</span><b>2 ชม.</b></p>
+            <div class="dialog-btns" aria-hidden="true"><span>ดูคลิปต่อ</span><span class="on">เปิด editor</span></div>
+          </div>
         </aside>
       </div>
     </section>
@@ -520,19 +579,25 @@ for x in xs:
 
     <!-- ===================== พัก ===================== -->
     <section class="break" id="break" data-bg="blue" data-label="พัก 10 นาที">
+      <div class="wrap bsod">
+        <p class="sad" aria-hidden="true">:(</p>
+        <h2 class="bsod-title">สมองของคุณทำงานหนักมาก<br>และต้อง <span>RESTART</span></h2>
+        <p class="lede">พัก 10 นาที — ระหว่างพัก สมองยังทำงานต่อ เดี๋ยวกลับมาเล่าว่ามันทำอะไรอยู่</p>
+        <div class="timer" data-timer="600">
+          <p class="timer-time mono" aria-live="polite">10:00</p>
+          <button type="button" class="btn" data-timer-start>เริ่มจับเวลาพัก</button>
+        </div>
+        <p class="mono small bsod-code">STOP CODE: BRAIN_NEEDS_A_BREAK · กำลังบันทึกความจำ… <span class="blink">█</span></p>
+      </div>
       <div class="marquee big" data-speed="-0.5" aria-hidden="true">
         <div class="marquee-row">พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦</div>
-      </div>
-      <div class="wrap">
-        <h2 class="sr-only">พัก 10 นาที</h2>
-        <p class="lede reveal">ระหว่างพัก สมองยังทำงานต่อ — เดี๋ยวกลับมาเล่าว่ามันทำอะไรอยู่</p>
       </div>
     </section>
 
     <!-- ===================== PART 3 ===================== -->
-    <section class="part-intro" id="part3" data-bg="ink" data-label="03 · สมองเรียนรู้">
+    <section class="part-intro" id="part3" data-bg="night" data-label="03 · สมองเรียนรู้">
       <div class="wrap">
-        <p class="part-no" aria-hidden="true">03</p>
+        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 03 / 04</p><p class="mega">BRAIN</p></div>
         <p class="kicker reveal">Part 3 · สมองเรียนรู้ยังไง</p>
         <h2 class="giant reveal">ความจำ<br>มี 2 แบบ</h2>
         <div class="memory reveal">
@@ -544,13 +609,16 @@ for x in xs:
         </div>
         <p class="source reveal">โมเดลความจำของ Atkinson &amp; Shiffrin (1968) · ดึงความรู้จาก long-term กลับมาใช้ เรียกว่า retrieval</p>
       </div>
+      <span class="deco-vert" aria-hidden="true">HIPPOCAMPUS · SLEEP · SKILL</span>
+      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
     </section>
 
-    <section class="block" data-bg="ink" data-label="03 · สมองเรียนรู้" aria-labelledby="chunk-title">
+    <section class="block" data-bg="night" data-label="03 · สมองเรียนรู้" aria-labelledby="chunk-title">
       <div class="wrap">
         <p class="kicker reveal">ลองเลย · 1 นาที</p>
         <h3 class="title reveal" id="chunk-title">จำตัวเลขชุดนี้ให้ได้</h3>
-        <div class="chunk reveal" data-chunk>
+        <div class="chunk win reveal" data-chunk>
+          <div class="win-bar"><span>memory_test.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
           <p class="chunk-digits mono" data-state="idle" aria-live="polite">● ● ● ● ● ● ● ● ● ● ● ●</p>
           <div class="chunk-actions">
             <button type="button" class="btn" data-chunk-start>เริ่ม: ดู 10 วินาที</button>
@@ -561,20 +629,26 @@ for x in xs:
       </div>
     </section>
 
-    <section class="hscroll" data-bg="ink" data-label="03 · สมองเรียนรู้" aria-label="เรื่องของ HM เลื่อนไปด้านข้าง">
+    <section class="hscroll" data-bg="night" data-label="03 · สมองเรียนรู้" aria-label="เรื่องของ HM เลื่อนไปด้านข้าง">
       <div class="hscroll-sticky">
         <div class="hscroll-head wrap">
           <p class="kicker">เคสที่เปลี่ยนวงการประสาทวิทยา</p>
           <div class="hscroll-progress" aria-hidden="true"><i></i></div>
         </div>
         <div class="hscroll-track">
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>hm_1953.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">Henry Molaison (1926–2008)</p>
+            <div class="oops" aria-hidden="true"><div class="oops-win back"></div><div class="oops-win"><b>Oops!</b><span>Memory Not Found</span></div></div>
             <h3 class="panel-title">HM: ชายที่สร้างความจำใหม่ไม่ได้</h3>
             <p>ลมชักรุนแรงตั้งแต่เด็ก ยาเอาไม่อยู่ ปี 1953 ศัลยแพทย์ William Scoville ผ่าตัดเอาสมองส่วนขมับด้านใน (medial temporal lobe) ทั้งสองข้างออก รวมถึง <strong>hippocampus</strong></p>
             <p class="punch">ลมชักดีขึ้น แต่…</p>
+            </div>
           </article>
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>after_surgery.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">หลังผ่าตัด</p>
             <h3 class="panel-title">อะไรหาย อะไรอยู่</h3>
             <dl class="pfc">
@@ -583,8 +657,11 @@ for x in xs:
               <div><dt>ยังอยู่</dt><dd>ความจำเก่าก่อนผ่าตัด ส่วนใหญ่ยังจำได้</dd></div>
             </dl>
             <p class="punch small">hippocampus คือด่านที่ย้ายความจำ จาก short-term ไป long-term</p>
+            </div>
           </article>
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>mirror_tracing.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">แต่มีเรื่องที่แปลกกว่านั้น</p>
             <h3 class="panel-title">HM วาดผ่านกระจก เก่งขึ้นทุกวัน</h3>
             <p>mirror tracing: ลากเส้นระหว่างขอบดาว 2 ชั้น โดยมองมือตัวเองผ่านกระจกเท่านั้น</p>
@@ -594,8 +671,11 @@ for x in xs:
               <li><b>วันที่ 3</b> ทำได้ดีขึ้นอีก และยังจำไม่ได้ว่าเคยฝึก</li>
             </ol>
             <p class="source">การทดลองของ Brenda Milner (ตีพิมพ์ปี 1962)</p>
+            </div>
           </article>
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>long_term.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">ความจำระยะยาว</p>
             <h3 class="panel-title">มี 2 ระบบ</h3>
             <dl class="pfc">
@@ -603,8 +683,11 @@ for x in xs:
               <div><dt>Procedural · “รู้วิธี”</dt><dd>ทำได้ด้วยการลงมือ อาศัย basal ganglia และ cerebellum — ขี่จักรยาน พิมพ์สัมผัส เห็นโจทย์แล้วรู้ว่าต้องใช้ DP</dd></div>
             </dl>
             <p class="small">ทักษะถูกเก็บด้วยสมองอีกระบบ ที่ไม่ต้องพึ่ง hippocampus — HM เลยยังฝึกได้</p>
+            </div>
           </article>
-          <article class="panel">
+          <article class="panel win">
+            <div class="win-bar"><span>skill.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
             <p class="era-tag mono">แปลว่าอะไรกับเรา</p>
             <h3 class="panel-title">เขียนโปรแกรมเป็นทักษะ ไม่ใช่แค่ความรู้</h3>
             <div class="versus">
@@ -612,6 +695,7 @@ for x in xs:
               <div><b>ทำได้</b><ul><li>เปิดจอว่าง แล้วเขียนเองได้</li><li>เห็นโจทย์ แล้วนึกออกว่าใช้ DP</li><li>debug เองจนเจอบั๊ก</li></ul></div>
             </div>
             <p class="punch">ดูคลิปว่ายน้ำ 100 ชั่วโมง ก็ยังว่ายไม่เป็น — ต้องลงน้ำ</p>
+            </div>
           </article>
         </div>
       </div>
@@ -627,12 +711,18 @@ for x in xs:
           <p class="reveal">ตอนหลับ สมองเล่นซ้ำสิ่งที่เรียนตอนกลางวัน แล้วค่อย ๆ ย้ายไปเก็บระยะยาว — เซลล์ใน hippocampus ของหนู ยิงสัญญาณรูปแบบเดิมซ้ำตอนหลับ (Wilson &amp; McNaughton, 1994)</p>
           <p class="reveal">ทักษะดีขึ้นหลังนอน โดยไม่ต้องฝึกเพิ่ม: คนที่ฝึกกดนิ้วตามลำดับ ทำได้เร็วขึ้นหลังนอนหนึ่งคืน แต่ไม่ดีขึ้นแบบนั้นเมื่อตื่นอยู่ช่วงเวลาเท่ากัน (Walker และทีม, 2002)</p>
           <p class="stat reveal"><span class="big">8–10</span> ชั่วโมงต่อคืน สำหรับวัยรุ่นอายุ 13–18 ปี <span class="source">American Academy of Sleep Medicine</span></p>
-          <p class="punch reveal">อดนอนติวก่อนแข่ง = เรียนแล้วไม่ได้ save</p>
+          <div class="dialog reveal" role="note" aria-label="อดนอนติวก่อนแข่ง = เรียนแล้วไม่ได้ save">
+            <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>UNSAVED CHANGES</div>
+            <div class="dialog-body">
+              <p class="dialog-q">แน่ใจนะว่าจะ <b>อดนอนติวก่อนแข่ง</b>? สิ่งที่เรียนวันนี้ยังไม่ได้ save</p>
+              <div class="dialog-btns" aria-hidden="true"><span>ติวต่อ</span><span class="on">นอน 8 ชม.</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="block" data-bg="ink" data-label="03 · สมองเรียนรู้" aria-labelledby="curve-title">
+    <section class="block" data-bg="night" data-label="03 · สมองเรียนรู้" aria-labelledby="curve-title">
       <div class="wrap">
         <p class="kicker reveal">ลืมเป็นเรื่องปกติ</p>
         <h3 class="title reveal" id="curve-title">Forgetting curve และการทวนแบบเว้นระยะ</h3>
@@ -686,7 +776,7 @@ for x in xs:
     <!-- ===================== PART 4 ===================== -->
     <section class="part-intro" id="part4" data-bg="paper" data-label="04 · ซ้อมแข่ง">
       <div class="wrap">
-        <p class="part-no" aria-hidden="true">04</p>
+        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 04 / 04</p><p class="mega">PRACTICE</p></div>
         <p class="kicker reveal">Part 4 · ซ้อมแข่งยังไง</p>
         <h2 class="giant reveal">ให้สมอง<br>เก็บเป็นทักษะ</h2>
         <ol class="path reveal" aria-label="เส้นทางสายแข่ง">
@@ -703,6 +793,8 @@ for x in xs:
         </div>
         <p class="source reveal">รายละเอียดและกำหนดการเปลี่ยนทุกปี — เช็กประกาศล่าสุดที่ <a href="https://posn.or.th" rel="noopener">posn.or.th</a></p>
       </div>
+      <span class="deco-vert" aria-hidden="true">POSN → TOI → IOI</span>
+      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
     </section>
 
     <section class="block" data-bg="paper" data-label="04 · ซ้อมแข่ง" aria-labelledby="tree-title">
@@ -744,7 +836,7 @@ int main() {
       </div>
     </section>
 
-    <section class="block" data-bg="ink" data-label="04 · ซ้อมแข่ง" aria-labelledby="bigo-title">
+    <section class="block" data-bg="night" data-label="04 · ซ้อมแข่ง" aria-labelledby="bigo-title">
       <div class="wrap">
         <p class="kicker reveal">Big-O ในทางปฏิบัติ</p>
         <h3 class="title reveal" id="bigo-title">ดูขนาด n ก่อน แล้วจะรู้ว่าต้องใช้วิธีไหน</h3>
@@ -772,12 +864,42 @@ int main() {
           <div class="hscroll-progress" aria-hidden="true"><i></i></div>
         </div>
         <div class="hscroll-track">
-          <article class="panel step-panel"><p class="step-no">1</p><h3 class="panel-title">ลองคิดเอง 20–40 นาที</h3><p>ดึงความรู้ออกมาใช้ = <em>retrieval practice</em></p></article>
-          <article class="panel step-panel"><p class="step-no">2</p><h3 class="panel-title">ติดจริง ดู hint ทีละนิด</h3><p>ยังไม่เปิดเฉลยเต็ม ให้สมองได้คิดต่อ</p></article>
-          <article class="panel step-panel"><p class="step-no">3</p><h3 class="panel-title">ปิดเฉลย เขียนใหม่เอง</h3><p>ตั้งแต่บรรทัดแรก = ฝึก <em>procedural</em></p></article>
-          <article class="panel step-panel"><p class="step-no">4</p><h3 class="panel-title">จดลง error log</h3><p>พลาดเพราะอะไร ได้กฎอะไรติดตัว</p></article>
-          <article class="panel step-panel"><p class="step-no">5</p><h3 class="panel-title">กลับมาทำข้อเดิมใหม่</h3><p>หลัง 1 วัน และ 1 สัปดาห์ = <em>spaced practice</em></p></article>
-          <article class="panel step-panel"><p class="step-no">6</p><h3 class="panel-title">นอนให้พอ</h3><p>ให้สมองกด save ทั้งความรู้และทักษะ</p></article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_1.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">1</p><h3 class="panel-title">ลองคิดเอง 20–40 นาที</h3><p>ดึงความรู้ออกมาใช้ = <em>retrieval practice</em></p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_2.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">2</p><h3 class="panel-title">ติดจริง ดู hint ทีละนิด</h3><p>ยังไม่เปิดเฉลยเต็ม ให้สมองได้คิดต่อ</p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_3.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">3</p><h3 class="panel-title">ปิดเฉลย เขียนใหม่เอง</h3><p>ตั้งแต่บรรทัดแรก = ฝึก <em>procedural</em></p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_4.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">4</p><h3 class="panel-title">จดลง error log</h3><p>พลาดเพราะอะไร ได้กฎอะไรติดตัว</p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_5.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">5</p><h3 class="panel-title">กลับมาทำข้อเดิมใหม่</h3><p>หลัง 1 วัน และ 1 สัปดาห์ = <em>spaced practice</em></p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_6.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">6</p><h3 class="panel-title">นอนให้พอ</h3><p>ให้สมองกด save ทั้งความรู้และทักษะ</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -815,7 +937,7 @@ int main() {
       </div>
     </section>
 
-    <section class="block" data-bg="ink" data-label="04 · ซ้อมแข่ง" aria-labelledby="res-title">
+    <section class="block" data-bg="night" data-label="04 · ซ้อมแข่ง" aria-labelledby="res-title">
       <div class="wrap two-col">
         <div>
           <p class="kicker reveal">แหล่งฝึก</p>
@@ -856,7 +978,7 @@ int main() {
       </div>
     </section>
 
-    <section class="block" id="quiz" data-bg="ink" data-label="ทดสอบตัวเอง" aria-labelledby="quiz-title">
+    <section class="block" id="quiz" data-bg="night" data-label="ทดสอบตัวเอง" aria-labelledby="quiz-title">
       <div class="wrap">
         <p class="kicker reveal">retrieval practice สด ๆ</p>
         <h2 class="title reveal" id="quiz-title">ทดสอบตัวเอง 4 ข้อ — นึกก่อน แล้วค่อยกดดูเฉลย</h2>
