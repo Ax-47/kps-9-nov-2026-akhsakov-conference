@@ -1,0 +1,29 @@
+<section id="why-cpp" style="background:#F3F5FC;color:#2B3270;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#0679C4;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace">ภาษาที่ใช้แข่ง</p>
+<h2 style="font-family:'Trirong', Georgia, serif;font-size:72px;font-weight:600;line-height:1.25;color:#1F2EFF">ทำไมคนแข่งส่วนใหญ่ใช้ C++</h2>
+</div>
+<div style="display:flex;gap:64px;align-items:center;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<ul style="font-size:32px;line-height:1.6;color:#2B3270">
+<li>เร็ว — โจทย์มักจำกัดเวลาราว 1 วินาที</li>
+<li>STL: sort, vector, map, priority_queue พร้อมใช้</li>
+<li>ระบบตรวจของการแข่งแทบทุกที่รองรับ</li>
+<li>Python เขียนเร็ว แต่บางข้ออาจไม่ทันเวลา</li>
+</ul>
+<p style="font-size:24px;line-height:1.4;color:#5A6396">ตัวอย่างโค้ด: อ่านตัวเลข n ตัว แล้วตอบค่ามากสุด ลบด้วยค่าน้อยสุด</p>
+</div>
+<div style="width:720px;background:#1F2EFF;border-radius:0px;padding:48px;display:flex;flex-direction:column;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:32px;line-height:1.5;color:#FFFFFF;white-space:nowrap"><span style="color:#FFD95A">#include</span> &lt;bits/stdc++.h&gt;<br><span style="color:#FFD95A">using namespace</span> std;<br><span style="color:#FFD95A">int</span> <span style="color:#A8F4FF">main</span>() {<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">int</span> n; cin &gt;&gt; n;<br>&#160;&#160;&#160;&#160;vector&lt;<span style="color:#FFD95A">int</span>&gt; a(n);<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">for</span> (<span style="color:#FFD95A">auto</span> &amp;x : a) cin &gt;&gt; x;<br>&#160;&#160;&#160;&#160;<span style="color:#A8F4FF">sort</span>(a.begin(), a.end());<br>&#160;&#160;&#160;&#160;cout &lt;&lt; a[n-1] - a[0];<br>}</p>
+</div>
+</div>
+<aside>ภาษาที่ใช้แข่งส่วนใหญ่คือ C++ ด้วยเหตุผล 3 ข้อ: เร็ว มีคลังเครื่องมือ STL พร้อมใช้ และแทบทุกระบบตรวจรองรับ
+
+อธิบายโค้ด: bits/stdc++.h คือการ include ทุกอย่างทีเดียว (ใช้ได้กับ GCC ซึ่งระบบแข่งส่วนใหญ่ใช้) อ่าน n แล้วอ่านตัวเลข n ตัวลง vector เรียงด้วย sort แล้วตอบตัวสุดท้ายลบตัวแรก
+
+ชี้ให้เห็นว่า sort บรรทัดเดียว ในภาษา C ต้องเขียนเองหรือเรียก qsort ที่ใช้ยากกว่า
+
+สำหรับน้องที่เริ่มจาก Python: ไม่เป็นไร ฝึกคิดด้วย Python ก่อนได้ แต่ถ้าตั้งใจจะแข่ง สอวน./TOI จริงจัง ควรย้ายมา C++ ตั้งแต่ ม.4 (เช็กภาษาที่อนุญาตในประกาศแต่ละปีด้วย)
+
+เกร็ดจาก Part 1: C++ คือ C + class ของ Stroustrup นั่นเอง ได้ความเร็วแบบ C พร้อมเครื่องมือสำเร็จรูป</aside>
+</section>

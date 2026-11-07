@@ -1,0 +1,47 @@
+<section id="era-cloud" data-transition="fade" style="background:repeating-linear-gradient(0deg, #1F2EFF 0px, #1F2EFF 47px, #3442FF 47px, #3442FF 48px), #1F2EFF;color:#FFFFFF;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column">
+<div style="position:absolute;left:48px;top:48px;width:1824px;height:984px;border:2px solid #8F98FF"></div>
+<div style="position:absolute;left:1580px;top:92px;width:212px;height:28px;background:repeating-linear-gradient(120deg, #FFFFFF 0px, #FFFFFF 10px, #1F2EFF 10px, #1F2EFF 22px)"></div>
+<p style="position:absolute;left:128px;top:88px;width:1080px;height:36px;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace;font-size:24px;font-weight:600;letter-spacing:2px;line-height:36px;white-space:nowrap;color:#A8F4FF">ERA 3 · 2000s–ปัจจุบัน · Composition over Inheritance</p>
+<h1 style="position:absolute;left:120px;top:132px;width:1100px;font-family:'Anton', Impact, sans-serif;font-size:164px;font-weight:400;line-height:1;letter-spacing:2px;color:#FFFFFF">COMPOSITION<br>&gt; INHERITANCE</h1>
+<p style="position:absolute;left:128px;top:478px;width:1040px;font-size:40px;font-weight:600;line-height:1.4;color:#FFFFFF">ประกอบชิ้นส่วน ดีกว่าสืบทอด</p>
+<p style="position:absolute;left:128px;top:540px;width:1040px;font-size:26px;line-height:1.5;color:#D5DBFF">หลักการจากหนังสือ Design Patterns (1994) ที่ Go กับ Rust ใส่ลงไปในตัวภาษาเลย</p>
+<div style="position:absolute;left:128px;top:604px;width:1000px;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:24px;padding:14px 24px;border:2px solid #FFFFFF;">
+<p style="width:96px;font-family:'JetBrains Mono', monospace;font-size:32px;font-weight:600;line-height:1.3;color:#FFFFFF">BUG</p>
+<div style="flex:1;display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.4;color:#FFFFFF">สืบทอดลึกจนแก้ยาก</p><p style="font-size:24px;line-height:1.4;color:#D5DBFF">แก้คลาสแม่ทีเดียว ลูกหลานพังทั้งตระกูล</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:14px 24px;background:#FFFFFF;border:2px solid #FFFFFF;border-top:none;">
+<p style="width:96px;font-family:'JetBrains Mono', monospace;font-size:32px;font-weight:600;line-height:1.3;color:#1F2EFF">FIX</p>
+<div style="flex:1;display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.4;color:#1F2EFF">struct + interface/trait + ประกอบชิ้นส่วน</p><p style="font-size:24px;line-height:1.4;color:#2B3270">Go (2009) · Rust (2015): ตัด class inheritance ทิ้ง</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:14px 24px;border:2px solid #FFFFFF;border-top:none;">
+<p style="width:96px;font-family:'JetBrains Mono', monospace;font-size:32px;font-weight:600;line-height:1.3;color:#FFFFFF">COST</p>
+<div style="flex:1;display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.4;color:#FFFFFF">ไม่มีคลาสแม่ให้รับโค้ดมาฟรี</p><p style="font-size:24px;line-height:1.4;color:#D5DBFF">บางอย่างต้องเขียน impl เองทีละชนิด</p></div>
+</div>
+</div>
+<div style="position:absolute;left:1236px;top:176px;width:556px;display:flex;flex-direction:column;padding:28px 32px;background:#0B1A99;border:10px solid #FFFFFF;box-shadow:14px 14px 0 #0A1270;transform:rotate(-3deg)">
+<p style="font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace;font-size:26px;line-height:1.5;white-space:nowrap;color:#FFFFFF"><span style="color:#FFD95A">struct</span> <span style="color:#A8F4FF">Memosprite</span> {<br>&#160;&#160;&#160;&#160;health: <span style="color:#A8F4FF">Health</span>,&#160;&#160;<span style="color:#B4BEFF">// มี</span><br>&#160;&#160;&#160;&#160;speed: <span style="color:#A8F4FF">Speed</span>,&#160;&#160;&#160;&#160;<span style="color:#B4BEFF">// มี</span><br>}&#160;&#160;<span style="color:#B4BEFF">// ไม่ได้ “เป็น” ตัวละคร</span></p>
+</div>
+<p style="position:absolute;left:1226px;top:132px;width:300px;height:40px;padding:0 14px;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace;font-size:24px;font-weight:600;line-height:40px;white-space:nowrap;color:#1F2EFF;background:#FFFFFF;transform:rotate(-3deg)">RUST · 2015</p>
+<p style="position:absolute;left:1748px;top:128px;width:64px;height:64px;font-size:56px;line-height:64px;text-align:center;color:#A8F4FF">✦</p>
+<p style="position:absolute;left:1236px;top:600px;width:556px;height:36px;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace;font-size:24px;font-weight:600;letter-spacing:2px;line-height:36px;white-space:nowrap;color:#A8F4FF">GO 2009 · RUST 2015</p>
+<p style="position:absolute;left:1236px;top:640px;width:556px;font-family:'Anton', Impact, sans-serif;font-size:64px;font-weight:400;line-height:1.05;letter-spacing:1px;color:#FFFFFF">GO &amp;<br>RUST</p>
+<p style="position:absolute;left:1236px;top:784px;width:556px;font-size:24px;font-weight:600;line-height:1.4;color:#FFFFFF">Go: Griesemer, Pike, Thompson ที่ Google</p>
+<p style="position:absolute;left:1236px;top:822px;width:556px;font-size:24px;line-height:1.4;color:#D5DBFF">Rust: Graydon Hoare · Mozilla สนับสนุน</p>
+<aside>เปิดยุคที่ 3 ยุคสุดท้าย: Composition over Inheritance (2000s ถึงปัจจุบัน ตามหัวข้อ “2000s to present” ของ Wikipedia) ชื่อยุคมาจากหลักการในหนังสือ Design Patterns (1994) ที่เขียนว่า “favor object composition over class inheritance” หัวใหญ่ COMPOSITION > INHERITANCE อ่านว่า “ประกอบ ดีกว่า สืบทอด”
+
+ถ้าน้องเคยได้ยินคำว่า modern OOP: เป็นคำที่คนใช้เรียกกันลอย ๆ ไม่ใช่ศัพท์ทางการ และ Go กับ Rust นับเป็น OOP ไหมก็ขึ้นกับนิยาม — FAQ ของ Go ตอบว่า “Yes and no” (มี type กับ method แต่ไม่มี type hierarchy) ส่วนหนังสือ The Rust Programming Language บอกว่าวงการไม่มีนิยาม OOP ที่ตกลงกัน ถ้าวัดว่า object รวมข้อมูลกับเมธอด Rust ก็เป็น OOP แต่ถ้าต้องมี inheritance ก็ไม่ใช่
+
+ปัญหา: ต่อจากสไลด์ราคาของ OOP — ใช้การสืบทอดกันมาหลายสิบปี ต้นไม้คลาสลึกจนแก้คลาสแม่ทีเดียว ลูกหลานพังทั้งตระกูล หรืออยากได้แค่กล้วย แต่ได้กอริลลาพร้อมป่ามาด้วย ตั้งแต่หนังสือ Design Patterns (1994) วงการก็แนะนำให้ประกอบ (composition) มากกว่าสืบทอด
+
+ทางแก้: ภาษารุ่นใหม่เอาบทเรียนนี้ใส่ลงไปในตัวภาษาเลย Go (2009) จาก Robert Griesemer, Rob Pike และ Ken Thompson ที่ Google และ Rust (เริ่มโดย Graydon Hoare, Mozilla สนับสนุน, 1.0 ปี 2015) ไม่มี class และไม่มี inheritance มีแค่ struct เก็บข้อมูล เมธอดที่ผูกกับ struct และ interface (Go) หรือ trait (Rust) เป็นสัญญาว่าต้องทำอะไรได้ แล้วเอาชิ้นส่วนมาประกอบกัน
+
+โค้ดบนสติกเกอร์ (Rust): memosprite ใน Honkai: Star Rail “มี” HP และ SPD เป็นชิ้นส่วน ไม่ได้ “เป็น” ตัวละครที่ต้องสืบทอดช่อง Light Cone, Relic, Eidolon มาด้วย
+
+ราคาที่จ่าย: ไม่มีคลาสแม่ให้รับโค้ดมาฟรี บางอย่างต้องเขียน impl เองทีละชนิด (Rust ช่วยได้บางส่วนด้วยเมธอด default ใน trait ส่วน Go ใช้การฝัง struct)
+
+สไลด์ถัดไป: Go → OOP แบบ Go → Rust → OOP แบบ Rust → ownership
+
+บริบทจาก Wikipedia: หลังปี 2010 มีภาษาใหม่หลายตัวแข่งกันแทน C ในงานที่ต้องเร็ว คือ Rust, Go, Swift, Zig และ Carbon วันนี้เล่าแค่ Go กับ Rust เพราะสองภาษานี้ตัด class inheritance ทิ้งชัดที่สุด (Swift ยังมี class ที่สืบทอดได้)
+อ้างอิงลำดับยุค: Wikipedia — Programming language (หัวข้อ History)</aside>
+</section>

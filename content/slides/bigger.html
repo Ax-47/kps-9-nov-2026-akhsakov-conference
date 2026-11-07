@@ -1,0 +1,49 @@
+<section id="bigger" style="background:#F3F5FC;color:#2B3270;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#0679C4;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace">1970s–1980s · ลองนึกถึงเกมแบบ Honkai: Star Rail</p>
+<h2 style="font-family:'Trirong', Georgia, serif;font-size:72px;font-weight:600;line-height:1.25;color:#1F2EFF">ปัญหาต่อไป: โปรแกรมใหญ่ขึ้น ข้อมูลพันกัน</h2>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:20px 32px;background:#1F2EFF;border-radius:0px;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.5;white-space:nowrap;color:#FFFFFF"><span style="color:#FFD95A">int</span> hp = 100;</p>
+<p style="font-size:24px;line-height:1.5;color:#D5DBFF">← HP ตัวละคร เป็นตัวแปรกลางใน src/game.h ทุกไฟล์ include แล้วแก้ได้หมด</p>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;background:#FFFFFF;border:3px solid #1F2EFF;border-radius:0px;padding:40px;display:flex;flex-direction:column;gap:16px;border-top:16px solid #1F2EFF;box-shadow:8px 8px 0 #C9D1F5">
+<div style="display:flex;align-items:center;gap:16px"><x-icon name="Users" style="color:#0679C4;width:44px;height:44px"></x-icon><h3 style="font-family:'Trirong', Georgia, serif;font-size:44px;font-weight:600;line-height:1.3;color:#1F2EFF">ทีมศัตรู</h3></div>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#5A6396">src/enemy/attack.c</p>
+<div style="background:#1F2EFF;border-radius:0px;padding:20px 24px;display:flex;flex-direction:column;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.5;white-space:nowrap;color:#FFFFFF"><span style="color:#FFD95A">void</span> <span style="color:#A8F4FF">onHit</span>(<span style="color:#FFD95A">int</span> dmg) {<br>&#160;&#160;&#160;&#160;hp -= dmg;<br>}</p>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#5A6396">โดนตี = ลดเลือด จบ</p>
+</div>
+<div style="flex:1;background:#FFFFFF;border:3px solid #1F2EFF;border-radius:0px;padding:40px;display:flex;flex-direction:column;gap:16px;border-top:16px solid #1F2EFF;box-shadow:8px 8px 0 #C9D1F5">
+<div style="display:flex;align-items:center;gap:16px"><x-icon name="Users" style="color:#0679C4;width:44px;height:44px"></x-icon><h3 style="font-family:'Trirong', Georgia, serif;font-size:44px;font-weight:600;line-height:1.3;color:#1F2EFF">ทีมไอเทม</h3></div>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#5A6396">src/items/food.c</p>
+<div style="background:#1F2EFF;border-radius:0px;padding:20px 24px;display:flex;flex-direction:column;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.5;white-space:nowrap;color:#FFFFFF"><span style="color:#FFD95A">void</span> <span style="color:#A8F4FF">useFood</span>() {<br>&#160;&#160;&#160;&#160;hp += 75;<br>}</p>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#5A6396">กินอาหาร = เพิ่มเลือด จบ</p>
+</div>
+<div style="flex:1;background:#FFFFFF;border:3px solid #1F2EFF;border-radius:0px;padding:40px;display:flex;flex-direction:column;gap:16px;border-top:16px solid #1F2EFF;box-shadow:8px 8px 0 #C9D1F5">
+<div style="display:flex;align-items:center;gap:16px"><x-icon name="Users" style="color:#0679C4;width:44px;height:44px"></x-icon><h3 style="font-family:'Trirong', Georgia, serif;font-size:44px;font-weight:600;line-height:1.3;color:#1F2EFF">ทีมตัวละคร</h3></div>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#5A6396">src/ally/update.c</p>
+<div style="background:#1F2EFF;border-radius:0px;padding:20px 24px;display:flex;flex-direction:column;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.5;white-space:nowrap;color:#FFFFFF"><span style="color:#FFD95A">void</span> <span style="color:#A8F4FF">update</span>() {<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">if</span> (hp == 0) die();<br>}</p>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#5A6396">เลือดหมด = ล้ม จบ</p>
+</div>
+</div>
+<p style="font-family:'Trirong', Georgia, serif;font-size:44px;line-height:1.3;color:#1F2EFF">ทุกคนเขียน “ถูก” ในมุมของตัวเอง… แต่ไม่มีใครเป็นเจ้าของ hp</p>
+<aside>พอ procedural ใช้ไปนาน ๆ โปรแกรมใหญ่ขึ้นเป็นแสนบรรทัด ทีมก็ใหญ่ขึ้น ปัญหาใหม่ก็มา: ข้อมูลอยู่แยกจากฟังก์ชัน และฟังก์ชันไหนก็แก้ข้อมูลได้
+
+เล่าเป็นเกมแบบ Honkai: Star Rail: HP ของตัวละคร (hp) เป็นตัวแปรกลาง ทุกไฟล์เข้าถึงได้ แล้วแบ่งงานให้ 3 ทีม
+• ทีมศัตรู เขียน onHit: โดนตีก็ลดเลือด
+• ทีมไอเทม เขียน useFood: กินอาหารก็เพิ่มเลือด
+• ทีมตัวละคร เขียน update: ถ้าเลือดเท่ากับ 0 ก็ล้ม (ในโค้ดใช้ die() เพราะสั้น)
+
+ชี้ให้น้องเห็นว่าแต่ละโค้ดอ่านแล้ว “ดูถูกหมด” ไม่มีใครเขียนผิดแบบชัด ๆ
+
+กิจกรรม 1 นาที: ถามน้องว่า “ลองเล่นเกมนี้ในหัว จะเกิดบั๊กอะไรได้บ้าง?” ให้เดาก่อนเปิดสไลด์หน้า (เฉลยคือบั๊กตัวละครอมตะ: โดนท่าใหญ่ทีเดียวจนเลือดติดลบ แล้ว hp == 0 ไม่เป็นจริง ตัวละครเลยไม่ล้ม และกินอาหารแล้วเลือดก็เกิน 100 ได้)
+
+ถ้าน้องถามว่านี่คือ data race ไหม: ยังไม่ใช่ ปัญหานี้เกิดได้แม้โปรแกรมทำงานทีละคำสั่ง data race คือกรณีที่สอง thread แก้ hp พร้อมกัน เช่น สองงานคำนวณดาเมจจากสองการโจมตีพร้อมกัน ต่างคนต่างอ่าน hp = 100 แล้วเขียนกลับ ดาเมจจึงหายไปหนึ่งครั้ง (เป็นเรื่องของงานพร้อมกัน ไม่ใช่เรื่อง paradigm ถ้ามีเวลาค่อยเล่าตอนสไลด์ Rust ว่ากฎการยืมของ Rust กันเรื่องนี้ได้ด้วย)</aside>
+</section>

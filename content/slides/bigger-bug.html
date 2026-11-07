@@ -1,0 +1,69 @@
+<section id="bigger-bug" style="background:#F3F5FC;color:#2B3270;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#0679C4;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace">ด่านจริง · เปิดเกมเล่น 1 ด่าน</p>
+<h2 style="font-family:'Trirong', Georgia, serif;font-size:72px;font-weight:600;line-height:1.25;color:#1F2EFF">บั๊กตัวละครอมตะ: เลือดติดลบแต่ไม่ล้ม</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;align-items:center;gap:24px;padding:8px 24px">
+<p style="width:40px;font-size:24px;font-weight:600;color:#5A6396">#</p>
+<div style="flex:1"><p style="font-size:24px;font-weight:600;color:#5A6396">เหตุการณ์ในเกม</p></div>
+<p style="width:380px;font-size:24px;font-weight:600;color:#5A6396">โค้ดที่ทำงาน</p>
+<p style="width:504px;font-size:24px;font-weight:600;color:#5A6396">hp</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:8px 24px;background:#FFFFFF;border:1px solid #C9D1F5;border-radius:0px">
+<p style="width:40px;font-size:32px;font-weight:600;line-height:1.5;color:#0679C4">1</p>
+<div style="flex:1"><p style="font-size:32px;line-height:1.5;color:#1F2EFF">เริ่มด่าน</p></div>
+<p style="width:380px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;white-space:nowrap;color:#1F2EFF">hp = 100</p>
+<div style="width:180px;height:24px;display:flex;background:#C9D1F5;border-radius:0px;overflow:hidden"><div style="width:180px;height:24px;background:#1F2EFF"></div></div>
+<p style="width:300px;font-size:32px;font-weight:600;line-height:1.5;color:#1F2EFF">100</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:8px 24px;background:#FFFFFF;border:1px solid #C9D1F5;border-radius:0px">
+<p style="width:40px;font-size:32px;font-weight:600;line-height:1.5;color:#0679C4">2</p>
+<div style="flex:1"><p style="font-size:32px;line-height:1.5;color:#1F2EFF">โดนศัตรูตี 3 hit ครั้งละ 30</p></div>
+<p style="width:380px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;white-space:nowrap;color:#1F2EFF">onHit(30) ×3</p>
+<div style="width:180px;height:24px;display:flex;background:#C9D1F5;border-radius:0px;overflow:hidden"><div style="width:18px;height:24px;background:#1F2EFF"></div></div>
+<p style="width:300px;font-size:32px;font-weight:600;line-height:1.5;color:#1F2EFF">10</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:8px 24px;background:#FFFFFF;border:1px solid #C9D1F5;border-radius:0px">
+<p style="width:40px;font-size:32px;font-weight:600;line-height:1.5;color:#0679C4">3</p>
+<div style="flex:1"><p style="font-size:32px;line-height:1.5;color:#1F2EFF">เช็กว่าล้มไหม</p></div>
+<p style="width:380px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;white-space:nowrap;color:#1F2EFF">if (hp == 0) die();</p>
+<div style="width:180px;height:24px;display:flex;background:#C9D1F5;border-radius:0px;overflow:hidden"><div style="width:18px;height:24px;background:#1F2EFF"></div></div>
+<p style="width:300px;font-size:32px;font-weight:600;line-height:1.5;color:#1F2EFF">10 · ยังไม่ล้ม (ถูก)</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:8px 24px;background:#FFFFFF;border:1px solid #C9D1F5;border-radius:0px">
+<p style="width:40px;font-size:32px;font-weight:600;line-height:1.5;color:#0679C4">4</p>
+<div style="flex:1"><p style="font-size:32px;line-height:1.5;color:#1F2EFF">โดนบอสใช้ท่าใหญ่ 80</p></div>
+<p style="width:380px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;white-space:nowrap;color:#1F2EFF">onHit(80)</p>
+<div style="width:180px;height:24px;display:flex;background:#C9D1F5;border-radius:0px;overflow:hidden"></div>
+<p style="width:300px;font-size:32px;font-weight:600;line-height:1.5;color:#0679C4">−70</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:8px 24px;background:#1F2EFF;border:1px solid #1F2EFF;border-radius:0px">
+<p style="width:40px;font-size:32px;font-weight:600;line-height:1.5;color:#FFD95A">5</p>
+<div style="flex:1"><p style="font-size:32px;line-height:1.5;color:#F3F5FC">เช็กว่าล้มไหม</p></div>
+<p style="width:380px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;white-space:nowrap;color:#F3F5FC">if (hp == 0) die();</p>
+<div style="width:180px;height:24px;display:flex;background:#2B3270;border-radius:0px;overflow:hidden"></div>
+<p style="width:300px;font-size:32px;font-weight:600;line-height:1.5;color:#FFD95A">−70 · ไม่ล้ม!</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;padding:8px 24px;background:#FFFFFF;border:1px solid #C9D1F5;border-radius:0px">
+<p style="width:40px;font-size:32px;font-weight:600;line-height:1.5;color:#0679C4">6</p>
+<div style="flex:1"><p style="font-size:32px;line-height:1.5;color:#1F2EFF">กินอาหารฮีล</p></div>
+<p style="width:380px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;white-space:nowrap;color:#1F2EFF">useFood()</p>
+<div style="width:180px;height:24px;display:flex;background:#C9D1F5;border-radius:0px;overflow:hidden"><div style="width:9px;height:24px;background:#1F2EFF"></div></div>
+<p style="width:300px;font-size:32px;font-weight:600;line-height:1.5;color:#1F2EFF">5 · ล้มแล้วฟื้น?!</p>
+</div>
+</div>
+<p style="font-family:'Trirong', Georgia, serif;font-size:44px;line-height:1.3;color:#1F2EFF">จะแก้ไฟล์ไหนดี? ดูก่อนว่าในเกมจริง hp ถูกแตะกี่ที่ →</p>
+<aside>เฉลยกิจกรรมจากสไลด์ก่อน: เล่นเกม 1 ด่านแล้วไล่ hp ไปทีละเหตุการณ์
+
+1) เริ่มด่าน เลือด 100
+2) โดนศัตรูตี 3 hit ครั้งละ 30 เหลือ 10
+3) โค้ดของทีมตัวละครเช็ก hp == 0 → ไม่จริง ยังไม่ล้ม ถูกต้อง
+4) โดนบอสใช้ท่าใหญ่ดาเมจ 80 → 10 − 80 = −70 (ทีมศัตรูไม่ได้กันเลือดติดลบ เพราะคิดว่า “ไม่ใช่หน้าที่ฉัน”)
+5) เช็กล้มอีกรอบ: −70 ไม่เท่ากับ 0 → ไม่ล้ม! ตัวละครยังได้เทิร์นต่อทั้งที่ควรล้มไปแล้ว = บั๊กตัวละครอมตะ
+6) กินอาหารฮีล: −70 + 75 = 5 กลายเป็นตัวที่ควรล้มกลับมามีเลือดได้ด้วยการฮีล ซึ่งผิดกฎข้อ 4
+
+จุดสำคัญที่อยากให้น้องเห็น: ไม่มีบรรทัดไหนผิดแบบชัด ๆ บั๊กเกิดจาก “การรวมกัน” ของโค้ด 2 ทีมที่ต่างคนต่างคิดไม่เหมือนกันว่า hp ควรเป็นยังไง
+
+ถามน้องสั้น ๆ ว่าจะแก้ที่ไหน น้องส่วนใหญ่จะตอบว่า “ให้ onHit กันไม่ให้ติดลบ” หรือ “ให้ update เช็ก hp <= 0” ซึ่งถูกทั้งคู่ถ้าเกมมีแค่ 3 ไฟล์ แล้วเปิดสไลด์หน้าให้ดูว่าเกมจริงมีจุดที่แตะ hp มากแค่ไหน</aside>
+</section>

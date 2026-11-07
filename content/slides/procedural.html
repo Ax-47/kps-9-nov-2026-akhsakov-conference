@@ -1,0 +1,26 @@
+<section id="procedural" style="background:#F3F5FC;color:#2B3270;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#0679C4;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace">ทางแก้ที่ 1 · Procedural</p>
+<h2 style="font-family:'Trirong', Georgia, serif;font-size:72px;font-weight:600;line-height:1.25;color:#1F2EFF">แตกปัญหาใหญ่ เป็นฟังก์ชันเล็ก ๆ</h2>
+</div>
+<div style="display:flex;gap:64px;align-items:center;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<ul style="font-size:32px;line-height:1.6;color:#2B3270">
+<li>คิดแบบ top-down: งานใหญ่ → งานย่อย → ฟังก์ชัน</li>
+<li>ตั้งชื่อฟังก์ชันให้บอกว่าทำอะไร แล้วเรียกใช้ซ้ำได้</li>
+<li>อ่านตามลำดับได้ ไม่มีการกระโดดมั่ว</li>
+<li>ภาษาตัวแทน: C, Pascal และ FORTRAN รุ่นหลัง</li>
+</ul>
+</div>
+<div style="width:720px;background:#1F2EFF;border-radius:0px;padding:40px 48px;display:flex;flex-direction:column;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'IBM Plex Sans Thai', 'Courier New', monospace;font-size:32px;line-height:1.5;color:#FFFFFF;white-space:nowrap"><span style="color:#FFD95A">int</span> <span style="color:#A8F4FF">sum</span>(<span style="color:#FFD95A">int</span> a[], <span style="color:#FFD95A">int</span> n) {<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">int</span> s = 0;<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">for</span> (<span style="color:#FFD95A">int</span> i = 0; i &lt; n; i++)<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;s += a[i];<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">return</span> s;<br>}<br><span style="color:#FFD95A">int</span> <span style="color:#A8F4FF">main</span>() {<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">int</span> a[] = {3, 1, 4};<br>&#160;&#160;&#160;&#160;printf(<span style="color:#A6FFD8">"%d"</span>, <span style="color:#A8F4FF">sum</span>(a, 3));<br>}</p>
+</div>
+</div>
+<aside>หลัง Dijkstra คนก็หันมาเขียนแบบ structured / procedural: โปรแกรมคือชุดของ procedure (ฟังก์ชัน) ที่เรียกกันเป็นลำดับ
+
+ตัวอย่างโค้ด C: ฟังก์ชัน sum รวมเลขในอาร์เรย์ แล้ว main เรียกใช้ ไม่มี GOTO เลย ใช้ for แทน
+
+เปรียบเทียบให้น้องฟัง: เหมือนสูตรทำอาหารที่แบ่งเป็นขั้น “หุงข้าว” “ทำน้ำแกง” “จัดจาน” แต่ละขั้นเป็นหน้าที่ของตัวเอง
+
+ปัญหาที่ยังเหลือ (ปูไปสไลด์หน้า): ข้อมูลยังแยกจากฟังก์ชัน ใครก็หยิบไปแก้ได้</aside>
+</section>

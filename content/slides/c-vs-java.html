@@ -1,0 +1,56 @@
+<section id="c-vs-java" style="background:#F3F5FC;color:#2B3270;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#0679C4;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace">โปรแกรมเดียวกัน: สร้างตัวละคร → โดนบอสตี 80 → ลองแก้ hp เป็น −70 ตรง ๆ → พิมพ์เลือด</p>
+<h2 style="font-family:'Trirong', Georgia, serif;font-size:72px;font-weight:600;line-height:1.25;color:#1F2EFF">C กับ Java: เกม HSR ฉบับเดียวกัน</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="width:640px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:baseline;gap:16px"><p style="font-family:'Trirong', Georgia, serif;font-size:32px;font-weight:600;line-height:1.5;color:#1F2EFF">C</p><p style="font-size:24px;color:#5A6396">procedural · ข้อมูลกับฟังก์ชันแยกกัน</p></div>
+<div style="background:#1F2EFF;border-radius:0px;padding:24px 32px;display:flex;flex-direction:column;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'IBM Plex Sans Thai', 'Courier New', monospace;font-size:24px;line-height:1.35;white-space:nowrap;color:#FFFFFF"><span style="color:#B4BEFF">#include</span> &lt;stdio.h&gt;<br><span style="color:#B4BEFF">#include</span> &lt;stdlib.h&gt;<br><span style="color:#FFD95A">typedef struct</span> { <span style="color:#FFD95A">int</span> hp; } Ally;<br><span style="color:#FFD95A">void</span> <span style="color:#A8F4FF">take_damage</span>(Ally *a, <span style="color:#FFD95A">int</span> dmg) {<br>&#160;&#160;&#160;&#160;a-&gt;hp -= dmg;<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">if</span> (a-&gt;hp &lt; 0) a-&gt;hp = 0;<br>}<br><span style="color:#FFD95A">int</span> <span style="color:#A8F4FF">main</span>(<span style="color:#FFD95A">void</span>) {<br>&#160;&#160;&#160;&#160;Ally *a = <span style="color:#FFE9A8">malloc(sizeof *a)</span>;<br>&#160;&#160;&#160;&#160;a-&gt;hp = 100;<br>&#160;&#160;&#160;&#160;take_damage(a, 80);<br>&#160;&#160;&#160;&#160;<span style="color:#FFE9A8">a-&gt;hp = -70;</span>&#160;&#160;<span style="color:#B4BEFF">// แก้ตรงได้!</span><br>&#160;&#160;&#160;&#160;printf(<span style="color:#A6FFD8">"%d\n"</span>, a-&gt;hp);<br>&#160;&#160;&#160;&#160;<span style="color:#FFE9A8">free(a);</span>&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#B4BEFF">// ต้องคืนเอง</span><br>}</p>
+</div>
+<p style="font-family:'JetBrains Mono', 'IBM Plex Sans Thai', 'Courier New', monospace;font-size:24px;line-height:1.5;color:#0679C4">ผลลัพธ์: -70 (บั๊กกลับมา)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:baseline;gap:16px"><p style="font-family:'Trirong', Georgia, serif;font-size:32px;font-weight:600;line-height:1.5;color:#1F2EFF">Java</p><p style="font-size:24px;color:#5A6396">OOP · ข้อมูลกับเมธอดอยู่ใน class เดียวกัน</p></div>
+<div style="position:relative;background:#1F2EFF;border-radius:0px;padding:24px 32px;display:flex;flex-direction:column;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'IBM Plex Sans Thai', 'Courier New', monospace;font-size:24px;line-height:1.35;white-space:nowrap;color:#FFFFFF"><span style="color:#FFD95A">class</span> <span style="color:#A8F4FF">Ally</span> {<br>&#160;&#160;&#160;&#160;<span style="color:#FFE9A8">private</span> <span style="color:#FFD95A">int</span> hp = 100;<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">void</span> <span style="color:#A8F4FF">takeDamage</span>(<span style="color:#FFD95A">int</span> dmg) {<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;hp = Math.max(0, hp - dmg);<br>&#160;&#160;&#160;&#160;}<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">int</span> <span style="color:#A8F4FF">getHp</span>() { <span style="color:#FFD95A">return</span> hp; }<br>}<br><span style="color:#FFD95A">public class</span> <span style="color:#A8F4FF">Main</span> {<br>&#160;&#160;&#160;&#160;<span style="color:#FFD95A">public static void</span> <span style="color:#A8F4FF">main</span>(String[] a) {<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Ally a = <span style="color:#FFE9A8">new Ally()</span>;<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;a.takeDamage(80);<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#B4BEFF">// a.hp = -70;</span> <span style="color:#FFE9A8">← compile error</span><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;System.out.println(a.getHp());<br>&#160;&#160;&#160;&#160;}&#160;&#160;<span style="color:#B4BEFF">// ไม่ต้อง free: GC เก็บให้</span><br>}</p>
+<div style="position:absolute;left:18px;top:18px;width:542px;height:239px;border:3px dashed #A8F4FF;border-radius:0px"></div>
+<div style="position:absolute;left:82px;top:54px;width:316px;height:33px;border:3px solid #FFE9A8;border-radius:10px"></div>
+<div style="position:absolute;left:82px;top:89px;width:388px;height:33px;border:3px solid #FFE9A8;border-radius:10px"></div>
+<div style="position:absolute;left:271px;top:315px;width:170px;height:33px;border:3px solid #FFE9A8;border-radius:10px"></div>
+<div style="position:absolute;left:141px;top:350px;width:257px;height:32px;border:3px solid #FFE9A8;border-radius:10px"></div>
+<x-connector x1="560" y1="170" x2="660" y2="170" head="none" style="color:#A8F4FF;border-width:2px"></x-connector>
+<x-connector x1="398" y1="70" x2="660" y2="70" head="none" style="color:#FFE9A8;border-width:2px"></x-connector>
+<x-connector x1="470" y1="105" x2="660" y2="105" head="none" style="color:#FFE9A8;border-width:2px"></x-connector>
+<x-connector x1="441" y1="331" x2="660" y2="331" head="none" style="color:#FFE9A8;border-width:2px"></x-connector>
+<x-connector x1="398" y1="366" x2="660" y2="366" head="none" style="color:#FFE9A8;border-width:2px"></x-connector>
+<p style="position:absolute;left:660px;top:154px;width:320px;height:32px;padding:0 12px;font-size:24px;font-weight:600;line-height:32px;white-space:nowrap;color:#1F2EFF;background:#A8F4FF;border-radius:8px">Class = ข้อมูล + เมธอด</p>
+<p style="position:absolute;left:660px;top:54px;width:320px;height:32px;padding:0 12px;font-size:24px;font-weight:600;line-height:32px;white-space:nowrap;color:#1F2EFF;background:#FFE9A8;border-radius:8px">Encapsulation: ซ่อน hp</p>
+<p style="position:absolute;left:660px;top:89px;width:320px;height:32px;padding:0 12px;font-size:24px;font-weight:600;line-height:32px;white-space:nowrap;color:#1F2EFF;background:#FFE9A8;border-radius:8px">Method: คำสั่งของ object</p>
+<p style="position:absolute;left:660px;top:315px;width:320px;height:32px;padding:0 12px;font-size:24px;font-weight:600;line-height:32px;white-space:nowrap;color:#1F2EFF;background:#FFE9A8;border-radius:8px">Object: ของจริงจากแม่พิมพ์</p>
+<p style="position:absolute;left:660px;top:350px;width:320px;height:32px;padding:0 12px;font-size:24px;font-weight:600;line-height:32px;white-space:nowrap;color:#1F2EFF;background:#FFE9A8;border-radius:8px">Abstraction: ไม่ต้องรู้ข้างใน</p>
+</div>
+<p style="font-family:'JetBrains Mono', 'IBM Plex Sans Thai', 'Courier New', monospace;font-size:24px;line-height:1.5;color:#1F2EFF">ผลลัพธ์: 20 (ถูกต้อง)</p>
+</div>
+</div>
+<aside>โปรแกรมเดียวกันทั้งสองฝั่ง: สร้างตัวละครเลือด 100 → โดนบอสตี 80 → มีคนพยายามแก้ hp เป็น −70 ตรง ๆ → พิมพ์เลือดที่เหลือ (สีส้มอ่อนในโค้ดคือจุดที่สองภาษาต่างกัน)
+
+วงในโค้ด Java ชี้ concept ของ OOP ให้น้องเห็นของจริง:
+• กรอบประสีฟ้า (Class) — class Ally คือแม่พิมพ์ที่รวมข้อมูล (hp) กับเมธอด (takeDamage, getHp) ไว้ด้วยกัน ต่างจากฝั่ง C ที่ struct กับฟังก์ชันแยกกัน
+• Encapsulation — คำว่า private ทำให้ hp ถูกซ่อน แก้ได้ผ่านเมธอดเท่านั้น (ดูบรรทัด compile error ด้านล่างประกอบ)
+• Method — takeDamage คือคำสั่งที่เป็นของ object เรียกด้วย a.takeDamage(80) ไม่ต้องส่ง a เข้าไปเหมือน C
+• Object — new Ally() คือการสร้าง “ของจริง” จากแม่พิมพ์ ทีมมีตัวละคร 4 ตัวก็ new 4 ครั้ง ได้ 4 ตัวที่มี hp ของใครของมัน
+• Abstraction — คนเรียก a.takeDamage(80) ไม่ต้องรู้ว่าข้างในกันเลือดติดลบยังไง รู้แค่ว่า “โดนตีแล้วเรียกอันนี้”
+(โปรแกรมนี้สั้น เลยมีแค่ Encapsulation กับ Abstraction ส่วน Inheritance กับ Polymorphism ดูในสไลด์ 4 หลักของ OOP)
+
+ไล่ความต่าง 4 ข้อ:
+1) ข้อมูลกับฟังก์ชัน — C เก็บ hp ไว้ใน struct แต่ฟังก์ชัน take_damage อยู่ข้างนอก ต้องส่ง a เข้าไปเอง / Java เอา hp กับ takeDamage ไว้ใน class Ally เดียวกัน
+2) ใครแก้ hp ได้ — C: ใครมี a ก็เขียน a->hp = -70 ได้เลย compile ผ่าน รันได้ ผลลัพธ์คือ -70 บั๊กกลับมา / Java: hp เป็น private บรรทัด a.hp = -70 compile ไม่ผ่านตั้งแต่ก่อนรัน ผลลัพธ์จึงเป็น 20 เสมอ
+3) หน่วยความจำ — C: จองเองด้วย malloc และต้องคืนเองด้วย free ลืมคืน = memory leak คืนแล้วยังใช้ = use-after-free (ย้อนไปสไลด์ c-cost) / Java: new แล้วจบ garbage collector ตามเก็บให้
+4) รันบนอะไร — C compile เป็นภาษาเครื่องของแต่ละเครื่องโดยตรง เร็วมาก / Java compile เป็น bytecode แล้วรันบน JVM (Java Virtual Machine) ที่ติดตั้งในแต่ละเครื่อง
+
+ความยุติธรรมกับ C (เผื่อน้องสายลึกถาม): C ก็ซ่อนข้อมูลได้ เช่น ประกาศ struct ไว้ในไฟล์ .c แล้วให้ไฟล์อื่นถือแค่ pointer แต่ภาษาไม่ได้บังคับให้ทำแบบนั้น ต้องอาศัยวินัยของคนในทีม ส่วน Java บังคับด้วย compiler
+
+ประโยคปิด: ไม่ได้แปลว่า Java ดีกว่า C — C เร็วกว่าและคุมเครื่องได้ละเอียดกว่า แต่ Java แลกความเร็วบางส่วนกับความปลอดภัยและความเป็นระเบียบสำหรับทีมใหญ่ (กลับไปที่ประโยค “ทุกทางแก้มีราคา”)</aside>
+</section>

@@ -1,0 +1,32 @@
+<section id="oop-cost" style="background:#F3F5FC;color:#2B3270;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#0679C4;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace">ราคาที่ต้องจ่าย</p>
+<h2 style="font-family:'Trirong', Georgia, serif;font-size:72px;font-weight:600;line-height:1.25;color:#1F2EFF">ราคาของ OOP: ต้นไม้คลาสที่ลึกเกินไป</h2>
+</div>
+<div style="display:flex;gap:64px;align-items:center;flex:1">
+<div style="width:600px;background:#1F2EFF;border-radius:0px;padding:48px;display:flex;flex-direction:column;box-shadow:inset 0 0 0 6px #1F2EFF, inset 0 0 0 8px #FFFFFF, 8px 8px 0 #C9D1F5">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:32px;line-height:1.5;color:#FFFFFF;white-space:nowrap">GameObject<br><span style="color:#B4BEFF">└─</span> Character<br>&#160;&#160;&#160;<span style="color:#B4BEFF">└─</span> Ally<br>&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#B4BEFF">└─</span> DestructionAlly<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#B4BEFF">└─</span> <span style="color:#FFD95A">TrailblazerV2</span></p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<ul style="font-size:32px;line-height:1.6;color:#2B3270">
+<li>แก้ Character ทีเดียว ลูกหลานพังทั้งตระกูล</li>
+<li>โค้ดยาว มีพิธีเยอะ (boilerplate)</li>
+</ul>
+<div style="background:#FFFFFF;border:3px solid #1F2EFF;border-radius:0px;padding:40px;display:flex;flex-direction:column;gap:16px;border-top:16px solid #1F2EFF;box-shadow:8px 8px 0 #C9D1F5">
+<p style="font-size:32px;line-height:1.5;color:#1F2EFF">Joe Armstrong (ผู้สร้างภาษา Erlang) เปรียบไว้ว่า อยากได้แค่กล้วยลูกเดียว แต่ได้กอริลลาที่ถือกล้วย พร้อมทั้งป่ามาด้วย</p>
+<p style="font-size:24px;line-height:1.4;color:#1F2EFF">บทเรียนที่วงการได้: ใช้การประกอบ (composition) มากกว่าการสืบทอด — หนังสือ Design Patterns, 1994</p>
+</div>
+</div>
+</div>
+<aside>ทุกทางแก้มีราคา OOP ก็เช่นกัน
+
+ต่อเกม Honkai: Star Rail ของเรา: เกมโตขึ้น ต้นไม้คลาสก็ลึกขึ้นเรื่อย ๆ GameObject → Character → Ally → DestructionAlly → TrailblazerV2 วันหนึ่งทีมอยากให้ตัวละครได้ Energy เพิ่มตอนโดนตี เลยแก้ที่ Character ทีเดียว ปรากฏว่าศัตรูและบอสที่สืบทอดจาก Character ก็ได้ Energy เพิ่มด้วย ปล่อยท่าใหญ่ถี่ขึ้นทั้งเกม แถมบางคลาสที่ไม่รู้ว่ามีอยู่ก็พังด้วย
+
+ทำไมชื่อ TrailblazerV2: ตัวเอก (Trailblazer) ในเกมเปลี่ยน Path ได้ ถ้าออกแบบด้วยการสืบทอด ต้องมี DestructionTrailblazer, PreservationTrailblazer, HarmonyTrailblazer … แล้ว object ที่สร้างไปแล้วเปลี่ยน class กลางเกมไม่ได้ สุดท้ายต้องรื้อทำ V2 อีกรอบ — ถ้าใช้การประกอบ แค่สลับชิ้น Path ที่ถืออยู่ก็จบ
+
+เรื่องกล้วยกับกอริลลาแบบ Honkai: Star Rail: อยากให้ memosprite (ร่างที่ตัวละครสาย Remembrance เรียกออกมา) มี HP เลยให้สืบทอดจาก Character เพื่อเอาระบบเลือด แต่ได้ช่องใส่ Light Cone, Relic, Eidolon และ Traces ติดมาทั้งก้อน ทั้งที่ memosprite ไม่ได้ใส่ของพวกนี้เอง อยากได้แค่กล้วย แต่ได้กอริลลาพร้อมทั้งป่า
+
+บทเรียน composition: แทนที่ “TrailblazerV2 เป็น DestructionAlly เป็น Ally เป็น …” ให้คิดว่า “Ally มี Health มี Path มี LightCone” และ “memosprite ก็มี Health ชิ้นเดียวกัน” คือเอาชิ้นส่วนมาประกอบ เปลี่ยนชิ้นไหนก็ไม่กระทบชิ้นอื่น (เกมเอนจินสมัยใหม่อย่าง Unity และ Unreal ใช้ระบบ component แบบนี้)
+
+ภาษารุ่นใหม่อย่าง Go และ Rust ไม่มี class inheritance แบบ Java เลย เป็นผลของบทเรียนนี้</aside>
+</section>

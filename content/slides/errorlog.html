@@ -1,0 +1,28 @@
+<section id="errorlog" style="background:#F3F5FC;color:#2B3270;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#0679C4;font-family:'JetBrains Mono', 'IBM Plex Sans Thai', monospace">เครื่องมือสำคัญ</p>
+<h2 style="font-family:'Trirong', Georgia, serif;font-size:72px;font-weight:600;line-height:1.25;color:#1F2EFF">Error log: สมุดบันทึกความพลาด</h2>
+</div>
+<table style="width:1664px;font-size:32px;color:#2B3270;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif">
+<tr style="background:#1F2EFF"><th style="width:22%;color:#F3F5FC">โจทย์</th><th style="width:12%;color:#F3F5FC">ผล</th><th style="width:30%;color:#F3F5FC">สาเหตุ</th><th style="width:36%;color:#F3F5FC">กฎที่ได้</th></tr>
+<tr style="background:#FFFFFF"><td>ผลรวมช่วง</td><td style="color:#0679C4">WA</td><td>ผลรวมเกินขอบ int</td><td>ผลรวมใหญ่ ใช้ long long</td></tr>
+<tr style="background:#F3F5FC"><td>เดินในตาราง</td><td style="color:#0679C4">TLE</td><td>DFS วนกลับจุดเดิมซ้ำ</td><td>ต้องมี visited</td></tr>
+<tr style="background:#FFFFFF"><td>เรียงคะแนน</td><td style="color:#0679C4">WA</td><td>ลืมกรณี n = 1</td><td>ลอง edge case ก่อนส่งทุกครั้ง</td></tr>
+<tr style="background:#F3F5FC"><td>นับคู่</td><td style="color:#0679C4">TLE</td><td>2 ลูปซ้อน กับ n = 100,000</td><td>n ใหญ่ ให้หาวิธี n log n</td></tr>
+</table>
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:32px;line-height:1.5;color:#1F2EFF">ก่อนแข่ง อ่าน error log ของตัวเอง — ได้ทวนจุดอ่อนแบบตรงเป้า</p>
+<p style="font-size:24px;line-height:1.4;color:#5A6396">WA = Wrong Answer (คำตอบผิด) · TLE = Time Limit Exceeded (เกินเวลา)</p>
+</div>
+<aside>Error log คือสมุด (หรือไฟล์ หรือ spreadsheet) ที่จดทุกครั้งที่ส่งโจทย์แล้วไม่ผ่าน 4 ช่อง: โจทย์อะไร / ผลที่ได้ / สาเหตุจริง / กฎที่จะใช้ครั้งหน้า
+
+ตัวอย่างในตารางเป็นความพลาดยอดฮิตของมือใหม่ทุกคน:
+• ผลรวมเกิน int (ประมาณ 2,100 ล้าน) ต้องใช้ long long
+• DFS ไม่มี visited วนไม่จบ
+• ลืม edge case เช่น n = 1 หรือ n = 0
+• ใช้ 2 ลูปซ้อนกับ n ระดับแสน (ย้อนไปดูตาราง Big-O)
+
+ทำไมได้ผลทางสมอง: การจดคือการเรียบเรียงความพลาดเป็นกฎ (เปลี่ยนเป็นก้อนความรู้ที่ชัด) และการอ่านก่อนแข่งคือ retrieval ที่ตรงจุดอ่อนของเราที่สุด ดีกว่าอ่านเนื้อหาใหม่ทั้งเล่ม
+
+ให้น้องเริ่มตั้งแต่ข้อแรกที่ทำ อย่ารอให้เก่งก่อน</aside>
+</section>
