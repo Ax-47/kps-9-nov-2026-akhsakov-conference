@@ -13,6 +13,7 @@
   <script>document.documentElement.classList.add("js")</script>
   <script src="main.js" defer></script>
   <script src="game.js" defer></script>
+  <script src="fun.js" defer></script>
 </head>
 <body data-bg="blue">
   <a class="skip" href="#agenda">ข้ามไปเนื้อหา</a>
@@ -110,15 +111,31 @@
     </section>
 
     <!-- เลื่อนลง = แถบยุคเลื่อนไปทางขวา -->
-    <section class="hscroll" data-bg="night" data-label="01 · ประวัติภาษา" aria-label="ยุคของภาษาโปรแกรม เลื่อนไปด้านข้าง">
+    <section class="hscroll era-run" data-bg="night" data-label="01 · ประวัติภาษา" aria-label="ยุคของภาษาโปรแกรม เลื่อนไปด้านข้าง">
       <div class="hscroll-sticky">
         <div class="hscroll-head wrap">
-          <p class="kicker">ไทม์ไลน์ · 1940s → ปัจจุบัน</p>
+          <p class="kicker">ไทม์ไลน์ · 4 ยุค</p>
+          <nav class="era-nav" aria-label="ไปยังยุค">
+            <a href="#era-0" data-era-link="0"><b>0</b><span>1940s</span></a>
+            <a href="#era-1" data-era-link="1"><b>1</b><span>1960s</span></a>
+            <a href="#era-2" data-era-link="2"><b>2</b><span>1980s</span></a>
+            <a href="#era-3" data-era-link="3"><b>3</b><span>2000s</span></a>
+          </nav>
           <div class="hscroll-progress" aria-hidden="true"><i></i></div>
         </div>
         <div class="hscroll-track">
 
-          <article class="panel win panel-wide">
+          <article class="panel era-divider" data-era="0" id="era-0">
+            <p class="era-big" aria-hidden="true">ERA<b>0</b></p>
+            <h3 class="era-name"><span class="mono">ERA 0 · 1940s–1950s</span>ยุคบุกเบิก <em>EARLY DEVELOPMENTS</em></h3>
+            <dl class="bfc">
+              <div class="bug"><dt>BUG</dt><dd>โค้ดเป็นเลข 0/1 ล้วน คนอ่านไม่ออก ย้ายเครื่องไม่ได้</dd></div>
+              <div class="fix"><dt>FIX</dt><dd>Assembly ตั้งชื่อแทนเลข แล้ว compiler แปลภาษาระดับสูงให้</dd></div>
+              <div class="cost"><dt>COST</dt><dd>เครื่องแพง คนถูก — ยังต้องคิดแบบเครื่อง</dd></div>
+            </dl>
+            <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Machine code</b><span>1940s</span></li><li><b>Assembly</b><span>1949</span></li><li><b>FORTRAN</b><span>1957</span></li><li><b>FLOW-MATIC</b><span>1958</span></li></ul>
+          </article>
+          <article class="panel win panel-wide" data-era="0">
             <div class="win-bar"><span>era0.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
             <p class="era-tag mono">ERA 0 · 1940s–1950s · ยุคบุกเบิก</p>
@@ -133,13 +150,23 @@
             </div>
           </article>
 
-          <article class="panel panel-photo">
+          <article class="panel panel-photo" data-era="0">
             <figure class="sticker"><img src="assets/eniac.webp" width="744" height="791" loading="lazy" alt="ภาพขาวดำของเครื่อง ENIAC ตู้ใหญ่หลายตู้ มีแผงสวิตช์และสายไฟระโยงระยาง"><figcaption class="mono">ENIAC · 1945</figcaption></figure>
             <figure class="sticker tilt"><img src="assets/grace-hopper.webp" width="705" height="927" loading="lazy" alt="ภาพขาวดำของ Grace Hopper ในชุดเครื่องแบบทหารเรือ ก้มมองการ์ดในมือ"><figcaption class="mono">GRACE HOPPER · COMPILER 1952</figcaption></figure>
             <p class="note">Grace Hopper ผู้บุกเบิกแนวคิด compiler — A-0 ให้เครื่องประกอบโปรแกรมเอง</p>
           </article>
 
-          <article class="panel win">
+          <article class="panel era-divider" data-era="1" id="era-1">
+            <p class="era-big" aria-hidden="true">ERA<b>1</b></p>
+            <h3 class="era-name"><span class="mono">ERA 1 · 1960s–1970s</span>ยุคเมนเฟรม <em>STRUCTURED PROGRAMMING</em></h3>
+            <dl class="bfc">
+              <div class="bug"><dt>BUG</dt><dd>GOTO กระโดดไปมาจนพันเป็นสปาเกตตี — 1968 software crisis</dd></div>
+              <div class="fix"><dt>FIX</dt><dd>if / loop / ฟังก์ชัน อ่านจากบนลงล่าง</dd></div>
+              <div class="cost"><dt>COST</dt><dd>ข้อมูลยังเป็นของกลาง ใครก็แก้ได้</dd></div>
+            </dl>
+            <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>ALGOL</b><span>1958</span></li><li><b>Pascal</b><span>1970</span></li><li><b>C</b><span>1972</span></li></ul>
+          </article>
+          <article class="panel win" data-era="1">
             <div class="win-bar"><span>goto.c</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
             <p class="era-tag mono">ERA 1 · 1960s–1970s · ยุคเมนเฟรม</p>
@@ -156,10 +183,10 @@
             </div>
           </article>
 
-          <article class="panel win">
+          <article class="panel win" data-era="1">
             <div class="win-bar"><span>crisis_1968.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
-            <p class="era-tag mono">1966–1968 · วิกฤตซอฟต์แวร์</p>
+            <p class="era-tag mono">ERA 1 · 1966–1968 · วิกฤตซอฟต์แวร์</p>
             <h3 class="panel-title">ทางออก: แค่ 3 โครงสร้างก็พอ</h3>
             <p>ปี 1968 ที่ประชุมวิศวกรรมซอฟต์แวร์ของ NATO ใช้คำว่า <em>software crisis</em> — โปรเจกต์ช้า เกินงบ บั๊กเต็มไปหมด
               ส่วน Böhm กับ Jacopini พิสูจน์ไว้ตั้งแต่ 1966 ว่าโปรแกรมใดก็เขียนได้ด้วยแค่ 3 โครงสร้าง</p>
@@ -176,10 +203,10 @@
             </div>
           </article>
 
-          <article class="panel win">
+          <article class="panel win" data-era="1">
             <div class="win-bar"><span>c_1972.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
-            <p class="era-tag mono">C · 1972 · Dennis Ritchie, Bell Labs</p>
+            <p class="era-tag mono">ERA 1 · C · 1972 · Dennis Ritchie, Bell Labs</p>
             <h3 class="panel-title">C: ภาษาที่สร้างมาเพื่อเขียน Unix</h3>
             <dl class="pfc">
               <div><dt>ปัญหา</dt><dd>ระบบปฏิบัติการเขียนด้วย assembly ผูกกับเครื่องรุ่นเดียว ย้ายเครื่อง = เขียนใหม่หมด</dd></div>
@@ -189,10 +216,10 @@
             </div>
           </article>
 
-          <article class="panel win warn">
+          <article class="panel win warn" data-era="1">
             <div class="win-bar"><span>⚠ malloc.c</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
-            <p class="era-tag mono">ราคาที่ต้องจ่าย</p>
+            <p class="era-tag mono">ERA 1 · ราคาที่ต้องจ่าย</p>
             <h3 class="panel-title">ราคาของ C: ดูแลหน่วยความจำเอง</h3>
             <pre class="code"><code>char *name = malloc(8);
 strcpy(name, "Somchai Jaidee");
@@ -208,7 +235,17 @@ printf("%s", name);</code></pre>
             </div>
           </article>
 
-          <article class="panel win warn">
+          <article class="panel era-divider" data-era="2" id="era-2">
+            <p class="era-big" aria-hidden="true">ERA<b>2</b></p>
+            <h3 class="era-name"><span class="mono">ERA 2 · 1980s–2000s</span>ยุคพีซี <em>OBJECT ORIENTED</em></h3>
+            <dl class="bfc">
+              <div class="bug"><dt>BUG</dt><dd>โปรแกรมแสนบรรทัด hp ถูกแตะจากเป็นร้อยจุด</dd></div>
+              <div class="fix"><dt>FIX</dt><dd>class = ข้อมูล + เมธอดที่คุมกฎ ให้ข้อมูลมีเจ้าของ</dd></div>
+              <div class="cost"><dt>COST</dt><dd>สืบทอดลึกจนแก้ยาก ต้นไม้คลาสงอกไม่หยุด</dd></div>
+            </dl>
+            <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Simula</b><span>1967</span></li><li><b>Smalltalk</b><span>1972</span></li><li><b>C++</b><span>1985</span></li><li><b>Java</b><span>1995</span></li></ul>
+          </article>
+          <article class="panel win warn" data-era="2">
             <div class="win-bar"><span>⚠ hp_bug.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
             <p class="era-tag mono">ERA 2 · 1980s–2000s · ยุคพีซี</p>
@@ -225,10 +262,10 @@ printf("%s", name);</code></pre>
             </div>
           </article>
 
-          <article class="panel win">
+          <article class="panel win" data-era="2">
             <div class="win-bar"><span>oop.java</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
-            <p class="era-tag mono">ทางแก้ที่ 2 · Simula 1967 → Smalltalk → C++ 1985</p>
+            <p class="era-tag mono">ERA 2 · Simula 1967 → Smalltalk → C++ 1985</p>
             <h3 class="panel-title">OOP: ให้ข้อมูลมีเจ้าของ</h3>
             <p><span class="mono">Ally</span> เก็บ hp ไว้เอง คนอื่นแก้ได้แค่ผ่าน <span class="mono">takeDamage()</span> กับ <span class="mono">heal()</span> แก้ที่เดียว ทั้ง 200 จุดได้กฎเดียวกันทันที</p>
             <ol class="pillars">
@@ -240,10 +277,10 @@ printf("%s", name);</code></pre>
             </div>
           </article>
 
-          <article class="panel win warn">
+          <article class="panel win warn" data-era="2">
             <div class="win-bar"><span>⚠ class_tree.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
-            <p class="era-tag mono">ราคาที่ต้องจ่าย</p>
+            <p class="era-tag mono">ERA 2 · ราคาที่ต้องจ่าย</p>
             <h3 class="panel-title">ต้นไม้คลาสที่ลึกเกินไป</h3>
             <pre class="code tree"><code>GameObject
 └─ Character
@@ -255,7 +292,17 @@ printf("%s", name);</code></pre>
             </div>
           </article>
 
-          <article class="panel win">
+          <article class="panel era-divider" data-era="3" id="era-3">
+            <p class="era-big" aria-hidden="true">ERA<b>3</b></p>
+            <h3 class="era-name"><span class="mono">ERA 3 · 2000s–ปัจจุบัน</span>ยุคคลาวด์ <em>COMPOSITION > INHERITANCE</em></h3>
+            <dl class="bfc">
+              <div class="bug"><dt>BUG</dt><dd>แก้คลาสแม่ทีเดียว ลูกหลานพังทั้งตระกูล</dd></div>
+              <div class="fix"><dt>FIX</dt><dd>struct + interface / trait ประกอบชิ้นส่วนแทนสืบทอด</dd></div>
+              <div class="cost"><dt>COST</dt><dd>ไม่มีคลาสแม่ให้รับโค้ดฟรี ต้องเขียน impl เอง</dd></div>
+            </dl>
+            <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Go</b><span>2009</span></li><li><b>Rust</b><span>2015</span></li></ul>
+          </article>
+          <article class="panel win" data-era="3">
             <div class="win-bar"><span>composition.go</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
             <p class="era-tag mono">ERA 3 · 2000s–ปัจจุบัน</p>
@@ -271,10 +318,10 @@ printf("%s", name);</code></pre>
             </div>
           </article>
 
-          <article class="panel win">
+          <article class="panel win" data-era="3">
             <div class="win-bar"><span>ownership.rs</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
-            <p class="era-tag mono">Rust · 2015 · Graydon Hoare, Mozilla</p>
+            <p class="era-tag mono">ERA 3 · Rust · 2015 · Graydon Hoare, Mozilla</p>
             <h3 class="panel-title">เร็วแบบ C และปลอดภัยกว่า</h3>
             <p><strong>ownership</strong>: ทุกค่ามีเจ้าของคนเดียว ส่งต่อ = ย้ายเจ้าของ ยืมด้วย <span class="mono">&amp;</span> ได้ ผิดกฎ = compile ไม่ผ่าน บั๊กไม่หลุดไปถึงผู้ใช้</p>
             <pre class="code"><code>fn main() {
@@ -1016,6 +1063,7 @@ int main() {
       <h2 class="title">ถามได้ทุกเรื่อง</h2>
       <p class="lede">ภาษา โปรเจกต์ การแข่ง การเรียนต่อ</p>
       <p class="small">แนะแนว Programming: จาก C ถึง Rust และสมองที่เรียนรู้ · มิช่า วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</p>
+      <p class="small eggs">psst… ลองพิมพ์ <span class="mono">rust</span> · <span class="mono">goto</span> · <span class="mono">sleep</span> · <span class="mono">sudo</span> บนคีย์บอร์ดดูสิ</p>
       <p class="small"><a href="#top">กลับขึ้นบนสุด ↑</a></p>
     </div>
   </footer>
