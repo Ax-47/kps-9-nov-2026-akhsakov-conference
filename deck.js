@@ -1,6 +1,6 @@
 // ตัวเปิดสไลด์แบบเว็บล้วน ไม่มี framework
 // 1. แปลงแต่ละ <section> ใน #slides ให้แสดงผลได้ (x-icon, x-shape, x-connector, โน้ตใน <aside>)
-// 2. วางสไลด์เรียงเป็นแถวแนวนอน เลื่อน/ปัดซ้าย-ขวาได้ และหยุดพอดีทีละหน้า (CSS scroll-snap)
+// 2. วางสไลด์เรียงเป็นแถวแนวนอน เลื่อนลื่น ๆ มีแรงเฉื่อย ล้อเมาส์/ทัชแพด/นิ้ว ทุกทิศพาไปด้านข้าง แล้วจอดที่สไลด์ใกล้สุด
 // 3. ปุ่มลัด โน้ตผู้พูด ดูทุกหน้า เต็มจอ และลิงก์ #slide-N
 (() => {
   "use strict";
@@ -166,6 +166,8 @@
   // ===================== สร้างแถบสไลด์ =====================
 
   const track = document.getElementById("slides");
+  const strip = document.createElement("div");
+  strip.className = "strip";
   const slides = [...track.querySelectorAll(":scope > section")].map((section, index) => {
     const id = section.id || `slide-${index + 1}`;
     const part = section.dataset.part;
@@ -174,12 +176,13 @@
     slot.className = "slot";
     slot.setAttribute("role", "group");
     slot.setAttribute("aria-roledescription", "slide");
-    track.insertBefore(slot, section);
     slot.append(framed(section));
+    strip.append(slot);
     const title = titleOf(section, id);
     slot.setAttribute("aria-label", `สไลด์ ${index + 1}: ${title}`);
     return { index, id, title, notes, part, slot, section };
   });
+  track.append(strip);
   const total = slides.length;
   track.classList.add("ready");
 
@@ -202,11 +205,10 @@
     fullBtn: document.querySelector('[data-action="fullscreen"]'),
   };
 
-  let current = -1; // หน้าที่แสดงอยู่ (เปลี่ยนระหว่างเลื่อน)
-  let target = 0;    // หน้าที่ตั้งใจจะอยู่ ใช้คงหน้าเดิมตอนเปลี่ยนขนาดจอ
+  let current = -1; // หน้าที่อยู่ตรงกลางจอตอนนี้ (เปลี่ยนระหว่างเลื่อน)
+  let target = 0;   // หน้าที่กำลังจะไปหยุด
 
   const clamp = (n) => Math.min(Math.max(n, 0), total - 1);
-  const indexFromScroll = () => clamp(Math.round(track.scrollLeft / Math.max(1, track.clientWidth)));
 
   function render(i) {
     if (i === current) return;
@@ -215,7 +217,6 @@
     ui.counter.textContent = `${i + 1} / ${total}`;
     ui.title.textContent = s.title;
     ui.title.title = s.title;
-    ui.bar.style.width = `${((i + 1) / total) * 100}%`;
     ui.prev.disabled = i === 0;
     ui.next.disabled = i === total - 1;
     ui.notesLabel.textContent = `โน้ตผู้พูด · สไลด์ ${i + 1}`;
@@ -223,64 +224,167 @@
     ui.notesNext.textContent = slides[i + 1] ? `ถัดไป: ${slides[i + 1].title}` : "";
   }
 
-  /** เลื่อนหยุดแล้ว: เล่นแอนิเมชันของสไลด์นั้น และจำหน้าไว้ใน URL */
+  // ===================== เครื่องเลื่อนแนวนอน =====================
+  // แถบสไลด์ขยับด้วย transform ไม่ใช่ scrollbar: ทุกการเลื่อน (ล้อเมาส์ ทัชแพด นิ้ว ปุ่ม) แค่ย้าย "goal"
+  // แล้วทุกเฟรมตำแหน่งจริง "pos" ค่อย ๆ ไหลตามไปแบบมีแรงเฉื่อย พอหยุดมือก็ไหลไปจอดที่สไลด์ใกล้สุด
+
+  let step = 1;     // ระยะห่างสไลด์ละหน้า (px)
+  let center = 0;   // ระยะจากขอบซ้ายถึงกึ่งกลางจอ
+  let pos = 0;      // ตำแหน่งที่แสดงอยู่ (px ตามแนวแถบ)
+  let goal = 0;     // ตำแหน่งที่กำลังไหลไปหา
+  let anchor = 0;   // สไลด์ที่อยู่ตอนเริ่มเลื่อนรอบนี้ ใช้ตัดสินว่าจะจอดหน้าไหน
+  let frame = 0;
+  let lastTime = 0;
+  let idleTimer = 0;
+
+  const maxPos = () => (total - 1) * step;
+  const clampPos = (x) => Math.min(Math.max(x, 0), maxPos());
+
+  /** ขยับเกินครึ่งทางไม่จำเป็น: เลื่อนไปทางไหนเกิน 10% ของหน้า ก็จอดหน้าถัดไปทางนั้นเลย */
+  function snapIndex(x) {
+    const rel = x / step;
+    if (rel > anchor) return clamp(Math.ceil(rel - 0.1));
+    if (rel < anchor) return clamp(Math.floor(rel + 0.1));
+    return anchor;
+  }
+
+  function paint() {
+    strip.style.transform = `translate3d(${(center - step / 2 - pos).toFixed(2)}px,0,0)`;
+    ui.bar.style.width = `${((pos / Math.max(1, maxPos())) * (total - 1) + 1) / total * 100}%`;
+    const at = pos / step;
+    render(clamp(Math.round(at)));
+    // สไลด์ข้าง ๆ ย่อและจางลงนิดหน่อย ให้รู้ว่าหน้าไหนอยู่ตรงกลาง
+    const from = Math.max(0, Math.floor(at) - 2);
+    const to = Math.min(total - 1, Math.ceil(at) + 2);
+    for (let i = from; i <= to; i++) {
+      const d = i - at;
+      const a = Math.min(Math.abs(d), 1.5);
+      const s = slides[i];
+      s.slot.style.setProperty("--k", (1 - a * 0.07).toFixed(4));
+      s.slot.style.setProperty("--o", (1 - a * 0.4).toFixed(3));
+    }
+  }
+
+  function tick(now) {
+    const dt = Math.min(64, now - (lastTime || now));
+    lastTime = now;
+    const ease = reduceMotion ? 1 : 1 - Math.exp(-dt / 110);
+    pos += (goal - pos) * ease;
+    if (Math.abs(goal - pos) < 0.4) pos = goal;
+    paint();
+    if (pos !== goal || dragging) frame = requestAnimationFrame(tick);
+    else { frame = 0; lastTime = 0; settle(); }
+  }
+
+  function run() {
+    if (!frame) frame = requestAnimationFrame(tick);
+  }
+
+  /** หยุดสนิทแล้ว: เล่นแอนิเมชันของสไลด์นั้น และจำหน้าไว้ใน URL */
   function settle() {
-    const i = indexFromScroll();
-    target = i;
-    render(i);
+    const i = clamp(Math.round(pos / step));
+    target = anchor = i;
     slides[i].slot.classList.add("seen");
     const hash = `#slide-${i + 1}`;
     if (location.hash !== hash) history.replaceState(null, "", hash);
   }
 
   function go(n, smooth = true) {
-    const i = clamp(n);
-    // เลื่อนนุ่ม ๆ เฉพาะหน้าติดกัน ถ้ากระโดดไกล (Home/End/ดูทุกหน้า) ไปทันที
-    const near = Math.abs(i - target) <= 1;
-    target = i;
-    track.scrollTo({ left: i * track.clientWidth, behavior: smooth && near && !reduceMotion ? "smooth" : "instant" });
-    render(i);
+    target = anchor = clamp(n);
+    goal = target * step;
+    clearTimeout(idleTimer);
+    if (!smooth || reduceMotion) { pos = goal; paint(); settle(); return; }
+    run();
   }
 
-  // ย่อขยายสไลด์ให้พอดีพื้นที่ และคงหน้าเดิมไว้ตอนเปลี่ยนขนาดจอ
+  /** หยุดมือ: ไหลไปจอดที่สไลด์ */
+  function snapSoon(delay) {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => go(snapIndex(goal)), delay);
+  }
+
+  // ย่อขยายสไลด์ให้พอดีจอ สไลด์ข้าง ๆ โผล่ให้เห็นขอบ และคงหน้าเดิมไว้ตอนเปลี่ยนขนาดจอ
   function fit() {
-    const pad = 32;
-    const s = Math.max(0.05, Math.min((track.clientWidth - pad) / W, (track.clientHeight - pad) / H));
+    const w = track.clientWidth;
+    const h = track.clientHeight;
+    const peek = w > 700 ? 0.82 : 0.9;
+    const s = Math.max(0.05, Math.min((w * peek) / W, (h - 32) / H));
     track.style.setProperty("--s", s.toFixed(4));
-    track.scrollTo({ left: target * track.clientWidth, behavior: "instant" });
-    render(target);
+    step = W * s + Math.max(16, w * 0.03);
+    track.style.setProperty("--step", `${step.toFixed(2)}px`);
+    center = w / 2;
+    pos = goal = target * step;
+    paint();
   }
   new ResizeObserver(fit).observe(track);
   fit();
 
-  let scrollTimer;
-  track.addEventListener("scroll", () => {
-    render(indexFromScroll());
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(settle, 120);
-  }, { passive: true });
+  // ===================== เมาส์ / ทัชแพด / นิ้ว =====================
 
-  // ===================== เมาส์ / ทัชแพด =====================
-
-  // ล้อเมาส์เลื่อนลง = ไปหน้าถัดไป (1 จังหวะต่อ 1 หน้า) ส่วนการปัดแนวนอนของทัชแพด/จอสัมผัส ให้เบราว์เซอร์เลื่อนเอง
-  let wheelAt = 0;
-  let wheelSum = 0;
-  let wheelUsed = false;
+  // ล้อเมาส์หรือทัชแพด ทั้งแนวตั้งและแนวนอน = เลื่อนแถบไปด้านข้าง (ลง/ขวา = ไปหน้าถัดไป)
   track.addEventListener("wheel", (e) => {
-    if (e.ctrlKey || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    if (e.ctrlKey) return; // ปล่อยให้ซูมได้
     e.preventDefault();
-    const now = performance.now();
-    if (now - wheelAt > 250) { wheelSum = 0; wheelUsed = false; }
-    wheelAt = now;
-    wheelSum += e.deltaY;
-    if (!wheelUsed && Math.abs(wheelSum) > 30) {
-      wheelUsed = true;
-      go(target + (wheelSum > 0 ? 1 : -1));
-    }
+    const unit = e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? step : 1;
+    const delta = (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) * unit;
+    goal = clampPos(goal + delta * 1.6);
+    run();
+    snapSoon(140);
   }, { passive: false });
 
-  // คลิกด้านซ้าย 1/3 = ย้อน, ที่เหลือ = ถัดไป
+  // นิ้ว: ลากตามนิ้วทันที ปัดได้ทั้งแนวนอนและแนวตั้ง ปล่อยแล้วไหลต่อตามแรงปัด
+  let dragging = false;
+  let moved = false;
+  let lastX = 0;
+  let lastY = 0;
+  let lastT = 0;
+  let velocity = 0;
+  let axis = "";
+  track.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) return;
+    const t = e.touches[0];
+    dragging = true;
+    moved = false;
+    axis = "";
+    lastX = t.clientX;
+    lastY = t.clientY;
+    lastT = performance.now();
+    velocity = 0;
+    clearTimeout(idleTimer);
+    goal = pos;
+  }, { passive: true });
+
+  track.addEventListener("touchmove", (e) => {
+    if (!dragging || e.touches.length !== 1) return;
+    const t = e.touches[0];
+    const dx = lastX - t.clientX;
+    const dy = lastY - t.clientY;
+    if (!axis && Math.hypot(dx, dy) > 6) axis = Math.abs(dx) >= Math.abs(dy) ? "x" : "y";
+    if (!axis) return;
+    e.preventDefault();
+    moved = true;
+    const now = performance.now();
+    const d = axis === "x" ? dx : dy;
+    velocity = d / Math.max(1, now - lastT);
+    lastX = t.clientX;
+    lastY = t.clientY;
+    lastT = now;
+    pos = goal = clampPos(pos + d);
+    paint();
+  }, { passive: false });
+
+  function endTouch() {
+    if (!dragging) return;
+    dragging = false;
+    if (!moved) return;
+    go(snapIndex(clampPos(pos + velocity * 180)));
+  }
+  track.addEventListener("touchend", endTouch);
+  track.addEventListener("touchcancel", endTouch);
+
+  // คลิก/แตะด้านซ้าย 1/3 = ย้อน, ที่เหลือ = ถัดไป (ไม่นับตอนเพิ่งลากนิ้ว)
   track.addEventListener("click", (e) => {
+    if (moved) { moved = false; return; }
     if (e.target.closest("a") || getSelection().toString()) return;
     const r = track.getBoundingClientRect();
     go(e.clientX - r.left < r.width / 3 ? target - 1 : target + 1);
@@ -374,11 +478,11 @@
   });
 
   // ซ่อนแถบควบคุมเมื่อไม่ขยับเมาส์ 2.5 วินาที
-  let idleTimer;
+  let hideTimer;
   function wake() {
     document.body.classList.remove("is-idle");
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(() => {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
       if (ui.notes.hidden && !ui.overview.open) document.body.classList.add("is-idle");
     }, 2500);
   }
@@ -393,10 +497,6 @@
   }
   addEventListener("hashchange", () => go(fromHash(), false));
 
-  const start = fromHash();
-  target = start;
-  render(start);
-  track.scrollTo({ left: start * track.clientWidth, behavior: "instant" });
-  settle();
+  go(fromHash(), false);
   track.focus({ preventScroll: true });
 })();

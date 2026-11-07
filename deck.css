@@ -35,28 +35,30 @@ kbd {
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* ---------- แถบสไลด์ เลื่อนไปทางซ้าย-ขวา ---------- */
+/* ---------- แถบสไลด์ เลื่อนไปทางซ้าย-ขวา (deck.js ขยับด้วย transform) ---------- */
 .track {
   grid-row: 1; grid-column: 1;
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
+  position: relative;
+  overflow: hidden;
+  touch-action: pinch-zoom;
+  overscroll-behavior: none;
   outline: none;
+  --step: 100%;
 }
-.track::-webkit-scrollbar { display: none; }
 /* ก่อน deck.js จัดหน้าเสร็จ ซ่อนสไลด์ดิบไว้ */
 .track:not(.ready) > section { display: none; }
 
+.strip {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
 .slot {
-  flex: 0 0 100%;
+  flex: none;
+  width: var(--step);
   height: 100%;
   display: grid;
   place-items: center;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
   cursor: pointer;
 }
 .frame {
@@ -66,6 +68,10 @@ kbd {
   width: calc(1920px * var(--s));
   height: calc(1080px * var(--s));
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+.slot .frame {
+  transform: scale(var(--k, 0.93));
+  opacity: var(--o, 0.6);
 }
 
 /* ---------- โน้ตผู้พูด ---------- */
