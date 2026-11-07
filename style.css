@@ -614,3 +614,70 @@ body[data-bg="paper"] .verdict.tle { background: var(--blue); }
 .compare .term { height: 420px; font-size: 12px; }
 .win-bar b[data-lang-tag] { font-weight: 700; }
 @media (max-width: 1100px) { .compare { grid-template-columns: minmax(0, 1fr); } }
+
+/* ===================== แอนิเมชันหน้าแรก ===================== */
+.hero { --mx: 0; --my: 0; --sy: 0; }
+.hero-meta { position: relative; border-bottom-color: transparent; }
+.hero-meta::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--line); transform-origin: 0 50%; animation: draw-x 1s var(--ease) 0.1s both; }
+.caret { font-style: normal; animation: blink 1s steps(1) infinite; }
+
+/* หัวข้อ: แต่ละบรรทัดโผล่จากขอบล่างทีละบรรทัด + เลื่อนช้ากว่าหน้าเล็กน้อยตอนเลื่อน */
+.hero-title { translate: calc(var(--mx) * 6px) calc(var(--sy) * 0.18px); }
+.hero-title .hl { animation: rise 0.9s var(--ease) both; }
+.hero-title .hl:nth-child(2) { animation-delay: 0.15s; }
+.hero-title .hl:nth-child(3) { animation-delay: 0.3s; }
+.hero-title .hl:nth-child(4) { animation-delay: 0.42s; }
+.hero-title .hl:nth-child(5) { animation-delay: 0.54s; }
+.hero-title .hl.small { animation: rise 0.9s var(--ease) 0.3s both, rgb-glitch 4.5s steps(1) 1.6s infinite; }
+.hero-title .stripes { animation: stripes-move 0.9s linear infinite; }
+
+/* รูป: ลอยเบา ๆ กระตุกเป็นพัก ๆ และขยับตามเมาส์/การเลื่อน */
+.hero-art { translate: calc(var(--mx) * -18px) calc(var(--my) * -12px + var(--sy) * -0.1px); animation: fade-in 1s var(--ease) 0.4s both; }
+.hero-cat { animation: bob-cat 6s ease-in-out infinite, cat-glitch 7s steps(1) 2s infinite; }
+.hero-art .deco-globe { translate: calc(var(--mx) * 14px) calc(var(--my) * 10px); }
+.hero-art .deco-cursor { animation: cursor-walk 9s ease-in-out 1.4s infinite both; }
+
+/* หน้าต่าง readme เด้งเปิดแบบ OS */
+.hero-win { transform-origin: 0 100%; animation: win-open 0.55s steps(6) 0.9s both; }
+.hero-win .tagline.typing::after { content: "▌"; color: var(--green); animation: blink 0.7s steps(1) infinite; }
+
+@keyframes draw-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes rise { from { clip-path: inset(0 0 100% 0); transform: translateY(45%); } to { clip-path: inset(0 0 -10% 0); transform: none; } }
+@keyframes rgb-glitch {
+  0%, 88%, 100% { text-shadow: none; transform: none; }
+  89% { text-shadow: -4px 0 #ff3b30, 4px 0 #6ff3ff; transform: translateX(3px) skewX(-6deg); }
+  91% { text-shadow: 5px 0 #ff3b30, -5px 0 #ffffff; transform: translateX(-4px); }
+  93% { text-shadow: none; transform: none; }
+  95% { text-shadow: -3px 0 #6ff3ff; transform: translateX(2px) skewX(4deg); }
+}
+@keyframes stripes-move { from { background-position: 0 0; } to { background-position: 22px 0; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bob-cat { 50% { transform: translateY(-12px) rotate(-1deg); } }
+@keyframes cat-glitch {
+  0%, 90%, 100% { clip-path: none; filter: drop-shadow(10px 10px 0 rgba(8, 12, 140, 0.8)); }
+  91% { clip-path: inset(20% 0 55% 0); filter: hue-rotate(90deg) drop-shadow(-8px 0 0 #ff3b30); }
+  93% { clip-path: inset(60% 0 10% 0); filter: drop-shadow(8px 0 0 #3dff8f); }
+  95% { clip-path: none; filter: invert(1) drop-shadow(10px 10px 0 rgba(8, 12, 140, 0.8)); }
+}
+@keyframes cursor-walk {
+  0% { transform: translate(0, 0); }
+  18% { transform: translate(-120px, -160px); }
+  22% { transform: translate(-120px, -160px) scale(0.8); }
+  26% { transform: translate(-120px, -160px); }
+  48% { transform: translate(-260px, 40px); }
+  52% { transform: translate(-260px, 40px) scale(0.8); }
+  56% { transform: translate(-260px, 40px); }
+  78% { transform: translate(40px, -60px); }
+  82% { transform: translate(40px, -60px) scale(0.8); }
+  86% { transform: translate(40px, -60px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes win-open {
+  0% { transform: scale(0.1, 0.05); opacity: 0; }
+  40% { transform: scale(1, 0.05); opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero *, .hero *::after, .hero-meta::after { animation: none !important; }
+  .hero-title, .hero-art, .hero-art .deco-globe { translate: none; }
+}

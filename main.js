@@ -144,6 +144,47 @@
   addEventListener("load", onResize);
   onResize();
 
+  // ===================== หน้าแรก: ขยับตามเมาส์/การเลื่อน + พิมพ์ข้อความ =====================
+  const hero = document.querySelector(".hero");
+  if (hero) {
+    const globe = hero.querySelector(".deco-globe");
+    if (reduceMotion) {
+      globe?.pauseAnimations?.();
+    } else {
+      hero.addEventListener("pointermove", (e) => {
+        if (e.pointerType !== "mouse") return;
+        const r = hero.getBoundingClientRect();
+        hero.style.setProperty("--mx", (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+        hero.style.setProperty("--my", (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+      });
+      hero.addEventListener("pointerleave", () => { hero.style.setProperty("--mx", "0"); hero.style.setProperty("--my", "0"); });
+      const onHeroScroll = () => {
+        if (window.scrollY < window.innerHeight * 1.2) hero.style.setProperty("--sy", window.scrollY.toFixed(0));
+      };
+      addEventListener("scroll", onHeroScroll, { passive: true });
+
+      // พิมพ์ tagline ทีละตัวหลังหน้าต่างเปิด (ข้อความเต็มอยู่ใน HTML อยู่แล้ว)
+      const tag = hero.querySelector(".tagline");
+      if (tag) {
+        const nodes = [];
+        const walk = document.createTreeWalker(tag, NodeFilter.SHOW_TEXT);
+        while (walk.nextNode()) nodes.push({ node: walk.currentNode, text: walk.currentNode.nodeValue });
+        nodes.forEach((n) => { n.node.nodeValue = ""; });
+        tag.classList.add("typing");
+        let ni = 0;
+        let ci = 0;
+        setTimeout(function type() {
+          if (ni >= nodes.length) { tag.classList.remove("typing"); return; }
+          const n = nodes[ni];
+          ci += 2;
+          n.node.nodeValue = n.text.slice(0, ci);
+          if (ci >= n.text.length) { ni++; ci = 0; }
+          setTimeout(type, 28);
+        }, 1500);
+      }
+    }
+  }
+
   // ===================== แท็บโค้ด =====================
   document.querySelectorAll("[data-tabs]").forEach((box) => {
     const tabs = [...box.querySelectorAll('[role="tab"]')];
