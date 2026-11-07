@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="style.css">
   <script>document.documentElement.classList.add("js")</script>
   <script src="main.js" defer></script>
+  <script src="game.js" defer></script>
 </head>
 <body data-bg="blue">
   <a class="skip" href="#agenda">ข้ามไปเนื้อหา</a>
@@ -388,6 +389,25 @@ impl Item for Food {
 struct Memosprite { health: Health } // มี</code></pre>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="block" id="game" data-bg="night" data-label="01 · ลองเล่นเกม" aria-labelledby="game-title">
+      <div class="wrap">
+        <p class="kicker reveal">ลองเล่น · กติกา HP 5 ข้อเดียวกับโจทย์</p>
+        <h3 class="title reveal" id="game-title">HP BATTLE: Misha &amp; Nova vs SEGFAULT</h3>
+        <p class="lede reveal">Misha ตีแรง Nova ฮีลได้ บอสชาร์จท่าใหญ่ 80 ทุกเทิร์นที่ 3 — แล้วลองเปิด <b>BUGGY build</b> ดูว่าเกิดอะไรขึ้นเมื่อ hp ไม่มีเจ้าของ</p>
+        <div class="game win reveal" data-game>
+          <div class="win-bar"><span>hp_battle.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+          <div class="game-top">
+            <label class="toggle"><input type="checkbox" data-buggy> <span>BUGGY build</span></label>
+            <label class="seed">seed <input type="number" inputmode="numeric" min="0" data-seed></label>
+            <button type="button" class="btn ghost" data-restart>เริ่มใหม่</button>
+          </div>
+          <pre class="term" data-term role="log" aria-label="หน้าจอเกม" tabindex="0"></pre>
+          <div class="game-cmds" data-cmds aria-label="คำสั่ง"></div>
+        </div>
+        <p class="note reveal">พิมพ์บนคีย์บอร์ดได้เหมือนในเทอร์มินัล: <span class="mono">A S U I Q</span> · เลือกเป้า <span class="mono">1 2</span> · <span class="mono">B</span> = ย้อนกลับ · seed เดิม = เกมเดิม เอาไว้ให้ทั้งห้องเล่นด่านเดียวกัน</p>
       </div>
     </section>
 
