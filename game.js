@@ -34,6 +34,11 @@
     const buggyBox = root.querySelector("[data-buggy]");
     const seedBox = root.querySelector("[data-seed]");
     const restartBtn = root.querySelector("[data-restart]");
+    const langTag = root.querySelector("[data-lang-tag]");
+    // แท็บภาษาในส่วนเดียวกัน: เลือกภาษา = เปลี่ยนกติกาของเกม (C ไม่มีเจ้าของ hp, Java/Go/Rust มี)
+    const section = root.closest("section");
+    const langTabs = section ? [...section.querySelectorAll('[role="tab"][data-lang]')] : [];
+    let lang = "C";
 
     let g;          // สถานะเกม
     let rand;       // ตัวสุ่ม
@@ -361,14 +366,29 @@
         sp: 3, drinks: 2, foods: 2, round: 1, current: 0,
       };
       print(c("bold", `HP BATTLE (mini) — Misha & Nova vs ${g.boss.name}   seed ${s}`));
-      if (buggy) print(c("yellow", "[BUGGY build] hp has no owner: it can go below 0 and nobody gets knocked down"));
+      if (langTag) langTag.textContent = lang;
+      if (buggy) print(c("yellow", `[${lang} build] hp has no owner: anyone can write it, so it goes below 0 and nobody gets knocked down`));
+      else print(c("green", `[${lang} build] hp is private: only takeDamage() and heal() can touch it`));
       print(`Misha hits hard. Nova heals. The boss charges a BIG ATTACK (${BIG_ATTACK}) every 3rd turn.`);
       nextAlly(0);
       render();
     }
 
-    restartBtn.addEventListener("click", () => start(parseInt(seedBox.value, 10)));
-    buggyBox.addEventListener("change", () => start(parseInt(seedBox.value, 10)));
+    const currentSeed = () => parseInt(seedBox.value, 10);
+    restartBtn.addEventListener("click", () => start(currentSeed()));
+    buggyBox.addEventListener("change", () => start(currentSeed()));
+
+    function useLang(tab, restart) {
+      if (!tab) return;
+      lang = tab.dataset.lang;
+      buggyBox.checked = tab.dataset.noowner === "1";
+      if (restart) start(currentSeed()); // seed เดิม จะได้เทียบกันได้
+    }
+    // แท็บถูกเลือกด้วยการคลิกหรือปุ่มลูกศร ทั้งสองแบบได้ focus เสมอ
+    langTabs.forEach((tab) => tab.addEventListener("focus", () => {
+      if (tab.dataset.lang !== lang || (tab.dataset.noowner === "1") !== buggyBox.checked) useLang(tab, true);
+    }));
+    useLang(langTabs.find((t) => t.getAttribute("aria-selected") === "true"), false);
     start();
   }
 

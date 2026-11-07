@@ -606,3 +606,11 @@ body[data-bg="paper"] .verdict.tle { background: var(--blue); }
 .cmd.dim { opacity: 0.45; }
 .cmd:disabled { cursor: default; }
 @media (max-width: 760px) { .term { font-size: 11.5px; } .game-top .btn { margin-left: 0; } }
+
+/* เทียบโค้ดกับเกม: ซ้าย = โค้ดแต่ละภาษา, ขวา = เกมที่เล่นตามกติกาของภาษานั้น */
+.compare { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 28px; align-items: start; margin-top: 8px; }
+.compare .game { margin-top: 0; }
+.compare .tab-panel .code { max-height: 460px; }
+.compare .term { height: 420px; font-size: 12px; }
+.win-bar b[data-lang-tag] { font-weight: 700; }
+@media (max-width: 1100px) { .compare { grid-template-columns: minmax(0, 1fr); } }

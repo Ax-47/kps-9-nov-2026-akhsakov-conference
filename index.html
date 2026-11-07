@@ -291,17 +291,19 @@ printf("%s", name);</code></pre>
       </div>
     </section>
 
-    <section class="block" data-bg="paper" data-label="01 · ประวัติภาษา" aria-labelledby="same-title">
+    <section class="block" id="game" data-bg="paper" data-label="01 · เทียบภาษา + เล่นเกม" aria-labelledby="same-title">
       <div class="wrap">
-        <p class="kicker reveal">โจทย์เดียว เขียนใหม่ทุกยุค</p>
+        <p class="kicker reveal">โจทย์เดียว เขียนใหม่ทุกยุค · ลองเล่นเทียบกัน</p>
         <h3 class="title reveal" id="same-title">เกม HSR ในแต่ละภาษา</h3>
-        <div class="tabs reveal" data-tabs>
+        <p class="lede reveal">เลือกภาษาด้านซ้าย เกมด้านขวาจะเล่นตามกติกาของภาษานั้นด้วย seed เดิม — C ปล่อยให้ใครก็แก้ hp ได้ เลยติดลบแต่ไม่ล้ม ส่วน Java Go Rust ซ่อน hp ไว้ กฎเลยอยู่ครบ</p>
+        <div class="compare reveal">
+        <div class="tabs" data-tabs>
           <div class="tab-list" role="tablist" aria-label="เลือกภาษา">
-            <button role="tab" aria-selected="true" aria-controls="t-goto" id="b-goto">C + goto</button>
-            <button role="tab" aria-selected="false" aria-controls="t-c" id="b-c" tabindex="-1">C</button>
-            <button role="tab" aria-selected="false" aria-controls="t-java" id="b-java" tabindex="-1">Java</button>
-            <button role="tab" aria-selected="false" aria-controls="t-go" id="b-go" tabindex="-1">Go</button>
-            <button role="tab" aria-selected="false" aria-controls="t-rust" id="b-rust" tabindex="-1">Rust</button>
+            <button role="tab" aria-selected="true" aria-controls="t-goto" id="b-goto" data-lang="C + goto" data-noowner="1">C + goto</button>
+            <button role="tab" aria-selected="false" aria-controls="t-c" id="b-c" data-lang="C" data-noowner="1" tabindex="-1">C</button>
+            <button role="tab" aria-selected="false" aria-controls="t-java" id="b-java" data-lang="Java" data-noowner="0" tabindex="-1">Java</button>
+            <button role="tab" aria-selected="false" aria-controls="t-go" id="b-go" data-lang="Go" data-noowner="0" tabindex="-1">Go</button>
+            <button role="tab" aria-selected="false" aria-controls="t-rust" id="b-rust" data-lang="Rust" data-noowner="0" tabindex="-1">Rust</button>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-goto" aria-labelledby="b-goto">
             <p>วนด้วย goto ล้วน ไม่มี loop — มี goto 8 จุด ต้องไล่ลูกศรจนจบถึงจะรู้ว่า HP เป็นเท่าไร</p>
@@ -389,25 +391,18 @@ impl Item for Food {
 struct Memosprite { health: Health } // มี</code></pre>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="block" id="game" data-bg="night" data-label="01 · ลองเล่นเกม" aria-labelledby="game-title">
-      <div class="wrap">
-        <p class="kicker reveal">ลองเล่น · กติกา HP 5 ข้อเดียวกับโจทย์</p>
-        <h3 class="title reveal" id="game-title">HP BATTLE: Misha &amp; Nova vs SEGFAULT</h3>
-        <p class="lede reveal">Misha ตีแรง Nova ฮีลได้ บอสชาร์จท่าใหญ่ 80 ทุกเทิร์นที่ 3 — แล้วลองเปิด <b>BUGGY build</b> ดูว่าเกิดอะไรขึ้นเมื่อ hp ไม่มีเจ้าของ</p>
-        <div class="game win reveal" data-game>
-          <div class="win-bar"><span>hp_battle.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-          <div class="game-top">
-            <label class="toggle"><input type="checkbox" data-buggy> <span>BUGGY build</span></label>
-            <label class="seed">seed <input type="number" inputmode="numeric" min="0" data-seed></label>
-            <button type="button" class="btn ghost" data-restart>เริ่มใหม่</button>
+          <div class="game win" data-game>
+            <div class="win-bar"><span>hp_battle.exe — <b data-lang-tag>C + goto</b> build</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="game-top">
+              <label class="toggle"><input type="checkbox" data-buggy> <span>BUGGY: hp ไม่มีเจ้าของ</span></label>
+              <label class="seed">seed <input type="number" inputmode="numeric" min="0" data-seed></label>
+              <button type="button" class="btn ghost" data-restart>เริ่มใหม่</button>
+            </div>
+            <pre class="term" data-term role="log" aria-label="หน้าจอเกม" tabindex="0"></pre>
+            <div class="game-cmds" data-cmds aria-label="คำสั่ง"></div>
           </div>
-          <pre class="term" data-term role="log" aria-label="หน้าจอเกม" tabindex="0"></pre>
-          <div class="game-cmds" data-cmds aria-label="คำสั่ง"></div>
         </div>
-        <p class="note reveal">พิมพ์บนคีย์บอร์ดได้เหมือนในเทอร์มินัล: <span class="mono">A S U I Q</span> · เลือกเป้า <span class="mono">1 2</span> · <span class="mono">B</span> = ย้อนกลับ · seed เดิม = เกมเดิม เอาไว้ให้ทั้งห้องเล่นด่านเดียวกัน</p>
+        <p class="note reveal">พิมพ์บนคีย์บอร์ดได้เหมือนในเทอร์มินัล: <span class="mono">A S U I Q</span> · เลือกเป้า <span class="mono">1 2</span> · <span class="mono">B</span> = ย้อนกลับ · seed เดิม = เกมเดิม ลองกดแต่ละภาษาแล้วกด A ไปเรื่อย ๆ เทียบกันดู</p>
       </div>
     </section>
 
