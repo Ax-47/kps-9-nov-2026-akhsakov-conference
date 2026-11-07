@@ -30,7 +30,9 @@ npm start          # เปิดดู out/ ที่ http://localhost:3000
 ## Deploy
 
 - **Vercel:** push ขึ้น GitHub แล้ว Import โปรเจกต์ใน Vercel ได้เลย ไม่ต้องตั้งค่าเพิ่ม
-- **GitHub Pages หรือ static host อื่น:** `npm run build` แล้วอัปโหลดโฟลเดอร์ `out/`
+- **GitHub Pages (repo นี้):** push ขึ้น `main` แล้ว `.github/workflows/pages.yml` จะ build และ deploy ให้เอง
+  (ครั้งแรกต้องตั้ง Settings → Pages → Source เป็น **GitHub Actions**)
+- **Static host อื่น:** `npm run build` แล้วอัปโหลดโฟลเดอร์ `out/`
   ถ้าเว็บอยู่ใต้ path ย่อย (เช่น `https://user.github.io/guide/`) ให้ build ด้วย `BASE_PATH=/guide npm run build`
 
 ## โครงโปรเจกต์
