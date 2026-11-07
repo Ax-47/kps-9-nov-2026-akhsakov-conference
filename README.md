@@ -1,56 +1,59 @@
-# แนะแนว Programming — เว็บสไลด์ (Next.js)
+# แนะแนว Programming — เว็บสไลด์
 
 เว็บนี้เอาสไลด์ทั้ง 66 หน้าจากเดค “แนะแนว Programming: จาก C ถึง Rust และสมองที่เรียนรู้” มาแสดงเป็นเว็บ
-ทำด้วย Next.js 14 (App Router) แบบ static export ได้ไฟล์เว็บนิ่ง ๆ เอาไปวางที่ไหนก็ได้
+เขียนด้วย HTML + CSS + JavaScript ล้วน ไม่มี framework ไม่ต้อง build ไม่ต้องติดตั้งอะไร
 
-## รัน
+สไลด์เรียงเป็นแถวแนวนอน **เลื่อน/ปัดไปทางซ้าย-ขวา** และหยุดพอดีทีละหน้า
+
+ดูออนไลน์: https://ax-47.github.io/kps-9-nov-2026-akhsakov-conference/
+
+## เปิดดูในเครื่อง
+
+เปิดผ่าน web server อะไรก็ได้ เช่น
 
 ```bash
-npm install
-npm run dev        # เปิด http://localhost:3000
-npm run build      # สร้างเว็บนิ่งในโฟลเดอร์ out/
-npm start          # เปิดดู out/ ที่ http://localhost:3000
+python3 -m http.server 8000
 ```
 
-ต้องใช้ Node.js 18.17 ขึ้นไป
+แล้วเข้า http://localhost:8000
 
 ## ใช้งาน
 
-| ปุ่ม | ทำอะไร |
+| ทำอะไร | วิธี |
 |---|---|
-| `→` `Space` `Enter` `PageDown` / คลิกด้านขวา / ปัดซ้าย | หน้าถัดไป |
-| `←` `Backspace` `PageUp` / คลิกด้านซ้าย / ปัดขวา | หน้าก่อน |
-| `Home` / `End` | หน้าแรก / หน้าสุดท้าย |
-| `N` | เปิด/ปิดโน้ตผู้พูด |
-| `O` | ดูสไลด์ทุกหน้า (กดเพื่อกระโดดไปหน้านั้น) |
-| `F` | เต็มจอ |
+| หน้าถัดไป | ปัดซ้าย / เลื่อนทัชแพดไปขวา / หมุนล้อเมาส์ลง / `→` `↓` `Space` `Enter` `PageDown` / คลิกด้านขวา |
+| หน้าก่อน | ปัดขวา / เลื่อนทัชแพดไปซ้าย / หมุนล้อเมาส์ขึ้น / `←` `↑` `Backspace` `PageUp` / คลิกด้านซ้าย |
+| หน้าแรก / หน้าสุดท้าย | `Home` / `End` |
+| โน้ตผู้พูด | `N` |
+| ดูสไลด์ทุกหน้า | `O` (กดรูปเพื่อกระโดดไปหน้านั้น) |
+| เต็มจอ | `F` |
 
 ลิงก์ไปหน้าที่ต้องการได้ด้วย `#slide-N` เช่น `/#slide-10`
 
 ## Deploy
 
-- **Vercel:** push ขึ้น GitHub แล้ว Import โปรเจกต์ใน Vercel ได้เลย ไม่ต้องตั้งค่าเพิ่ม
-- **GitHub Pages (repo นี้):** push ขึ้น `main` แล้ว `.github/workflows/pages.yml` จะ build และ deploy ให้เอง
-  (ครั้งแรกต้องตั้ง Settings → Pages → Source เป็น **GitHub Actions**)
-- **Static host อื่น:** `npm run build` แล้วอัปโหลดโฟลเดอร์ `out/`
-  ถ้าเว็บอยู่ใต้ path ย่อย (เช่น `https://user.github.io/guide/`) ให้ build ด้วย `BASE_PATH=/guide npm run build`
+push ขึ้น `main` แล้ว `.github/workflows/pages.yml` จะอัปขึ้น GitHub Pages ให้เอง
+(Settings → Pages → Source ต้องเป็น **GitHub Actions**)
+
+จะเอาไปวาง static host อื่นก็ได้ แค่อัป `index.html` `deck.css` `deck.js` `icons.js` และโฟลเดอร์ `assets/`
+ทุกลิงก์เป็น path แบบ relative วางใต้ path ย่อยได้เลย
 
 ## โครงโปรเจกต์
 
 ```
-content/deck.json          ลำดับสไลด์ ชื่อเดค ฟอนต์ และหัวข้อแต่ละ Part
-content/slides/<id>.html   สไลด์ละไฟล์ (รูปแบบเดียวกับเดคต้นฉบับ) + โน้ตผู้พูดใน <aside>
-public/assets/             รูปที่ใช้ในสไลด์
-lib/deck.ts                อ่านสไลด์ตอน build แล้วแปลงเป็น HTML ธรรมดา
-components/Deck.tsx        ตัวเปิดสไลด์: เปลี่ยนหน้า ย่อขยายพอดีจอ โน้ต ดูทุกหน้า เต็มจอ
-app/globals.css            สไตล์หน้าเว็บ + ค่าเริ่มต้นของสไลด์
+index.html   สไลด์ทั้งหมด หน้าละ 1 <section> ผืน 1920×1080 px + โน้ตผู้พูดใน <aside>
+deck.css     หน้าเว็บรอบสไลด์ แถบเลื่อนแนวนอน และค่าเริ่มต้นของสไลด์
+deck.js      แปลงแท็กพิเศษในสไลด์ เลื่อนหน้า ย่อขยายพอดีจอ โน้ต ดูทุกหน้า เต็มจอ
+icons.js     ไอคอนจาก Lucide ที่สไลด์ใช้ (ISC License)
+assets/      รูปที่ใช้ในสไลด์
 ```
 
-`lib/deck.ts` แปลงของพิเศษในไฟล์สไลด์ตอน build:
-`<x-connector>` เป็นเส้นลูกศร SVG, `<x-shape>` เป็นรูปทรงด้วย `clip-path`, `<x-icon>` เป็นไอคอนจาก
-[Lucide](https://lucide.dev) และ `/_blob/<id>` เป็นรูปใน `public/assets/`
+`deck.js` แปลงของพิเศษในสไลด์ตอนเปิดหน้า:
+`<x-connector>` เป็นเส้นลูกศร SVG, `<x-shape>` เป็นรูปทรงด้วย `clip-path`, `<x-icon name="...">` เป็นไอคอนจาก `icons.js`
+และ `data-build-in="fade 2"` ทำให้ของค่อย ๆ โผล่ตามลำดับตอนเลื่อนมาถึงสไลด์นั้นครั้งแรก
 
 ## แก้เนื้อหา
 
-แก้ไฟล์ใน `content/slides/` หรือสลับลำดับใน `content/deck.json` แล้ว `npm run dev` ใหม่
-สไลด์เป็นผืน 1920×1080 px ตำแหน่งทุกอย่างเขียนเป็น inline style แบบเดียวกับเดคต้นฉบับ
+แก้ `<section>` ใน `index.html` ได้ตรง ๆ แล้วรีเฟรช
+ตำแหน่งทุกอย่างเขียนเป็น inline style บนผืน 1920×1080 px แบบเดียวกับเดคต้นฉบับ
+<div> ที่ไม่ได้ตั้ง `display` จะเป็น flex แนวตั้งให้อัตโนมัติ

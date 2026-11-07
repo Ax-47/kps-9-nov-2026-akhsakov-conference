@@ -1,5 +1,6 @@
 name: Deploy to GitHub Pages
 
+# เว็บเป็นไฟล์นิ่งล้วน (index.html, deck.css, deck.js, icons.js, assets/) ไม่ต้อง build อัปขึ้นได้เลย
 on:
   push:
     branches: [main]
@@ -15,30 +16,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - id: pages
-        uses: actions/configure-pages@v5
-      - run: npm ci
-      - run: npm run build
-        env:
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v5
+      - uses: actions/configure-pages@v5
+      - name: Collect site files
+        run: |
+          mkdir _site
+          cp -r index.html deck.css deck.js icons.js assets _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
