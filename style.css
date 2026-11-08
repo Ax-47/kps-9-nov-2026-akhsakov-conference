@@ -1389,8 +1389,8 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 /* ===================== ERA 0: ไทม์ไลน์ early developments ===================== */
 .panel-tl { width: min(1560px, 94vw); }
 .hscroll.pinned .panel-tl .win-body { max-height: none; overflow: visible; }
-.tl { --col: 168px; list-style: none; padding: 0; margin: 4px 0 0; position: relative; display: grid; grid-template-columns: repeat(9, var(--col)); grid-template-rows: auto 34px auto; }
-.tl::before { content: ""; position: absolute; left: 0; right: 0; top: var(--line-y, 50%); height: 3px; background: var(--accent); }
+.etl { --col: 168px; list-style: none; padding: 0; margin: 4px 0 0; position: relative; display: grid; grid-template-columns: repeat(9, var(--col)); grid-template-rows: auto 34px auto; }
+.etl::before { content: ""; position: absolute; left: 0; right: 0; top: var(--line-y, 50%); height: 3px; background: var(--accent); }
 .tl-ev { display: contents; }
 .tl-ev .tl-card { grid-column: var(--c) / span 2; margin-right: 12px; padding: 10px 12px; border: 1.5px solid var(--line); background: rgba(5, 8, 51, 0.55); display: grid; gap: 4px; align-content: start; position: relative; }
 .tl-ev.up .tl-card { grid-row: 1; align-self: end; }
@@ -1409,15 +1409,15 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .tl-ev .tl-card:hover { border-color: var(--accent); background: rgba(61, 255, 143, 0.08); }
 @media (max-height: 820px) { .tl-photo img { height: 84px; } .tl-card p { font-size: 12px; } }
 .panel-tl { width: max-content; max-width: none; }
-.tl { --col: 160px; }
+.etl { --col: 160px; }
 .tl-card:has(.tl-photo) { grid-template-columns: auto 1fr; column-gap: 12px; }
 .tl-card:has(.tl-photo) .tl-photo { grid-row: span 2; margin: 0; align-self: start; }
 .tl-photo img { height: 104px; }
 @media (max-height: 820px) { .tl-photo img { height: 78px; } .panel-tl .panel-title { font-size: 26px; } .panel-tl .win-body { gap: 8px; } }
 
 /* ไทม์ไลน์ ERA 0: ใหญ่ขึ้น อ่านง่ายขึ้น */
-.tl { --col: 215px; grid-template-rows: auto 44px auto; }
-.tl::before { display: none; }
+.etl { --col: 215px; grid-template-rows: auto 44px auto; }
+.etl::before { display: none; }
 .tl-line { grid-row: 2; grid-column: 1 / -1; align-self: center; height: 4px; background: var(--accent); list-style: none; }
 .tl-ev .tl-card { margin-right: 16px; padding: 14px 16px; gap: 6px; }
 .tl-card b { font-size: 21px; }
@@ -1443,14 +1443,14 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .tl-ev.down .tl-photo figcaption { transform: rotate(3deg); }
 
 /* ไทม์ไลน์ ERA 0: ยาวขึ้น โปร่งขึ้น ทุกเหตุการณ์มีภาพ */
-.tl { --col: 300px; grid-template-rows: auto 56px auto; }
+.etl { --col: 300px; grid-template-rows: auto 56px auto; }
 .tl-ev .tl-card { margin-right: 64px; padding: 16px 18px; }
 .tl-card:has(.tl-photo) { grid-template-columns: 1fr; }
 .tl-card:has(.tl-photo) .tl-photo { grid-row: auto; margin: 0 0 8px; }
 .tl-photo img { height: 170px; width: auto; max-width: 100%; object-fit: cover; }
 .panel-tl .source { max-width: 1200px; }
 @media (max-height: 820px) {
-  .tl { --col: 280px; grid-template-rows: auto 40px auto; }
+  .etl { --col: 280px; grid-template-rows: auto 40px auto; }
   .tl-photo img { height: 96px; }
   .tl-card:has(.tl-photo) { grid-template-columns: auto 1fr; column-gap: 12px; }
   .tl-card:has(.tl-photo) .tl-photo { grid-row: span 2; margin: 0; }
@@ -1651,3 +1651,17 @@ thead th { font-size: 13px; }
 .lesson-strip span { font-size: 15px; line-height: 1.45; color: var(--fg); }
 .lesson-strip li:last-child b { color: var(--yellow); }
 @media (max-width: 860px) { .lesson-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 18px; } }
+
+/* hover หัวข้อแล้วไม่หาย: หลังแอนิเมชันเปิด ข้อความต้องมองเห็นเสมอ */
+.h-wipe.h-in .wipe-text { opacity: 1; }
+.h-wipe.h-in:hover .wipe-text { animation: head-jitter 0.35s steps(3); }
+.h-letters.h-in .ch { opacity: 1; transform: none; }
+
+/* ขยายหน้าต่าง (ปุ่ม □ หรือดับเบิลคลิกแถบชื่อ) = ตัวหนังสือใหญ่ให้หลังห้องเห็น */
+.pc .desk-win.is-max { z-index: 40 !important; display: flex; flex-direction: column; }
+.pc .desk-win.is-max .term-body { max-height: none; flex: 1; font-size: clamp(18px, 2.2vw, 30px); line-height: 1.6; padding: 24px 32px; }
+.pc .desk-win.is-max .whoami p.kv { grid-template-columns: 12ch 1fr; margin-bottom: 8px !important; }
+.pc .desk-win.is-max .app-body { flex: 1; font-size: 1.35em; grid-template-columns: 38% minmax(0, 1fr); }
+.pc .desk-win.is-max .card-name { font-size: 40px; }
+.pc .desk-win.is-max .card-rows div { font-size: 22px; grid-template-columns: 140px 1fr; padding: 14px 0; }
+.max-hint { position: absolute; z-index: 1; font: 600 12px var(--mono); color: #fff; background: rgba(0,0,0,.55); padding: 2px 8px; pointer-events: none; }
