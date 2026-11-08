@@ -1784,3 +1784,52 @@ thead th { font-size: 13px; }
 .inh-tree .inh-probs { margin-top: 6px; }
 .inh-pane[hidden] { display: none; }
 .dbg-vars div { grid-template-columns: minmax(11ch, max-content) 1fr; }
+
+/* HM: อ่านง่ายขึ้น */
+.hm-run .panel { width: min(600px, 86vw); }
+.hm-run .win-body { gap: 16px; padding: clamp(22px, 2.4vw, 34px); }
+.hm-run .panel-title { font-size: clamp(28px, 2.6vw, 40px); }
+.hm-run .win-body > p, .hm-run .pfc dd, .hm-run .days li, .hm-run .versus li { font-size: 19px; line-height: 1.6; color: #fff; }
+.hm-run .era-tag { font-size: 14px; }
+.hm-run .pfc dt { font-size: 21px; }
+.hm-run .pfc div { padding: 6px 0 6px 16px; }
+.hm-run .days li { padding: 12px 16px; }
+.hm-run .days b { font-size: 20px; }
+.hm-run .punch { font-size: 24px; }
+.hm-run .punch.small { font-size: 18px; }
+.hm-run .oops { height: 120px; }
+.hm-try { margin-top: 4px; border-color: var(--green) !important; background: var(--green) !important; color: var(--navy) !important; font-size: 16px !important; }
+.hscroll.pinned.hm-run .panel .win-body { max-height: calc(100svh - 180px); }
+
+/* popup การทดลอง */
+.mirror-setup { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 24px; align-items: center; }
+.hm-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; counter-reset: s; }
+.hm-steps li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 10px; font-size: 17px; line-height: 1.55; }
+.hm-steps li::before { content: counter(s); font: 400 26px/1 var(--display); color: var(--green); }
+.hm-steps b { color: var(--green); margin-right: 6px; }
+.hm-fig { margin: 0; border: 2px solid var(--green); background: #050833; padding: 12px; }
+.hm-chart { width: 100%; height: auto; }
+.hm-chart .ax { stroke: #8b93e0; stroke-width: 1.5; } .hm-chart .gap { stroke: #3d48c9; stroke-dasharray: 4 4; }
+.hm-chart polyline { fill: none; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+.hm-chart .d1 { stroke: #ff6b61; } .hm-chart .d2 { stroke: #ffe066; } .hm-chart .d3 { stroke: var(--green); }
+.hm-chart text { fill: #dfe3ff; font: 14px var(--sans); } .hm-chart .note { fill: #ffe066; font-size: 13px; }
+.hm-fig figcaption { font-size: 13.5px; color: #c9d1ff; margin-top: 6px; }
+.hm-conclude { margin: 18px 0 30px; font: 600 19px/1.5 var(--head-font); color: #fff; padding: 12px 16px; border-left: 4px solid var(--green); background: rgba(61, 255, 143, 0.08); }
+.hm-conclude b { color: var(--green); }
+.mirror-lab { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 24px; align-items: start; margin-top: 12px; }
+.mirror-lab canvas { width: 100%; height: auto; aspect-ratio: 1; border: 2px solid var(--green); touch-action: none; cursor: crosshair; background: #0b0f6e; }
+.mirror-side { display: grid; gap: 14px; }
+.mirror-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mirror-stats div { border: 2px solid var(--green); padding: 8px 12px; background: #050833; display: grid; }
+.mirror-stats span { font: 400 12px var(--pixel); color: var(--green); }
+.mirror-stats b { font: 400 48px/1 var(--display); color: #fff; }
+.mirror-msg { font: 600 17px/1.5 var(--head-font); color: #ffe066; min-height: 3em; }
+.mirror-ctl { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.mirror-h { font: 700 16px var(--head-font); color: #fff; } .mirror-h span { font: 400 13px var(--sans); color: #c9d1ff; }
+.mirror-hist { list-style: none; margin: 0; padding: 8px; height: 150px; display: flex; align-items: flex-end; gap: 6px; border: 1.5px solid var(--green); background: #050833; overflow-x: auto; }
+.mirror-hist li { flex: 0 0 34px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 2px; font: 12px var(--mono); color: #dfe3ff; }
+.mirror-hist li i { width: 100%; min-height: 3px; background: var(--green); }
+.mirror-hist li i.plain { background: #6ff3ff; }
+.mirror-hist li b { color: #fff; font-weight: 600; order: -1; }
+.mirror-hist li.empty { flex: 1; justify-content: center; color: #9aa3e8; font-family: var(--sans); }
+@media (max-width: 900px) { .mirror-setup, .mirror-lab { grid-template-columns: minmax(0, 1fr); } }

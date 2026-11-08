@@ -18,6 +18,7 @@
   <script src="viz.js?v=dev" defer></script>
   <script src="debugger.js?v=dev" defer></script>
   <script src="lsp.js?v=dev" defer></script>
+  <script src="mirror.js?v=dev" defer></script>
 </head>
 <body data-bg="blue">
   <a class="skip" href="#agenda">ข้ามไปเนื้อหา</a>
@@ -233,7 +234,7 @@
       </div>
     </section>
 
-    <section class="hscroll" data-bg="night" data-label="01 · วิธีเรียน: สมอง" aria-label="เรื่องของ HM เลื่อนไปด้านข้าง">
+    <section class="hscroll hm-run" data-bg="night" data-label="01 · วิธีเรียน: สมอง" aria-label="เรื่องของ HM เลื่อนไปด้านข้าง">
       <div class="hscroll-sticky">
         <div class="hscroll-head wrap">
           <p class="kicker">เคสที่เปลี่ยนวงการประสาทวิทยา</p>
@@ -275,6 +276,7 @@
               <li><b>วันที่ 3</b> ทำได้ดีขึ้นอีก และยังจำไม่ได้ว่าเคยฝึก</li>
             </ol>
             <p class="source">การทดลองของ Brenda Milner (ตีพิมพ์ปี 1962)</p>
+            <button type="button" class="era-more hm-try" data-open-dlg="mirror-lab">▶ ดูการทดลอง + ลองทำเอง</button>
             </div>
           </article>
           <article class="panel win">
@@ -1338,6 +1340,50 @@ const t2 = xs.filter(x =&gt; x &gt; 0)
       </div>
     </section>
   </main>
+  <dialog class="oop-dialog" id="mirror-lab" aria-labelledby="mirror-title">
+    <div class="oop-dlg-bar"><span>mirror_tracing.exe — การทดลองของ Brenda Milner</span><button type="button" data-close-dlg aria-label="ปิด">✕ ปิด · กลับไปที่เดิม</button></div>
+    <div class="oop-dlg-body">
+      <p class="kicker">การทดลองที่ทำให้รู้ว่าความจำมี 2 ระบบ</p>
+      <h3 class="title" id="mirror-title">HM วาดดาวผ่านกระจก</h3>
+      <div class="mirror-setup">
+        <ol class="hm-steps">
+          <li><span><b>อุปกรณ์</b> กระดาษมีรูปดาว 2 ชั้น · ฉากกั้นบังไม่ให้เห็นมือตรง ๆ · กระจกให้มองมือกับกระดาษ</span></li>
+          <li><span><b>โจทย์</b> ลากดินสอวนรอบดาว ให้อยู่ระหว่างเส้น 2 ชั้น — เส้นหลุดขอบ = นับผิด 1 ครั้ง</span></li>
+          <li><span><b>ยากตรงไหน</b> ในกระจกภาพกลับด้าน อยากลากขึ้น มือต้องดันลง สมองต้องฝึกใหม่</span></li>
+          <li><span><b>ทำซ้ำ</b> วันละ 10 รอบ ติดกัน 3 วัน แล้วดูว่าผิดน้อยลงไหม</span></li>
+        </ol>
+        <figure class="hm-fig">
+          <svg class="hm-chart" viewBox="0 0 720 260" role="img" aria-label="กราฟแนวโน้ม: จำนวนครั้งที่ผิดของ HM ลดลงตลอด 3 วัน ทั้งในวันเดียวกันและข้ามวัน">
+  <line x1="36" y1="20" x2="36" y2="222" class="ax"/><line x1="36" y1="222" x2="700" y2="222" class="ax"/>
+  <text x="44" y="16">↑ จำนวนครั้งที่ผิด</text><text x="30" y="222" text-anchor="end">0</text>
+  <polyline points="40,40 62,64 84,88 106,106 128,118 150,130 172,142 194,148 216,154 238,160" class="d1"/><polyline points="282,154 304,166 326,172 348,178 370,178 392,184 414,184 436,190 458,190 480,190" class="d2"/><polyline points="524,190 546,196 568,196 590,202 612,202 634,202 656,208 678,208 700,208 722,208" class="d3"/>
+  <text x="140" y="250" text-anchor="middle">วันที่ 1</text><text x="382" y="250" text-anchor="middle">วันที่ 2</text><text x="624" y="250" text-anchor="middle">วันที่ 3</text>
+  <line x1="276" y1="20" x2="276" y2="222" class="gap"/><line x1="518" y1="20" x2="518" y2="222" class="gap"/>
+  <text x="290" y="40" class="note">ข้ามวัน ทักษะยังอยู่</text><text x="290" y="58" class="note">แต่ HM บอกว่า “ไม่เคยทำ”</text>
+</svg>
+          <figcaption>ภาพประกอบแนวโน้ม ไม่ใช่ตัวเลขจริงจากงานวิจัย · ผล: HM ทำผิดน้อยลงเรื่อย ๆ ทั้งในวันเดียวกันและข้ามวัน เหมือนคนทั่วไป ทั้งที่ทุกวันเขาบอกว่าไม่เคยเห็นงานนี้มาก่อน</figcaption>
+        </figure>
+      </div>
+      <p class="hm-conclude"><b>สรุป:</b> “จำว่าเคยฝึก” (declarative) พังไปพร้อม hippocampus แต่ “ทักษะการวาด” (procedural) ยังเก็บได้ด้วยสมองอีกระบบ</p>
+
+      <h4 class="pd-h">ลองเองเลย — มือขยับขึ้น ภาพจะลง</h4>
+      <div class="mirror-lab" data-mirror>
+        <canvas width="520" height="520" aria-label="พื้นที่วาดดาวผ่านกระจก"></canvas>
+        <div class="mirror-side">
+          <div class="mirror-stats"><div><span>ผิด</span><b data-m-err>0</b></div><div><span>รอบดาว</span><b data-m-prog>0%</b></div></div>
+          <p class="mirror-msg" data-m-msg></p>
+          <div class="mirror-ctl">
+            <label class="toggle"><input type="checkbox" data-m-mirror checked> <span>กระจก (กลับบน-ล่าง)</span></label>
+            <button type="button" class="btn ghost" data-m-reset>เริ่มรอบใหม่</button>
+          </div>
+          <p class="mirror-h">ผลของเราแต่ละรอบ <span>(แท่งยิ่งเตี้ย = ผิดน้อย)</span></p>
+          <ol class="mirror-hist" data-m-hist></ol>
+          <p class="small">ทำหลาย ๆ รอบ แล้วดูว่ากราฟของเราลดลงเหมือน HM ไหม — นั่นคือ procedural memory กำลังทำงาน</p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <dialog class="oop-dialog" id="comp-hsr" aria-labelledby="comp-title">
     <div class="oop-dlg-bar"><span>composition.exe — ERA 3</span><button type="button" data-close-dlg aria-label="ปิด กลับไปที่ไทม์ไลน์">✕ ปิด · กลับไปไทม์ไลน์</button></div>
     <div class="oop-dlg-body">

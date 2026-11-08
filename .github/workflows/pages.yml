@@ -27,7 +27,7 @@ jobs:
       - name: Collect site files
         run: |
           mkdir _site
-          cp -r index.html style.css main.js game.js fun.js desktop.js viz.js debugger.js lsp.js assets _site/
+          cp -r index.html style.css main.js game.js fun.js desktop.js viz.js debugger.js lsp.js mirror.js assets _site/
           # ใส่เลข commit ต่อท้ายลิงก์ CSS/JS เบราว์เซอร์จะได้ไม่ใช้ไฟล์เก่าที่แคชไว้
           sed -i "s/?v=dev/?v=${GITHUB_SHA::7}/g" _site/index.html
       - uses: actions/upload-pages-artifact@v3
