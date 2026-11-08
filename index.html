@@ -229,22 +229,6 @@
       <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
     </section>
 
-    <section class="block" data-bg="night" data-label="01 · วิธีเรียน: สมอง" aria-labelledby="chunk-title">
-      <div class="wrap">
-        <p class="kicker reveal">ลองเลย · 1 นาที</p>
-        <h3 class="title reveal" id="chunk-title">จำตัวเลขชุดนี้ให้ได้</h3>
-        <div class="chunk win reveal" data-chunk>
-          <div class="win-bar"><span>memory_test.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-          <p class="chunk-digits mono" data-state="idle" aria-live="polite">● ● ● ● ● ● ● ● ● ● ● ●</p>
-          <div class="chunk-actions">
-            <button type="button" class="btn" data-chunk-start>เริ่ม: ดู 10 วินาที</button>
-            <button type="button" class="btn ghost" data-chunk-reveal hidden>เฉลย</button>
-          </div>
-          <p class="chunk-msg">กดเริ่ม แล้วพยายามจำตัวเลข 12 ตัว พอหมดเวลาให้หลับตาท่องกลับให้ครบ</p>
-        </div>
-      </div>
-    </section>
-
     <section class="hscroll hm-run" data-bg="night" data-label="01 · วิธีเรียน: สมอง" aria-label="เรื่องของ HM เลื่อนไปด้านข้าง">
       <div class="hscroll-sticky">
         <div class="hscroll-head wrap">
@@ -422,82 +406,8 @@
         <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 01 / 03 · ต่อ</p><p class="mega">PRACTICE</p></div>
         <p class="kicker reveal">01 · วิธีการเรียน · ซ้อมยังไงให้เป็นทักษะ</p>
         <h2 class="giant reveal">ให้สมอง<br>เก็บเป็นทักษะ</h2>
-        <ol class="path reveal" aria-label="เส้นทางสายแข่ง">
-          <li><b>สอบคัด สอวน.</b><span>สอบเข้าค่าย</span></li>
-          <li><b>ค่าย 1</b><span>ศูนย์ สอวน.</span></li>
-          <li><b>ค่าย 2</b><span>คัดตัวแทนศูนย์</span></li>
-          <li><b>TOI</b><span>ระดับชาติ</span></li>
-          <li><b>ค่าย สสวท.</b><span>คัดผู้แทนประเทศ</span></li>
-          <li><b>IOI</b><span>ระดับโลก</span></li>
-        </ol>
-        <div class="two-col">
-          <p class="reveal"><b>สายทำโปรเจกต์</b> NSC แข่งพัฒนาโปรแกรมระดับประเทศ (สวทช.) · Hackathon และ game jam</p>
-          <p class="reveal"><b>ต่อในมหาวิทยาลัย</b> ICPC แข่งเป็นทีม 3 คน ใช้คอมเครื่องเดียว · ค่ายและชมรมของแต่ละมหาวิทยาลัย</p>
-        </div>
-        <p class="source reveal">รายละเอียดและกำหนดการเปลี่ยนทุกปี — เช็กประกาศล่าสุดที่ <a href="https://posn.or.th" rel="noopener">posn.or.th</a></p>
       </div>
-      <span class="deco-vert" aria-hidden="true">POSN → TOI → IOI</span>
       <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="tree-title">
-      <div class="wrap two-col">
-        <div>
-          <p class="kicker reveal">สิ่งที่ต้องฝึก · เรียงจากพื้นฐาน</p>
-          <h3 class="title reveal" id="tree-title">Skill tree ของสายแข่ง</h3>
-          <ol class="tree">
-            <li class="reveal">ภาษา C/C++ และการรับ-ส่งข้อมูล</li>
-            <li class="reveal">Big-O: ประเมินว่าทันเวลาไหม</li>
-            <li class="reveal">Sort · Binary search · Prefix sum</li>
-            <li class="reveal">Recursion · Brute force · Backtracking</li>
-            <li class="reveal">Greedy</li>
-            <li class="reveal">Dynamic programming</li>
-            <li class="reveal">Graph: BFS, DFS, shortest path</li>
-            <li class="reveal">โครงสร้างข้อมูล: heap, DSU, segment tree</li>
-          </ol>
-        </div>
-        <div>
-          <p class="kicker reveal">ภาษาที่ใช้แข่ง</p>
-          <h3 class="title reveal">ทำไมส่วนใหญ่ใช้ C++</h3>
-          <ul class="ticks reveal">
-            <li>เร็ว — โจทย์มักจำกัดเวลาราว 1 วินาที</li>
-            <li>STL: sort, vector, map, priority_queue พร้อมใช้</li>
-            <li>ระบบตรวจของการแข่งแทบทุกที่รองรับ</li>
-            <li>Python เขียนเร็ว แต่บางข้ออาจไม่ทันเวลา</li>
-          </ul>
-          <pre class="code reveal"><code>// อ่านตัวเลข n ตัว ตอบ ค่ามากสุด − ค่าน้อยสุด
-#include &lt;bits/stdc++.h&gt;
-using namespace std;
-int main() {
-    int n; cin &gt;&gt; n;
-    vector&lt;int&gt; a(n);
-    for (auto &amp;x : a) cin &gt;&gt; x;
-    sort(a.begin(), a.end());
-    cout &lt;&lt; a[n-1] - a[0];
-}</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" data-bg="night" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="bigo-title">
-      <div class="wrap">
-        <p class="kicker reveal">Big-O ในทางปฏิบัติ</p>
-        <h3 class="title reveal" id="bigo-title">ดูขนาด n ก่อน แล้วจะรู้ว่าต้องใช้วิธีไหน</h3>
-        <div class="table-wrap reveal">
-          <table class="bigo">
-            <thead><tr><th>n สูงสุด (ประมาณ)</th><th>ความซับซ้อนที่ทัน</th><th>ตัวอย่างวิธี</th></tr></thead>
-            <tbody>
-              <tr><td>≤ 10</td><th>O(n!)</th><td>ลองทุกการเรียงสับเปลี่ยน</td></tr>
-              <tr><td>≤ 20</td><th>O(2ⁿ)</th><td>ลองทุกเซตย่อย</td></tr>
-              <tr><td>≤ 500</td><th>O(n³)</th><td>3 ลูปซ้อน, Floyd–Warshall</td></tr>
-              <tr><td>≤ 5,000</td><th>O(n²)</th><td>2 ลูปซ้อน, DP ตาราง 2 มิติ</td></tr>
-              <tr><td>≤ 1,000,000</td><th>O(n log n)</th><td>sort, binary search</td></tr>
-              <tr><td>≤ 10,000,000</td><th>O(n)</th><td>วนลูปรอบเดียว</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="note reveal">หลักคร่าว ๆ: คอมทำคำสั่งง่าย ๆ ได้ราว 100 ล้านครั้งต่อวินาที — ใช้ประเมิน ไม่ใช่กฎตายตัว</p>
-      </div>
     </section>
 
     <section class="hscroll" data-bg="blue" data-label="01 · วิธีเรียน: ซ้อม" aria-label="วงจรซ้อม 1 ข้อ เลื่อนไปด้านข้าง">
@@ -544,39 +454,6 @@ int main() {
             </div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="log-title">
-      <div class="wrap">
-        <p class="kicker reveal">เครื่องมือสำคัญ</p>
-        <h3 class="title reveal" id="log-title">Error log: สมุดบันทึกความพลาด</h3>
-        <div class="table-wrap reveal">
-          <table class="log">
-            <thead><tr><th>โจทย์</th><th>ผล</th><th>สาเหตุ</th><th>กฎที่ได้</th></tr></thead>
-            <tbody>
-              <tr><td>ผลรวมช่วง</td><td><span class="verdict">WA</span></td><td>ผลรวมเกินขอบ int</td><td>ผลรวมใหญ่ ใช้ long long</td></tr>
-              <tr><td>เดินในตาราง</td><td><span class="verdict tle">TLE</span></td><td>DFS วนกลับจุดเดิมซ้ำ</td><td>ต้องมี visited</td></tr>
-              <tr><td>เรียงคะแนน</td><td><span class="verdict">WA</span></td><td>ลืมกรณี n = 1</td><td>ลอง edge case ก่อนส่งทุกครั้ง</td></tr>
-              <tr><td>นับคู่</td><td><span class="verdict tle">TLE</span></td><td>2 ลูปซ้อน กับ n = 100,000</td><td>n ใหญ่ ให้หาวิธี n log n</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="note reveal">ก่อนแข่ง อ่าน error log ของตัวเอง — ได้ทวนจุดอ่อนแบบตรงเป้า</p>
-        <p class="source reveal">WA = Wrong Answer (คำตอบผิด) · TLE = Time Limit Exceeded (เกินเวลา)</p>
-      </div>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="week-title">
-      <div class="wrap">
-        <p class="kicker reveal">ตารางซ้อม</p>
-        <h3 class="title reveal" id="week-title">ตารางซ้อมต่อสัปดาห์ ฉบับเรียนไปด้วย</h3>
-        <div class="cards three">
-          <article class="card reveal"><h4>จันทร์–ศุกร์</h4><p class="mono">45–60 นาที ต่อวัน</p><p>1–2 ข้อ ตามหัวข้อที่กำลังเรียน · สัปดาห์หนึ่งผสมหลายหัวข้อ (interleaving)</p></article>
-          <article class="card reveal"><h4>เสาร์</h4><p class="mono">2–3 ชั่วโมง</p><p>virtual contest จับเวลาเหมือนจริง · upsolve: ทำข้อที่ทำไม่ได้ให้จบ</p></article>
-          <article class="card reveal"><h4>อาทิตย์</h4><p class="mono">เบา ๆ</p><p>ทวนข้อเก่าจาก error log · พัก ออกกำลังกาย นอนให้พอ</p></article>
-        </div>
-        <p class="note reveal">สม่ำเสมอชนะหักโหม — สมองต้องการเวลาระหว่างรอบ</p>
       </div>
     </section>
 
