@@ -151,3 +151,13 @@ misha.atk();            // 30 — ของ Misha เอง (override)`;
 
   document.querySelectorAll("[data-lsp]").forEach(render);
 })();
+
+// กล่อง "misha มีอะไรบ้าง": กดชื่อแล้วกระโดดไปที่นิยามในโค้ด
+document.addEventListener("click", (e) => {
+  const li = e.target.closest(".inh-obj [data-go]");
+  if (!li) return;
+  const sym = document.querySelector(`.lsp .sym.def[data-sym="${li.dataset.go}"]`);
+  if (sym) sym.click();
+  document.querySelectorAll(".inh-obj li.on").forEach((x) => x.classList.remove("on"));
+  li.classList.add("on");
+});
