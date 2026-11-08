@@ -1196,3 +1196,29 @@ body.shake main { animation: page-shake 0.8s steps(10); }
   .remote-cursor { transition: none; }
   .screen.booting .rd-link .dots i { animation: none; }
 }
+
+/* ===================== กรอบแอปรีโมต: สไตล์หน้าต่างของเว็บ (แบบ hp_battle.exe) ===================== */
+.rd.pc { background: #fff; border: 2px solid #1f2eff; border-radius: 0; box-shadow: 8px 8px 0 #0b12a3; color: #1f2eff; }
+.rd-titlebar { height: 30px; align-items: center; padding: 0 6px 0 12px; gap: 6px; background: #1f2eff; border-bottom: 2px solid #1f2eff; }
+.rd-app { color: #fff; font: 600 12.5px var(--mono); letter-spacing: 0.02em; }
+.rd-app svg { display: none; }
+.rd-app::after { content: " —"; }
+.rd-tabs { align-self: center; }
+.rd-tab { padding: 0; background: transparent; border-radius: 0; color: #fff; font: 600 12.5px var(--mono); gap: 6px; }
+.rd-tab b, .rd-tab.add { display: none; }
+.rd-tab .dot { width: 7px; height: 7px; box-shadow: none; }
+.rd-winctl.win-btns { display: flex; gap: 4px; align-self: center; }
+.rd-winctl.win-btns i { width: 20px; height: 18px; display: grid; place-items: center; border: 1.5px solid #fff; color: #fff; font: 600 11px/1 var(--mono); font-style: normal; }
+.rd-toolbar { background: #fff; border-bottom: 2px solid #1f2eff; padding: 8px 12px; }
+.rd-address { background: #fff; border: 1.5px solid #1f2eff; border-radius: 0; color: #1f2eff; font-family: var(--mono); }
+.rd-address svg { color: #1f2eff; }
+.rd-address .mono { color: #1f2eff; }
+.rd-name { color: #4f5ad0; }
+.rd-actions button { border-radius: 0; color: #1f2eff; border: 1.5px solid transparent; }
+.rd-actions button:hover { background: #1f2eff; color: #fff; }
+.rd-actions button.danger { color: #ff3b30; }
+.rd-actions button.danger:hover { background: #ff3b30; color: #fff; }
+.rd-status { color: #1f2eff; font: 600 12.5px var(--mono); }
+.rd-status .mono { color: #4f5ad0; }
+.rd-status .dot { box-shadow: none; }
+.rd-statusbar { background: #fff; color: #4f5ad0; border-top: 2px solid #1f2eff; }
