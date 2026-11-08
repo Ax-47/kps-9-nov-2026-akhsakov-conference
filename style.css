@@ -1896,3 +1896,12 @@ thead th { font-size: 13px; }
 .pc .desk-win.dc-app.is-max .dc-body { grid-template-columns: minmax(0, 46%) 1fr; gap: 32px; padding: 32px; flex: 1; }
 .pc .desk-win.dc-app.is-max .dc-h { font-size: 40px; } .pc .desk-win.dc-app.is-max .dc-text { font-size: 22px; } .pc .desk-win.dc-app.is-max .dc-text a { font-size: 22px; }
 @media (max-width: 900px) { .dc-body { grid-template-columns: 110px 1fr; } }
+
+/* track panels: เนื้อหายาวขึ้น ให้พอดีจอเตี้ย */
+@media (max-height: 820px) and (min-width: 721px) {
+  .track-panel .win-body { gap: 8px; }
+  .track-panel .panel-title { font-size: 26px; }
+  .track-panel .steps { gap: 4px; }
+  .track-panel .steps li, .track-panel .first, .track-panel .pfc dd { font-size: 15px; line-height: 1.55; }
+  .track-panel .small { font-size: 13px; }
+}
