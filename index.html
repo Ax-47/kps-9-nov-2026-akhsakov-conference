@@ -445,7 +445,7 @@ printf("%s", name);</code></pre>
             <h3 class="era-name"><span class="mono">ERA 2 · 1980s–2000s</span>ยุคพีซี <em>OBJECT ORIENTED</em></h3>
             <dl class="bfc">
               <div class="bug"><dt>BUG</dt><dd>โปรแกรมแสนบรรทัด hp ถูกแตะจากเป็นร้อยจุด</dd></div>
-              <div class="fix"><dt>FIX</dt><dd>class = ข้อมูล + เมธอดที่คุมกฎ ให้ข้อมูลมีเจ้าของ</dd></div>
+              <div class="fix"><dt>FIX</dt><dd>รวมข้อมูลเป็น <b>object</b> — แต่ละ object แก้ข้อมูลของตัวเองได้เท่านั้น</dd></div>
               <div class="cost"><dt>COST</dt><dd>สืบทอดลึกจนแก้ยาก ต้นไม้คลาสงอกไม่หยุด</dd></div>
             </dl>
             <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Simula</b><span>1967</span></li><li><b>Smalltalk</b><span>1972</span></li><li><b>C++</b><span>1985</span></li><li><b>Java</b><span>1995</span></li></ul>
@@ -463,7 +463,7 @@ class Tank : public Ally {
     void takeDamage(int d) override {
 <span class="bl" data-n="2">        hp -= d / 2;     // ลืม max(0, …)</span>
     }
-};</code></pre><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>protected = ลูกหลานทุกชั้นแตะ hp ตรง ๆ ได้</li><li><b>2</b>ลูก override แล้วข้ามกฎของแม่ — ต้นไม้ยิ่งลึก ยิ่งหาไม่เจอว่ากฎหายตรงไหน</li></ol></figure>
+};</code></pre><a class="era-more" href="#oop-hsr">ดู misha.atk(kafka) ทีละบรรทัด ↓</a><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>protected = ลูกหลานทุกชั้นแตะ hp ตรง ๆ ได้</li><li><b>2</b>ลูก override แล้วข้ามกฎของแม่ — ต้นไม้ยิ่งลึก ยิ่งหาไม่เจอว่ากฎหายตรงไหน</li></ol></figure>
           </article>
           <article class="panel win warn" data-era="2">
             <div class="win-bar"><span>⚠ hp_bug.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -581,6 +581,28 @@ struct Boss { health: Health }
 
 
         </div>
+      </div>
+    </section>
+
+    <section class="block" id="oop-hsr" data-bg="night" data-label="01 · OOP แบบ HSR" aria-labelledby="oop-title">
+      <div class="wrap">
+        <p class="kicker reveal">ERA 2 · Object Oriented ใน 1 บรรทัด</p>
+        <h3 class="title reveal" id="oop-title">OOP แบบ HSR: <span class="mono">misha.atk(kafka)</span></h3>
+        <div class="oop-explain reveal">
+          <div class="oop-objs" aria-hidden="true">
+            <div class="oop-card"><b>misha</b><span>hp 100</span><span>power 30</span><em>atk() · takeDamage()</em></div>
+            <div class="oop-arrow"><span>misha.atk(kafka)</span><i>→</i><span>kafka.takeDamage(30)</span></div>
+            <div class="oop-card enemy"><b>kafka</b><span>hp 50</span><span>power 25</span><em>atk() · takeDamage()</em></div>
+          </div>
+          <ol class="oop-points">
+            <li><b>ข้อมูลกลายเป็น object</b> — hp กับ power ของ Misha อยู่ในตัว Misha ไม่ใช่ตัวแปรกลางที่ใครก็แก้ได้</li>
+            <li><b>object แก้ข้อมูลของตัวเองเท่านั้น</b> — Misha ตี Kafka ไม่ได้แปลว่า Misha ไปลบ hp ของ Kafka เอง แต่ “ขอ” ให้ Kafka ลดเลือดตัวเองผ่าน <span class="mono">takeDamage()</span></li>
+            <li><b>กฎอยู่ที่เดียว</b> — “hp ไม่ต่ำกว่า 0” อยู่ใน takeDamage ทุกตัวละครที่โดนตีต้องผ่านตรงนี้ บั๊กตัวละครอมตะเลยเกิดไม่ได้</li>
+          </ol>
+        </div>
+        <div class="dbg reveal" data-dbg="oop"></div>
+        <p class="note reveal">ดูช่อง <b>Objects ในหน่วยความจำ</b> กับ <b>Call stack</b>: ตอนอยู่ใน atk() <span class="mono">this</span> คือ misha แต่พอเข้า takeDamage() <span class="mono">this</span> เปลี่ยนเป็น kafka — hp ของ kafka ถูกแก้ตอนที่ kafka เป็นคนทำงานเท่านั้น</p>
+        <p class="source reveal">เกร็ด: ใน C++ / Java จริง ๆ private กันระดับคลาส (เมธอดของ Character แตะ hp ของ Character ตัวอื่นได้) — “ให้ object แก้ข้อมูลตัวเอง” จึงเป็นหลักการออกแบบที่เราเลือกทำ ไม่ใช่สิ่งที่ภาษาบังคับทุกกรณี</p>
       </div>
     </section>
 

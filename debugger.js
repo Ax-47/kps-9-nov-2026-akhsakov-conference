@@ -214,7 +214,7 @@ pub fn main(world: World) -> Void raises {
     const c = {
       vars: {}, stack: ["main"], out: [],
       rules: ["wait", "wait", "wait", "wait", "wait"], msgs: ["", "", "", "", ""],
-      viol: [], seen: new Set(), downAt: undefined, writes: [], cls: "",
+      viol: [], seen: new Set(), downAt: undefined, writes: [], cls: "", objs: null, self: "",
       w(line, who, key, from, to) { c.writes.push({ line, who, key, from, to }); },
       bad(n, msg) {
         if (c.seen.has(msg)) return;
@@ -238,7 +238,7 @@ pub fn main(world: World) -> Void raises {
         }
         steps.push({
           line, note, stack: [...c.stack], vars: { ...c.vars }, out: [...c.out],
-          rules: [...c.rules], msgs: [...c.msgs], viol: c.viol, writes: [...c.writes], cls: c.cls,
+          rules: [...c.rules], msgs: [...c.msgs], viol: c.viol, writes: [...c.writes], cls: c.cls, objs: c.objs ? JSON.parse(JSON.stringify(c.objs)) : null, self: c.self,
         });
         c.viol = [];
       },
@@ -506,9 +506,82 @@ pub fn main(world: World) -> Void raises {
     return steps;
   }
 
+  // OOP แบบ HSR: misha.atk(kafka) — ข้อมูลอยู่ใน object และ object แก้ข้อมูลตัวเอง
+  CODE.oop = `#include <algorithm>
+#include <cstdio>
+
+class Character {
+    const char *name;
+    int hp, power;          // private: ข้างนอกแตะตรง ๆ ไม่ได้
+public:
+    Character(const char *n, int h, int p) : name(n), hp(h), power(p) {}
+
+    void atk(Character &target) {      // misha สั่งตี…
+        target.takeDamage(power);      // …แต่ให้ kafka ลดเลือดตัวเอง
+    }
+    void takeDamage(int d) {
+        hp = std::max(0, hp - d);      // กฎ "ไม่ต่ำกว่า 0" อยู่ที่นี่ที่เดียว
+    }
+    bool isDown() const { return hp <= 0; }
+    int  getHp()  const { return hp; }
+};
+
+int main() {
+    Character misha("Misha", 100, 30);
+    Character kafka("Kafka", 50, 25);
+
+    misha.atk(kafka);          // ตาที่ 1
+    misha.atk(kafka);          // ตาที่ 2
+    // kafka.hp = 999;         // ✗ compile error: hp เป็น private
+    printf("Kafka %d\\n", kafka.getHp());
+}`;
+  function traceOop() {
+    const { c, steps } = makeTracer("kafka.hp");
+    const v = c.vars;
+    c.objs = {};
+    c.s(20, "เริ่ม main");
+    const make = (name, hp, power, line) => {
+      c.stack.push(`Character() [this=${name.toLowerCase()}]`);
+      c.self = name.toLowerCase();
+      c.objs[c.self] = { name: `"${name}"`, hp, power };
+      c.s(8, `สร้าง object ${c.self}: ข้อมูล name / hp / power ถูกเก็บไว้ใน object นี้`);
+      c.stack.pop(); c.self = "";
+      v[`${name.toLowerCase()}.hp`] = hp;
+      c.s(line, `${name.toLowerCase()} พร้อมแล้ว — hp ${hp} อยู่ข้างในตัว ${name.toLowerCase()}`);
+    };
+    make("Misha", 100, 30, 21);
+    c.ok(1, "misha เริ่ม hp = 100");
+    make("Kafka", 50, 25, 22);
+    for (const [line, turn] of [[24, 1], [25, 2]]) {
+      c.s(line, `ตาที่ ${turn}: misha.atk(kafka)`);
+      c.stack.push("Character::atk [this=misha]"); c.self = "misha";
+      v.target = "kafka"; delete v.d;
+      c.s(10, "เข้าเมธอดของ misha — this = misha · target = kafka");
+      c.s(11, "misha ไม่แตะ hp ของ kafka เอง แต่ขอให้ kafka ลดเลือดตัวเอง: target.takeDamage(30)");
+      c.stack.push("Character::takeDamage [this=kafka]"); c.self = "kafka";
+      v.d = 30;
+      c.s(13, "ตอนนี้ this = kafka — object ที่กำลังทำงานคือ kafka");
+      const old = c.objs.kafka.hp;
+      const nw = Math.max(0, old - 30);
+      c.objs.kafka.hp = nw; v["kafka.hp"] = nw;
+      c.w(14, "kafka.takeDamage", "hp", old, nw);
+      if (old - 30 < 0) c.ok(2, `${old} - 30 = ${old - 30} แต่ max(0, …) ให้เหลือ 0`);
+      c.s(14, `kafka แก้ hp ของตัวเอง: max(0, ${old} - 30) = ${nw}`);
+      c.stack.pop(); c.self = "misha";
+      c.s(12, "กลับมาที่ misha");
+      c.stack.pop(); c.self = ""; delete v.target; delete v.d;
+    }
+    c.s(26, "ถ้าเขียน kafka.hp = 999 จาก main จะ compile ไม่ผ่าน เพราะ hp เป็น private");
+    c.ok(4, "kafka.isDown() = true เพราะ hp = 0");
+    c.out.push(`Kafka ${c.objs.kafka.hp}`);
+    c.s(27, `อ่านค่าผ่าน kafka.getHp() → ${c.objs.kafka.hp}`);
+    c.s(28, "จบ — hp ของแต่ละตัวถูกแก้โดยตัวมันเองเท่านั้น กฎเลยอยู่ที่เดียว");
+    return steps;
+  }
+
   const TRACE = {
     goto: traceGoto, c: traceC,
-    java: traceJava, go: () => traceOwned(OWNED.go), rust: () => traceOwned(OWNED.rust),
+    java: traceJava, oop: traceOop, go: () => traceOwned(OWNED.go), rust: () => traceOwned(OWNED.rust),
   };
 
   // ===================== ไฮไลต์โค้ดแบบง่าย =====================
@@ -581,7 +654,7 @@ pub fn main(world: World) -> Void raises {
     const steps = TRACE[lang]();
     root.innerHTML = `
       <div class="dbg-bar">
-        <span class="dbg-title mono">debug · ${lang === "goto" ? "c + goto" : lang}</span>
+        <span class="dbg-title mono">debug · ${lang === "goto" ? "c + goto" : lang === "oop" ? "c++ · misha.atk(kafka)" : lang}</span>
         <div class="dbg-ctl">
           <button type="button" data-a="back" title="ย้อนกลับ 1 ก้าว">⏮ ย้อน</button>
           <button type="button" data-a="step" title="ทำทีละบรรทัด">⏭ ทีละบรรทัด</button>
@@ -598,6 +671,7 @@ pub fn main(world: World) -> Void raises {
           <section><h5>เส้นทางที่วิ่งมา <span data-r="jumps"></span></h5><ol class="dbg-path" data-r="path"></ol><p class="dbg-from" data-r="from" hidden></p></section>
           <section><h5>Call stack</h5><ol class="dbg-stack" data-r="stack"></ol></section>
           ${lang === "c" ? '<section><h5>ใครแก้ hp บ้าง</h5><ol class="dbg-writes" data-r="writes"></ol></section>' : ""}
+          ${lang === "oop" ? '<section><h5>Objects ในหน่วยความจำ</h5><div class="dbg-objs" data-r="objs"></div></section>' : ""}
           ${lang === "java" ? '<section><h5>ต้นไม้คลาสของ Misha</h5><ol class="dbg-hier" data-r="hier"></ol></section>' : ""}
           <section><h5>ตัวแปร</h5><dl class="dbg-vars" data-r="vars"></dl></section>
           <section><h5>กฎ HP 5 ข้อ</h5><ol class="dbg-rules" data-r="rules"></ol></section>
@@ -663,6 +737,11 @@ pub fn main(world: World) -> Void raises {
       if (R("writes")) R("writes").innerHTML = st.writes.length
         ? st.writes.map((x) => `<li${x.to < 0 ? ' class="neg"' : ""}><span>บรรทัด ${x.line}</span><b>${esc(x.who)}</b><code>${x.key} ${x.from} → ${x.to}</code></li>`).join("")
         : "<li><span>—</span><b>ยังไม่มีใครแก้</b></li>";
+      if (R("objs")) R("objs").innerHTML = st.objs ? Object.entries(st.objs).map(([k, o]) => {
+        const p = steps[i - 1]?.objs?.[k];
+        return `<div class="obj${st.self === k ? " self" : ""}"><b>${esc(k)}${st.self === k ? " <em>← this</em>" : ""}</b>${Object.entries(o).map(([f, val]) =>
+          `<span class="${p && p[f] !== val ? "chg" : ""}"><i>${esc(f)}</i>${esc(String(val))}</span>`).join("")}</div>`;
+      }).join("") || "<p>ยังไม่มี object</p>" : "<p>ยังไม่มี object</p>";
       if (R("hier")) R("hier").innerHTML = HIER.map((h, j) =>
         `<li class="${h.name === st.cls ? "on" : ""}${h.name === "DestructionAlly" ? " warn" : ""}" style="--d:${j}"><b>${h.name}</b><span>${esc(h.has)}</span></li>`).join("");
       R("out").textContent = st.out.join("\n") || " ";
