@@ -1699,3 +1699,25 @@ thead th { font-size: 13px; }
 .oop-dlg-bar button { font: 700 13px var(--mono); border: 2px solid var(--navy); background: var(--navy); color: var(--green); padding: 5px 12px; cursor: pointer; }
 .oop-dlg-body { overflow: auto; padding: 24px clamp(16px, 3vw, 40px) 32px; }
 .oop-dlg-body .title { margin-bottom: 18px; }
+
+/* Inheritance ใน popup OOP */
+.inh { margin-top: 40px; border-top: 2px dashed var(--line); padding-top: 28px; }
+.inh-h { font: 700 clamp(22px, 2.3vw, 32px) var(--head-font); color: var(--head); margin-bottom: 16px; }
+.inh-h em { font-style: normal; color: var(--yellow); }
+.inh-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 24px; align-items: start; }
+.inh-grid .code { margin: 0; font-size: 13.5px; }
+.inh-tree { display: grid; gap: 14px; }
+.inh-tree .kids { display: flex; gap: 14px; padding-left: 22px; border-left: 2px solid var(--green); margin-left: 18px; padding-top: 14px; }
+.inh-tree .branch { display: grid; gap: 14px; align-content: start; }
+.inh-tree .node { border: 2px solid var(--green); background: var(--win-bg); padding: 8px 12px; display: grid; gap: 2px; box-shadow: 4px 4px 0 var(--shadow); width: fit-content; min-width: 150px; }
+.inh-tree .node.enemy { border-color: #ff6b61; }
+.inh-tree .node b { font: 400 22px/1 var(--display); color: var(--head); text-transform: uppercase; }
+.inh-tree .node span { font: 13px var(--mono); color: var(--fg); }
+.inh-tree i { font-style: normal; color: var(--yellow); font-weight: 700; }
+.inh-key { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 14.5px; }
+.inh-key b { color: var(--accent); margin-right: 6px; }
+.inh-pc { margin-top: 20px; gap: 20px; }
+.inh-pc p { font-size: 16px; }
+.inh-pc b { display: inline-block; padding: 1px 8px; margin-right: 6px; color: #fff; font: 700 13px var(--head-font); }
+.inh-pc .ok { background: #12a352; } .inh-pc .bad { background: var(--red); }
+@media (max-width: 900px) { .inh-grid { grid-template-columns: minmax(0, 1fr); } }
