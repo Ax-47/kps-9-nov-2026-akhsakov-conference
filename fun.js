@@ -341,38 +341,3 @@
   up();
 })();
 
-// ยกน้ำหนัก = ความยากของโจทย์: เบาไป / พอดี / หนักไป
-(() => {
-  const box = document.querySelector("[data-gym]");
-  if (!box) return;
-  const r = box.querySelector("[data-gym-w]");
-  const plates = box.querySelector("[data-gym-plates]");
-  const zones = document.querySelectorAll("#how-hard [data-zone]");
-  const RATE = [100, 98, 95, 90, 85, 80, 70, 45, 20, 5];
-  const Z = {
-    light: ["เบาไป", "ทำได้ทุกข้อสบาย ๆ แต่สมองไม่ต้องปรับตัว ทักษะเลยไม่โต"],
-    right: ["พอดี", "ต้องคิดหนัก พลาดบ้าง แต่แก้ได้เอง ตรงนี้แหละที่ทักษะโต"],
-    heavy: ["หนักไป", "อ่านโจทย์แล้วไม่รู้จะเริ่มตรงไหน ท้อแล้วเลิก เหมือนยกหนักจนเจ็บ"],
-  };
-  const up = () => {
-    const v = +r.value;
-    const z = v <= 3 ? "light" : v <= 7 ? "right" : "heavy";
-    box.querySelector("[data-gym-v]").textContent = v;
-    box.dataset.z = z;
-    box.querySelector("[data-gym-zone]").textContent = Z[z][0];
-    box.querySelector("[data-gym-msg]").textContent = Z[z][1];
-    box.querySelector("[data-gym-rate]").textContent = `${RATE[v - 1]}%`;
-    zones.forEach((el) => el.classList.toggle("on", el.dataset.zone === z));
-    // แผ่นน้ำหนักข้างละ v แผ่น ยิ่งหนักยิ่งสูง
-    let svg = "";
-    for (let i = 0; i < v; i++) {
-      const hgt = 40 + i * 6, w = 9;
-      const off = 110 - i * (w + 2);
-      svg += `<rect x="${off}" y="${60 - hgt / 2}" width="${w}" height="${hgt}" />`;
-      svg += `<rect x="${320 - off - w}" y="${60 - hgt / 2}" width="${w}" height="${hgt}" />`;
-    }
-    plates.innerHTML = svg;
-  };
-  r.addEventListener("input", up);
-  up();
-})();

@@ -1906,30 +1906,6 @@ thead th { font-size: 13px; }
   .track-panel .small { font-size: 13px; }
 }
 
-/* ต้องยากขนาดไหน: ยกน้ำหนัก */
+/* ต้องยากขนาดไหน */
 .hard-quote { font: 500 clamp(20px, 2vw, 26px)/1.5 var(--head-font); color: #fff; max-width: 900px; border-left: 4px solid var(--green); padding-left: 16px; margin-bottom: 22px; }
 .hard-quote b { color: var(--green); }
-.gym { --zc: #ffe066; border: 2px dashed var(--zc); padding: 18px 22px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: center; }
-.gym[data-z="right"] { --zc: #3dff8f; }
-.gym[data-z="heavy"] { --zc: #ff3b30; }
-.gym-bell { width: 100%; max-width: 360px; height: auto; display: block; }
-.gym-bell [data-gym-plates] rect { fill: var(--zc); stroke: #0b0f6e; stroke-width: 2; }
-.gym-ctrl label { font: 600 19px var(--head-font); color: #fff; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
-.gym-ctrl input { width: 200px; accent-color: var(--zc); }
-.gym-ctrl label b { font: 400 34px var(--display); color: var(--zc); }
-.gym-out { display: grid; gap: 8px; }
-.gym-out p { font-size: 18px; line-height: 1.6; color: #f3f5ff; }
-.gym-out p.gym-zone { font: 400 clamp(44px, 5vw, 72px)/1 var(--display); color: var(--zc); }
-.gym-out p.gym-rate { display: flex; align-items: baseline; gap: 10px; font: 400 13px var(--pixel); color: var(--muted); }
-.gym-rate b { font: 700 28px var(--head-font); color: #fff; }
-.zones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
-.zone { border: 2px solid var(--line); background: var(--win-bg); padding: 16px 18px; display: grid; gap: 8px; align-content: start; opacity: .55; transition: opacity .2s, transform .2s, box-shadow .2s; }
-.zone h4 { font: 700 24px var(--head-font); color: #fff; }
-.zone p { font-size: 16.5px; line-height: 1.55; color: #f3f5ff; }
-.zone p span { display: inline-block; font: 400 11px var(--pixel); color: var(--zc, var(--green)); border: 1px solid currentColor; padding: 1px 5px; margin-right: 8px; vertical-align: 2px; }
-.zone[data-zone="light"] { --zc: #ffe066; }
-.zone[data-zone="right"] { --zc: #3dff8f; }
-.zone[data-zone="heavy"] { --zc: #ff3b30; }
-.zone.on { opacity: 1; border-color: var(--zc); box-shadow: 8px 8px 0 var(--shadow); transform: translateY(-3px); }
-.zone.on h4 { color: var(--zc); }
-@media (max-width: 860px) { .gym, .zones { grid-template-columns: minmax(0, 1fr); } }
