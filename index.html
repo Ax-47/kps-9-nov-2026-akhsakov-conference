@@ -26,10 +26,9 @@
     <a class="brand" href="#top">guide.exe</a>
     <span class="now" id="now" aria-live="polite">เปิดเรื่อง</span>
     <nav class="menu" aria-label="หัวข้อ">
-      <a href="#part1"><b>01</b> ประวัติ</a>
-      <a href="#part2"><b>02</b> เริ่มต้น</a>
-      <a href="#part3"><b>03</b> สมอง</a>
-      <a href="#part4"><b>04</b> ซ้อมแข่ง</a>
+      <a href="#part3" data-part="01"><b>01</b> วิธีเรียน</a>
+      <a href="#part2" data-part="02"><b>02</b> เริ่มต้น</a>
+      <a href="#part1" data-part="03"><b>03</b> ประวัติ</a>
     </nav>
     <div class="readbar" aria-hidden="true"><i id="readbar"></i></div>
   </header>
@@ -199,11 +198,539 @@
       </div>
     </section>
 
-    <!-- ===================== PART 1 ===================== -->
-    <section class="part-intro" id="part1" data-bg="night" data-label="01 · ประวัติภาษา">
+    <!-- ===================== PART 3 ===================== -->
+    <section class="part-intro" id="part3" data-bg="night" data-label="01 · วิธีเรียน: สมอง">
       <div class="wrap">
-        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 01 / 04</p><p class="mega">HISTORY</p></div>
-        <p class="kicker reveal">Part 1 · ประวัติ paradigm และภาษา</p>
+        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 01 / 03</p><p class="mega">BRAIN</p></div>
+        <p class="kicker reveal">01 · วิธีการเรียน · สมองเรียนรู้ยังไง</p>
+        <h2 class="giant reveal">ความจำ<br>มี 2 แบบ</h2>
+        <div class="memory reveal">
+          <div class="mem"><h4>Short-term</h4><p class="mono small">ความจำระยะสั้น / working memory</p>
+            <ul class="ticks"><li>ที่พักชั่วคราว อยู่ไม่กี่วินาทีถึงนาที</li><li>จุได้ราว 4 ก้อน (Cowan, 2001)</li><li>ตัวเลขเดิมที่ดัง: 7 ± 2 (Miller, 1956)</li></ul></div>
+          <div class="mem-arrow" aria-hidden="true"><span>ทบทวน · เชื่อมโยง · นอน</span></div>
+          <div class="mem"><h4>Long-term</h4><p class="mono small">ความจำระยะยาว</p>
+            <ul class="ticks"><li>ที่เก็บถาวร อยู่ได้เป็นปี</li><li>ความจุแทบไม่จำกัด</li><li>ต้องผ่านการ “เข้ารหัส” ถึงจะเข้าไปได้</li></ul></div>
+        </div>
+        <p class="source reveal">โมเดลความจำของ Atkinson &amp; Shiffrin (1968) · ดึงความรู้จาก long-term กลับมาใช้ เรียกว่า retrieval</p>
+      </div>
+      <span class="deco-vert" aria-hidden="true">HIPPOCAMPUS · SLEEP · SKILL</span>
+      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
+    </section>
+
+    <section class="block" data-bg="night" data-label="01 · วิธีเรียน: สมอง" aria-labelledby="chunk-title">
+      <div class="wrap">
+        <p class="kicker reveal">ลองเลย · 1 นาที</p>
+        <h3 class="title reveal" id="chunk-title">จำตัวเลขชุดนี้ให้ได้</h3>
+        <div class="chunk win reveal" data-chunk>
+          <div class="win-bar"><span>memory_test.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+          <p class="chunk-digits mono" data-state="idle" aria-live="polite">● ● ● ● ● ● ● ● ● ● ● ●</p>
+          <div class="chunk-actions">
+            <button type="button" class="btn" data-chunk-start>เริ่ม: ดู 10 วินาที</button>
+            <button type="button" class="btn ghost" data-chunk-reveal hidden>เฉลย</button>
+          </div>
+          <p class="chunk-msg">กดเริ่ม แล้วพยายามจำตัวเลข 12 ตัว พอหมดเวลาให้หลับตาท่องกลับให้ครบ</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hscroll" data-bg="night" data-label="01 · วิธีเรียน: สมอง" aria-label="เรื่องของ HM เลื่อนไปด้านข้าง">
+      <div class="hscroll-sticky">
+        <div class="hscroll-head wrap">
+          <p class="kicker">เคสที่เปลี่ยนวงการประสาทวิทยา</p>
+          <div class="hscroll-progress" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="hscroll-track">
+          <article class="panel win">
+            <div class="win-bar"><span>hm_1953.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">Henry Molaison (1926–2008)</p>
+            <div class="oops" aria-hidden="true"><div class="oops-win back"></div><div class="oops-win"><b>Oops!</b><span>Memory Not Found</span></div></div>
+            <h3 class="panel-title">HM: ชายที่สร้างความจำใหม่ไม่ได้</h3>
+            <p>ลมชักรุนแรงตั้งแต่เด็ก ยาเอาไม่อยู่ ปี 1953 ศัลยแพทย์ William Scoville ผ่าตัดเอาสมองส่วนขมับด้านใน (medial temporal lobe) ทั้งสองข้างออก รวมถึง <strong>hippocampus</strong></p>
+            <p class="punch">ลมชักดีขึ้น แต่…</p>
+            </div>
+          </article>
+          <article class="panel win">
+            <div class="win-bar"><span>after_surgery.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">หลังผ่าตัด</p>
+            <h3 class="panel-title">อะไรหาย อะไรอยู่</h3>
+            <dl class="pfc">
+              <div class="lost"><dt>เสียไป</dt><dd>สร้างความจำระยะยาวใหม่ไม่ได้ คุยกันเสร็จ ไม่นานก็ลืมว่าเคยเจอ</dd></div>
+              <div><dt>ยังอยู่</dt><dd>short-term ปกติ คุยต่อเนื่องได้ จำตัวเลขสั้น ๆ ได้</dd></div>
+              <div><dt>ยังอยู่</dt><dd>ความจำเก่าก่อนผ่าตัด ส่วนใหญ่ยังจำได้</dd></div>
+            </dl>
+            <p class="punch small">hippocampus คือด่านที่ย้ายความจำ จาก short-term ไป long-term</p>
+            </div>
+          </article>
+          <article class="panel win">
+            <div class="win-bar"><span>mirror_tracing.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">แต่มีเรื่องที่แปลกกว่านั้น</p>
+            <h3 class="panel-title">HM วาดผ่านกระจก เก่งขึ้นทุกวัน</h3>
+            <p>mirror tracing: ลากเส้นระหว่างขอบดาว 2 ชั้น โดยมองมือตัวเองผ่านกระจกเท่านั้น</p>
+            <ol class="days">
+              <li><b>วันที่ 1</b> ทำผิดเยอะ เพราะภาพในกระจกกลับด้าน</li>
+              <li><b>วันที่ 2</b> ผิดน้อยลง แต่บอกว่า “ไม่เคยทำมาก่อน”</li>
+              <li><b>วันที่ 3</b> ทำได้ดีขึ้นอีก และยังจำไม่ได้ว่าเคยฝึก</li>
+            </ol>
+            <p class="source">การทดลองของ Brenda Milner (ตีพิมพ์ปี 1962)</p>
+            </div>
+          </article>
+          <article class="panel win">
+            <div class="win-bar"><span>long_term.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">ความจำระยะยาว</p>
+            <h3 class="panel-title">มี 2 ระบบ</h3>
+            <dl class="pfc">
+              <div><dt>Declarative · “รู้ว่า”</dt><dd>พูดออกมาเป็นคำได้ อาศัย hippocampus — เหตุการณ์ที่เคยเจอ (episodic) และข้อเท็จจริง เช่น C เกิดปี 1972 (semantic)</dd></div>
+              <div><dt>Procedural · “รู้วิธี”</dt><dd>ทำได้ด้วยการลงมือ อาศัย basal ganglia และ cerebellum — ขี่จักรยาน พิมพ์สัมผัส เห็นโจทย์แล้วรู้ว่าต้องใช้ DP</dd></div>
+            </dl>
+            <p class="small">ทักษะถูกเก็บด้วยสมองอีกระบบ ที่ไม่ต้องพึ่ง hippocampus — HM เลยยังฝึกได้</p>
+            </div>
+          </article>
+          <article class="panel win">
+            <div class="win-bar"><span>skill.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">แปลว่าอะไรกับเรา</p>
+            <h3 class="panel-title">เขียนโปรแกรมเป็นทักษะ ไม่ใช่แค่ความรู้</h3>
+            <div class="versus">
+              <div><b>รู้ว่า</b><ul><li>จำ syntax ได้</li><li>รู้ว่า DP คืออะไร</li><li>ดูคลิปเฉลยแล้วเข้าใจ</li></ul></div>
+              <div><b>ทำได้</b><ul><li>เปิดจอว่าง แล้วเขียนเองได้</li><li>เห็นโจทย์ แล้วนึกออกว่าใช้ DP</li><li>debug เองจนเจอบั๊ก</li></ul></div>
+            </div>
+            <p class="punch">ดูคลิปว่ายน้ำ 100 ชั่วโมง ก็ยังว่ายไม่เป็น — ต้องลงน้ำ</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-bg="blue" data-label="01 · วิธีเรียน: สมอง" aria-labelledby="sleep-title">
+      <div class="wrap two-col">
+        <div>
+          <p class="kicker reveal">ปุ่ม save ของสมอง</p>
+          <h3 class="giant reveal" id="sleep-title">การนอน<br>= กด Save</h3>
+        </div>
+        <div>
+          <p class="reveal">ตอนหลับ สมองเล่นซ้ำสิ่งที่เรียนตอนกลางวัน แล้วค่อย ๆ ย้ายไปเก็บระยะยาว — เซลล์ใน hippocampus ของหนู ยิงสัญญาณรูปแบบเดิมซ้ำตอนหลับ (Wilson &amp; McNaughton, 1994)</p>
+          <p class="reveal">ทักษะดีขึ้นหลังนอน โดยไม่ต้องฝึกเพิ่ม: คนที่ฝึกกดนิ้วตามลำดับ ทำได้เร็วขึ้นหลังนอนหนึ่งคืน แต่ไม่ดีขึ้นแบบนั้นเมื่อตื่นอยู่ช่วงเวลาเท่ากัน (Walker และทีม, 2002)</p>
+          <p class="stat reveal"><span class="big">8–10</span> ชั่วโมงต่อคืน สำหรับวัยรุ่นอายุ 13–18 ปี <span class="source">American Academy of Sleep Medicine</span></p>
+          <div class="dialog reveal" role="note" aria-label="อดนอนติวก่อนแข่ง = เรียนแล้วไม่ได้ save">
+            <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>UNSAVED CHANGES</div>
+            <div class="dialog-body">
+              <p class="dialog-q">แน่ใจนะว่าจะ <b>อดนอนติวก่อนแข่ง</b>? สิ่งที่เรียนวันนี้ยังไม่ได้ save</p>
+              <div class="dialog-btns" aria-hidden="true"><span>ติวต่อ</span><span class="on">นอน 8 ชม.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-bg="night" data-label="01 · วิธีเรียน: สมอง" aria-labelledby="curve-title">
+      <div class="wrap">
+        <p class="kicker reveal">ลืมเป็นเรื่องปกติ</p>
+        <h3 class="title reveal" id="curve-title">Forgetting curve และการทวนแบบเว้นระยะ</h3>
+        <figure class="curve reveal">
+          <svg viewBox="0 0 800 340" role="img" aria-labelledby="curve-desc">
+            <desc id="curve-desc">กราฟภาพประกอบ: ถ้าไม่ทวนเลย ความจำลดฮวบในวันแรกแล้วค่อย ๆ ลดต่อ ถ้าทวนที่ 1 วัน 3 วัน 1 สัปดาห์ และ 1 เดือน ความจำเด้งกลับขึ้นทุกครั้ง และลดลงช้ากว่าเดิมเรื่อย ๆ</desc>
+            <g class="axis">
+              <line x1="60" y1="20" x2="60" y2="290"/><line x1="60" y1="290" x2="780" y2="290"/>
+              <text x="52" y="34" text-anchor="end">จำได้มาก</text>
+              <text x="60" y="318">เรียน</text><text x="180" y="318" text-anchor="middle">1 วัน</text>
+              <text x="320" y="318" text-anchor="middle">3 วัน</text><text x="500" y="318" text-anchor="middle">1 สัปดาห์</text>
+              <text x="740" y="318" text-anchor="middle">1 เดือน</text>
+            </g>
+            <path class="line-none" d="M60 40 C 110 170, 150 220, 260 245 S 600 268, 780 272"/>
+            <path class="line-spaced" d="M60 40 C 100 120, 140 150, 180 160 L180 50 C 230 100, 280 120, 320 128 L320 52 C 390 90, 450 104, 500 110 L500 54 C 600 80, 680 90, 740 94 L740 56 C 760 60, 770 62, 780 63"/>
+            <g class="legend"><rect x="560" y="22" width="18" height="4"/><text x="586" y="28">ทวนเว้นระยะ</text><rect class="none" x="560" y="44" width="18" height="4"/><text x="586" y="50">ไม่ทวนเลย</text></g>
+          </svg>
+          <figcaption class="source">กราฟเป็นภาพประกอบแนวโน้ม ไม่ใช่ข้อมูลจริง · Hermann Ebbinghaus (1885) ทดลองจำพยางค์ไร้ความหมายกับตัวเอง: ลืมเร็วมากในช่วงแรก แล้วค่อย ๆ ช้าลง</figcaption>
+        </figure>
+        <p class="note reveal">จังหวะทวนตัวอย่าง: <span class="mono">1 วัน → 3 วัน → 1 สัปดาห์ → 1 เดือน</span> ทวนแต่ละครั้ง เส้นลืมลาดลงช้ากว่าเดิม</p>
+      </div>
+    </section>
+
+    <section class="block" data-bg="paper" data-label="01 · วิธีเรียน: สมอง" aria-labelledby="works-title">
+      <div class="wrap">
+        <p class="kicker reveal">เรียนยังไงให้จำจริง</p>
+        <h3 class="title reveal" id="works-title">วิธีเรียนที่งานวิจัยบอกว่าได้ผล</h3>
+        <div class="two-col works">
+          <div class="reveal yes">
+            <h4>ได้ผลจริง</h4>
+            <ul class="ticks">
+              <li>ทดสอบตัวเอง: ปิดหนังสือแล้วนึก หรือทำโจทย์ (retrieval practice)</li>
+              <li>ทวนแบบเว้นระยะ (spaced practice)</li>
+              <li>สลับหัวข้อตอนฝึก (interleaving) — ได้ผลระดับกลาง</li>
+              <li>ฝึกที่ขอบความสามารถ และมี feedback (deliberate practice)</li>
+            </ul>
+          </div>
+          <div class="reveal no">
+            <h4>รู้สึกว่าได้ผล แต่ได้ผลน้อย</h4>
+            <ul class="ticks">
+              <li>อ่านซ้ำหลายรอบ</li>
+              <li>ไฮไลต์ ขีดเส้นใต้ทั้งหน้า</li>
+              <li>สรุปความ ถ้าไม่เคยฝึกวิธีสรุป</li>
+            </ul>
+          </div>
+        </div>
+        <p class="source reveal">Dunlosky และคณะ (2013) ทบทวนงานวิจัยเทคนิคการเรียน 10 แบบ · Roediger &amp; Karpicke (2006) · Ericsson และคณะ (1993)</p>
+      </div>
+    </section>
+
+    <!-- ===================== PART 4 ===================== -->
+    <section class="part-intro" id="part4" data-bg="paper" data-label="01 · วิธีเรียน: ซ้อม">
+      <div class="wrap">
+        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 01 / 03 · ต่อ</p><p class="mega">PRACTICE</p></div>
+        <p class="kicker reveal">01 · วิธีการเรียน · ซ้อมยังไงให้เป็นทักษะ</p>
+        <h2 class="giant reveal">ให้สมอง<br>เก็บเป็นทักษะ</h2>
+        <ol class="path reveal" aria-label="เส้นทางสายแข่ง">
+          <li><b>สอบคัด สอวน.</b><span>สอบเข้าค่าย</span></li>
+          <li><b>ค่าย 1</b><span>ศูนย์ สอวน.</span></li>
+          <li><b>ค่าย 2</b><span>คัดตัวแทนศูนย์</span></li>
+          <li><b>TOI</b><span>ระดับชาติ</span></li>
+          <li><b>ค่าย สสวท.</b><span>คัดผู้แทนประเทศ</span></li>
+          <li><b>IOI</b><span>ระดับโลก</span></li>
+        </ol>
+        <div class="two-col">
+          <p class="reveal"><b>สายทำโปรเจกต์</b> NSC แข่งพัฒนาโปรแกรมระดับประเทศ (สวทช.) · Hackathon และ game jam</p>
+          <p class="reveal"><b>ต่อในมหาวิทยาลัย</b> ICPC แข่งเป็นทีม 3 คน ใช้คอมเครื่องเดียว · ค่ายและชมรมของแต่ละมหาวิทยาลัย</p>
+        </div>
+        <p class="source reveal">รายละเอียดและกำหนดการเปลี่ยนทุกปี — เช็กประกาศล่าสุดที่ <a href="https://posn.or.th" rel="noopener">posn.or.th</a></p>
+      </div>
+      <span class="deco-vert" aria-hidden="true">POSN → TOI → IOI</span>
+      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
+    </section>
+
+    <section class="block" data-bg="paper" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="tree-title">
+      <div class="wrap two-col">
+        <div>
+          <p class="kicker reveal">สิ่งที่ต้องฝึก · เรียงจากพื้นฐาน</p>
+          <h3 class="title reveal" id="tree-title">Skill tree ของสายแข่ง</h3>
+          <ol class="tree">
+            <li class="reveal">ภาษา C/C++ และการรับ-ส่งข้อมูล</li>
+            <li class="reveal">Big-O: ประเมินว่าทันเวลาไหม</li>
+            <li class="reveal">Sort · Binary search · Prefix sum</li>
+            <li class="reveal">Recursion · Brute force · Backtracking</li>
+            <li class="reveal">Greedy</li>
+            <li class="reveal">Dynamic programming</li>
+            <li class="reveal">Graph: BFS, DFS, shortest path</li>
+            <li class="reveal">โครงสร้างข้อมูล: heap, DSU, segment tree</li>
+          </ol>
+        </div>
+        <div>
+          <p class="kicker reveal">ภาษาที่ใช้แข่ง</p>
+          <h3 class="title reveal">ทำไมส่วนใหญ่ใช้ C++</h3>
+          <ul class="ticks reveal">
+            <li>เร็ว — โจทย์มักจำกัดเวลาราว 1 วินาที</li>
+            <li>STL: sort, vector, map, priority_queue พร้อมใช้</li>
+            <li>ระบบตรวจของการแข่งแทบทุกที่รองรับ</li>
+            <li>Python เขียนเร็ว แต่บางข้ออาจไม่ทันเวลา</li>
+          </ul>
+          <pre class="code reveal"><code>// อ่านตัวเลข n ตัว ตอบ ค่ามากสุด − ค่าน้อยสุด
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main() {
+    int n; cin &gt;&gt; n;
+    vector&lt;int&gt; a(n);
+    for (auto &amp;x : a) cin &gt;&gt; x;
+    sort(a.begin(), a.end());
+    cout &lt;&lt; a[n-1] - a[0];
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-bg="night" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="bigo-title">
+      <div class="wrap">
+        <p class="kicker reveal">Big-O ในทางปฏิบัติ</p>
+        <h3 class="title reveal" id="bigo-title">ดูขนาด n ก่อน แล้วจะรู้ว่าต้องใช้วิธีไหน</h3>
+        <div class="table-wrap reveal">
+          <table class="bigo">
+            <thead><tr><th>n สูงสุด (ประมาณ)</th><th>ความซับซ้อนที่ทัน</th><th>ตัวอย่างวิธี</th></tr></thead>
+            <tbody>
+              <tr><td>≤ 10</td><th>O(n!)</th><td>ลองทุกการเรียงสับเปลี่ยน</td></tr>
+              <tr><td>≤ 20</td><th>O(2ⁿ)</th><td>ลองทุกเซตย่อย</td></tr>
+              <tr><td>≤ 500</td><th>O(n³)</th><td>3 ลูปซ้อน, Floyd–Warshall</td></tr>
+              <tr><td>≤ 5,000</td><th>O(n²)</th><td>2 ลูปซ้อน, DP ตาราง 2 มิติ</td></tr>
+              <tr><td>≤ 1,000,000</td><th>O(n log n)</th><td>sort, binary search</td></tr>
+              <tr><td>≤ 10,000,000</td><th>O(n)</th><td>วนลูปรอบเดียว</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note reveal">หลักคร่าว ๆ: คอมทำคำสั่งง่าย ๆ ได้ราว 100 ล้านครั้งต่อวินาที — ใช้ประเมิน ไม่ใช่กฎตายตัว</p>
+      </div>
+    </section>
+
+    <section class="hscroll" data-bg="blue" data-label="01 · วิธีเรียน: ซ้อม" aria-label="วงจรซ้อม 1 ข้อ เลื่อนไปด้านข้าง">
+      <div class="hscroll-sticky">
+        <div class="hscroll-head wrap">
+          <p class="kicker">วงจรซ้อม 1 ข้อ · ให้สมองได้ฝึกครบ</p>
+          <div class="hscroll-progress" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="hscroll-track">
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_1.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">1</p><h3 class="panel-title">ลองคิดเอง 20–40 นาที</h3><p>ดึงความรู้ออกมาใช้ = <em>retrieval practice</em></p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_2.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">2</p><h3 class="panel-title">ติดจริง ดู hint ทีละนิด</h3><p>ยังไม่เปิดเฉลยเต็ม ให้สมองได้คิดต่อ</p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_3.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">3</p><h3 class="panel-title">ปิดเฉลย เขียนใหม่เอง</h3><p>ตั้งแต่บรรทัดแรก = ฝึก <em>procedural</em></p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_4.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">4</p><h3 class="panel-title">จดลง error log</h3><p>พลาดเพราะอะไร ได้กฎอะไรติดตัว</p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_5.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">5</p><h3 class="panel-title">กลับมาทำข้อเดิมใหม่</h3><p>หลัง 1 วัน และ 1 สัปดาห์ = <em>spaced practice</em></p>
+            </div>
+          </article>
+          <article class="panel win step-panel">
+            <div class="win-bar"><span>step_6.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="step-no">6</p><h3 class="panel-title">นอนให้พอ</h3><p>ให้สมองกด save ทั้งความรู้และทักษะ</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-bg="paper" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="log-title">
+      <div class="wrap">
+        <p class="kicker reveal">เครื่องมือสำคัญ</p>
+        <h3 class="title reveal" id="log-title">Error log: สมุดบันทึกความพลาด</h3>
+        <div class="table-wrap reveal">
+          <table class="log">
+            <thead><tr><th>โจทย์</th><th>ผล</th><th>สาเหตุ</th><th>กฎที่ได้</th></tr></thead>
+            <tbody>
+              <tr><td>ผลรวมช่วง</td><td><span class="verdict">WA</span></td><td>ผลรวมเกินขอบ int</td><td>ผลรวมใหญ่ ใช้ long long</td></tr>
+              <tr><td>เดินในตาราง</td><td><span class="verdict tle">TLE</span></td><td>DFS วนกลับจุดเดิมซ้ำ</td><td>ต้องมี visited</td></tr>
+              <tr><td>เรียงคะแนน</td><td><span class="verdict">WA</span></td><td>ลืมกรณี n = 1</td><td>ลอง edge case ก่อนส่งทุกครั้ง</td></tr>
+              <tr><td>นับคู่</td><td><span class="verdict tle">TLE</span></td><td>2 ลูปซ้อน กับ n = 100,000</td><td>n ใหญ่ ให้หาวิธี n log n</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note reveal">ก่อนแข่ง อ่าน error log ของตัวเอง — ได้ทวนจุดอ่อนแบบตรงเป้า</p>
+        <p class="source reveal">WA = Wrong Answer (คำตอบผิด) · TLE = Time Limit Exceeded (เกินเวลา)</p>
+      </div>
+    </section>
+
+    <section class="block" data-bg="paper" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="week-title">
+      <div class="wrap">
+        <p class="kicker reveal">ตารางซ้อม</p>
+        <h3 class="title reveal" id="week-title">ตารางซ้อมต่อสัปดาห์ ฉบับเรียนไปด้วย</h3>
+        <div class="cards three">
+          <article class="card reveal"><h4>จันทร์–ศุกร์</h4><p class="mono">45–60 นาที ต่อวัน</p><p>1–2 ข้อ ตามหัวข้อที่กำลังเรียน · สัปดาห์หนึ่งผสมหลายหัวข้อ (interleaving)</p></article>
+          <article class="card reveal"><h4>เสาร์</h4><p class="mono">2–3 ชั่วโมง</p><p>virtual contest จับเวลาเหมือนจริง · upsolve: ทำข้อที่ทำไม่ได้ให้จบ</p></article>
+          <article class="card reveal"><h4>อาทิตย์</h4><p class="mono">เบา ๆ</p><p>ทวนข้อเก่าจาก error log · พัก ออกกำลังกาย นอนให้พอ</p></article>
+        </div>
+        <p class="note reveal">สม่ำเสมอชนะหักโหม — สมองต้องการเวลาระหว่างรอบ</p>
+      </div>
+    </section>
+
+    <section class="block" data-bg="night" data-label="01 · วิธีเรียน: ซ้อม" aria-labelledby="res-title">
+      <div class="wrap two-col">
+        <div>
+          <p class="kicker reveal">แหล่งฝึก</p>
+          <h3 class="title reveal" id="res-title">แหล่งฝึกที่แนะนำ</h3>
+          <ul class="links">
+            <li class="reveal"><a href="https://programming.in.th" rel="noopener">programming.in.th</a><span>โจทย์ภาษาไทย รวมข้อสอบ TOI เก่า</span></li>
+            <li class="reveal"><a href="https://cses.fi/problemset/" rel="noopener">CSES Problem Set</a><span>โจทย์เรียงตามหัวข้อ ไล่ทีละเรื่องได้</span></li>
+            <li class="reveal"><a href="https://atcoder.jp" rel="noopener">AtCoder Beginner Contest</a><span>แข่งออนไลน์เกือบทุกสัปดาห์ เหมาะมือใหม่</span></li>
+            <li class="reveal"><a href="https://codeforces.com" rel="noopener">Codeforces</a><span>แข่งออนไลน์บ่อย มี rating วัดพัฒนาการ</span></li>
+            <li class="reveal"><a href="https://usaco.guide" rel="noopener">USACO Guide</a><span>แผนเรียนเป็นขั้น พร้อมคำอธิบาย</span></li>
+            <li class="reveal"><a href="https://cses.fi/book/" rel="noopener">Competitive Programmer’s Handbook</a><span>หนังสือฟรีของ Antti Laaksonen</span></li>
+            <li class="reveal"><a href="https://posn.or.th" rel="noopener">posn.or.th</a><span>ประกาศ หลักสูตร และกำหนดการ สอวน.</span></li>
+          </ul>
+        </div>
+        <div>
+          <p class="kicker reveal">เรื่องใจก็สำคัญ</p>
+          <h3 class="title reveal">ใจที่ซ้อมได้นาน</h3>
+          <dl class="pfc">
+            <div class="reveal"><dt>เทียบกับตัวเองเมื่อวาน</dt><dd>ไม่ใช่เพื่อนที่เริ่มก่อนเรา 3 ปี</dd></div>
+            <div class="reveal"><dt>Plateau เป็นเรื่องปกติ</dt><dd>ทักษะขึ้นเป็นขั้นบันได มีช่วงที่ดูเหมือนไม่ไปไหน</dd></div>
+            <div class="reveal"><dt>เหนื่อยก็พัก</dt><dd>พัก นอน ออกกำลังกาย แล้วกลับมา ดีกว่าฝืนจนเลิก</dd></div>
+            <div class="reveal"><dt>สอนเพื่อน</dt><dd>อธิบายให้คนอื่นฟัง = ดึงความรู้ออกมาใช้อีกรอบ</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PART 2 ===================== -->
+    <section class="part-intro" id="part2" data-bg="paper" data-label="02 · เริ่มต้น">
+      <div class="wrap">
+        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 02 / 03</p><p class="mega">START</p></div>
+        <p class="kicker reveal">02 · เริ่มต้นยังไง</p>
+        <h2 class="giant reveal">ก้าวแรก<br>เลือกตามสิ่งที่อยากได้</h2>
+        <div class="cards three">
+          <article class="card reveal"><h4>Python</h4><p>อยากเข้าใจ logic เร็ว ๆ ไม่ติด syntax</p><p class="fit mono">เริ่มจากศูนย์ · AI · สคริปต์</p></article>
+          <article class="card reveal"><h4>C / C++</h4><p>อยากรู้ว่าคอมทำงานยังไงจริง ๆ หน่วยความจำ pointer</p><p class="fit mono">สายแข่ง · ระบบ · embedded</p></article>
+          <article class="card reveal"><h4>JavaScript</h4><p>อยากเห็นผลบนเว็บทันที เปิดเบราว์เซอร์ก็รันได้</p><p class="fit mono">สายเว็บ · แอปข้ามแพลตฟอร์ม</p></article>
+        </div>
+        <p class="note reveal">เลือกหนึ่งภาษา แล้วอยู่กับมันให้ได้ 3 เดือน — ภาษาที่สองจะง่ายขึ้นมาก</p>
+      </div>
+      <span class="deco-vert" aria-hidden="true">WEB · APP · GAME</span>
+      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
+    </section>
+
+    <section class="block" data-bg="paper" data-label="02 · เริ่มต้น" aria-labelledby="tool-title">
+      <div class="wrap">
+        <p class="kicker reveal">ทุกสายต้องมี</p>
+        <h3 class="title reveal" id="tool-title">เครื่องมือ 5 อย่างที่ต้องใช้ให้เป็น</h3>
+        <ol class="numbered">
+          <li class="reveal"><b>Editor (VS Code)</b><span>เขียนโค้ด มีตัวช่วยเติมคำ และเตือน error ทันที</span></li>
+          <li class="reveal"><b>Terminal</b><span>สั่งรัน compile ย้ายไฟล์ด้วยคำสั่ง ไม่ต้องคลิก</span></li>
+          <li class="reveal"><b>Git + GitHub</b><span>เก็บประวัติทุกเวอร์ชัน และเป็น portfolio ให้คนอื่นเห็นงาน</span></li>
+          <li class="reveal"><b>อ่าน error + docs</b><span>error บอกบรรทัดและสาเหตุ อ่านให้จบก่อนไปค้นในเน็ต</span></li>
+          <li class="reveal"><b>AI เป็นติวเตอร์</b><span>ถาม “ทำไม” ไม่ใช่ “เขียนให้หน่อย” ไม่งั้นสมองไม่ได้ฝึก</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="hscroll" data-bg="blue" data-label="02 · เริ่มต้น" aria-label="เส้นทางแต่ละสาย เลื่อนไปด้านข้าง">
+      <div class="hscroll-sticky">
+        <div class="hscroll-head wrap">
+          <p class="kicker">เลือกสาย · เว็บ → แอป → เกม → อื่น ๆ</p>
+          <div class="hscroll-progress" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="hscroll-track">
+          <article class="panel win track-panel">
+            <div class="win-bar"><span>web.html</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">สายเว็บ</p>
+            <h3 class="panel-title">จากหน้าเดียว สู่เว็บที่ใช้จริง</h3>
+            <ol class="steps">
+              <li><b>HTML + CSS</b> โครงสร้างหน้าเว็บ และการจัดหน้าตา</li>
+              <li><b>JavaScript</b> ทำให้ปุ่มกดได้ ข้อมูลบนหน้าเปลี่ยนได้</li>
+              <li><b>TypeScript + Framework</b> React, Vue หรือ Svelte ช่วยจัดเว็บที่ใหญ่ขึ้น</li>
+              <li><b>Backend + Database</b> Python, Go หรือ Node.js กับ SQL</li>
+              <li><b>Deploy</b> เอาขึ้นอินเทอร์เน็ต ให้คนอื่นเปิดได้</li>
+            </ol>
+            <p class="first"><span class="mono">โปรเจกต์แรก</span> หน้าเว็บแนะนำตัวเอง · to-do list ที่ปิดเว็บแล้วข้อมูลไม่หาย · เว็บที่เพื่อนในห้องใช้จริง เช่น ตารางเวร โหวตเมนู</p>
+            <p class="small">เริ่มจาก HTML/CSS/JS ล้วน ๆ ก่อน (แบบเว็บนี้) แล้วค่อยไป framework</p>
+            </div>
+          </article>
+          <article class="panel win track-panel">
+            <div class="win-bar"><span>app.dart</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">สายแอปมือถือ</p>
+            <h3 class="panel-title">เขียนครั้งเดียว ได้สองระบบ</h3>
+            <ol class="steps">
+              <li><b>เลือก framework</b> Flutter (Dart) หรือ React Native (JavaScript/TypeScript)</li>
+              <li><b>หน้าจอ (UI)</b> ปุ่ม รายการ ฟอร์ม และการเปลี่ยนหน้า</li>
+              <li><b>เก็บข้อมูลในเครื่อง</b> ปิดแอปแล้ว ข้อมูลยังอยู่</li>
+              <li><b>ต่อ API / backend</b> ดึงข้อมูลจากอินเทอร์เน็ต หรือแชร์กับเพื่อน</li>
+              <li><b>ให้คนอื่นลองใช้</b> ส่งไฟล์ติดตั้งให้เพื่อน หรือขึ้นสโตร์</li>
+            </ol>
+            <p class="first"><span class="mono">โปรเจกต์แรก</span> แอปจดรายรับรายจ่าย · นับถอยหลังวันสอบ · flashcard ทวนศัพท์แบบเว้นระยะ</p>
+            <p class="small">อยากลงลึก native: Kotlin สำหรับ Android, Swift สำหรับ iOS (ต้องใช้ Mac)</p>
+            </div>
+          </article>
+          <article class="panel win track-panel">
+            <div class="win-bar"><span>game.gd</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">สายเกม</p>
+            <h3 class="panel-title">เริ่มจากเข้าใจ game loop</h3>
+            <ol class="steps">
+              <li><b>game loop</b> รับ input → อัปเดตสถานะ → วาดจอ วนราว 60 รอบต่อวินาที</li>
+              <li><b>เริ่มเล็ก</b> Scratch หรือ Pygame ทำเกมจอเดียวให้จบ</li>
+              <li><b>เลือก engine</b> Godot (ฟรี GDScript คล้าย Python) · Unity (C#) · Unreal (C++)</li>
+              <li><b>ทำให้ “รู้สึกดี”</b> เสียง เอฟเฟกต์ และความยากที่พอดี</li>
+              <li><b>Game jam</b> สร้างเกมให้จบในเวลาจำกัด เช่น 48 ชั่วโมง กับเพื่อน</li>
+            </ol>
+            <p class="first"><span class="mono">โปรเจกต์แรก</span> Pong · เกมนกบินลอดท่อฉบับของเรา · platformer 1 ด่าน</p>
+            <p class="small">ชอบ Rust: ลอง engine ชื่อ Bevy</p>
+            </div>
+          </article>
+          <article class="panel win track-panel">
+            <div class="win-bar"><span>more_tracks.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+            <p class="era-tag mono">ยังมีอีก</p>
+            <h3 class="panel-title">สายอื่นที่น่าสนใจ</h3>
+            <dl class="pfc">
+              <div><dt>AI / Data</dt><dd>Python · NumPy · pandas — คณิต ม.ปลาย สำคัญมาก: สถิติ เมทริกซ์ แคลคูลัส</dd></div>
+              <div><dt>Systems / Embedded</dt><dd>C · Rust · Arduino · ESP32 — คุมของจริง: เซนเซอร์ มอเตอร์ หุ่นยนต์</dd></div>
+              <div><dt>Backend / Cloud</dt><dd>Go · Python · Database · Linux — ระบบหลังบ้านที่รองรับคนใช้พร้อมกันเยอะ ๆ</dd></div>
+              <div><dt>Security</dt><dd>เข้าใจระบบให้ลึก + จริยธรรม ฝึกแบบถูกกฎหมายผ่านการแข่ง CTF</dd></div>
+            </dl>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-bg="paper" data-label="02 · เริ่มต้น" aria-labelledby="recipe-title">
+      <div class="wrap two-col">
+        <div>
+          <p class="kicker reveal">ทำโปรเจกต์</p>
+          <h3 class="title reveal" id="recipe-title">สูตรทำโปรเจกต์ ไม่ให้ค้างกลางทาง</h3>
+          <ol class="numbered compact">
+            <li class="reveal"><b>เล็กพอให้เสร็จได้ใน 1 สัปดาห์</b></li>
+            <li class="reveal"><b>ทำให้ใช้ได้ก่อน แล้วค่อยทำให้สวย</b></li>
+            <li class="reveal"><b>ให้คนอื่นลองใช้ แล้วฟัง feedback</b></li>
+            <li class="reveal"><b>เพิ่มทีละฟีเจอร์ และ commit ทุกครั้ง</b></li>
+          </ol>
+        </div>
+        <aside class="dialog reveal" aria-label="คำเตือน: Tutorial Hell">
+          <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>WARNING</div>
+          <div class="dialog-body">
+            <p class="dialog-q">ระวัง <b>Tutorial Hell</b> — ดูคลิปสอนวนไปเรื่อย ๆ รู้สึกว่าเข้าใจ แต่พอเปิดจอว่าง กลับเขียนเองไม่ได้</p>
+            <p class="rule"><span>ดูคลิป</span><b>1 ชม.</b><span>→ เขียนเอง</span><b>2 ชม.</b></p>
+            <div class="dialog-btns" aria-hidden="true"><span>ดูคลิปต่อ</span><span class="on">เปิด editor</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="block" data-bg="paper" data-label="02 · เริ่มต้น" aria-labelledby="road-title">
+      <div class="wrap">
+        <p class="kicker reveal">ลงมือ</p>
+        <h3 class="title reveal" id="road-title">แผน 12 สัปดาห์แรก</h3>
+        <ol class="roadmap">
+          <li class="reveal"><span class="mono">สัปดาห์ 1–3</span><b>พื้นฐานภาษา</b><p>ตัวแปร if loop ฟังก์ชัน · แก้โจทย์ง่ายวันละข้อ</p></li>
+          <li class="reveal"><span class="mono">สัปดาห์ 4–6</span><b>ข้อมูลหลายตัว</b><p>list, string, dict · เริ่มใช้ Git</p></li>
+          <li class="reveal"><span class="mono">สัปดาห์ 7–9</span><b>โปรเจกต์แรก</b><p>เลือกสาย เว็บ แอป หรือเกม · ทำ 1 ชิ้นให้จบ</p></li>
+          <li class="reveal"><span class="mono">สัปดาห์ 10–12</span><b>ปล่อย + ต่อยอด</b><p>ให้เพื่อนลองใช้ · เริ่มโจทย์อัลกอริทึม</p></li>
+        </ol>
+        <p class="note reveal">วันละ 45–60 นาที ทุกวัน ดีกว่าอัด 7 ชั่วโมงในวันเสาร์วันเดียว — จำเรื่องการนอนกับการทวนเว้นระยะจากตอนวิธีการเรียนได้ไหม นั่นแหละเหตุผล</p>
+      </div>
+    </section>
+
+    <!-- ===================== พัก ===================== -->
+    <section class="break" id="break" data-bg="blue" data-label="พัก 10 นาที">
+      <div class="wrap bsod">
+        <p class="sad" aria-hidden="true">:(</p>
+        <h2 class="bsod-title">สมองของคุณทำงานหนักมาก<br>และต้อง <span>RESTART</span></h2>
+        <p class="lede">พัก 10 นาที — ระหว่างพัก สมองยังทำงานต่อ เดี๋ยวกลับมาเล่าว่ามันทำอะไรอยู่</p>
+        <div class="timer" data-timer="600">
+          <p class="timer-time mono" aria-live="polite">10:00</p>
+          <button type="button" class="btn" data-timer-start>เริ่มจับเวลาพัก</button>
+        </div>
+        <p class="mono small bsod-code">STOP CODE: BRAIN_NEEDS_A_BREAK · กำลังบันทึกความจำ… <span class="blink">█</span></p>
+      </div>
+      <div class="marquee big" data-speed="-0.5" aria-hidden="true">
+        <div class="marquee-row">พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦</div>
+      </div>
+    </section>
+
+    <!-- ===================== PART 1 ===================== -->
+    <section class="part-intro" id="part1" data-bg="night" data-label="03 · ประวัติภาษา">
+      <div class="wrap">
+        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 03 / 03</p><p class="mega">HISTORY</p></div>
+        <p class="kicker reveal">03 · ประวัติ paradigm และภาษา</p>
         <h2 class="giant reveal">ภาษาไหน<br>ดีที่สุด?</h2>
         <p class="answer reveal">คำตอบของพี่: <strong>ไม่มี</strong> — แต่ละภาษาเกิดมาเพื่อแก้ปัญหาของยุคมัน</p>
         <p class="lede reveal">เราจะดูว่าแต่ละยุคเจอปัญหาอะไร แก้ยังไง แล้วต้องจ่ายอะไรแลก เข้าใจตรงนี้แล้ว จะเลือกเครื่องมือเป็นเอง
@@ -213,7 +740,7 @@
       <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
     </section>
 
-    <section class="block" id="what-is-pl" data-bg="night" data-label="01 · ภาษาโปรแกรมคืออะไร" aria-labelledby="pl-title">
+    <section class="block" id="what-is-pl" data-bg="night" data-label="03 · ภาษาโปรแกรมคืออะไร" aria-labelledby="pl-title">
       <div class="wrap">
         <p class="kicker reveal">ก่อนเข้ายุคแรก</p>
         <h3 class="title reveal" id="pl-title">Programming language คืออะไร?</h3>
@@ -266,10 +793,10 @@
       </div>
     </section>
 
-    <section class="block" data-bg="night" data-label="01 · ประวัติภาษา" aria-labelledby="spec-title">
+    <section class="block" data-bg="night" data-label="03 · ประวัติภาษา" aria-labelledby="spec-title">
       <div class="wrap two-col">
         <div>
-          <p class="kicker reveal">โจทย์ · ใช้ตลอด Part 1</p>
+          <p class="kicker reveal">โจทย์ · ใช้ตลอดตอนประวัติภาษา</p>
           <h3 class="title reveal" id="spec-title">ระบบ HP ของ Honkai: Star Rail ฉบับจิ๋ว</h3>
           <p class="reveal">โจทย์เดียว เขียนใหม่ทุกยุค: <span class="mono">C + goto → C → Java → Go → Rust</span></p>
         </div>
@@ -284,7 +811,7 @@
     </section>
 
     <!-- เลื่อนลง = แถบยุคเลื่อนไปทางขวา -->
-    <section class="hscroll era-run" data-bg="night" data-label="01 · ประวัติภาษา" aria-label="ยุคของภาษาโปรแกรม เลื่อนไปด้านข้าง">
+    <section class="hscroll era-run" data-bg="night" data-label="03 · ประวัติภาษา" aria-label="ยุคของภาษาโปรแกรม เลื่อนไปด้านข้าง">
       <div class="hscroll-sticky">
         <div class="hscroll-head wrap">
           <p class="kicker">ไทม์ไลน์ · 4 ยุค</p>
@@ -584,7 +1111,7 @@ struct Boss { health: Health }
       </div>
     </section>
 
-    <section class="block" id="challenge" data-bg="night" data-label="01 · โจทย์" aria-labelledby="challenge-title">
+    <section class="block" id="challenge" data-bg="night" data-label="03 · โจทย์" aria-labelledby="challenge-title">
       <div class="wrap">
         <p class="kicker reveal">โจทย์ · ช่วงแรก</p>
         <h3 class="title reveal" id="challenge-title">HSR: เกมผลัดกันเล่นใน terminal ด้วยภาษา C</h3>
@@ -622,7 +1149,7 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
       </div>
     </section>
 
-    <section class="block" id="game" data-bg="paper" data-label="01 · เทียบภาษา + เล่นเกม" aria-labelledby="same-title">
+    <section class="block" id="game" data-bg="paper" data-label="03 · เทียบภาษา + เล่นเกม" aria-labelledby="same-title">
       <div class="wrap">
         <p class="kicker reveal">โจทย์เดียว เขียนใหม่ทุกยุค · ลองเล่นเทียบกัน</p>
         <h3 class="title reveal" id="same-title">เกม HSR ในแต่ละภาษา</h3>
@@ -688,9 +1215,9 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
       </div>
     </section>
 
-    <section class="block" data-bg="paper" data-label="01 · ประวัติภาษา" aria-labelledby="price-title">
+    <section class="block" data-bg="paper" data-label="03 · ประวัติภาษา" aria-labelledby="price-title">
       <div class="wrap">
-        <p class="kicker reveal">สรุป Part 1</p>
+        <p class="kicker reveal">สรุปประวัติภาษา</p>
         <h3 class="title reveal" id="price-title">ทุกทางแก้ มีราคาที่ต้องจ่าย</h3>
         <div class="table-wrap reveal">
           <table class="price">
@@ -767,9 +1294,9 @@ const t2 = xs.filter(x =&gt; x &gt; 0)
       </div>
     </section>
 
-    <section class="block statement" data-bg="blue" data-label="01 · ประวัติภาษา">
+    <section class="block statement" data-bg="blue" data-label="03 · ประวัติภาษา">
       <div class="wrap">
-        <p class="kicker reveal">บทเรียนจาก Part 1</p>
+        <p class="kicker reveal">บทเรียนจากประวัติภาษา</p>
         <h3 class="giant reveal">ไม่มีใครทำถูก<br>ตั้งแต่ครั้งแรก</h3>
         <p class="lede reveal">ทั้งหมดที่เพิ่งดูไป คือความพยายามทำให้โค้ด <strong>อ่านง่ายขึ้น</strong> และ <strong>debug ง่ายขึ้น</strong> — จาก FORTRAN (1957) ถึง Rust (2015) ใช้เวลา <strong>กว่า 50 ปี</strong> กว่าจะมาถึงวันนี้ ทุกยุคแก้ปัญหาของยุคก่อน แล้วเจอปัญหาใหม่ให้ยุคต่อไปแก้</p>
         <ol class="lesson-strip reveal" aria-label="ย่อประวัติ">
@@ -781,534 +1308,6 @@ const t2 = xs.filter(x =&gt; x &gt; 0)
           <li><b>วันนี้</b><span>CPU ทั้งหมดนั้น อยู่ในโทรศัพท์ในกระเป๋า</span></li>
         </ol>
         <p class="ask reveal">เพราะฉะนั้นอย่ากลัวว่าครั้งแรกจะไม่ดี — <strong>ลงมือทำ</strong> แล้วค่อยแก้ทีละรอบ<br>เราเพิ่งย่อประวัติจาก <strong>CPU ตู้เท่าบ้าน</strong> มาเป็น <strong>CPU ในโทรศัพท์</strong> ในเวลาไม่ถึงชั่วโมง</p>
-      </div>
-    </section>
-
-    <!-- ===================== PART 2 ===================== -->
-    <section class="part-intro" id="part2" data-bg="paper" data-label="02 · เริ่มต้น">
-      <div class="wrap">
-        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 02 / 04</p><p class="mega">START</p></div>
-        <p class="kicker reveal">Part 2 · เริ่มต้นยังไง</p>
-        <h2 class="giant reveal">ก้าวแรก<br>เลือกตามสิ่งที่อยากได้</h2>
-        <div class="cards three">
-          <article class="card reveal"><h4>Python</h4><p>อยากเข้าใจ logic เร็ว ๆ ไม่ติด syntax</p><p class="fit mono">เริ่มจากศูนย์ · AI · สคริปต์</p></article>
-          <article class="card reveal"><h4>C / C++</h4><p>อยากรู้ว่าคอมทำงานยังไงจริง ๆ หน่วยความจำ pointer</p><p class="fit mono">สายแข่ง · ระบบ · embedded</p></article>
-          <article class="card reveal"><h4>JavaScript</h4><p>อยากเห็นผลบนเว็บทันที เปิดเบราว์เซอร์ก็รันได้</p><p class="fit mono">สายเว็บ · แอปข้ามแพลตฟอร์ม</p></article>
-        </div>
-        <p class="note reveal">เลือกหนึ่งภาษา แล้วอยู่กับมันให้ได้ 3 เดือน — ภาษาที่สองจะง่ายขึ้นมาก</p>
-      </div>
-      <span class="deco-vert" aria-hidden="true">WEB · APP · GAME</span>
-      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="02 · เริ่มต้น" aria-labelledby="tool-title">
-      <div class="wrap">
-        <p class="kicker reveal">ทุกสายต้องมี</p>
-        <h3 class="title reveal" id="tool-title">เครื่องมือ 5 อย่างที่ต้องใช้ให้เป็น</h3>
-        <ol class="numbered">
-          <li class="reveal"><b>Editor (VS Code)</b><span>เขียนโค้ด มีตัวช่วยเติมคำ และเตือน error ทันที</span></li>
-          <li class="reveal"><b>Terminal</b><span>สั่งรัน compile ย้ายไฟล์ด้วยคำสั่ง ไม่ต้องคลิก</span></li>
-          <li class="reveal"><b>Git + GitHub</b><span>เก็บประวัติทุกเวอร์ชัน และเป็น portfolio ให้คนอื่นเห็นงาน</span></li>
-          <li class="reveal"><b>อ่าน error + docs</b><span>error บอกบรรทัดและสาเหตุ อ่านให้จบก่อนไปค้นในเน็ต</span></li>
-          <li class="reveal"><b>AI เป็นติวเตอร์</b><span>ถาม “ทำไม” ไม่ใช่ “เขียนให้หน่อย” ไม่งั้นสมองไม่ได้ฝึก</span></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="hscroll" data-bg="blue" data-label="02 · เริ่มต้น" aria-label="เส้นทางแต่ละสาย เลื่อนไปด้านข้าง">
-      <div class="hscroll-sticky">
-        <div class="hscroll-head wrap">
-          <p class="kicker">เลือกสาย · เว็บ → แอป → เกม → อื่น ๆ</p>
-          <div class="hscroll-progress" aria-hidden="true"><i></i></div>
-        </div>
-        <div class="hscroll-track">
-          <article class="panel win track-panel">
-            <div class="win-bar"><span>web.html</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">สายเว็บ</p>
-            <h3 class="panel-title">จากหน้าเดียว สู่เว็บที่ใช้จริง</h3>
-            <ol class="steps">
-              <li><b>HTML + CSS</b> โครงสร้างหน้าเว็บ และการจัดหน้าตา</li>
-              <li><b>JavaScript</b> ทำให้ปุ่มกดได้ ข้อมูลบนหน้าเปลี่ยนได้</li>
-              <li><b>TypeScript + Framework</b> React, Vue หรือ Svelte ช่วยจัดเว็บที่ใหญ่ขึ้น</li>
-              <li><b>Backend + Database</b> Python, Go หรือ Node.js กับ SQL</li>
-              <li><b>Deploy</b> เอาขึ้นอินเทอร์เน็ต ให้คนอื่นเปิดได้</li>
-            </ol>
-            <p class="first"><span class="mono">โปรเจกต์แรก</span> หน้าเว็บแนะนำตัวเอง · to-do list ที่ปิดเว็บแล้วข้อมูลไม่หาย · เว็บที่เพื่อนในห้องใช้จริง เช่น ตารางเวร โหวตเมนู</p>
-            <p class="small">เริ่มจาก HTML/CSS/JS ล้วน ๆ ก่อน (แบบเว็บนี้) แล้วค่อยไป framework</p>
-            </div>
-          </article>
-          <article class="panel win track-panel">
-            <div class="win-bar"><span>app.dart</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">สายแอปมือถือ</p>
-            <h3 class="panel-title">เขียนครั้งเดียว ได้สองระบบ</h3>
-            <ol class="steps">
-              <li><b>เลือก framework</b> Flutter (Dart) หรือ React Native (JavaScript/TypeScript)</li>
-              <li><b>หน้าจอ (UI)</b> ปุ่ม รายการ ฟอร์ม และการเปลี่ยนหน้า</li>
-              <li><b>เก็บข้อมูลในเครื่อง</b> ปิดแอปแล้ว ข้อมูลยังอยู่</li>
-              <li><b>ต่อ API / backend</b> ดึงข้อมูลจากอินเทอร์เน็ต หรือแชร์กับเพื่อน</li>
-              <li><b>ให้คนอื่นลองใช้</b> ส่งไฟล์ติดตั้งให้เพื่อน หรือขึ้นสโตร์</li>
-            </ol>
-            <p class="first"><span class="mono">โปรเจกต์แรก</span> แอปจดรายรับรายจ่าย · นับถอยหลังวันสอบ · flashcard ทวนศัพท์แบบเว้นระยะ</p>
-            <p class="small">อยากลงลึก native: Kotlin สำหรับ Android, Swift สำหรับ iOS (ต้องใช้ Mac)</p>
-            </div>
-          </article>
-          <article class="panel win track-panel">
-            <div class="win-bar"><span>game.gd</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">สายเกม</p>
-            <h3 class="panel-title">เริ่มจากเข้าใจ game loop</h3>
-            <ol class="steps">
-              <li><b>game loop</b> รับ input → อัปเดตสถานะ → วาดจอ วนราว 60 รอบต่อวินาที</li>
-              <li><b>เริ่มเล็ก</b> Scratch หรือ Pygame ทำเกมจอเดียวให้จบ</li>
-              <li><b>เลือก engine</b> Godot (ฟรี GDScript คล้าย Python) · Unity (C#) · Unreal (C++)</li>
-              <li><b>ทำให้ “รู้สึกดี”</b> เสียง เอฟเฟกต์ และความยากที่พอดี</li>
-              <li><b>Game jam</b> สร้างเกมให้จบในเวลาจำกัด เช่น 48 ชั่วโมง กับเพื่อน</li>
-            </ol>
-            <p class="first"><span class="mono">โปรเจกต์แรก</span> Pong · เกมนกบินลอดท่อฉบับของเรา · platformer 1 ด่าน</p>
-            <p class="small">ชอบ Rust: ลอง engine ชื่อ Bevy</p>
-            </div>
-          </article>
-          <article class="panel win track-panel">
-            <div class="win-bar"><span>more_tracks.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">ยังมีอีก</p>
-            <h3 class="panel-title">สายอื่นที่น่าสนใจ</h3>
-            <dl class="pfc">
-              <div><dt>AI / Data</dt><dd>Python · NumPy · pandas — คณิต ม.ปลาย สำคัญมาก: สถิติ เมทริกซ์ แคลคูลัส</dd></div>
-              <div><dt>Systems / Embedded</dt><dd>C · Rust · Arduino · ESP32 — คุมของจริง: เซนเซอร์ มอเตอร์ หุ่นยนต์</dd></div>
-              <div><dt>Backend / Cloud</dt><dd>Go · Python · Database · Linux — ระบบหลังบ้านที่รองรับคนใช้พร้อมกันเยอะ ๆ</dd></div>
-              <div><dt>Security</dt><dd>เข้าใจระบบให้ลึก + จริยธรรม ฝึกแบบถูกกฎหมายผ่านการแข่ง CTF</dd></div>
-            </dl>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="02 · เริ่มต้น" aria-labelledby="recipe-title">
-      <div class="wrap two-col">
-        <div>
-          <p class="kicker reveal">ทำโปรเจกต์</p>
-          <h3 class="title reveal" id="recipe-title">สูตรทำโปรเจกต์ ไม่ให้ค้างกลางทาง</h3>
-          <ol class="numbered compact">
-            <li class="reveal"><b>เล็กพอให้เสร็จได้ใน 1 สัปดาห์</b></li>
-            <li class="reveal"><b>ทำให้ใช้ได้ก่อน แล้วค่อยทำให้สวย</b></li>
-            <li class="reveal"><b>ให้คนอื่นลองใช้ แล้วฟัง feedback</b></li>
-            <li class="reveal"><b>เพิ่มทีละฟีเจอร์ และ commit ทุกครั้ง</b></li>
-          </ol>
-        </div>
-        <aside class="dialog reveal" aria-label="คำเตือน: Tutorial Hell">
-          <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>WARNING</div>
-          <div class="dialog-body">
-            <p class="dialog-q">ระวัง <b>Tutorial Hell</b> — ดูคลิปสอนวนไปเรื่อย ๆ รู้สึกว่าเข้าใจ แต่พอเปิดจอว่าง กลับเขียนเองไม่ได้</p>
-            <p class="rule"><span>ดูคลิป</span><b>1 ชม.</b><span>→ เขียนเอง</span><b>2 ชม.</b></p>
-            <div class="dialog-btns" aria-hidden="true"><span>ดูคลิปต่อ</span><span class="on">เปิด editor</span></div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="02 · เริ่มต้น" aria-labelledby="road-title">
-      <div class="wrap">
-        <p class="kicker reveal">ลงมือ</p>
-        <h3 class="title reveal" id="road-title">แผน 12 สัปดาห์แรก</h3>
-        <ol class="roadmap">
-          <li class="reveal"><span class="mono">สัปดาห์ 1–3</span><b>พื้นฐานภาษา</b><p>ตัวแปร if loop ฟังก์ชัน · แก้โจทย์ง่ายวันละข้อ</p></li>
-          <li class="reveal"><span class="mono">สัปดาห์ 4–6</span><b>ข้อมูลหลายตัว</b><p>list, string, dict · เริ่มใช้ Git</p></li>
-          <li class="reveal"><span class="mono">สัปดาห์ 7–9</span><b>โปรเจกต์แรก</b><p>เลือกสาย เว็บ แอป หรือเกม · ทำ 1 ชิ้นให้จบ</p></li>
-          <li class="reveal"><span class="mono">สัปดาห์ 10–12</span><b>ปล่อย + ต่อยอด</b><p>ให้เพื่อนลองใช้ · เริ่มโจทย์อัลกอริทึม</p></li>
-        </ol>
-        <p class="note reveal">วันละ 45–60 นาที ทุกวัน ดีกว่าอัด 7 ชั่วโมงในวันเสาร์วันเดียว — Part 3 จะเฉลยว่าทำไม</p>
-      </div>
-    </section>
-
-    <!-- ===================== พัก ===================== -->
-    <section class="break" id="break" data-bg="blue" data-label="พัก 10 นาที">
-      <div class="wrap bsod">
-        <p class="sad" aria-hidden="true">:(</p>
-        <h2 class="bsod-title">สมองของคุณทำงานหนักมาก<br>และต้อง <span>RESTART</span></h2>
-        <p class="lede">พัก 10 นาที — ระหว่างพัก สมองยังทำงานต่อ เดี๋ยวกลับมาเล่าว่ามันทำอะไรอยู่</p>
-        <div class="timer" data-timer="600">
-          <p class="timer-time mono" aria-live="polite">10:00</p>
-          <button type="button" class="btn" data-timer-start>เริ่มจับเวลาพัก</button>
-        </div>
-        <p class="mono small bsod-code">STOP CODE: BRAIN_NEEDS_A_BREAK · กำลังบันทึกความจำ… <span class="blink">█</span></p>
-      </div>
-      <div class="marquee big" data-speed="-0.5" aria-hidden="true">
-        <div class="marquee-row">พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦ พัก 10 นาที ✦ BREAK ✦</div>
-      </div>
-    </section>
-
-    <!-- ===================== PART 3 ===================== -->
-    <section class="part-intro" id="part3" data-bg="night" data-label="03 · สมองเรียนรู้">
-      <div class="wrap">
-        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 03 / 04</p><p class="mega">BRAIN</p></div>
-        <p class="kicker reveal">Part 3 · สมองเรียนรู้ยังไง</p>
-        <h2 class="giant reveal">ความจำ<br>มี 2 แบบ</h2>
-        <div class="memory reveal">
-          <div class="mem"><h4>Short-term</h4><p class="mono small">ความจำระยะสั้น / working memory</p>
-            <ul class="ticks"><li>ที่พักชั่วคราว อยู่ไม่กี่วินาทีถึงนาที</li><li>จุได้ราว 4 ก้อน (Cowan, 2001)</li><li>ตัวเลขเดิมที่ดัง: 7 ± 2 (Miller, 1956)</li></ul></div>
-          <div class="mem-arrow" aria-hidden="true"><span>ทบทวน · เชื่อมโยง · นอน</span></div>
-          <div class="mem"><h4>Long-term</h4><p class="mono small">ความจำระยะยาว</p>
-            <ul class="ticks"><li>ที่เก็บถาวร อยู่ได้เป็นปี</li><li>ความจุแทบไม่จำกัด</li><li>ต้องผ่านการ “เข้ารหัส” ถึงจะเข้าไปได้</li></ul></div>
-        </div>
-        <p class="source reveal">โมเดลความจำของ Atkinson &amp; Shiffrin (1968) · ดึงความรู้จาก long-term กลับมาใช้ เรียกว่า retrieval</p>
-      </div>
-      <span class="deco-vert" aria-hidden="true">HIPPOCAMPUS · SLEEP · SKILL</span>
-      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
-    </section>
-
-    <section class="block" data-bg="night" data-label="03 · สมองเรียนรู้" aria-labelledby="chunk-title">
-      <div class="wrap">
-        <p class="kicker reveal">ลองเลย · 1 นาที</p>
-        <h3 class="title reveal" id="chunk-title">จำตัวเลขชุดนี้ให้ได้</h3>
-        <div class="chunk win reveal" data-chunk>
-          <div class="win-bar"><span>memory_test.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-          <p class="chunk-digits mono" data-state="idle" aria-live="polite">● ● ● ● ● ● ● ● ● ● ● ●</p>
-          <div class="chunk-actions">
-            <button type="button" class="btn" data-chunk-start>เริ่ม: ดู 10 วินาที</button>
-            <button type="button" class="btn ghost" data-chunk-reveal hidden>เฉลย</button>
-          </div>
-          <p class="chunk-msg">กดเริ่ม แล้วพยายามจำตัวเลข 12 ตัว พอหมดเวลาให้หลับตาท่องกลับให้ครบ</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="hscroll" data-bg="night" data-label="03 · สมองเรียนรู้" aria-label="เรื่องของ HM เลื่อนไปด้านข้าง">
-      <div class="hscroll-sticky">
-        <div class="hscroll-head wrap">
-          <p class="kicker">เคสที่เปลี่ยนวงการประสาทวิทยา</p>
-          <div class="hscroll-progress" aria-hidden="true"><i></i></div>
-        </div>
-        <div class="hscroll-track">
-          <article class="panel win">
-            <div class="win-bar"><span>hm_1953.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">Henry Molaison (1926–2008)</p>
-            <div class="oops" aria-hidden="true"><div class="oops-win back"></div><div class="oops-win"><b>Oops!</b><span>Memory Not Found</span></div></div>
-            <h3 class="panel-title">HM: ชายที่สร้างความจำใหม่ไม่ได้</h3>
-            <p>ลมชักรุนแรงตั้งแต่เด็ก ยาเอาไม่อยู่ ปี 1953 ศัลยแพทย์ William Scoville ผ่าตัดเอาสมองส่วนขมับด้านใน (medial temporal lobe) ทั้งสองข้างออก รวมถึง <strong>hippocampus</strong></p>
-            <p class="punch">ลมชักดีขึ้น แต่…</p>
-            </div>
-          </article>
-          <article class="panel win">
-            <div class="win-bar"><span>after_surgery.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">หลังผ่าตัด</p>
-            <h3 class="panel-title">อะไรหาย อะไรอยู่</h3>
-            <dl class="pfc">
-              <div class="lost"><dt>เสียไป</dt><dd>สร้างความจำระยะยาวใหม่ไม่ได้ คุยกันเสร็จ ไม่นานก็ลืมว่าเคยเจอ</dd></div>
-              <div><dt>ยังอยู่</dt><dd>short-term ปกติ คุยต่อเนื่องได้ จำตัวเลขสั้น ๆ ได้</dd></div>
-              <div><dt>ยังอยู่</dt><dd>ความจำเก่าก่อนผ่าตัด ส่วนใหญ่ยังจำได้</dd></div>
-            </dl>
-            <p class="punch small">hippocampus คือด่านที่ย้ายความจำ จาก short-term ไป long-term</p>
-            </div>
-          </article>
-          <article class="panel win">
-            <div class="win-bar"><span>mirror_tracing.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">แต่มีเรื่องที่แปลกกว่านั้น</p>
-            <h3 class="panel-title">HM วาดผ่านกระจก เก่งขึ้นทุกวัน</h3>
-            <p>mirror tracing: ลากเส้นระหว่างขอบดาว 2 ชั้น โดยมองมือตัวเองผ่านกระจกเท่านั้น</p>
-            <ol class="days">
-              <li><b>วันที่ 1</b> ทำผิดเยอะ เพราะภาพในกระจกกลับด้าน</li>
-              <li><b>วันที่ 2</b> ผิดน้อยลง แต่บอกว่า “ไม่เคยทำมาก่อน”</li>
-              <li><b>วันที่ 3</b> ทำได้ดีขึ้นอีก และยังจำไม่ได้ว่าเคยฝึก</li>
-            </ol>
-            <p class="source">การทดลองของ Brenda Milner (ตีพิมพ์ปี 1962)</p>
-            </div>
-          </article>
-          <article class="panel win">
-            <div class="win-bar"><span>long_term.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">ความจำระยะยาว</p>
-            <h3 class="panel-title">มี 2 ระบบ</h3>
-            <dl class="pfc">
-              <div><dt>Declarative · “รู้ว่า”</dt><dd>พูดออกมาเป็นคำได้ อาศัย hippocampus — เหตุการณ์ที่เคยเจอ (episodic) และข้อเท็จจริง เช่น C เกิดปี 1972 (semantic)</dd></div>
-              <div><dt>Procedural · “รู้วิธี”</dt><dd>ทำได้ด้วยการลงมือ อาศัย basal ganglia และ cerebellum — ขี่จักรยาน พิมพ์สัมผัส เห็นโจทย์แล้วรู้ว่าต้องใช้ DP</dd></div>
-            </dl>
-            <p class="small">ทักษะถูกเก็บด้วยสมองอีกระบบ ที่ไม่ต้องพึ่ง hippocampus — HM เลยยังฝึกได้</p>
-            </div>
-          </article>
-          <article class="panel win">
-            <div class="win-bar"><span>skill.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">แปลว่าอะไรกับเรา</p>
-            <h3 class="panel-title">เขียนโปรแกรมเป็นทักษะ ไม่ใช่แค่ความรู้</h3>
-            <div class="versus">
-              <div><b>รู้ว่า</b><ul><li>จำ syntax ได้</li><li>รู้ว่า DP คืออะไร</li><li>ดูคลิปเฉลยแล้วเข้าใจ</li></ul></div>
-              <div><b>ทำได้</b><ul><li>เปิดจอว่าง แล้วเขียนเองได้</li><li>เห็นโจทย์ แล้วนึกออกว่าใช้ DP</li><li>debug เองจนเจอบั๊ก</li></ul></div>
-            </div>
-            <p class="punch">ดูคลิปว่ายน้ำ 100 ชั่วโมง ก็ยังว่ายไม่เป็น — ต้องลงน้ำ</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" data-bg="blue" data-label="03 · สมองเรียนรู้" aria-labelledby="sleep-title">
-      <div class="wrap two-col">
-        <div>
-          <p class="kicker reveal">ปุ่ม save ของสมอง</p>
-          <h3 class="giant reveal" id="sleep-title">การนอน<br>= กด Save</h3>
-        </div>
-        <div>
-          <p class="reveal">ตอนหลับ สมองเล่นซ้ำสิ่งที่เรียนตอนกลางวัน แล้วค่อย ๆ ย้ายไปเก็บระยะยาว — เซลล์ใน hippocampus ของหนู ยิงสัญญาณรูปแบบเดิมซ้ำตอนหลับ (Wilson &amp; McNaughton, 1994)</p>
-          <p class="reveal">ทักษะดีขึ้นหลังนอน โดยไม่ต้องฝึกเพิ่ม: คนที่ฝึกกดนิ้วตามลำดับ ทำได้เร็วขึ้นหลังนอนหนึ่งคืน แต่ไม่ดีขึ้นแบบนั้นเมื่อตื่นอยู่ช่วงเวลาเท่ากัน (Walker และทีม, 2002)</p>
-          <p class="stat reveal"><span class="big">8–10</span> ชั่วโมงต่อคืน สำหรับวัยรุ่นอายุ 13–18 ปี <span class="source">American Academy of Sleep Medicine</span></p>
-          <div class="dialog reveal" role="note" aria-label="อดนอนติวก่อนแข่ง = เรียนแล้วไม่ได้ save">
-            <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>UNSAVED CHANGES</div>
-            <div class="dialog-body">
-              <p class="dialog-q">แน่ใจนะว่าจะ <b>อดนอนติวก่อนแข่ง</b>? สิ่งที่เรียนวันนี้ยังไม่ได้ save</p>
-              <div class="dialog-btns" aria-hidden="true"><span>ติวต่อ</span><span class="on">นอน 8 ชม.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" data-bg="night" data-label="03 · สมองเรียนรู้" aria-labelledby="curve-title">
-      <div class="wrap">
-        <p class="kicker reveal">ลืมเป็นเรื่องปกติ</p>
-        <h3 class="title reveal" id="curve-title">Forgetting curve และการทวนแบบเว้นระยะ</h3>
-        <figure class="curve reveal">
-          <svg viewBox="0 0 800 340" role="img" aria-labelledby="curve-desc">
-            <desc id="curve-desc">กราฟภาพประกอบ: ถ้าไม่ทวนเลย ความจำลดฮวบในวันแรกแล้วค่อย ๆ ลดต่อ ถ้าทวนที่ 1 วัน 3 วัน 1 สัปดาห์ และ 1 เดือน ความจำเด้งกลับขึ้นทุกครั้ง และลดลงช้ากว่าเดิมเรื่อย ๆ</desc>
-            <g class="axis">
-              <line x1="60" y1="20" x2="60" y2="290"/><line x1="60" y1="290" x2="780" y2="290"/>
-              <text x="52" y="34" text-anchor="end">จำได้มาก</text>
-              <text x="60" y="318">เรียน</text><text x="180" y="318" text-anchor="middle">1 วัน</text>
-              <text x="320" y="318" text-anchor="middle">3 วัน</text><text x="500" y="318" text-anchor="middle">1 สัปดาห์</text>
-              <text x="740" y="318" text-anchor="middle">1 เดือน</text>
-            </g>
-            <path class="line-none" d="M60 40 C 110 170, 150 220, 260 245 S 600 268, 780 272"/>
-            <path class="line-spaced" d="M60 40 C 100 120, 140 150, 180 160 L180 50 C 230 100, 280 120, 320 128 L320 52 C 390 90, 450 104, 500 110 L500 54 C 600 80, 680 90, 740 94 L740 56 C 760 60, 770 62, 780 63"/>
-            <g class="legend"><rect x="560" y="22" width="18" height="4"/><text x="586" y="28">ทวนเว้นระยะ</text><rect class="none" x="560" y="44" width="18" height="4"/><text x="586" y="50">ไม่ทวนเลย</text></g>
-          </svg>
-          <figcaption class="source">กราฟเป็นภาพประกอบแนวโน้ม ไม่ใช่ข้อมูลจริง · Hermann Ebbinghaus (1885) ทดลองจำพยางค์ไร้ความหมายกับตัวเอง: ลืมเร็วมากในช่วงแรก แล้วค่อย ๆ ช้าลง</figcaption>
-        </figure>
-        <p class="note reveal">จังหวะทวนตัวอย่าง: <span class="mono">1 วัน → 3 วัน → 1 สัปดาห์ → 1 เดือน</span> ทวนแต่ละครั้ง เส้นลืมลาดลงช้ากว่าเดิม</p>
-      </div>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="03 · สมองเรียนรู้" aria-labelledby="works-title">
-      <div class="wrap">
-        <p class="kicker reveal">เรียนยังไงให้จำจริง</p>
-        <h3 class="title reveal" id="works-title">วิธีเรียนที่งานวิจัยบอกว่าได้ผล</h3>
-        <div class="two-col works">
-          <div class="reveal yes">
-            <h4>ได้ผลจริง</h4>
-            <ul class="ticks">
-              <li>ทดสอบตัวเอง: ปิดหนังสือแล้วนึก หรือทำโจทย์ (retrieval practice)</li>
-              <li>ทวนแบบเว้นระยะ (spaced practice)</li>
-              <li>สลับหัวข้อตอนฝึก (interleaving) — ได้ผลระดับกลาง</li>
-              <li>ฝึกที่ขอบความสามารถ และมี feedback (deliberate practice)</li>
-            </ul>
-          </div>
-          <div class="reveal no">
-            <h4>รู้สึกว่าได้ผล แต่ได้ผลน้อย</h4>
-            <ul class="ticks">
-              <li>อ่านซ้ำหลายรอบ</li>
-              <li>ไฮไลต์ ขีดเส้นใต้ทั้งหน้า</li>
-              <li>สรุปความ ถ้าไม่เคยฝึกวิธีสรุป</li>
-            </ul>
-          </div>
-        </div>
-        <p class="source reveal">Dunlosky และคณะ (2013) ทบทวนงานวิจัยเทคนิคการเรียน 10 แบบ · Roediger &amp; Karpicke (2006) · Ericsson และคณะ (1993)</p>
-      </div>
-    </section>
-
-    <!-- ===================== PART 4 ===================== -->
-    <section class="part-intro" id="part4" data-bg="paper" data-label="04 · ซ้อมแข่ง">
-      <div class="wrap">
-        <div class="part-head" aria-hidden="true"><p class="part-tag mono"><i class="stripes"></i>PART 04 / 04</p><p class="mega">PRACTICE</p></div>
-        <p class="kicker reveal">Part 4 · ซ้อมแข่งยังไง</p>
-        <h2 class="giant reveal">ให้สมอง<br>เก็บเป็นทักษะ</h2>
-        <ol class="path reveal" aria-label="เส้นทางสายแข่ง">
-          <li><b>สอบคัด สอวน.</b><span>สอบเข้าค่าย</span></li>
-          <li><b>ค่าย 1</b><span>ศูนย์ สอวน.</span></li>
-          <li><b>ค่าย 2</b><span>คัดตัวแทนศูนย์</span></li>
-          <li><b>TOI</b><span>ระดับชาติ</span></li>
-          <li><b>ค่าย สสวท.</b><span>คัดผู้แทนประเทศ</span></li>
-          <li><b>IOI</b><span>ระดับโลก</span></li>
-        </ol>
-        <div class="two-col">
-          <p class="reveal"><b>สายทำโปรเจกต์</b> NSC แข่งพัฒนาโปรแกรมระดับประเทศ (สวทช.) · Hackathon และ game jam</p>
-          <p class="reveal"><b>ต่อในมหาวิทยาลัย</b> ICPC แข่งเป็นทีม 3 คน ใช้คอมเครื่องเดียว · ค่ายและชมรมของแต่ละมหาวิทยาลัย</p>
-        </div>
-        <p class="source reveal">รายละเอียดและกำหนดการเปลี่ยนทุกปี — เช็กประกาศล่าสุดที่ <a href="https://posn.or.th" rel="noopener">posn.or.th</a></p>
-      </div>
-      <span class="deco-vert" aria-hidden="true">POSN → TOI → IOI</span>
-      <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="04 · ซ้อมแข่ง" aria-labelledby="tree-title">
-      <div class="wrap two-col">
-        <div>
-          <p class="kicker reveal">สิ่งที่ต้องฝึก · เรียงจากพื้นฐาน</p>
-          <h3 class="title reveal" id="tree-title">Skill tree ของสายแข่ง</h3>
-          <ol class="tree">
-            <li class="reveal">ภาษา C/C++ และการรับ-ส่งข้อมูล</li>
-            <li class="reveal">Big-O: ประเมินว่าทันเวลาไหม</li>
-            <li class="reveal">Sort · Binary search · Prefix sum</li>
-            <li class="reveal">Recursion · Brute force · Backtracking</li>
-            <li class="reveal">Greedy</li>
-            <li class="reveal">Dynamic programming</li>
-            <li class="reveal">Graph: BFS, DFS, shortest path</li>
-            <li class="reveal">โครงสร้างข้อมูล: heap, DSU, segment tree</li>
-          </ol>
-        </div>
-        <div>
-          <p class="kicker reveal">ภาษาที่ใช้แข่ง</p>
-          <h3 class="title reveal">ทำไมส่วนใหญ่ใช้ C++</h3>
-          <ul class="ticks reveal">
-            <li>เร็ว — โจทย์มักจำกัดเวลาราว 1 วินาที</li>
-            <li>STL: sort, vector, map, priority_queue พร้อมใช้</li>
-            <li>ระบบตรวจของการแข่งแทบทุกที่รองรับ</li>
-            <li>Python เขียนเร็ว แต่บางข้ออาจไม่ทันเวลา</li>
-          </ul>
-          <pre class="code reveal"><code>// อ่านตัวเลข n ตัว ตอบ ค่ามากสุด − ค่าน้อยสุด
-#include &lt;bits/stdc++.h&gt;
-using namespace std;
-int main() {
-    int n; cin &gt;&gt; n;
-    vector&lt;int&gt; a(n);
-    for (auto &amp;x : a) cin &gt;&gt; x;
-    sort(a.begin(), a.end());
-    cout &lt;&lt; a[n-1] - a[0];
-}</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" data-bg="night" data-label="04 · ซ้อมแข่ง" aria-labelledby="bigo-title">
-      <div class="wrap">
-        <p class="kicker reveal">Big-O ในทางปฏิบัติ</p>
-        <h3 class="title reveal" id="bigo-title">ดูขนาด n ก่อน แล้วจะรู้ว่าต้องใช้วิธีไหน</h3>
-        <div class="table-wrap reveal">
-          <table class="bigo">
-            <thead><tr><th>n สูงสุด (ประมาณ)</th><th>ความซับซ้อนที่ทัน</th><th>ตัวอย่างวิธี</th></tr></thead>
-            <tbody>
-              <tr><td>≤ 10</td><th>O(n!)</th><td>ลองทุกการเรียงสับเปลี่ยน</td></tr>
-              <tr><td>≤ 20</td><th>O(2ⁿ)</th><td>ลองทุกเซตย่อย</td></tr>
-              <tr><td>≤ 500</td><th>O(n³)</th><td>3 ลูปซ้อน, Floyd–Warshall</td></tr>
-              <tr><td>≤ 5,000</td><th>O(n²)</th><td>2 ลูปซ้อน, DP ตาราง 2 มิติ</td></tr>
-              <tr><td>≤ 1,000,000</td><th>O(n log n)</th><td>sort, binary search</td></tr>
-              <tr><td>≤ 10,000,000</td><th>O(n)</th><td>วนลูปรอบเดียว</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="note reveal">หลักคร่าว ๆ: คอมทำคำสั่งง่าย ๆ ได้ราว 100 ล้านครั้งต่อวินาที — ใช้ประเมิน ไม่ใช่กฎตายตัว</p>
-      </div>
-    </section>
-
-    <section class="hscroll" data-bg="blue" data-label="04 · ซ้อมแข่ง" aria-label="วงจรซ้อม 1 ข้อ เลื่อนไปด้านข้าง">
-      <div class="hscroll-sticky">
-        <div class="hscroll-head wrap">
-          <p class="kicker">วงจรซ้อม 1 ข้อ · ให้สมองได้ฝึกครบ</p>
-          <div class="hscroll-progress" aria-hidden="true"><i></i></div>
-        </div>
-        <div class="hscroll-track">
-          <article class="panel win step-panel">
-            <div class="win-bar"><span>step_1.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="step-no">1</p><h3 class="panel-title">ลองคิดเอง 20–40 นาที</h3><p>ดึงความรู้ออกมาใช้ = <em>retrieval practice</em></p>
-            </div>
-          </article>
-          <article class="panel win step-panel">
-            <div class="win-bar"><span>step_2.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="step-no">2</p><h3 class="panel-title">ติดจริง ดู hint ทีละนิด</h3><p>ยังไม่เปิดเฉลยเต็ม ให้สมองได้คิดต่อ</p>
-            </div>
-          </article>
-          <article class="panel win step-panel">
-            <div class="win-bar"><span>step_3.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="step-no">3</p><h3 class="panel-title">ปิดเฉลย เขียนใหม่เอง</h3><p>ตั้งแต่บรรทัดแรก = ฝึก <em>procedural</em></p>
-            </div>
-          </article>
-          <article class="panel win step-panel">
-            <div class="win-bar"><span>step_4.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="step-no">4</p><h3 class="panel-title">จดลง error log</h3><p>พลาดเพราะอะไร ได้กฎอะไรติดตัว</p>
-            </div>
-          </article>
-          <article class="panel win step-panel">
-            <div class="win-bar"><span>step_5.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="step-no">5</p><h3 class="panel-title">กลับมาทำข้อเดิมใหม่</h3><p>หลัง 1 วัน และ 1 สัปดาห์ = <em>spaced practice</em></p>
-            </div>
-          </article>
-          <article class="panel win step-panel">
-            <div class="win-bar"><span>step_6.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="step-no">6</p><h3 class="panel-title">นอนให้พอ</h3><p>ให้สมองกด save ทั้งความรู้และทักษะ</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="04 · ซ้อมแข่ง" aria-labelledby="log-title">
-      <div class="wrap">
-        <p class="kicker reveal">เครื่องมือสำคัญ</p>
-        <h3 class="title reveal" id="log-title">Error log: สมุดบันทึกความพลาด</h3>
-        <div class="table-wrap reveal">
-          <table class="log">
-            <thead><tr><th>โจทย์</th><th>ผล</th><th>สาเหตุ</th><th>กฎที่ได้</th></tr></thead>
-            <tbody>
-              <tr><td>ผลรวมช่วง</td><td><span class="verdict">WA</span></td><td>ผลรวมเกินขอบ int</td><td>ผลรวมใหญ่ ใช้ long long</td></tr>
-              <tr><td>เดินในตาราง</td><td><span class="verdict tle">TLE</span></td><td>DFS วนกลับจุดเดิมซ้ำ</td><td>ต้องมี visited</td></tr>
-              <tr><td>เรียงคะแนน</td><td><span class="verdict">WA</span></td><td>ลืมกรณี n = 1</td><td>ลอง edge case ก่อนส่งทุกครั้ง</td></tr>
-              <tr><td>นับคู่</td><td><span class="verdict tle">TLE</span></td><td>2 ลูปซ้อน กับ n = 100,000</td><td>n ใหญ่ ให้หาวิธี n log n</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="note reveal">ก่อนแข่ง อ่าน error log ของตัวเอง — ได้ทวนจุดอ่อนแบบตรงเป้า</p>
-        <p class="source reveal">WA = Wrong Answer (คำตอบผิด) · TLE = Time Limit Exceeded (เกินเวลา)</p>
-      </div>
-    </section>
-
-    <section class="block" data-bg="paper" data-label="04 · ซ้อมแข่ง" aria-labelledby="week-title">
-      <div class="wrap">
-        <p class="kicker reveal">ตารางซ้อม</p>
-        <h3 class="title reveal" id="week-title">ตารางซ้อมต่อสัปดาห์ ฉบับเรียนไปด้วย</h3>
-        <div class="cards three">
-          <article class="card reveal"><h4>จันทร์–ศุกร์</h4><p class="mono">45–60 นาที ต่อวัน</p><p>1–2 ข้อ ตามหัวข้อที่กำลังเรียน · สัปดาห์หนึ่งผสมหลายหัวข้อ (interleaving)</p></article>
-          <article class="card reveal"><h4>เสาร์</h4><p class="mono">2–3 ชั่วโมง</p><p>virtual contest จับเวลาเหมือนจริง · upsolve: ทำข้อที่ทำไม่ได้ให้จบ</p></article>
-          <article class="card reveal"><h4>อาทิตย์</h4><p class="mono">เบา ๆ</p><p>ทวนข้อเก่าจาก error log · พัก ออกกำลังกาย นอนให้พอ</p></article>
-        </div>
-        <p class="note reveal">สม่ำเสมอชนะหักโหม — สมองต้องการเวลาระหว่างรอบ</p>
-      </div>
-    </section>
-
-    <section class="block" data-bg="night" data-label="04 · ซ้อมแข่ง" aria-labelledby="res-title">
-      <div class="wrap two-col">
-        <div>
-          <p class="kicker reveal">แหล่งฝึก</p>
-          <h3 class="title reveal" id="res-title">แหล่งฝึกที่แนะนำ</h3>
-          <ul class="links">
-            <li class="reveal"><a href="https://programming.in.th" rel="noopener">programming.in.th</a><span>โจทย์ภาษาไทย รวมข้อสอบ TOI เก่า</span></li>
-            <li class="reveal"><a href="https://cses.fi/problemset/" rel="noopener">CSES Problem Set</a><span>โจทย์เรียงตามหัวข้อ ไล่ทีละเรื่องได้</span></li>
-            <li class="reveal"><a href="https://atcoder.jp" rel="noopener">AtCoder Beginner Contest</a><span>แข่งออนไลน์เกือบทุกสัปดาห์ เหมาะมือใหม่</span></li>
-            <li class="reveal"><a href="https://codeforces.com" rel="noopener">Codeforces</a><span>แข่งออนไลน์บ่อย มี rating วัดพัฒนาการ</span></li>
-            <li class="reveal"><a href="https://usaco.guide" rel="noopener">USACO Guide</a><span>แผนเรียนเป็นขั้น พร้อมคำอธิบาย</span></li>
-            <li class="reveal"><a href="https://cses.fi/book/" rel="noopener">Competitive Programmer’s Handbook</a><span>หนังสือฟรีของ Antti Laaksonen</span></li>
-            <li class="reveal"><a href="https://posn.or.th" rel="noopener">posn.or.th</a><span>ประกาศ หลักสูตร และกำหนดการ สอวน.</span></li>
-          </ul>
-        </div>
-        <div>
-          <p class="kicker reveal">เรื่องใจก็สำคัญ</p>
-          <h3 class="title reveal">ใจที่ซ้อมได้นาน</h3>
-          <dl class="pfc">
-            <div class="reveal"><dt>เทียบกับตัวเองเมื่อวาน</dt><dd>ไม่ใช่เพื่อนที่เริ่มก่อนเรา 3 ปี</dd></div>
-            <div class="reveal"><dt>Plateau เป็นเรื่องปกติ</dt><dd>ทักษะขึ้นเป็นขั้นบันได มีช่วงที่ดูเหมือนไม่ไปไหน</dd></div>
-            <div class="reveal"><dt>เหนื่อยก็พัก</dt><dd>พัก นอน ออกกำลังกาย แล้วกลับมา ดีกว่าฝืนจนเลิก</dd></div>
-            <div class="reveal"><dt>สอนเพื่อน</dt><dd>อธิบายให้คนอื่นฟัง = ดึงความรู้ออกมาใช้อีกรอบ</dd></div>
-          </dl>
-        </div>
       </div>
     </section>
 

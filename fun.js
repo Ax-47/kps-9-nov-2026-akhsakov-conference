@@ -177,11 +177,11 @@
 
   // ===================== แจ้งเตือนตอนเข้าแต่ละ Part =====================
   const PARTS = {
-    part1: ["history.exe", "Part 1 loaded · ย้อนดู 4 ยุคของภาษา"],
-    part2: ["start.exe", "Part 2 loaded · เลือกภาษาแรกกัน"],
+    part1: ["history.exe", "03 loaded · ย้อนดู 4 ยุคของภาษา"],
+    part2: ["start.exe", "02 loaded · เลือกภาษาแรกกัน"],
     break: ["break.exe", "สมองกำลังพัก… อย่าเพิ่งปิดเครื่อง"],
-    part3: ["brain.exe", "Part 3 loaded · ความจำทำงานยังไง"],
-    part4: ["practice.exe", "Part 4 loaded · ซ้อมให้เป็นทักษะ"],
+    part3: ["brain.exe", "01 loaded · วิธีการเรียน: ความจำทำงานยังไง"],
+    part4: ["practice.exe", "01 · ต่อ · ซ้อมให้เป็นทักษะ"],
     qa: ["qa.exe", "ยินดีด้วย อ่านจบแล้ว ✦"],
   };
   const seen = new Set();

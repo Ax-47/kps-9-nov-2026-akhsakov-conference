@@ -113,7 +113,7 @@
       if (nowLabel.textContent !== label) {
         nowLabel.textContent = label;
         const part = partOf(label);
-        menuLinks.forEach((a) => a.setAttribute("aria-current", String(a.hash === `#part${part}`)));
+        menuLinks.forEach((a) => a.setAttribute("aria-current", String(a.dataset.part === `0${part}`)));
       }
     }
     const max = document.documentElement.scrollHeight - window.innerHeight;
