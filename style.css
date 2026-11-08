@@ -1540,3 +1540,8 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .dbg-hier li.warn { border-color: #ff9a8f; }
 .dbg-hier li.on { background: var(--green); border-color: var(--green); }
 .dbg-hier li.on b, .dbg-hier li.on span { color: #050833; }
+.tab-list button small { font: 400 9px var(--pixel); margin-left: 4px; color: var(--accent); }
+.tab-list button[aria-selected="true"] small { color: var(--bg); }
+.zero-term .p { color: var(--green); } .zero-term .ok { color: #ffe066; }
+.zero-why { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; font-size: 14px; color: #dfe3ff; }
+.zero-why b { color: var(--green); font-weight: 600; }

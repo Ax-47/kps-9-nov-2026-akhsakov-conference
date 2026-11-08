@@ -162,6 +162,43 @@ fn main() {
     },
   };
 
+  // Zero (Vercel Labs, ทดลอง): ใช้เฉพาะ syntax ที่มีในเอกสาร language-reference
+  const ZERO_CODE = `// projection (.0) ให้คนอ่าน — ของจริงคือ semantic graph ที่ agent แก้ผ่าน zero patch
+fn clamp_hp(value: i32) -> i32 {
+    if value < 0 {
+        return 0
+    }
+    if value > 100 {
+        return 100
+    }
+    return value
+}
+
+fn take_damage(hp: i32, dmg: i32) -> i32 {
+    return clamp_hp(hp - dmg)
+}
+
+fn heal(hp: i32, amount: i32) -> i32 raises [Invalid] {
+    if hp <= 0 {
+        raise Invalid
+    }
+    return clamp_hp(hp + amount)
+}
+
+pub fn main(world: World) -> Void raises {
+    check world.out.write("rules live in clamp_hp, take_damage, heal\\n")
+}`;
+  // ขั้นตอนที่ agent ทำงานกับโค้ด: ถาม graph → ดูก่อนแก้ → แก้แบบมีโครงสร้าง → ตรวจ → ทดสอบ
+  const ZERO_STEPS = [
+    { cmd: "zero status", lines: [], note: "agent เริ่มจากถามสถานะโปรเจกต์ ไม่ใช่เปิดไฟล์อ่านทีละบรรทัด" },
+    { cmd: "zero query --fn take_damage", lines: [12, 13, 14], note: "ถาม graph ว่าฟังก์ชัน take_damage คืออะไร — ได้โครงสร้างกลับมา ไม่ต้อง grep ข้อความ" },
+    { cmd: "zero query --refs clamp_hp", lines: [13, 20], note: "หาทุกจุดที่เรียก clamp_hp จาก graph ได้ครบ — ต่างจาก C ที่ต้อง grep hp ทั้งโปรเจกต์แล้วเดาเอง" },
+    { cmd: "zero patch --dry-run --json <file>", lines: [16, 17, 18, 19, 20, 21], note: "ดูผลของการแก้ก่อน (dry run) เป็น JSON ที่โปรแกรมอ่านได้ ยังไม่เขียนลง graph" },
+    { cmd: "zero patch <file>", lines: [16, 17, 18, 19, 20, 21], out: "program graph patch ok", note: "แก้ตามโครงสร้าง ไม่ใช่ตามเลขบรรทัด — ถ้า graph เปลี่ยนไปแล้ว ชนิดข้อมูลผิด หรือรูปไม่ถูก จะถูกปฏิเสธก่อนเขียน" },
+    { cmd: "zero check --json", lines: [], note: "ให้ compiler ตรวจทั้งโปรเจกต์ ได้ผลเป็น JSON — agent ไม่ต้องแกะข้อความ error" },
+    { cmd: "zero test --json --filter take_damage", lines: [12, 13, 14], note: "กฎของเกม (hp ไม่ติดลบ) compiler ไม่รู้ ยังต้องมี test — Zero ช่วยให้ agent แก้ได้ปลอดภัยขึ้น แต่ไม่ได้คิดกฎแทนเรา" },
+  ];
+
   const RULES = [
     "เริ่มด่าน HP = 100",
     "โดนตี HP ลด แต่ไม่ต่ำกว่า 0",
@@ -476,7 +513,7 @@ fn main() {
 
   // ===================== ไฮไลต์โค้ดแบบง่าย =====================
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const KW = /\b(int|char|const|void|return|if|else|for|while|switch|case|break|goto|typedef|struct|include|class|private|public|static|boolean|new|func|package|import|type|range|fn|let|mut|impl|match|self|Self|true|false|bool|i32)\b/g;
+  const KW = /\b(raises|raise|check|World|Void|pub|let|var|int|char|const|void|return|if|else|for|while|switch|case|break|goto|typedef|struct|include|class|private|public|static|boolean|new|func|package|import|type|range|fn|let|mut|impl|match|self|Self|true|false|bool|i32)\b/g;
   function hl(line) {
     const parts = [];
     const re = /(\/\/.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)')/g;
@@ -491,8 +528,55 @@ fn main() {
   }
 
   // ===================== หน้าตาดีบักเกอร์ =====================
+  function buildZero(root) {
+    const lines = ZERO_CODE.split("\n");
+    root.innerHTML = `
+      <div class="dbg-bar">
+        <span class="dbg-title mono">agent session · zero (ทดลอง)</span>
+        <div class="dbg-ctl">
+          <button type="button" data-a="back">⏮ ย้อน</button>
+          <button type="button" data-a="step" class="primary">⏭ คำสั่งถัดไป</button>
+          <button type="button" data-a="reset">⟲ เริ่มใหม่</button>
+        </div>
+        <span class="dbg-count mono" data-r="count"></span>
+      </div>
+      <div class="dbg-main">
+        <ol class="dbg-code" data-r="code">${lines.map((l) => `<li><code>${hl(l)}</code></li>`).join("")}</ol>
+        <div class="dbg-side">
+          <section><h5>agent ทำอะไร</h5><p class="dbg-note" data-r="note"></p></section>
+          <section><h5>terminal ของ agent</h5><pre class="dbg-out zero-term" data-r="term"></pre></section>
+          <section><h5>ต่างจากภาษาอื่นตรงไหน</h5><ul class="zero-why">
+            <li>โปรแกรมคือ <b>semantic graph</b> ไฟล์ .0 เป็นแค่มุมมองให้คนอ่าน</li>
+            <li>agent <b>ถาม</b> (zero query) และ <b>แก้</b> (zero patch) ตามโครงสร้าง ไม่ใช่ตามข้อความ</li>
+            <li>คำสั่งมีโหมด <b>--json</b> ให้โปรแกรมอ่านผลได้ตรง ๆ</li>
+            <li>ไม่มีตัวแปร global ให้แอบแก้: I/O ต้องได้รับ <b>world</b> เข้ามาอย่างชัดเจน</li>
+          </ul></section>
+        </div>
+      </div>`;
+    const R = (k) => root.querySelector(`[data-r="${k}"]`);
+    const lis = [...R("code").children];
+    let i = 0;
+    const render = () => {
+      const st = ZERO_STEPS[i];
+      lis.forEach((li, j) => li.classList.toggle("cur", st.lines.includes(j + 1)));
+      R("count").textContent = `คำสั่งที่ ${i + 1}/${ZERO_STEPS.length}`;
+      R("note").textContent = st.note;
+      R("term").innerHTML = ZERO_STEPS.slice(0, i + 1).map((x) =>
+        `<span class="p">$</span> ${esc(x.cmd)}${x.out ? `\n<span class="ok">${esc(x.out)}</span>` : ""}`).join("\n");
+    };
+    root.addEventListener("click", (e) => {
+      const a = e.target.closest("[data-a]")?.dataset.a;
+      if (a === "step") i = Math.min(ZERO_STEPS.length - 1, i + 1);
+      if (a === "back") i = Math.max(0, i - 1);
+      if (a === "reset") i = 0;
+      if (a) render();
+    });
+    render();
+  }
+
   function build(root) {
     const lang = root.dataset.dbg;
+    if (lang === "zero") return buildZero(root);
     const lines = CODE[lang].split("\n");
     const steps = TRACE[lang]();
     root.innerHTML = `

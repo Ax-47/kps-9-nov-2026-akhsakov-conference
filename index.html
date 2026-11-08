@@ -487,7 +487,7 @@ printf("%s", name);</code></pre>
               <div class="fix"><dt>FIX</dt><dd>struct + interface / trait ประกอบชิ้นส่วนแทนสืบทอด</dd></div>
               <div class="cost"><dt>COST</dt><dd>ไม่มีคลาสแม่ให้รับโค้ดฟรี ต้องเขียน impl เอง</dd></div>
             </dl>
-            <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Go</b><span>2009</span></li><li><b>Rust</b><span>2015</span></li></ul>
+            <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Go</b><span>2009</span></li><li><b>Rust</b><span>2015</span></li><li><b>Zero</b><span>ทดลอง · ภาษาสำหรับ AI agent</span></li></ul>
           </article>
           <article class="panel win" data-era="3">
             <div class="win-bar"><span>composition.go</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -576,6 +576,7 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
             <button role="tab" aria-selected="false" aria-controls="t-java" id="b-java" data-lang="Java" data-noowner="0" tabindex="-1">Java</button>
             <button role="tab" aria-selected="false" aria-controls="t-go" id="b-go" data-lang="Go" data-noowner="0" tabindex="-1">Go</button>
             <button role="tab" aria-selected="false" aria-controls="t-rust" id="b-rust" data-lang="Rust" data-noowner="0" tabindex="-1">Rust</button>
+            <button role="tab" aria-selected="false" aria-controls="t-zero" id="b-zero" data-lang="Zero" data-noowner="0" tabindex="-1">Zero <small>LLM</small></button>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-goto" aria-labelledby="b-goto">
             <p>โค้ดจากสไลด์ วนด้วย goto ล้วน — กด ▶ แล้วดูว่า hp ไปถึง −70 ที่บรรทัดไหน ทั้งที่ไม่มีใครตั้งใจให้ติดลบ</p>
@@ -606,6 +607,11 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
           <div class="tab-panel" role="tabpanel" id="t-rust" aria-labelledby="b-rust" hidden>
             <p>struct + impl ไม่มี pub = ซ่อนไว้ใน module — ด่านเดิม กฎครบ</p>
             <div class="dbg" data-dbg="rust"></div>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="t-zero" aria-labelledby="b-zero" hidden>
+            <p><b>Zero</b> ภาษาทดลองจาก Vercel Labs ที่ออกแบบให้ <b>AI agent เป็นผู้ใช้หลัก</b> คู่กับคน — โปรแกรมเก็บเป็น semantic graph ให้ agent ถามและแก้ผ่านคำสั่งที่ตอบเป็น JSON แทนการแก้ข้อความทีละบรรทัด กดดูทีละคำสั่งว่า agent ทำงานกับกฎ HP ยังไง</p>
+            <div class="dbg" data-dbg="zero"></div>
+            <p class="small">ยังเป็นภาษาทดลอง (Apache-2.0) เอกสารยังไม่ครอบคลุม loop / match / การพิมพ์ตัวเลข เลยเขียนเฉพาะฟังก์ชันกฎ HP ด้วย syntax ที่มีในเอกสาร และไม่ได้ใส่ผลลัพธ์ JSON ที่ยังไม่มีตัวอย่างจริง · ที่มา: <a href="https://github.com/vercel-labs/zerolang" rel="noopener" target="_blank">github.com/vercel-labs/zerolang</a></p>
           </div>
         </div>
           <div class="game win" data-game>
