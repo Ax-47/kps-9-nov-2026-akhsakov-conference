@@ -1852,3 +1852,25 @@ thead th { font-size: 13px; }
 @media (max-height: 820px) { .panel-mt .mt-photo img { max-height: 150px; } .hm-run .panel-mt .days li, .hm-run .panel-mt .win-body > p, .hm-run .panel-mt .mt-right > p { font-size: 16.5px; } }
 @media (max-width: 760px) { .panel-mt .mt-cols { grid-template-columns: minmax(0, 1fr); } }
 .mt-big img { width: auto; max-width: 100%; max-height: 460px; object-fit: contain; justify-self: start; }
+
+/* ฝึกกี่ชั่วโมง */
+.hours { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 22px; margin-top: 8px; }
+.hour-card { border: 2px solid var(--green); background: var(--win-bg); padding: 22px 24px; display: grid; gap: 10px; align-content: start; box-shadow: 8px 8px 0 var(--shadow); }
+.hour-card.big { border-color: var(--yellow); }
+.hour-num { font: 400 clamp(64px, 7vw, 108px)/0.9 var(--display); color: var(--green); }
+.hour-card.big .hour-num { color: var(--yellow); }
+.hour-num span { font-size: 0.32em; margin-left: 8px; color: #fff; }
+.hour-card h4 { font: 700 26px var(--head-font); color: #fff; }
+.hour-card p, .hour-card li { font-size: 17.5px; line-height: 1.6; color: #f3f5ff; }
+.hours-calc { margin-top: 26px; border: 2px dashed var(--green); padding: 16px 20px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: center; }
+.hours-calc label { font: 600 19px var(--head-font); color: #fff; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hours-calc input { width: 200px; accent-color: var(--green); }
+.hours-calc label b { font: 400 34px var(--display); color: var(--green); }
+.hc-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hc-out p { border: 1.5px solid var(--line); padding: 8px 12px; display: grid; }
+.hc-out span { font: 400 12px var(--pixel); color: var(--green); }
+.hc-out b { font: 700 24px var(--head-font); color: #fff; }
+@media (max-width: 860px) { .hours, .hours-calc { grid-template-columns: minmax(0, 1fr); } }
+.hour-card p.hour-num { font: 400 clamp(64px, 7vw, 108px)/0.9 var(--display); color: #3dff8f; }
+.hour-card.big p.hour-num { color: #ffe066; }
+.hour-card.big { border-color: #ffe066; }

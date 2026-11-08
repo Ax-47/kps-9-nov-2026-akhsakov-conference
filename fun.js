@@ -320,3 +320,23 @@
     if (e.target.matches("dialog.oop-dialog")) e.target.close();
   });
 })();
+
+// เครื่องคิดเลข: ฝึกวันละกี่ชั่วโมง ถึง 20 / 10,000 ชั่วโมงเมื่อไร
+(() => {
+  const box = document.querySelector("[data-hours-calc]");
+  if (!box) return;
+  const r = box.querySelector("[data-h]");
+  const fmt = (days) => {
+    if (days < 60) return `${Math.ceil(days)} วัน`;
+    const y = days / 365;
+    return y < 1 ? `ราว ${Math.round(days / 30)} เดือน` : `ราว ${y.toFixed(1)} ปี`;
+  };
+  const up = () => {
+    const h = +r.value;
+    box.querySelector("[data-hv]").textContent = h;
+    box.querySelector("[data-h20]").textContent = fmt(20 / h);
+    box.querySelector("[data-h10k]").textContent = fmt(10000 / h);
+  };
+  r.addEventListener("input", up);
+  up();
+})();
