@@ -1,6 +1,6 @@
 name: Deploy to GitHub Pages
 
-# เว็บเป็นไฟล์นิ่งล้วน (index.html, style.css, main.js, game.js, fun.js, assets/) ไม่ต้อง build อัปขึ้นได้เลย
+# เว็บเป็นไฟล์นิ่งล้วน (index.html, style.css, main.js, pixel.js, game.js, fun.js, assets/) ไม่ต้อง build อัปขึ้นได้เลย
 on:
   push:
     branches: [main]
@@ -27,7 +27,7 @@ jobs:
       - name: Collect site files
         run: |
           mkdir _site
-          cp -r index.html style.css main.js game.js fun.js assets _site/
+          cp -r index.html style.css main.js pixel.js game.js fun.js assets _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

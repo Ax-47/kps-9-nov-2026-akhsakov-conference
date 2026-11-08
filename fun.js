@@ -91,19 +91,22 @@
   const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*<>/";
   function scramble(el) {
     if (reduceMotion || el.dataset.busy) return;
-    const final = el.dataset.text || el.textContent;
+    // หัวข้อที่เป็นตัวพิกเซล (pixel.js) วาดใหม่ใน SVG ส่วนที่เหลือเปลี่ยนข้อความตรง ๆ
+    const px = el.querySelector(".px");
+    const final = px ? px.dataset.text : (el.dataset.text || el.textContent);
+    const show = px && window.PixelType ? (t) => window.PixelType.set(px, t) : (t) => { el.textContent = t; };
     el.dataset.text = final;
     el.dataset.busy = "1";
     let frame = 0;
     const total = 18;
     (function tick() {
       frame++;
-      el.textContent = [...final].map((ch, i) => {
+      show([...final].map((ch, i) => {
         if (ch === " ") return ch;
         return frame / total > i / final.length ? ch : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-      }).join("");
+      }).join(""));
       if (frame < total) setTimeout(tick, 40);
-      else { el.textContent = final; delete el.dataset.busy; }
+      else { show(final); delete el.dataset.busy; }
     })();
   }
   const scrambleIO = new IntersectionObserver((entries) => {

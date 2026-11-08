@@ -775,3 +775,26 @@ body.shake main { animation: page-shake 0.8s steps(10); }
 .hscroll.pinned .panel-photo .sticker img { max-height: calc((100svh - 300px) / 2); width: auto; margin: 0 auto; }
 .hscroll.pinned .panel-photo .sticker { width: fit-content; max-width: 78%; }
 .hscroll.pinned .panel-photo .sticker.tilt { margin-top: -24px; }
+
+/* ===================== หัวข้อตัวพิกเซล (pixel.js) ===================== */
+.px { display: inline; position: relative; }
+.px-art { display: inline-flex; flex-wrap: wrap; align-items: flex-end; column-gap: 0; row-gap: 0.14em; max-width: 100%; vertical-align: baseline; }
+.px-word { height: 0.74em; width: auto; flex: none; fill: currentColor; overflow: visible; }
+.px-space { display: inline-block; width: 0.32em; }
+/* หัวข้อหน้าแรก: ตัวพิกเซลมีเงาแข็งแบบโปสเตอร์ */
+.hero-title .px-word { height: 0.72em; filter: drop-shadow(0.05em 0.05em 0 #0b12a3); }
+.hero-title .hl { line-height: 0.84; }
+.hero-title .hl.small .px-word { filter: none; }
+.mega .px-word { height: 0.72em; }
+body[data-bg="night"] .mega .px-word { fill: none; stroke: var(--green); stroke-width: 0.12; }
+.era-big .px-word { height: 0.9em; }
+.era-big b .px-word { height: 0.72em; }
+.step-no .px-word, .sad .px-word { height: 0.7em; }
+.card h4 .px-word, .paradigm h4 .px-word, .mem h4 .px-word { height: 0.8em; }
+.agenda .num .px-word { height: 0.75em; }
+.era-nav a b .px-word { height: 0.85em; }
+.bsod-title span .px-word { height: 0.8em; fill: var(--blue); }
+@media (max-width: 760px) {
+  .hero-title .hl { font-size: clamp(44px, 14vw, 90px); }
+  .hero-title .hl.small { font-size: clamp(24px, 7vw, 44px); }
+}
