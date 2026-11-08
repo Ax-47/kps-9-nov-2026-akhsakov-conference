@@ -1879,3 +1879,4 @@ thead th { font-size: 13px; }
 .dbg-labels li b { color: #fff; font-weight: 600; }
 .dbg-labels li.on { background: var(--green); border-color: var(--green); }
 .dbg-labels li.on b, .dbg-labels li.on span { color: #050833; }
+.dbg-switch .tab-panel { background: transparent; box-shadow: none; padding: 12px 0 0; border: 0; } .dbg-switch .tab-list { margin-top: 8px; }

@@ -1367,13 +1367,25 @@ const t2 = xs.filter(x =&gt; x &gt; 0)
     <div class="oop-dlg-bar"><span>fortran_debug.exe — ERA 0</span><button type="button" data-close-dlg aria-label="ปิด กลับไปที่ไทม์ไลน์">✕ ปิด · กลับไปไทม์ไลน์</button></div>
     <div class="oop-dlg-body">
       <p class="kicker">ERA 0 · FORTRAN · กระโดดด้วยเลขบรรทัด</p>
-      <h3 class="title" id="fortran-title">ไล่ FORTRAN ทีละบรรทัด: HP หายไปทางไหน?</h3>
+      <h3 class="title" id="fortran-title">ไล่โค้ดยุค GOTO ทีละบรรทัด: HP หายไปทางไหน?</h3>
       <ol class="oop-points">
         <li><b>IF (HP) 10, 10, 20</b> — ไม่ได้บอกว่า “ล้ม” หรือ “เล่นต่อ” บอกแค่เลข ต้องจำเองว่าลบ / ศูนย์ / บวก ไปที่ไหน</li>
         <li><b>ดูช่อง “ตาราง label → บรรทัด”</b> — ทุกครั้งที่กระโดด คนอ่านต้องหาเองว่า label 10 หรือ 20 อยู่บรรทัดไหน (ยุคบัตรเจาะรู ต้องคุ้ยหาบัตรใบนั้น)</li>
         <li><b>HP = HP - DMG</b> ไม่มีอะไรกันไม่ให้ติดลบ — ดีบักเกอร์จะหยุดตรงที่ HP กลายเป็น -20</li>
       </ol>
-      <div class="dbg" data-dbg="fortran"></div>
+      <div class="tabs dbg-switch" data-tabs>
+        <div class="tab-list" role="tablist" aria-label="เลือกภาษา">
+          <button role="tab" aria-selected="true" aria-controls="e0-f" id="e0-bf">FORTRAN</button>
+          <button role="tab" aria-selected="false" aria-controls="e0-g" id="e0-bg" tabindex="-1">C + goto</button>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="e0-f" aria-labelledby="e0-bf">
+          <div class="dbg" data-dbg="fortran"></div>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="e0-g" aria-labelledby="e0-bg" hidden>
+          <p>แนวคิดเดียวกันเขียนด้วย C แบบ goto ล้วน (ด่าน DEBH) — ดู “เส้นทางที่วิ่งมา” จะเห็นว่ากระโดดไปข้างหน้า ↷ และย้อนกลับ ↺ หลายรอบ และบรรทัด 14 (L50) มาถึงได้ถึง 4 ทาง</p>
+          <div class="dbg" data-dbg="goto"></div>
+        </div>
+      </div>
       <p class="source">ตัวอย่างใช้รูปแบบ FORTRAN IV (มี logical IF และ PRINT *) เพื่อให้อ่านง่าย — FORTRAN รุ่นแรกปี 1957 เขียนต่างจากนี้เล็กน้อย</p>
     </div>
   </dialog>
