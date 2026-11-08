@@ -310,10 +310,10 @@
             <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Machine code</b><span>1940s</span></li><li><b>Assembly</b><span>1949</span></li><li><b>FORTRAN</b><span>1957</span></li><li><b>FLOW-MATIC</b><span>1958</span></li></ul>
             </div>
             <figure class="era-code"><figcaption class="mono">ตัวอย่างโค้ดยุคนี้ · FORTRAN · 1957</figcaption><pre class="code"><code>C     สูตร + กระโดดด้วยเลขบรรทัด
-      HP = HP - DMG
-      IF (HP) 10, 10, 20
-   10 STOP
-   20 CONTINUE</code></pre><p>IF (HP) 10,10,20 = ติดลบ/ศูนย์ไปบรรทัด 10 · บวกไปบรรทัด 20</p></figure>
+<span class="bl" data-n="1">      HP = HP - DMG</span>
+<span class="bl" data-n="2">      IF (HP) 10, 10, 20</span>
+<span class="bl" data-n="3">   10 STOP</span>
+   20 CONTINUE</code></pre><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>HP ลบได้เรื่อย ๆ ไม่มีอะไรกันไม่ให้ติดลบ</li><li><b>2</b>กระโดดด้วยเลขบรรทัด 10, 10, 20 — อ่านแล้วต้องเดาว่าแต่ละเลขหมายถึงอะไร</li><li><b>3</b>แทรกบรรทัดใหม่ = ต้องไล่แก้เลขที่อ้างถึงทั้งโปรแกรม (ยุคบัตรเจาะรู 1 บรรทัด = 1 ใบ)</li></ol></figure>
           </article>
           <article class="panel win panel-wide" data-era="0">
             <div class="win-bar"><span>era0.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -362,11 +362,13 @@
             <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>ALGOL</b><span>1958</span></li><li><b>Pascal</b><span>1970</span></li><li><b>C</b><span>1972</span></li></ul>
             </div>
             <figure class="era-code"><figcaption class="mono">ตัวอย่างโค้ดยุคนี้ · C · 1972</figcaption><pre class="code"><code>/* if / loop / ฟังก์ชัน อ่านบนลงล่าง */
-int take_damage(int hp, int dmg) {
+<span class="bl" data-n="1">int hp = 100;           /* ตัวแปรกลาง */</span>
+int take_damage(int dmg) {
     hp = hp - dmg;
     if (hp &lt; 0) hp = 0;
     return hp;
-}</code></pre><p>มีฟังก์ชันแล้ว แต่ hp ยังส่งไปมาได้ทุกที่</p></figure>
+}
+<span class="bl" data-n="2">void use_food(void) { hp += 75; }</span></code></pre><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>hp เป็นของกลาง ไฟล์ไหนก็แก้ได้</li><li><b>2</b>use_food ไม่เช็กว่าตายแล้ว — กฎมีอยู่ในฟังก์ชันเดียว แต่ไม่มีอะไรบังคับให้ทุกคนเรียกผ่านมัน</li></ol></figure>
           </article>
           <article class="panel win" data-era="1">
             <div class="win-bar"><span>goto.c</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -448,14 +450,20 @@ printf("%s", name);</code></pre>
             </dl>
             <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Simula</b><span>1967</span></li><li><b>Smalltalk</b><span>1972</span></li><li><b>C++</b><span>1985</span></li><li><b>Java</b><span>1995</span></li></ul>
             </div>
-            <figure class="era-code"><figcaption class="mono">ตัวอย่างโค้ดยุคนี้ · C++ · 1985</figcaption><pre class="code"><code>// ข้อมูลมีเจ้าของ
-class Ally {
-    int hp = 100;          // private
+            <figure class="era-code"><figcaption class="mono">ตัวอย่างโค้ดยุคนี้ · C++ · 1985</figcaption><pre class="code"><code>class Character {
+protected:
+<span class="bl" data-n="1">    int hp = 100;        // ลูกหลานแก้ได้</span>
 public:
-    void takeDamage(int d) {
+    virtual void takeDamage(int d) {
         hp = std::max(0, hp - d);
     }
-};</code></pre><p>แก้ hp ได้ผ่านเมธอดเท่านั้น</p></figure>
+};
+class Ally : public Character { /* ... */ };
+class Tank : public Ally {
+    void takeDamage(int d) override {
+<span class="bl" data-n="2">        hp -= d / 2;     // ลืม max(0, …)</span>
+    }
+};</code></pre><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>protected = ลูกหลานทุกชั้นแตะ hp ตรง ๆ ได้</li><li><b>2</b>ลูก override แล้วข้ามกฎของแม่ — ต้นไม้ยิ่งลึก ยิ่งหาไม่เจอว่ากฎหายตรงไหน</li></ol></figure>
           </article>
           <article class="panel win warn" data-era="2">
             <div class="win-bar"><span>⚠ hp_bug.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -522,7 +530,10 @@ impl Health {
         self.hp = (self.hp - d).max(0);
     }
 }
-struct Ally { health: Health } // "มี" ไม่ใช่ "เป็น"</code></pre><p>กฎอยู่ใน Health ชิ้นเดียว ใครอยากมีเลือดก็ใส่ชิ้นนี้</p></figure>
+struct Ally { health: Health }
+struct Boss { health: Health }
+<span class="bl" data-n="1">impl Ally { fn hp(&amp;self) -&gt; i32 { self.health.hp } }</span>
+<span class="bl" data-n="1">impl Boss { fn hp(&amp;self) -&gt; i32 { self.health.hp } }</span></code></pre><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>ไม่มีคลาสแม่ให้รับเมธอดฟรี — ทุกชนิดต้องเขียน hp() / impl ซ้ำเอง (ราคาที่จ่ายแลกกับกฎที่ไม่หลุด)</li></ol></figure>
           </article>
           <article class="panel win" data-era="3">
             <div class="win-bar"><span>composition.go</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>

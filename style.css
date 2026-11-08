@@ -1603,3 +1603,13 @@ thead th { font-size: 13px; }
 .qc-photo { position: relative; display: block; width: fit-content; }
 .qc-photo::before { content: ""; position: absolute; top: -8px; left: 50%; width: 58px; height: 16px; transform: translateX(-50%) rotate(-5deg); background: rgba(61, 255, 143, 0.7); z-index: 1; }
 .qc-tag { position: absolute; left: -8px; bottom: 10px; padding: 3px 8px; background: #ffe066; color: #1f2eff; font: 400 11px var(--pixel); letter-spacing: 0.06em; transform: rotate(-3deg); box-shadow: 2px 2px 0 rgba(0, 0, 30, 0.5); white-space: nowrap; z-index: 1; }
+
+/* ตัวอย่างโค้ดแต่ละยุค: ชี้จุดปัญหา */
+.era-code .bl { display: inline-block; width: 100%; background: rgba(255, 59, 48, 0.28); box-shadow: inset 3px 0 0 #ff3b30; position: relative; }
+.era-code .bl::after { content: attr(data-n); position: absolute; right: -4px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border-radius: 50%; background: #ff3b30; color: #fff; font: 700 11px/18px var(--sans); text-align: center; }
+.era-code .code { overflow: visible; }
+.era-probs { list-style: none; margin: 0; padding: 10px 12px; display: grid; gap: 6px; background: #fff; border: 2px solid var(--bg); box-shadow: 4px 4px 0 rgba(5, 8, 51, 0.3); }
+.era-probs li { display: grid; grid-template-columns: 20px 1fr; gap: 8px; align-items: start; font: 600 14px/1.45 var(--sans); color: #14163a; }
+.era-probs b { width: 20px; height: 20px; border-radius: 50%; background: #ff3b30; color: #fff; font: 700 11.5px/20px var(--sans); text-align: center; }
+.era-probs::before { content: "⚠ ปัญหาของโค้ดนี้"; font: 700 14px var(--head-font); color: #ff3b30; }
+@media (max-height: 820px) { .era-code .code { font-size: 12px; padding: 10px 12px; } .era-probs li { font-size: 12.5px; } }

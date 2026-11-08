@@ -12,7 +12,7 @@
   // ===================== ไฮไลต์โค้ดแบบง่าย: คอมเมนต์ สตริง =====================
   const escapeHtml = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   document.querySelectorAll("pre.code code").forEach((el) => {
-    if (el.closest(".tree")) return;
+    if (el.closest(".tree") || el.querySelector(".bl")) return;
     const src = el.textContent;
     const token = /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)')/g;
     let out = "";
