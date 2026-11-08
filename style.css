@@ -1555,3 +1555,8 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .era-code p { font: 600 14px/1.45 var(--head-font); color: var(--bg); }
 @media (max-width: 860px) { .era-divider { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
 @media (max-height: 820px) { .era-divider .era-big b { font-size: clamp(80px, 14svh, 140px); } .era-divider .bfc dd { font-size: 14px; } }
+
+/* รูป Dijkstra ในการ์ด goto: ตัดขอบแนวคอลลาจ ไม่มีกรอบขาว และใหญ่ขึ้น */
+.quote-card { grid-template-columns: 200px 1fr; gap: 18px; }
+.quote-card img { background: transparent; padding: 0; border: 0; filter: grayscale(1) contrast(1.2) drop-shadow(6px 6px 0 rgba(0, 0, 30, 0.55)); width: 200px; height: auto; }
+@media (max-height: 820px) { .quote-card { grid-template-columns: 150px 1fr; } .quote-card img { width: 150px; } }
