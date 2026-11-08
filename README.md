@@ -54,3 +54,8 @@ assets/      รูป (webp)
 
 push ขึ้น `main` แล้ว `.github/workflows/pages.yml` จะอัปขึ้น GitHub Pages ให้เอง
 (Settings → Pages → Source ต้องเป็น **GitHub Actions**)
+
+## เครดิตภาพ
+
+- `assets/bliss.webp` — วอลเปเปอร์ Windows XP "Bliss" (ลิขสิทธิ์ Microsoft)
+- `assets/tl-*.webp` จาก Wikimedia Commons: Ada Lovelace (A. E. Chalon, public domain) · Z3 (Venusianer, CC BY-SA 3.0) · Manchester Baby replica (Logg Tandy, CC BY 4.0) · EDSAC (Computer Laboratory, University of Cambridge, CC BY 2.0) · FORTRAN card (Arnold Reinhold, CC BY-SA 2.5) · John McCarthy (null0, CC BY-SA 2.0)

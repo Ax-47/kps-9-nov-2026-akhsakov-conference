@@ -1441,3 +1441,21 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .tl-photo::before { content: ""; position: absolute; top: -8px; left: 50%; width: 54px; height: 16px; transform: translateX(-50%) rotate(-6deg); background: rgba(61, 255, 143, 0.7); z-index: 1; }
 .tl-photo figcaption { position: absolute; left: -6px; bottom: 6px; padding: 3px 7px; background: #ffe066; color: #1f2eff; transform: rotate(-3deg); box-shadow: 2px 2px 0 rgba(0, 0, 30, 0.5); white-space: nowrap; }
 .tl-ev.down .tl-photo figcaption { transform: rotate(3deg); }
+
+/* ไทม์ไลน์ ERA 0: ยาวขึ้น โปร่งขึ้น ทุกเหตุการณ์มีภาพ */
+.tl { --col: 300px; grid-template-rows: auto 56px auto; }
+.tl-ev .tl-card { margin-right: 64px; padding: 16px 18px; }
+.tl-card:has(.tl-photo) { grid-template-columns: 1fr; }
+.tl-card:has(.tl-photo) .tl-photo { grid-row: auto; margin: 0 0 8px; }
+.tl-photo img { height: 170px; width: auto; max-width: 100%; object-fit: cover; }
+.panel-tl .source { max-width: 1200px; }
+@media (max-height: 820px) {
+  .tl { --col: 280px; grid-template-rows: auto 40px auto; }
+  .tl-photo img { height: 96px; }
+  .tl-card:has(.tl-photo) { grid-template-columns: auto 1fr; column-gap: 12px; }
+  .tl-card:has(.tl-photo) .tl-photo { grid-row: span 2; margin: 0; }
+}
+.tl-card:has(.tl-photo) { grid-template-columns: auto 1fr; column-gap: 16px; }
+.tl-card:has(.tl-photo) .tl-photo { grid-row: span 2; margin: 0; }
+.tl-photo img { height: 140px; max-width: 220px; }
+@media (max-height: 820px) { .tl-photo img { height: 96px; max-width: 150px; } }
