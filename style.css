@@ -1228,7 +1228,7 @@ img.wallpaper { object-fit: cover; object-position: 50% 45%; }
 .rd-full { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border: 2px solid #1f2eff; background: #1f2eff; color: #fff; font: 600 13px var(--mono); cursor: pointer; box-shadow: 3px 3px 0 #0b12a3; }
 .rd-full svg { width: 16px; height: 16px; }
 .rd-full:hover { background: #fff; color: #1f2eff; }
-.rd-full-float { position: absolute; right: 12px; top: 12px; z-index: 56; padding: 7px 14px; border: 2px solid #fff; background: rgba(31, 46, 255, 0.85); color: #fff; font: 600 13px var(--mono); cursor: pointer; box-shadow: 3px 3px 0 rgba(0, 0, 40, 0.5); }
+.rd-full-float { position: absolute; right: 12px; bottom: 42px; z-index: 56; padding: 7px 14px; border: 2px solid #fff; background: rgba(31, 46, 255, 0.85); color: #fff; font: 600 13px var(--mono); cursor: pointer; box-shadow: 3px 3px 0 rgba(0, 0, 40, 0.5); }
 .rd-full-float:hover { background: #fff; color: #1f2eff; }
 .screen.off .rd-full-float, .screen.booting .rd-full-float { display: none; }
 
