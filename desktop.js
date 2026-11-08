@@ -313,12 +313,43 @@
     const act = b.dataset.rdAct;
     if (act === "chat") say("Misha", "สวัสดีน้อง ๆ 👋 ยินดีที่ได้รู้จักนะ");
     if (act === "keys") say("Ctrl+Alt+Del", "ส่งไปแล้ว… แต่เครื่องนี้ไม่ยอมล็อก เพราะยังสอนไม่จบ");
-    if (act === "full" && rd) {
-      if (document.fullscreenElement) document.exitFullscreen();
-      else rd.requestFullscreen?.();
-    }
+    if (act === "full" && rd) toggleFull();
     if (act === "disconnect") disconnect();
   }));
+
+
+  // ---------- เต็มจอ: ใช้ Fullscreen API ถ้ามี ไม่งั้น (เช่น iPhone) ขยายเต็มหน้าต่างเบราว์เซอร์ด้วย CSS ----------
+  const fullBtns = rd ? [...rd.querySelectorAll('[data-rd-act="full"]')] : [];
+  function setFullUI(on) {
+    rd.classList.toggle("is-full", on);
+    document.documentElement.classList.toggle("rd-lock", on);
+    fullBtns.forEach((b) => {
+      b.setAttribute("aria-pressed", String(on));
+      const label = b.querySelector("span");
+      if (label) label.textContent = on ? "ออกจากเต็มจอ" : "เต็มจอ";
+      else b.textContent = on ? "✕ ออกจากเต็มจอ" : "⛶ ดูเต็มจอ";
+    });
+  }
+  function toggleFull() {
+    const on = rd.classList.contains("is-full");
+    if (on) {
+      if (document.fullscreenElement) document.exitFullscreen();
+      setFullUI(false);
+      return;
+    }
+    setFullUI(true);
+    if (rd.requestFullscreen) rd.requestFullscreen().catch(() => {});
+  }
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement && rd?.classList.contains("is-full")) setFullUI(false);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && rd?.classList.contains("is-full") && !document.fullscreenElement) setFullUI(false);
+  });
+  desk.addEventListener("dblclick", (e) => {
+    if (!rd || e.target.closest(".desk-win, .taskbar, .start-menu, .ctx-menu, button, a")) return;
+    toggleFull();
+  });
 
   // ---------- เลื่อนมาถึงแล้วเริ่มเชื่อมต่อ ----------
   wins.forEach((w) => w.classList.add("is-closed"));

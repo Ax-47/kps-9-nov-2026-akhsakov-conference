@@ -1222,3 +1222,24 @@ body.shake main { animation: page-shake 0.8s steps(10); }
 .rd-status .mono { color: #4f5ad0; }
 .rd-status .dot { box-shadow: none; }
 .rd-statusbar { background: #fff; color: #4f5ad0; border-top: 2px solid #1f2eff; }
+
+/* ===================== วอลเปเปอร์รูปจริง + เต็มจอ ===================== */
+img.wallpaper { object-fit: cover; object-position: 50% 45%; }
+.rd-full { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border: 2px solid #1f2eff; background: #1f2eff; color: #fff; font: 600 13px var(--mono); cursor: pointer; box-shadow: 3px 3px 0 #0b12a3; }
+.rd-full svg { width: 16px; height: 16px; }
+.rd-full:hover { background: #fff; color: #1f2eff; }
+.rd-full-float { position: absolute; right: 12px; top: 12px; z-index: 56; padding: 7px 14px; border: 2px solid #fff; background: rgba(31, 46, 255, 0.85); color: #fff; font: 600 13px var(--mono); cursor: pointer; box-shadow: 3px 3px 0 rgba(0, 0, 40, 0.5); }
+.rd-full-float:hover { background: #fff; color: #1f2eff; }
+.screen.off .rd-full-float, .screen.booting .rd-full-float { display: none; }
+
+/* โหมดเต็มจอ (ทั้ง Fullscreen API และแบบ CSS สำหรับเครื่องที่ไม่รองรับ) */
+.rd.is-full { position: fixed; inset: 0; z-index: 1000; max-width: none; width: 100vw; height: 100dvh; margin: 0; display: flex; flex-direction: column; border: 0; box-shadow: none; }
+.rd.is-full .rd-viewport { flex: 1; min-height: 0; }
+.rd.is-full .screen { height: 100% !important; min-height: 0; }
+.rd.is-full .rd-statusbar { display: none; }
+html.rd-lock, html.rd-lock body { overflow: hidden; }
+html.rd-lock .topbar, html.rd-lock .toasts { z-index: 1001; }
+html.rd-lock .topbar { display: none; }
+/* เต็มจอบนมือถือ: ใช้เลย์เอาต์ลอยแบบเดสก์ท็อปไม่ได้ ให้เลื่อนดูในจอได้ */
+@media (max-width: 900px) { .rd.is-full .screen { overflow: auto; } }
+@media (max-width: 900px) { .rd-full-float { display: none; } }
