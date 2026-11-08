@@ -579,9 +579,75 @@ int main() {
     return steps;
   }
 
+  // ERA 3: composition แบบ Rust — Ally "มี" Health แทนการ "เป็น" Character
+  CODE.comp = `struct Health { hp: i32 }            // ชิ้นส่วน: กฎเลือดอยู่ที่นี่ที่เดียว
+impl Health {
+    fn take(&mut self, d: i32) {
+        self.hp = (self.hp - d).max(0);
+    }
+}
+
+struct Attack { power: i32 }          // ชิ้นส่วน: พลังโจมตี
+
+struct Ally { name: &'static str, health: Health, attack: Attack }
+struct Boss { name: &'static str, health: Health, attack: Attack }
+
+impl Ally {
+    fn atk(&self, target: &mut Boss) {
+        target.health.take(self.attack.power);   // ส่งต่อให้ชิ้น Health ของบอส
+    }
+}
+
+fn main() {
+    let misha = Ally { name: "Misha",
+        health: Health { hp: 100 }, attack: Attack { power: 30 } };
+    let mut kafka = Boss { name: "Kafka",
+        health: Health { hp: 50 }, attack: Attack { power: 25 } };
+
+    misha.atk(&mut kafka);        // ตาที่ 1
+    misha.atk(&mut kafka);        // ตาที่ 2
+    println!("Kafka {}", kafka.health.hp);
+}`;
+  function traceComp() {
+    const { c, steps } = makeTracer("kafka.health.hp");
+    const v = c.vars;
+    c.objs = {};
+    c.s(19, "เริ่ม main");
+    c.objs.misha = { name: '"Misha"', "health.hp": 100, "attack.power": 30 };
+    v["misha.health.hp"] = 100;
+    c.ok(1, "misha.health.hp = 100");
+    c.s(20, "ประกอบ misha จากชิ้นส่วน: ชิ้น Health + ชิ้น Attack (ไม่ได้สืบทอดจากใคร)");
+    c.objs.kafka = { name: '"Kafka"', "health.hp": 50, "attack.power": 25 };
+    v["kafka.health.hp"] = 50;
+    c.s(22, "kafka ก็ประกอบจากชิ้น Health ชิ้นเดียวกัน — Ally กับ Boss ไม่ต้องมีแม่ร่วมกัน");
+    for (const [line, turn] of [[25, 1], [26, 2]]) {
+      c.s(line, `ตาที่ ${turn}: misha.atk(&mut kafka)`);
+      c.stack.push("Ally::atk [self=misha]"); c.self = "misha";
+      v.target = "&mut kafka";
+      c.s(14, "เข้า atk ของ misha · ยืม kafka แบบแก้ได้ (&mut) — ระหว่างนี้ไม่มีใครแตะ kafka ได้");
+      v.d = 30;
+      c.s(15, "misha ไม่แตะ hp ของ kafka เอง แต่ส่งต่อให้ชิ้น Health ของ kafka: kafka.health.take(30)");
+      c.stack.push("Health::take [self=kafka.health]"); c.self = "kafka";
+      c.s(3, "ตอนนี้ self = kafka.health — ชิ้นส่วนที่ทำงานคือ Health ของ kafka");
+      const old = c.objs.kafka["health.hp"]; const nw = Math.max(0, old - 30);
+      c.objs.kafka["health.hp"] = nw; v["kafka.health.hp"] = nw;
+      c.w(4, "Health::take", "hp", old, nw);
+      if (old - 30 < 0) c.ok(2, `${old} - 30 = ${old - 30} แต่ .max(0) ให้เหลือ 0`);
+      c.s(4, `กฎอยู่ในชิ้น Health: (${old} - 30).max(0) = ${nw}`);
+      c.stack.pop(); c.self = "misha";
+      c.s(16, "กลับมาที่ misha");
+      c.stack.pop(); c.self = ""; delete v.target; delete v.d;
+    }
+    c.ok(4, "kafka.health.hp = 0");
+    c.out.push(`Kafka ${c.objs.kafka["health.hp"]}`);
+    c.s(27, `พิมพ์ "Kafka ${c.objs.kafka["health.hp"]}"`);
+    c.s(28, "จบ — อยากให้ใครมีเลือดก็ใส่ชิ้น Health ไม่ต้องสืบทอด กฎเลยไม่หลุดตอนมีคลาสใหม่");
+    return steps;
+  }
+
   const TRACE = {
     goto: traceGoto, c: traceC,
-    java: traceJava, oop: traceOop, go: () => traceOwned(OWNED.go), rust: () => traceOwned(OWNED.rust),
+    java: traceJava, oop: traceOop, comp: traceComp, go: () => traceOwned(OWNED.go), rust: () => traceOwned(OWNED.rust),
   };
 
   // ===================== ไฮไลต์โค้ดแบบง่าย =====================
@@ -654,7 +720,7 @@ int main() {
     const steps = TRACE[lang]();
     root.innerHTML = `
       <div class="dbg-bar">
-        <span class="dbg-title mono">debug · ${lang === "goto" ? "c + goto" : lang === "oop" ? "c++ · misha.atk(kafka)" : lang}</span>
+        <span class="dbg-title mono">debug · ${lang === "goto" ? "c + goto" : lang === "oop" ? "c++ · misha.atk(kafka)" : lang === "comp" ? "rust · composition" : lang}</span>
         <div class="dbg-ctl">
           <button type="button" data-a="back" title="ย้อนกลับ 1 ก้าว">⏮ ย้อน</button>
           <button type="button" data-a="step" title="ทำทีละบรรทัด">⏭ ทีละบรรทัด</button>
@@ -671,7 +737,7 @@ int main() {
           <section><h5>เส้นทางที่วิ่งมา <span data-r="jumps"></span></h5><ol class="dbg-path" data-r="path"></ol><p class="dbg-from" data-r="from" hidden></p></section>
           <section><h5>Call stack</h5><ol class="dbg-stack" data-r="stack"></ol></section>
           ${lang === "c" ? '<section><h5>ใครแก้ hp บ้าง</h5><ol class="dbg-writes" data-r="writes"></ol></section>' : ""}
-          ${lang === "oop" ? '<section><h5>Objects ในหน่วยความจำ</h5><div class="dbg-objs" data-r="objs"></div></section>' : ""}
+          ${lang === "oop" || lang === "comp" ? '<section><h5>Objects ในหน่วยความจำ</h5><div class="dbg-objs" data-r="objs"></div></section>' : ""}
           ${lang === "java" ? '<section><h5>ต้นไม้คลาสของ Misha</h5><ol class="dbg-hier" data-r="hier"></ol></section>' : ""}
           <section><h5>ตัวแปร</h5><dl class="dbg-vars" data-r="vars"></dl></section>
           <section><h5>กฎ HP 5 ข้อ</h5><ol class="dbg-rules" data-r="rules"></ol></section>
@@ -739,7 +805,7 @@ int main() {
         : "<li><span>—</span><b>ยังไม่มีใครแก้</b></li>";
       if (R("objs")) R("objs").innerHTML = st.objs ? Object.entries(st.objs).map(([k, o]) => {
         const p = steps[i - 1]?.objs?.[k];
-        return `<div class="obj${st.self === k ? " self" : ""}"><b>${esc(k)}${st.self === k ? " <em>← this</em>" : ""}</b>${Object.entries(o).map(([f, val]) =>
+        return `<div class="obj${st.self === k ? " self" : ""}"><b>${esc(k)}${st.self === k ? ` <em>← ${lang === "comp" ? "self" : "this"}</em>` : ""}</b>${Object.entries(o).map(([f, val]) =>
           `<span class="${p && p[f] !== val ? "chg" : ""}"><i>${esc(f)}</i>${esc(String(val))}</span>`).join("")}</div>`;
       }).join("") || "<p>ยังไม่มี object</p>" : "<p>ยังไม่มี object</p>";
       if (R("hier")) R("hier").innerHTML = HIER.map((h, j) =>

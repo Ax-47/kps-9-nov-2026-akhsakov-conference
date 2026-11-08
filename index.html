@@ -534,7 +534,7 @@ impl Health {
 struct Ally { health: Health }
 struct Boss { health: Health }
 <span class="bl" data-n="1">impl Ally { fn hp(&amp;self) -&gt; i32 { self.health.hp } }</span>
-<span class="bl" data-n="1">impl Boss { fn hp(&amp;self) -&gt; i32 { self.health.hp } }</span></code></pre><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>ไม่มีคลาสแม่ให้รับเมธอดฟรี — ทุกชนิดต้องเขียน hp() / impl ซ้ำเอง (ราคาที่จ่ายแลกกับกฎที่ไม่หลุด)</li></ol></figure>
+<span class="bl" data-n="1">impl Boss { fn hp(&amp;self) -&gt; i32 { self.health.hp } }</span></code></pre><button type="button" class="era-more" data-open-dlg="comp-hsr">▶ เปิดดู composition ทีละบรรทัด</button><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>ไม่มีคลาสแม่ให้รับเมธอดฟรี — ทุกชนิดต้องเขียน hp() / impl ซ้ำเอง (ราคาที่จ่ายแลกกับกฎที่ไม่หลุด)</li></ol></figure>
           </article>
           <article class="panel win" data-era="3">
             <div class="win-bar"><span>composition.go</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -1340,6 +1340,28 @@ int main() {
       </div>
     </section>
   </main>
+  <dialog class="oop-dialog" id="comp-hsr" aria-labelledby="comp-title">
+    <div class="oop-dlg-bar"><span>composition.exe — ERA 3</span><button type="button" data-close-dlg aria-label="ปิด กลับไปที่ไทม์ไลน์">✕ ปิด · กลับไปไทม์ไลน์</button></div>
+    <div class="oop-dlg-body">
+      <p class="kicker">ERA 3 · Composition &gt; Inheritance</p>
+      <h3 class="title" id="comp-title">Composition แบบ HSR: <span class="mono">misha.atk(&amp;mut kafka)</span></h3>
+      <div class="oop-explain">
+        <div class="oop-objs" aria-hidden="true">
+          <div class="oop-card"><b>misha</b><span>[Health] hp 100</span><span>[Attack] power 30</span><em>Ally = ประกอบจากชิ้นส่วน</em></div>
+          <div class="oop-arrow"><span>misha.atk(&amp;mut kafka)</span><i>→</i><span>kafka.health.take(30)</span></div>
+          <div class="oop-card enemy"><b>kafka</b><span>[Health] hp 50</span><span>[Attack] power 25</span><em>Boss = ประกอบจากชิ้นส่วน</em></div>
+        </div>
+        <ol class="oop-points">
+          <li><b>“มี” แทน “เป็น”</b> — Ally <i>มี</i> Health กับ Attack ไม่ได้ <i>เป็น</i> Character ไม่มีต้นไม้คลาสให้ลึก</li>
+          <li><b>กฎอยู่ในชิ้นส่วน</b> — “hp ไม่ต่ำกว่า 0” อยู่ใน Health::take ใครอยากมีเลือดก็ใส่ชิ้นนี้ ไม่มีลูกมา override ข้ามกฎ</li>
+          <li><b>ยืมแบบแก้ได้ต้องชัด</b> — ต้องเขียน <span class="mono">&amp;mut kafka</span> ถึงจะแก้ kafka ได้ อ่านโค้ดแล้วรู้ทันทีว่าบรรทัดไหนเปลี่ยนข้อมูล</li>
+        </ol>
+      </div>
+      <div class="dbg" data-dbg="comp"></div>
+      <p class="note">เทียบกับ ERA 2: ใน C++ เรียก <span class="mono">kafka.takeDamage()</span> แล้วต้องไล่ต้นไม้ว่าได้ของชั้นไหน — ที่นี่ <span class="mono">kafka.health.take()</span> บอกตรง ๆ ว่าใช้ชิ้นส่วนไหน ราคาที่จ่ายคือต้องเขียนส่งต่อเอง (ดูข้อ ① ในการ์ด)</p>
+    </div>
+  </dialog>
+
   <dialog class="oop-dialog" id="oop-hsr" aria-labelledby="oop-title" data-bg-dialog>
     <div class="oop-dlg-bar"><span>oop_hsr.exe — ERA 2</span><button type="button" data-close-oop aria-label="ปิด กลับไปที่ไทม์ไลน์">✕ ปิด · กลับไปไทม์ไลน์</button></div>
     <div class="oop-dlg-body">

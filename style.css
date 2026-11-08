@@ -1783,3 +1783,4 @@ thead th { font-size: 13px; }
 @media (prefers-reduced-motion: reduce) { .inh-tree .node.hit, .inh-pane { animation: none; } }
 .inh-tree .inh-probs { margin-top: 6px; }
 .inh-pane[hidden] { display: none; }
+.dbg-vars div { grid-template-columns: minmax(11ch, max-content) 1fr; }

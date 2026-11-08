@@ -309,3 +309,14 @@
   dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
   if (location.hash === "#oop-hsr") dlg.showModal();
 })();
+
+// popup ทั่วไป: data-open-dlg="id" เปิด, data-close-dlg ปิด
+(() => {
+  document.addEventListener("click", (e) => {
+    const o = e.target.closest("[data-open-dlg]");
+    if (o) { const d = document.getElementById(o.dataset.openDlg); if (d?.showModal) { d.showModal(); d.querySelector(".oop-dlg-body").scrollTop = 0; } }
+    const c = e.target.closest("[data-close-dlg]");
+    if (c) c.closest("dialog")?.close();
+    if (e.target.matches("dialog.oop-dialog")) e.target.close();
+  });
+})();
