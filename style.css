@@ -1079,97 +1079,109 @@ body.shake main { animation: page-shake 0.8s steps(10); }
 @keyframes rc-click { 50% { transform: scale(0.8); } }
 .pc .desk-icons .selected { background: rgba(49, 106, 197, 0.55) !important; border-color: rgba(160, 200, 255, 0.9) !important; }
 
-/* ===================== หน้าต่างในเครื่องปลายทาง: สไตล์เดียวกับหน้าต่างทั้งเว็บ (แบบ hp_battle.exe) ===================== */
-.rd .screen { --ink: #1f2eff; --shade: #0b12a3; }
+/* ===================== ธีมแบบ XP ภายในเครื่องปลายทาง ===================== */
+.rd .screen { --xp: Tahoma, "IBM Plex Sans Thai", "Segoe UI", sans-serif; font-family: var(--xp); }
+.rd .desk-icons button, .rd .desk-icons a { font: 400 11.5px/1.25 var(--xp); border-radius: 0; }
 .rd .desk-win {
-  background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none;
-  border: 2px solid var(--ink); border-radius: 0; overflow: hidden;
-  box-shadow: 8px 8px 0 var(--shade); color: #14163a; font-family: var(--sans);
+  background: #ece9d8; backdrop-filter: none; -webkit-backdrop-filter: none;
+  border: 3px solid #0831d9; border-top: 0; border-radius: 8px 8px 0 0;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5); font-family: var(--xp); overflow: visible;
 }
-.rd .desk-win:not(.is-front) { box-shadow: 5px 5px 0 rgba(11, 18, 163, 0.55); }
-.rd .desk-win.is-open { animation: pop-open 0.32s steps(5); }
-@keyframes pop-open { 0% { transform: scale(0.2, 0.04); opacity: 0; } 50% { transform: scale(1, 0.04); opacity: 1; } 100% { transform: none; } }
-.rd .desk-win.is-max { border-radius: 0; height: calc(100% - 40px); }
+.rd .desk-win:not(.is-front) { border-color: #7a96df; box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.35); }
 .rd .win-bar {
-  height: 30px; margin: 0; padding: 0 6px 0 12px; gap: 8px; border-radius: 0;
-  background: var(--ink); color: #fff; border-bottom: 2px solid var(--ink);
-  font: 600 12.5px var(--mono); letter-spacing: 0.02em; text-shadow: none;
+  height: 30px; margin: 0 -3px; padding: 0 5px 0 8px; gap: 6px; border-radius: 8px 8px 0 0;
+  background: linear-gradient(#0997ff 0%, #0053ee 9%, #0050ee 18%, #06f 45%, #0055e5 85%, #0047c8 95%, #003dc0 100%);
+  color: #fff; font: 700 13px var(--xp); text-shadow: 1px 1px 0 #0f1089;
 }
-.rd .desk-win:not(.is-front) .win-bar { background: #5a63f0; }
-.rd .desk-win:not(.is-front) .win-bar .t { opacity: 1; }
-.rd .win-bar .app-ico { display: none; }
-.rd .win-btns { gap: 4px; align-self: center; }
-.rd .win-btns button { width: 20px; height: 18px; border-radius: 0; border: 1.5px solid currentColor; background: transparent; color: #fff; box-shadow: none; }
-.rd .win-btns button svg { width: 8px; height: 8px; stroke-width: 1.6; }
-.rd .win-btns button:hover, .rd .win-btns button.x:hover { background: #fff; color: var(--ink); filter: none; }
-.rd .desk-win:not(.is-front) .win-btns button { filter: none; }
+.rd .desk-win:not(.is-front) .win-bar { background: linear-gradient(#a7c0f4, #7b9ee8 40%, #7393e2 90%); text-shadow: none; }
+.rd .desk-win:not(.is-front) .win-bar .t { opacity: 1; color: #dce6fb; }
+.rd .win-btns { gap: 2px; align-self: center; }
+.rd .win-btns button {
+  width: 21px; height: 21px; border-radius: 3px; border: 1px solid #fff; color: #fff;
+  background: linear-gradient(135deg, #4b8bff, #1c5ae0 60%, #1647c4); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.rd .win-btns button svg { width: 9px; height: 9px; stroke-width: 2; }
+.rd .win-btns button:hover { background: linear-gradient(135deg, #6aa2ff, #2f6df0 60%, #1d55d8); }
+.rd .win-btns button.x { background: linear-gradient(135deg, #f19a80, #e0532c 55%, #c43a1a); }
+.rd .win-btns button.x:hover { background: linear-gradient(135deg, #ffb39a, #f0663e 55%, #d4451f); color: #fff; }
+.rd .desk-win:not(.is-front) .win-btns button { filter: saturate(0.4) brightness(1.15); }
+.rd .desk-win.is-max { border-radius: 0; height: calc(100% - 30px); }
+.rd .desk-win.is-open { animation: xp-open 0.18s ease-out; }
+@keyframes xp-open { from { transform: scale(0.9); opacity: 0.4; } to { transform: none; opacity: 1; } }
 
-/* profile */
-.rd .card-app .app-body { background: #fff; border: 0; }
-.rd .card-name { font: 700 24px var(--head-font); color: var(--ink); }
-.rd .card-sub { font: 400 13px var(--mono); color: #4f5ad0; }
-.rd .card-rows { border-top: 1.5px dashed var(--ink); }
-.rd .card-rows div { font: 400 14px var(--sans); border-bottom: 1.5px dashed rgba(31, 46, 255, 0.35); }
-.rd .card-rows dt { font: 400 11px var(--pixel); color: #ff3b30; letter-spacing: 0.06em; align-self: center; }
-.rd .card-rows dd { color: var(--ink); }
-.rd .pfp { border-radius: 0; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--shade); background: var(--ink); }
+/* profile แบบ XP */
+.rd .card-app .app-body { background: #fff; border: 1px solid #919b9c; border-top: 0; margin: 0; }
+.rd .card-name { font: 700 22px var(--xp); color: #003399; }
+.rd .card-sub { font: 400 12px var(--xp); }
+.rd .card-rows div { font: 400 12.5px var(--xp); }
+.rd .card-rows dt { color: #6d6d6d; }
+.rd .pfp { border-radius: 4px; border: 2px solid #fff; box-shadow: 0 0 0 1px #8ba3d6; }
 
-/* whoami: terminal เข้มแบบเกม */
-.rd .term-app { background: #050833; color: #d9ddff; }
-.rd .term-app .win-bar .t.tab { background: transparent; padding: 0; margin: 0; align-self: center; flex: 1; max-width: none; border-radius: 0; font: inherit; }
-.rd .term-body { background: #050833; color: #d9ddff; font: 13.5px/1.7 var(--mono); border: 0; }
+/* whoami แบบ command prompt */
+.rd .term-app { background: #ece9d8; color: #c0c0c0; }
+.rd .term-app .win-bar .t.tab { background: transparent; padding: 0; margin: 0; align-self: center; font: 700 13px var(--xp); flex: 1; max-width: none; border-radius: 0; }
+.rd .term-app .win-bar .t.tab::before { content: "Command Prompt — "; }
+.rd .term-body { background: #000; color: #c0c0c0; font: 13px/1.6 "Lucida Console", "Courier New", var(--mono); border: 1px solid #000; }
+.rd .whoami .sh { color: #c0c0c0; }
+.rd .whoami .sh::before { content: "C:\\Users\\Misha>"; color: #c0c0c0; }
+.rd .whoami p:not(.sh) { color: #fff; }
+.rd .term-app .fill-me { background: transparent; color: #ffff55; border-color: #ffff55; }
 
-/* rules */
-.rd .msg-app .msg-body { background: #fff; border: 0; padding-top: 16px; }
-.rd .msg-ico path { fill: #ff3b30; stroke: #ff3b30; }
-.rd .msg-ico rect, .rd .msg-ico circle { fill: #fff; }
-.rd .msg-title { font: 700 18px var(--head-font); color: var(--ink); }
-.rd .msg-list { font: 400 14px var(--sans); color: #1a22a8; }
-.rd .msg-list b { color: #ff3b30; }
-.rd .msg-btns { background: #fff; border-top: 1.5px dashed var(--ink); padding-top: 12px; }
-.rd .msg-btns button { font: 600 13px var(--mono); min-width: 0; padding: 5px 16px; border-radius: 999px; border: 2px solid var(--ink); background: #fff; color: var(--ink); }
-.rd .msg-btns button:hover { background: #eef0ff; }
-.rd .msg-btns button.primary { background: var(--ink); color: #fff; }
-.rd .msg-btns button.primary:hover { background: #1823d6; }
+/* rules แบบกล่องข้อความ XP */
+.rd .msg-app .msg-body { background: #ece9d8; border: 0; padding-top: 16px; }
+.rd .msg-title { font: 700 13px var(--xp); color: #000; }
+.rd .msg-list { font: 400 12.5px var(--xp); color: #000; }
+.rd .msg-btns { background: #ece9d8; border: 0; padding-top: 6px; }
+.rd .msg-btns button { font: 400 12px var(--xp); min-width: 76px; padding: 4px 12px; border-radius: 3px; border: 1px solid #003c74; background: linear-gradient(#fff, #f0f0ea 60%, #d6d0c5); color: #000; }
+.rd .msg-btns button:hover { box-shadow: inset 0 0 0 2px #f8b636; }
+.rd .msg-btns button.primary { box-shadow: inset 0 0 0 2px #98b8f3; background: linear-gradient(#fff, #f0f0ea 60%, #d6d0c5); color: #000; }
 
-/* แถบงาน + เมนู */
-.rd .taskbar { height: 40px; padding: 0 6px; gap: 6px; background: var(--ink); border-top: 2px solid #fff; backdrop-filter: none; -webkit-backdrop-filter: none; font-family: var(--mono); }
-.rd .start-btn { width: auto; height: 28px; padding: 0 12px; border-radius: 0; border: 2px solid #fff; background: #fff; color: var(--ink); display: flex; align-items: center; gap: 6px; box-shadow: 3px 3px 0 var(--shade); font: 600 13px var(--mono); }
-.rd .start-btn::after { content: "guide"; }
-.rd .start-btn span { width: auto; height: auto; background: none; color: var(--ink); font: 400 12px var(--mono); border-radius: 0; }
-.rd .start-btn span { font-size: 0; }
-.rd .start-btn span::before { content: "▶"; font-size: 11px; }
-.rd .start-btn:hover, .rd .start-btn.on { background: #dfe3ff; }
+/* แถบงาน + ปุ่ม start แบบ XP */
+.rd .taskbar {
+  height: 30px; padding: 0; gap: 0; backdrop-filter: none; -webkit-backdrop-filter: none;
+  background: linear-gradient(#1f2f86 0%, #3165c4 3%, #3682e5 6%, #4490e6 10%, #3883e5 12%, #2b71e0 15%, #2663da 18%, #235bd6 20%, #2258d5 23%, #2157d6 38%, #245ddb 54%, #2562df 86%, #245fdc 89%, #2158d4 92%, #1d4ec0 95%, #1941a5 98%);
+  border-top: 0; font-family: var(--xp);
+}
+.rd .start-btn {
+  width: auto; height: 30px; padding: 0 22px 0 8px; margin-right: 10px; border-radius: 0 12px 12px 0; gap: 6px; display: flex; align-items: center;
+  background: linear-gradient(#3c8f3c 0%, #5eb94c 8%, #4ba63c 40%, #3d963a 88%, #2c7a2c 100%);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.35), inset -2px 0 2px rgba(0, 0, 0, 0.2);
+}
+.rd .start-btn::after { content: "start"; font: italic 700 17px var(--xp); color: #fff; text-shadow: 1px 1px 2px #1a3e1a; }
+.rd .start-btn span { width: 20px; height: 20px; border-radius: 4px; font-size: 13px; }
+.rd .start-btn:hover, .rd .start-btn.on { filter: brightness(1.12); background: linear-gradient(#3c8f3c 0%, #5eb94c 8%, #4ba63c 40%, #3d963a 88%, #2c7a2c 100%); }
 .rd .search { display: none; }
-.rd .tasks { gap: 6px; }
-.rd .task { width: auto; max-width: 170px; height: 26px; padding: 0 10px; display: flex; align-items: center; border-radius: 0; background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.6); color: #fff; font: 600 12px var(--mono); }
-.rd .task::before { content: attr(title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.rd .task .app-ico { display: none; }
+.rd .tasks { gap: 3px; }
+.rd .task { width: 150px; height: 24px; justify-content: flex-start; padding: 0 8px; gap: 6px; display: flex; align-items: center; border-radius: 3px; background: linear-gradient(#3c81f3, #2f6de6); border: 1px solid #1e4fbf; color: #fff; font: 400 11.5px var(--xp); }
+.rd .task::before { content: attr(title); order: 2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rd .task .app-ico { width: 16px; height: 16px; }
 .rd .task::after { display: none; }
-.rd .task.on { background: rgba(255, 255, 255, 0.28); border-color: #fff; }
-.rd .task:hover { background: rgba(255, 255, 255, 0.18); }
-.rd .tray { height: 26px; padding: 0 10px; background: transparent; border-left: 1.5px solid rgba(255, 255, 255, 0.5); box-shadow: none; }
+.rd .task.on { background: linear-gradient(#1e52b7, #1a48a8); box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5); }
+.rd .task:hover { filter: brightness(1.12); }
+.rd .tray { height: 30px; padding: 0 10px 0 12px; background: linear-gradient(#0c59b9 1%, #139ee9 6%, #18b5f2 10%, #139beb 14%, #1290e8 19%, #0d8dea 63%, #0d9ff1 81%, #0f9eed 88%, #119be9 91%, #1392e2 94%, #137ed7 97%, #095bc9 100%); border-left: 1px solid #1042af; box-shadow: inset 1px 0 1px #18bbff; }
 .rd .tray-icons { padding: 0; gap: 6px; }
 .rd .tray-icons svg { width: 14px; height: 14px; }
-.rd .clock { font: 600 12px var(--mono); color: #fff; padding: 0; }
+.rd .clock { font: 400 11.5px var(--xp); color: #fff; padding: 0; grid-auto-flow: column; gap: 8px; }
 .rd .clock [data-date] { display: none; }
 
-.rd .start-menu { left: 6px; bottom: 46px; width: min(360px, calc(100% - 12px)); padding: 0; background: #fff; color: var(--ink); border: 2px solid var(--ink); border-radius: 0; box-shadow: 6px 6px 0 var(--shade); backdrop-filter: none; -webkit-backdrop-filter: none; animation: none; }
-.rd .sm-label { background: var(--ink); color: #fff; font: 400 12px var(--pixel); letter-spacing: 0.08em; padding: 9px 12px; margin: 0; }
-.rd .sm-grid { padding: 10px; gap: 4px; }
-.rd .sm-grid a, .rd .sm-grid button { color: var(--ink); font: 600 12.5px var(--head-font); border-radius: 0; border: 1.5px solid transparent; }
-.rd .sm-grid a:hover, .rd .sm-grid button:hover { background: var(--ink); color: #fff; }
-.rd .tile { border-radius: 0; }
-.rd .sm-user { margin: 0; padding: 10px 12px; border-radius: 0; background: #eef0ff; color: var(--ink); border-top: 2px solid var(--ink); font: 600 13px var(--mono); }
-.rd .sm-user .pfp.sm { border-radius: 0; box-shadow: none; }
-.rd .sm-user .power { color: #ff3b30; border-radius: 0; }
-.rd .sm-user .power:hover { background: #ffe1df; }
+/* เมนู start แบบ XP สองคอลัมน์ */
+.rd .start-menu { left: 0; bottom: 30px; width: min(380px, 100%); padding: 0; background: #fff; border: 1px solid #1c50c4; border-radius: 8px 8px 0 0; color: #000; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr auto; animation: none; }
+.rd .start-menu[hidden] { display: none; }
+.rd .sm-user { grid-row: 1; grid-column: 1 / -1; order: -1; margin: 0; padding: 8px 10px; border-radius: 0; background: linear-gradient(#1868ce, #0e60cb 12%, #0e60cb 88%, #0a4fb0); color: #fff; font: 700 14px var(--xp); text-shadow: 1px 1px 1px #0b2f6e; border: 0; }
+.rd .sm-user .pfp.sm { width: 40px; height: 40px; border-radius: 3px; border: 2px solid #d6e4fb; }
+.rd .sm-user .power { display: none; }
+.rd .sm-label { display: none; }
+.rd .sm-grid { grid-row: 2; grid-column: 1 / -1; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; background: linear-gradient(90deg, #fff 50%, #d3e5fa 50%); }
+.rd .sm-grid a, .rd .sm-grid button { grid-template-columns: 26px 1fr; justify-items: start; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 0; color: #000; font: 700 12px var(--xp); text-align: left; }
+.rd .sm-grid a:nth-child(-n+4) { font-weight: 400; color: #00136b; }
+.rd .sm-grid a:hover, .rd .sm-grid button:hover { background: #316ac5; color: #fff; }
+.rd .sm-grid svg, .rd .sm-grid .tile { width: 24px; height: 24px; font-size: 10px; border-radius: 3px; }
+.rd .start-menu::after { content: "ปิดเครื่อง…"; grid-row: 3; grid-column: 1 / -1; padding: 7px 12px; text-align: right; background: linear-gradient(#4282d6, #3b78ce 50%, #2a5fb8); color: #fff; font: 400 12px var(--xp); }
 
-.rd .ctx-menu { border-radius: 0; border: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--shade); background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 3px; }
-.rd .ctx-menu button { border-radius: 0; font: 600 12.5px var(--mono); color: var(--ink); padding: 6px 14px; }
-.rd .ctx-menu button:hover { background: var(--ink); color: #fff; }
-.rd .ctx-menu hr { border-top: 1.5px dashed var(--ink); }
-.rd .pc .desk-icons .selected, .pc .desk-icons .selected { background: rgba(31, 46, 255, 0.45) !important; border-color: #fff !important; }
+/* เมนูคลิกขวาแบบ XP */
+.rd .ctx-menu { border-radius: 0; border: 1px solid #aca899; box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35); background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 2px; }
+.rd .ctx-menu button { border-radius: 0; font: 400 12px var(--xp); padding: 4px 18px; }
+.rd .ctx-menu button:hover { background: #316ac5; color: #fff; }
 
 @media (max-width: 900px) {
   .rd-toolbar { gap: 8px; }
