@@ -704,6 +704,11 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
           </table>
         </div>
 
+        <div class="paradigm-intro reveal">
+          <h4 class="pd-h">Paradigm: สั่ง “วิธีทำ” หรือสั่ง “ผลที่อยากได้”</h4>
+          <p>โจทย์เดียวกัน: <b>หาผลรวมของ “เลขบวกยกกำลังสอง”</b> จาก <span class="mono">xs = [3, -1, 2]</span> → 3² + 2² = <b>13</b> (−1 ไม่นับ)</p>
+          <p class="pd-analogy">เทียบกับสั่งข้าว: <b>imperative</b> = ยืนบอกแม่ครัวทีละขั้น “ตั้งกระทะ ใส่น้ำมัน ตอกไข่…” · <b>declarative</b> = บอกแค่ “ขอไข่เจียวหนึ่งจาน” แล้วให้ครัวจัดการเอง</p>
+        </div>
         <div class="two-col paradigm">
           <div class="reveal">
             <h4>Imperative</h4>
@@ -712,6 +717,15 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
 for x in xs:
     if x &gt; 0:
         total += x * x</code></pre>
+            <ol class="pd-trace" aria-label="ไล่ทีละรอบ">
+              <li><span><span class="mono">x = 3</span> บวก → total = 0 + 9 = <b>9</b></span></li>
+              <li><span><span class="mono">x = -1</span> ไม่บวก → ข้าม total ยัง <b>9</b></span></li>
+              <li><span><span class="mono">x = 2</span> บวก → total = 9 + 4 = <b>13</b></span></li>
+            </ol>
+            <dl class="pd-pc">
+              <div class="pro"><dt>ข้อดี</dt><dd>คุมได้ทุกขั้น เห็นชัดว่าเครื่องทำอะไร เร็ว และเหมาะกับงานใกล้ฮาร์ดแวร์</dd></div>
+              <div class="con"><dt>ระวัง</dt><dd>มีตัวแปร total ที่ค่าเปลี่ยนไปเรื่อย ๆ — ลืมตั้งเป็น 0 หรือวางผิดบรรทัด ผลก็ผิดเงียบ ๆ</dd></div>
+            </dl>
           </div>
           <div class="reveal">
             <h4>Declarative</h4>
@@ -719,9 +733,37 @@ for x in xs:
             <pre class="code"><code>total = sum(x * x
             for x in xs
             if x &gt; 0)</code></pre>
+            <ol class="pd-trace" aria-label="อ่านเป็นประโยค">
+              <li><span>“เอา <span class="mono">x</span> แต่ละตัวใน xs”</span></li>
+              <li><span>“เฉพาะตัวที่ <span class="mono">x &gt; 0</span>” → 3, 2</span></li>
+              <li><span>“ยกกำลังสอง แล้วรวมกัน” → 9 + 4 = <b>13</b></span></li>
+            </ol>
+            <dl class="pd-pc">
+              <div class="pro"><dt>ข้อดี</dt><dd>อ่านแล้วรู้เลยว่าอยากได้อะไร ไม่มีตัวแปรที่ค่าเปลี่ยนกลางทาง พลาดยากกว่า</dd></div>
+              <div class="con"><dt>ระวัง</dt><dd>ไม่เห็นว่าเครื่องทำยังไงข้างใน ถ้าช้าหรือผิด ต้องเข้าใจว่าเบื้องหลังทำงานแบบไหน</dd></div>
+            </dl>
           </div>
         </div>
-        <p class="reveal note">Paradigm คือ “วิธีคิด” ไม่ใช่ตัวภาษา — ภาษาสมัยใหม่ส่วนใหญ่เป็น multi-paradigm อย่าง Python, Rust, JavaScript เขียนได้หลายแบบในภาษาเดียว</p>
+        <div class="pd-more reveal">
+          <div>
+            <h5>SQL ก็เป็น declarative</h5>
+            <pre class="code"><code>SELECT name FROM allies
+WHERE hp &gt; 0;   -- บอกแค่ว่าอยากได้ใคร
+                -- ไม่ได้บอกว่าให้วนหายังไง</code></pre>
+          </div>
+          <div>
+            <h5>ภาษาเดียว เขียนได้ทั้งสองแบบ (JavaScript)</h5>
+            <pre class="code"><code>// imperative
+let t = 0;
+for (const x of xs) if (x &gt; 0) t += x * x;
+
+// declarative
+const t2 = xs.filter(x =&gt; x &gt; 0)
+             .map(x =&gt; x * x)
+             .reduce((a, b) =&gt; a + b, 0);</code></pre>
+          </div>
+        </div>
+        <p class="reveal note">Paradigm คือ “วิธีคิด” ไม่ใช่ตัวภาษา — ภาษาสมัยใหม่ส่วนใหญ่เป็น multi-paradigm อย่าง Python, Rust, JavaScript เขียนได้หลายแบบในภาษาเดียว เลือกแบบที่ทำให้โค้ด <b>อ่านง่ายและพลาดยาก</b> สำหรับงานนั้น</p>
       </div>
     </section>
 
