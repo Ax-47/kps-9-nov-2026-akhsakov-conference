@@ -1560,3 +1560,16 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .quote-card { grid-template-columns: 200px 1fr; gap: 18px; }
 .quote-card img { background: transparent; padding: 0; border: 0; filter: grayscale(1) contrast(1.2) drop-shadow(6px 6px 0 rgba(0, 0, 30, 0.55)); width: 200px; height: auto; }
 @media (max-height: 820px) { .quote-card { grid-template-columns: 150px 1fr; } .quote-card img { width: 150px; } }
+
+/* อ่านง่ายขึ้น: ตัวอักษรรองบนพื้นกรมท่าสว่างขึ้น ป้ายเล็กใหญ่ขึ้น */
+body[data-bg="night"] { --muted: #d2d8ff; --fg: #f3f5ff; }
+body[data-bg="blue"] { --muted: #dfe3ff; }
+.era-tag { font-size: 13px; }
+.panel .win-body > p, .panel .ticks li, .pfc dd { color: var(--fg); }
+.trio span { font-size: 11px; }
+.trio p { font-size: 0.95em; color: var(--fg); }
+.quote-card figcaption .mono { font: 600 15px/1.5 var(--sans); color: var(--fg); }
+.quote-card figcaption .mono::first-line { color: var(--head); }
+.panel .code { font-size: clamp(13.5px, 1vw, 15.5px); }
+.panel .code .c { color: #aab3ff; }
+.panel .win-body > p.era-tag { color: var(--accent); } .panel .win-body > p.punch { color: var(--head); } .panel .win-body > p.source { color: var(--muted); }
