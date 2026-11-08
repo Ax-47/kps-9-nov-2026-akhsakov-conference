@@ -787,7 +787,8 @@ body.shake main { animation: page-shake 0.8s steps(10); }
 @keyframes wipe-bar { 0% { clip-path: inset(0 100% 0 0); } 48% { clip-path: inset(0 0 0 0); } 52% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 100%); } }
 @keyframes head-jitter { 0% { text-shadow: -3px 0 var(--red), 3px 0 var(--accent); transform: translateX(2px); } 50% { text-shadow: 3px 0 var(--red), -3px 0 var(--accent); transform: translateX(-2px); } 100% { text-shadow: none; transform: none; } }
 
-.h-letters { overflow: hidden; padding-bottom: 0.04em; }
+.h-letters { overflow: hidden; padding: 0.14em 0.04em 0.04em; margin-top: calc(10px - 0.14em); }
+.mega.h-letters { margin-left: -0.08em; }
 .h-letters .ch { display: inline-block; transform: translateY(105%) rotate(8deg); opacity: 0; }
 .h-letters.h-in .ch { animation: ch-rise 0.75s var(--ease) both; animation-delay: calc(var(--i) * 55ms); }
 @keyframes ch-rise { from { transform: translateY(105%) rotate(8deg); opacity: 0; } to { transform: none; opacity: 1; } }
