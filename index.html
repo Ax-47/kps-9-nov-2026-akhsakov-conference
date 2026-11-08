@@ -551,21 +551,6 @@ struct Boss { health: Health }
             </div>
           </article>
 
-          <article class="panel win" data-era="3">
-            <div class="win-bar"><span>ownership.rs</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="win-body">
-            <p class="era-tag mono">ERA 3 · Rust · 2015 · Graydon Hoare, Mozilla</p>
-            <h3 class="panel-title">เร็วแบบ C และปลอดภัยกว่า</h3>
-            <p><strong>ownership</strong>: ทุกค่ามีเจ้าของคนเดียว ส่งต่อ = ย้ายเจ้าของ ยืมด้วย <span class="mono">&amp;</span> ได้ ผิดกฎ = compile ไม่ผ่าน บั๊กไม่หลุดไปถึงผู้ใช้</p>
-            <pre class="code"><code>fn main() {
-    let a = String::from("hi");
-    let b = a;            // ย้ายไป b
-    println!("{}", a);    // error!
-}</code></pre>
-            <p class="mono err">error[E0382]: borrow of moved value: `a`</p>
-            <p class="small">ราคา: เรียนยาก ช่วงแรกจะ “ทะเลาะกับ borrow checker” และ compile ช้ากว่า Go · อยู่ใน Linux kernel, Firefox, Android</p>
-            </div>
-          </article>
 
         </div>
       </div>
