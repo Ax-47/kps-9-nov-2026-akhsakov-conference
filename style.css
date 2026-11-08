@@ -1434,3 +1434,10 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
   .tl-photo img { height: 104px; } .tl-ev .tl-card { padding: 10px 12px; }
   .panel-tl .panel-title { font-size: 28px; }
 }
+
+/* รูปในไทม์ไลน์: แนวคอลลาจ ตัดขอบเป็นสติกเกอร์ ไม่มีกรอบขาว */
+.tl-photo { background: transparent; padding: 0; box-shadow: none; position: relative; }
+.tl-photo img { filter: grayscale(1) contrast(1.2) drop-shadow(5px 5px 0 rgba(0, 0, 30, 0.55)); }
+.tl-photo::before { content: ""; position: absolute; top: -8px; left: 50%; width: 54px; height: 16px; transform: translateX(-50%) rotate(-6deg); background: rgba(61, 255, 143, 0.7); z-index: 1; }
+.tl-photo figcaption { position: absolute; left: -6px; bottom: 6px; padding: 3px 7px; background: #ffe066; color: #1f2eff; transform: rotate(-3deg); box-shadow: 2px 2px 0 rgba(0, 0, 30, 0.5); white-space: nowrap; }
+.tl-ev.down .tl-photo figcaption { transform: rotate(3deg); }
