@@ -211,6 +211,39 @@
       <svg class="deco-cursor" viewBox="0 0 12 19" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
     </section>
 
+    <section class="block" id="what-is-pl" data-bg="night" data-label="01 · ภาษาโปรแกรมคืออะไร" aria-labelledby="pl-title">
+      <div class="wrap">
+        <p class="kicker reveal">ก่อนเข้ายุคแรก</p>
+        <h3 class="title reveal" id="pl-title">Programming language คืออะไร?</h3>
+        <div class="two-col pl-intro">
+          <div>
+            <p class="lede reveal">ภาษาที่คนใช้ <strong>สั่งงานคอมพิวเตอร์</strong> — เขียนให้คนอ่านรู้เรื่อง แต่กฎชัดพอที่เครื่องจะแปลได้แบบไม่มีความกำกวม</p>
+            <dl class="pfc reveal">
+              <div><dt>Syntax · ไวยากรณ์</dt><dd>เขียนยังไงถึงถูก เช่น ต้องปิดวงเล็บ ต้องมี <span class="mono">;</span> ท้ายบรรทัดใน C</dd></div>
+              <div><dt>Semantics · ความหมาย</dt><dd>เขียนแล้วเครื่องจะทำอะไร เช่น <span class="mono">hp = hp - dmg</span> คือเอา hp ลบ dmg แล้วเก็บกลับ</dd></div>
+              <div><dt>ทำไมต้องมี</dt><dd>CPU เข้าใจแค่ <strong>ภาษาเครื่อง</strong> (เลข 0/1) ภาษาโปรแกรมคือสะพานระหว่างความคิดของคนกับเครื่อง</dd></div>
+            </dl>
+          </div>
+          <div class="win reveal">
+            <div class="win-bar"><span>how_code_runs.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+              <ol class="pipeline">
+                <li><b>โค้ดที่คนเขียน</b><code>hp = hp - dmg</code></li>
+                <li><b>ตัวแปลภาษา</b><span>compiler แปลทั้งไฟล์ก่อนรัน · interpreter แปลไปรันไป</span></li>
+                <li><b>ภาษาเครื่อง</b><code>2B 05 04 10 00 00</code></li>
+                <li><b>CPU ทำงาน</b><span>hp ลดลงจริงในหน่วยความจำ</span></li>
+              </ol>
+              <div class="cmp">
+                <div><b>Compiled</b><span>C · C++ · Rust · Go</span><p>แปลครั้งเดียว ได้ไฟล์รันเร็ว</p></div>
+                <div><b>Interpreted</b><span>Python · JavaScript</span><p>แก้แล้วรันได้ทันที แต่ช้ากว่า</p></div>
+              </div>
+              <p class="small">หลายภาษาผสมสองแบบ เช่น Java แปลเป็น bytecode ก่อน แล้วให้ JVM รัน</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="block" data-bg="night" data-label="01 · ประวัติภาษา" aria-labelledby="spec-title">
       <div class="wrap two-col">
         <div>
@@ -268,6 +301,15 @@
             </div>
           </article>
 
+          <article class="panel win panel-wide panel-xwide" data-era="0">
+            <div class="win-bar"><span>early_dev.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+              <p class="era-tag mono">ERA 0 · EARLY DEVELOPMENTS</p>
+              <h3 class="panel-title">กว่าจะมีภาษาโปรแกรม</h3>
+              <ol class="milestones"><li><span class="y mono">1843</span><b>Ada Lovelace</b><p>เขียนขั้นตอนคำนวณเลขแบร์นูลลีให้เครื่อง Analytical Engine ของ Babbage (เครื่องยังสร้างไม่เสร็จ) — มักถูกยกเป็น “โปรแกรมแรก”</p></li><li><span class="y mono">1942–45</span><b>Plankalkül</b><p>Konrad Zuse ออกแบบภาษาระดับสูงภาษาแรก ๆ แต่กว่าจะมีคนทำให้รันได้จริงก็ผ่านไปหลายสิบปี</p></li><li><span class="y mono">1945</span><b>ENIAC</b><p>“เขียนโปรแกรม” ด้วยการเสียบสายและปรับสวิตช์ เปลี่ยนงานทีละครั้งใช้เวลาเป็นวัน</p></li><li><span class="y mono">1945–48</span><b>Stored program</b><p>แนวคิดเก็บโปรแกรมไว้ในหน่วยความจำเหมือนข้อมูล (รายงาน EDVAC ของ von Neumann) — Manchester Baby รันได้จริงปี 1948</p></li><li><span class="y mono">1949</span><b>Assembly · Short Code</b><p>EDSAC มีตัวแปลคำย่อเป็นเลข (assembler ยุคแรก) · Short Code ของ John Mauchly เขียนเป็นสมการแล้วแปลตอนรัน</p></li><li><span class="y mono">1952</span><b>A-0 · Autocode</b><p>Grace Hopper ทำ A-0 ให้เครื่องประกอบโปรแกรมเอง · Alick Glennie ทำ Autocode ที่ Manchester</p></li><li><span class="y mono">1957</span><b>FORTRAN</b><p>ทีมของ John Backus ที่ IBM — ภาษาระดับสูงแบบ compile ภาษาแรกที่ใช้กันแพร่หลาย ได้โค้ดเร็วพอ ๆ กับเขียนมือ</p></li><li><span class="y mono">1958–59</span><b>FLOW-MATIC · LISP · ALGOL</b><p>FLOW-MATIC เขียนเกือบเป็นภาษาอังกฤษ (ต้นแบบของ COBOL) · LISP ของ John McCarthy · ALGOL 58 ต้นตระกูล Pascal และ C</p></li></ol>
+              <p class="source">ปีเป็นตัวเลขโดยประมาณของการออกแบบหรือเผยแพร่ครั้งแรก</p>
+            </div>
+          </article>
           <article class="panel panel-photo" data-era="0">
             <figure class="sticker"><img src="assets/eniac.webp" width="744" height="791" loading="lazy" alt="ภาพขาวดำของเครื่อง ENIAC ตู้ใหญ่หลายตู้ มีแผงสวิตช์และสายไฟระโยงระยาง"><figcaption class="mono">ENIAC · 1945</figcaption></figure>
             <figure class="sticker tilt"><img src="assets/grace-hopper.webp" width="705" height="927" loading="lazy" alt="ภาพขาวดำของ Grace Hopper ในชุดเครื่องแบบทหารเรือ ก้มมองการ์ดในมือ"><figcaption class="mono">GRACE HOPPER · COMPILER 1952</figcaption></figure>
