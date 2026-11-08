@@ -65,7 +65,7 @@
     </div>
 
     <!-- ===================== วาระ ===================== -->
-    <!-- ===================== แนะนำตัว speaker: คอมพิวเตอร์ (desktop.js) =====================
+    <!-- ===================== แนะนำตัว speaker: หน้าต่างรีโมตเดสก์ท็อปที่เชื่อมไปยังคอมของผู้พูด (desktop.js) =====================
          ข้อความใน <span class="fill-me">[…]</span> คือช่องที่ต้องใส่ข้อมูลจริงของผู้พูด
          ภาพพื้นหลังวาดเองด้วย SVG (ท้องฟ้า เมฆ เนินหญ้า) -->
     <section class="block speaker" id="speaker" data-bg="paper" data-label="แนะนำตัว">
@@ -73,137 +73,162 @@
         <p class="kicker">แนะนำตัว · $ whoami</p>
         <h2 class="giant">สวัสดีน้อง ๆ<br>พี่ชื่อ มิช่า</h2>
 
-        <div class="pc">
-          <div class="bezel">
-            <div class="screen" data-desktop>
-              <svg class="wallpaper" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <defs>
-                  <linearGradient id="wp-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f47c9"/><stop offset=".35" stop-color="#2d6fe6"/><stop offset=".62" stop-color="#6ea6f6"/><stop offset=".8" stop-color="#b7d6fb"/></linearGradient>
-                  <linearGradient id="wp-hill" x1="0" y1="0" x2=".25" y2="1"><stop offset="0" stop-color="#8fdc4a"/><stop offset=".35" stop-color="#5fb526"/><stop offset=".8" stop-color="#3b8c14"/><stop offset="1" stop-color="#2c6d0c"/></linearGradient>
-                  <linearGradient id="wp-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c9c1b"/><stop offset="1" stop-color="#2a6a0a"/></linearGradient>
-                  <radialGradient id="wp-light" cx=".3" cy=".45" r=".55"><stop offset="0" stop-color="#e9ff9a" stop-opacity=".55"/><stop offset="1" stop-color="#e9ff9a" stop-opacity="0"/></radialGradient>
-                  <radialGradient id="wp-shade" cx=".85" cy=".7" r=".6"><stop offset="0" stop-color="#103d00" stop-opacity=".35"/><stop offset="1" stop-color="#103d00" stop-opacity="0"/></radialGradient>
-                  <filter id="wp-cloud" x="-30%" y="-80%" width="160%" height="260%">
-                    <feTurbulence type="fractalNoise" baseFrequency=".012 .03" numOctaves="4" seed="7" result="n"/>
-                    <feDisplacementMap in="SourceGraphic" in2="n" scale="70" xChannelSelector="R" yChannelSelector="G"/>
-                    <feGaussianBlur stdDeviation="4"/>
-                  </filter>
-                  <filter id="wp-grass" x="0" y="0" width="100%" height="100%">
-                    <feTurbulence type="fractalNoise" baseFrequency=".9 .06" numOctaves="3" seed="3"/>
-                    <feColorMatrix values="0 0 0 0 0.08  0 0 0 0 0.25  0 0 0 0 0  0 0 0 .55 0"/>
-                    <feComposite in2="SourceGraphic" operator="in"/>
-                  </filter>
-                </defs>
-                <rect width="1600" height="900" fill="url(#wp-sky)"/>
-                <g class="clouds" fill="#fff" filter="url(#wp-cloud)">
-                  <ellipse cx="260" cy="110" rx="190" ry="44" opacity=".95"/><ellipse cx="380" cy="80" rx="110" ry="40" opacity=".9"/>
-                  <ellipse cx="860" cy="215" rx="150" ry="40" opacity=".9"/><ellipse cx="960" cy="190" rx="90" ry="38" opacity=".85"/>
-                  <ellipse cx="1290" cy="150" rx="200" ry="52" opacity=".95"/><ellipse cx="1420" cy="115" rx="110" ry="46" opacity=".9"/>
-                  <ellipse cx="1200" cy="360" rx="300" ry="34" opacity=".85"/><ellipse cx="560" cy="330" rx="200" ry="20" opacity=".6"/>
-                  <ellipse cx="120" cy="290" rx="140" ry="22" opacity=".55"/>
-                </g>
-                <path d="M1350 468 Q1440 430 1530 450 T1600 444 V520 H1350 Z" fill="#5b7a9e" opacity=".55"/>
-                <path id="wp-hill-shape" d="M0 380 C 320 330, 780 335, 1110 405 S 1500 475, 1600 485 V900 H0 Z" fill="url(#wp-hill)"/>
-                <path d="M0 380 C 320 330, 780 335, 1110 405 S 1500 475, 1600 485 V900 H0 Z" fill="#fff" filter="url(#wp-grass)"/>
-                <path d="M0 380 C 320 330, 780 335, 1110 405 S 1500 475, 1600 485 V900 H0 Z" fill="url(#wp-light)"/>
-                <path d="M0 380 C 320 330, 780 335, 1110 405 S 1500 475, 1600 485 V900 H0 Z" fill="url(#wp-shade)"/>
-                <path d="M0 740 C 420 705, 940 712, 1600 692 V900 H0 Z" fill="url(#wp-front)"/>
-                <path d="M0 740 C 420 705, 940 712, 1600 692 V900 H0 Z" fill="#fff" filter="url(#wp-grass)"/>
-                <g fill="#ffe25a"><circle cx="210" cy="820" r="2.6"/><circle cx="430" cy="790" r="2.2"/><circle cx="660" cy="852" r="2.6"/><circle cx="985" cy="805" r="2.2"/><circle cx="1260" cy="862" r="2.6"/><circle cx="1452" cy="782" r="2.2"/><circle cx="540" cy="880" r="2.4"/><circle cx="1110" cy="770" r="2"/></g>
-              </svg>
-
-              <ul class="desk-icons">
-                <li><button type="button" data-open="w-profile"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="i-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5aa7ff"/><stop offset="1" stop-color="#1f5fd6"/></linearGradient></defs><rect x="4" y="9" width="40" height="30" rx="4" fill="url(#i-card)"/><rect x="4" y="9" width="40" height="30" rx="4" fill="none" stroke="#0d3a8f" stroke-opacity=".5"/><circle cx="16" cy="21" r="5" fill="#fff"/><path d="M8 33c1.5-5 5-7 8-7s6.5 2 8 7z" fill="#fff"/><rect x="27" y="18" width="13" height="2.6" rx="1.3" fill="#fff" opacity=".95"/><rect x="27" y="24" width="10" height="2.6" rx="1.3" fill="#fff" opacity=".7"/><rect x="27" y="30" width="12" height="2.6" rx="1.3" fill="#fff" opacity=".7"/></svg><span>profile.exe</span></button></li>
-                <li><button type="button" data-open="w-whoami"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="8" width="40" height="32" rx="4" fill="#1b1d23"/><rect x="4" y="8" width="40" height="7" rx="4" fill="#33363f"/><rect x="4" y="12" width="40" height="3" fill="#33363f"/><path d="M11 22l6 4-6 4" fill="none" stroke="#3dff8f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="29" width="12" height="2.6" rx="1.3" fill="#d9dde8"/></svg><span>whoami.exe</span></button></li>
-                <li><button type="button" data-open="w-rules"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M11 4h18l10 10v30H11z" fill="#fff" stroke="#9aa3b5"/><path d="M29 4v10h10" fill="#e3e7ef" stroke="#9aa3b5"/><rect x="16" y="20" width="18" height="2.4" rx="1.2" fill="#6b7489"/><rect x="16" y="26" width="18" height="2.4" rx="1.2" fill="#6b7489"/><rect x="16" y="32" width="12" height="2.4" rx="1.2" fill="#6b7489"/><path d="M30 34l6-11 6 11z" fill="#ffc83d" stroke="#b07a00" stroke-width=".8"/><rect x="35.2" y="27" width="1.6" height="4" fill="#5a3d00"/><rect x="35.2" y="32" width="1.6" height="1.4" fill="#5a3d00"/></svg><span>rules.txt</span></button></li>
-                <li><a href="#game"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="i-pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b61"/><stop offset="1" stop-color="#c8231a"/></linearGradient></defs><path d="M14 15h20c5 0 8 4 9 10l1 6c.6 4-3.5 6.5-6.5 3.5L33 30H15l-4.5 4.5C7.5 37.5 3.4 35 4 31l1-6c1-6 4-10 9-10z" fill="url(#i-pad)"/><path d="M13 21v6M10 24h6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="33" cy="22" r="2" fill="#fff"/><circle cx="37" cy="26" r="2" fill="#fff"/></svg><span>hp_battle.exe</span></a></li>
-                <li><button type="button" data-bin><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="i-bin" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c9d4e6"/><stop offset=".5" stop-color="#f3f6fb"/><stop offset="1" stop-color="#b9c5da"/></linearGradient></defs><path d="M12 14h24l-2.5 28a3 3 0 0 1-3 2.7h-13a3 3 0 0 1-3-2.7z" fill="url(#i-bin)" stroke="#7d8aa3"/><rect x="9" y="10" width="30" height="5" rx="2" fill="#dfe6f1" stroke="#7d8aa3"/><path d="M19 19l1 21M24 19v21M29 19l-1 21" stroke="#8d99b0" stroke-width="1.4"/><path d="M20 7h8" stroke="#7d8aa3" stroke-width="2.4" stroke-linecap="round"/></svg><span>ถังขยะ</span></button></li>
-              </ul>
-
-              <div class="desk-win app card-app" id="w-profile" data-title="profile.exe" style="--x:128px;--y:6%;--w:400px">
-                <div class="win-bar"><svg viewBox="0 0 48 48" class="app-ico" aria-hidden="true"><defs><linearGradient id="i-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5aa7ff"/><stop offset="1" stop-color="#1f5fd6"/></linearGradient></defs><rect x="4" y="9" width="40" height="30" rx="4" fill="url(#i-card)"/><rect x="4" y="9" width="40" height="30" rx="4" fill="none" stroke="#0d3a8f" stroke-opacity=".5"/><circle cx="16" cy="21" r="5" fill="#fff"/><path d="M8 33c1.5-5 5-7 8-7s6.5 2 8 7z" fill="#fff"/><rect x="27" y="18" width="13" height="2.6" rx="1.3" fill="#fff" opacity=".95"/><rect x="27" y="24" width="10" height="2.6" rx="1.3" fill="#fff" opacity=".7"/><rect x="27" y="30" width="12" height="2.6" rx="1.3" fill="#fff" opacity=".7"/></svg><span class="t">profile.exe — Contact</span><span class="win-btns"><button type="button" data-act="min" aria-label="ย่อ"><svg viewBox="0 0 10 10"><path d="M1 5.5h8"/></svg></button><button type="button" data-act="max" aria-label="ขยาย"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg></button><button type="button" data-act="close" class="x" aria-label="ปิด"><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></button></span></div>
-                <div class="app-body">
-                  <div class="card-head">
-                    <div class="pfp" aria-hidden="true"><span>M</span></div>
-                    <div><p class="card-name">มิช่า</p><p class="card-sub">Misha · พี่แนะแนว guide.exe</p></div>
-                  </div>
-                  <dl class="card-rows">
-                    <div><dt>สถานศึกษา</dt><dd>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</dd></div>
-                    <div><dt>เรียน</dt><dd><span class="fill-me">[สาขา / ปี]</span></dd></div>
-                    <div><dt>ภาษาหลัก</dt><dd><span class="fill-me">[ภาษาที่เขียนเป็นหลัก]</span></dd></div>
-                    <div><dt>งาน</dt><dd>แนะแนวรุ่นน้อง ม.ปลาย · 09/11/2026</dd></div>
-                  </dl>
-                </div>
-              </div>
-
-              <div class="desk-win app term-app" id="w-whoami" data-title="whoami.exe" style="--x:52%;--y:4%;--w:500px">
-                <div class="win-bar"><svg viewBox="0 0 48 48" class="app-ico" aria-hidden="true"><rect x="4" y="8" width="40" height="32" rx="4" fill="#1b1d23"/><rect x="4" y="8" width="40" height="7" rx="4" fill="#33363f"/><rect x="4" y="12" width="40" height="3" fill="#33363f"/><path d="M11 22l6 4-6 4" fill="none" stroke="#3dff8f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="29" width="12" height="2.6" rx="1.3" fill="#d9dde8"/></svg><span class="t tab">misha@guide: ~</span><span class="win-btns"><button type="button" data-act="min" aria-label="ย่อ"><svg viewBox="0 0 10 10"><path d="M1 5.5h8"/></svg></button><button type="button" data-act="max" aria-label="ขยาย"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg></button><button type="button" data-act="close" class="x" aria-label="ปิด"><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></button></span></div>
-                <div class="whoami term-body" data-type-lines>
-              <p class="sh">whoami</p>
-              <p>มิช่า (Misha)</p>
-              <p class="sh">cat school.txt</p>
-              <p>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</p>
-              <p class="sh">cat studying.txt</p>
-              <p><span class="fill-me">[เรียนสาขาอะไร ปีไหน]</span></p>
-              <p class="sh">cat languages.txt</p>
-              <p><span class="fill-me">[ภาษาที่เขียนเป็นหลัก]</span></p>
-              <p class="sh">ls projects/</p>
-              <p><span class="fill-me">[โปรเจกต์ที่ทำอยู่]</span></p>
-              <p class="sh">cat contact.txt</p>
-              <p><span class="fill-me">[IG]</span> · <span class="fill-me">[Discord]</span> · <span class="fill-me">[อีเมล]</span></p>
+        <div class="rd pc" data-rd>
+          <div class="rd-titlebar">
+            <span class="rd-app"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="3" width="12" height="9" rx="1.5" fill="#3dff8f"/><rect x="7" y="8" width="12" height="9" rx="1.5" fill="#4f8df5" stroke="#1b1d23" stroke-width="1"/></svg>guide remote</span>
+            <div class="rd-tabs" role="tablist" aria-label="เซสชัน">
+              <span class="rd-tab" role="tab" aria-selected="true"><i class="dot"></i>misha-pc<b aria-hidden="true">×</b></span>
+              <span class="rd-tab add" aria-hidden="true">+</span>
             </div>
-              </div>
-
-              <div class="desk-win app msg-app" id="w-rules" data-title="rules.txt" style="--x:30%;--y:47%;--w:460px">
-                <div class="win-bar"><svg viewBox="0 0 48 48" class="app-ico" aria-hidden="true"><path d="M11 4h18l10 10v30H11z" fill="#fff" stroke="#9aa3b5"/><path d="M29 4v10h10" fill="#e3e7ef" stroke="#9aa3b5"/><rect x="16" y="20" width="18" height="2.4" rx="1.2" fill="#6b7489"/><rect x="16" y="26" width="18" height="2.4" rx="1.2" fill="#6b7489"/><rect x="16" y="32" width="12" height="2.4" rx="1.2" fill="#6b7489"/><path d="M30 34l6-11 6 11z" fill="#ffc83d" stroke="#b07a00" stroke-width=".8"/><rect x="35.2" y="27" width="1.6" height="4" fill="#5a3d00"/><rect x="35.2" y="32" width="1.6" height="1.4" fill="#5a3d00"/></svg><span class="t">rules.txt</span><span class="win-btns"><button type="button" data-act="min" aria-label="ย่อ"><svg viewBox="0 0 10 10"><path d="M1 5.5h8"/></svg></button><button type="button" data-act="max" aria-label="ขยาย"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg></button><button type="button" data-act="close" class="x" aria-label="ปิด"><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></button></span></div>
-                <div class="msg-body">
-                  <svg class="msg-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l21 37H3z" fill="#ffc83d" stroke="#b07a00" stroke-width="1.5" stroke-linejoin="round"/><rect x="22" y="17" width="4" height="13" rx="2" fill="#4a3300"/><circle cx="24" cy="35" r="2.4" fill="#4a3300"/></svg>
-                  <div>
-                    <p class="msg-title">ก่อนเริ่ม อ่านนี่ก่อนนะ</p>
-                    <ul class="msg-list">
-                      <li>วันนี้ยาวประมาณ <b>2 ชั่วโมงครึ่ง</b> มีพัก 10 นาทีตรงกลาง</li>
-                      <li>มีกิจกรรมให้ลองเล่นระหว่างทาง (รวมถึงเกมในเว็บนี้)</li>
-                      <li><b>ไม่ต้องจดทุกคำ</b> — Part 3 จะเล่าว่าทำไมการจดทุกคำไม่ใช่วิธีจำที่ดีที่สุด</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="msg-btns"><button type="button" data-act="close">จดทุกคำ</button><button type="button" data-act="close" class="primary">ฟังแล้วลองทำ</button></div>
-              </div>
-
-              <div class="ctx-menu" role="menu" hidden>
-                <button type="button" role="menuitem" data-open="w-whoami">เปิด whoami.exe</button>
-                <button type="button" role="menuitem" data-open="w-profile">เปิด profile.exe</button>
-                <button type="button" role="menuitem" data-refresh>รีเฟรช</button>
-                <hr>
-                <button type="button" role="menuitem" data-about>เกี่ยวกับเครื่องนี้</button>
-              </div>
-
-              <div class="boot" aria-hidden="true"><div class="boot-logo"><span>g</span></div><p>GUIDE-PC</p><i class="spinner"></i></div>
-
-              <div class="taskbar">
-                <button type="button" class="start-btn" data-start aria-expanded="false" aria-controls="start-menu" aria-label="เมนู start"><span>g</span></button>
-                <button type="button" class="search" data-start-search><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>ค้นหา</span></button>
-                <div class="tasks" data-tasks></div>
-                <div class="tray"><span class="tray-icons"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 6.2a9.5 9.5 0 0 1 13 0M3.8 8.6a6.2 6.2 0 0 1 8.4 0M6.1 11a2.9 2.9 0 0 1 3.8 0" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="13.2" r="1" fill="currentColor"/></svg><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-3v10L5 10H2z" fill="currentColor"/><path d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.8a6 6 0 0 1 0 8.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><svg viewBox="0 0 20 16" aria-hidden="true"><rect x="1" y="4" width="16" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="3" y="6" width="10" height="4" rx="1" fill="currentColor"/><rect x="17.6" y="6.5" width="1.6" height="3" rx=".6" fill="currentColor"/></svg></span><span class="clock"><time data-clock>--:--</time><span data-date></span></span></div>
-                <nav class="start-menu" id="start-menu" aria-label="เมนู start" hidden>
-                  <p class="sm-label">ปักหมุด</p>
-                  <div class="sm-grid">
-                    <a href="#part1"><span class="tile t1">01</span>ประวัติภาษา</a>
-                    <a href="#part2"><span class="tile t2">02</span>เริ่มต้น</a>
-                    <a href="#part3"><span class="tile t3">03</span>สมอง</a>
-                    <a href="#part4"><span class="tile t4">04</span>ซ้อมแข่ง</a>
-                    <a href="#game"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="i-pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b61"/><stop offset="1" stop-color="#c8231a"/></linearGradient></defs><path d="M14 15h20c5 0 8 4 9 10l1 6c.6 4-3.5 6.5-6.5 3.5L33 30H15l-4.5 4.5C7.5 37.5 3.4 35 4 31l1-6c1-6 4-10 9-10z" fill="url(#i-pad)"/><path d="M13 21v6M10 24h6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="33" cy="22" r="2" fill="#fff"/><circle cx="37" cy="26" r="2" fill="#fff"/></svg>เกม HP</a>
-                    <button type="button" data-open="w-whoami"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="8" width="40" height="32" rx="4" fill="#1b1d23"/><rect x="4" y="8" width="40" height="7" rx="4" fill="#33363f"/><rect x="4" y="12" width="40" height="3" fill="#33363f"/><path d="M11 22l6 4-6 4" fill="none" stroke="#3dff8f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="29" width="12" height="2.6" rx="1.3" fill="#d9dde8"/></svg>whoami</button>
-                  </div>
-                  <div class="sm-user"><span class="pfp sm" aria-hidden="true"><span>M</span></span><span>มิช่า</span><button type="button" class="power" data-shutdown aria-label="ปิดเครื่อง"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5v6M4.4 3.8a5.5 5.5 0 1 0 7.2 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
-                </nav>
-              </div>
-            </div>
-            <div class="glare" aria-hidden="true"></div>
+            <span class="rd-winctl" aria-hidden="true"><i>–</i><i>▢</i><i>✕</i></span>
           </div>
-          <div class="chin" aria-hidden="true"><span>GUIDE</span><i class="led"></i></div>
-          <div class="neck" aria-hidden="true"></div>
-          <div class="base" aria-hidden="true"></div>
+          <div class="rd-toolbar">
+            <div class="rd-address"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="mono">0911-2026</span><span class="rd-name">misha-pc</span></div>
+            <div class="rd-actions">
+              <button type="button" data-rd-act="chat" title="แชต" aria-label="แชต"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4h14v9H8l-4 3v-3H3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+              <button type="button" data-rd-act="keys" title="ส่ง Ctrl+Alt+Del" aria-label="ส่ง Ctrl+Alt+Del"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="5" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 8h1M8 8h1M11 8h1M14 8h1M6 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+              <button type="button" data-rd-act="full" title="เต็มจอ" aria-label="เต็มจอ"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8V3h5M12 3h5v5M17 12v5h-5M8 17H3v-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+              <button type="button" data-rd-act="disconnect" class="danger" title="ตัดการเชื่อมต่อ" aria-label="ตัดการเชื่อมต่อ"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 6l8 8M14 6l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+            </div>
+            <div class="rd-status" data-rd-status><i class="dot"></i><span data-rd-state>ยังไม่เชื่อมต่อ</span><span class="mono" data-rd-ping></span><span class="mono" data-rd-time></span></div>
+          </div>
+          <div class="rd-viewport">
+          <div class="screen" data-desktop>
+            <svg class="wallpaper" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="wp-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f47c9"/><stop offset=".35" stop-color="#2d6fe6"/><stop offset=".62" stop-color="#6ea6f6"/><stop offset=".8" stop-color="#b7d6fb"/></linearGradient>
+                <linearGradient id="wp-hill" x1="0" y1="0" x2=".25" y2="1"><stop offset="0" stop-color="#8fdc4a"/><stop offset=".35" stop-color="#5fb526"/><stop offset=".8" stop-color="#3b8c14"/><stop offset="1" stop-color="#2c6d0c"/></linearGradient>
+                <linearGradient id="wp-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c9c1b"/><stop offset="1" stop-color="#2a6a0a"/></linearGradient>
+                <radialGradient id="wp-light" cx=".3" cy=".45" r=".55"><stop offset="0" stop-color="#e9ff9a" stop-opacity=".55"/><stop offset="1" stop-color="#e9ff9a" stop-opacity="0"/></radialGradient>
+                <radialGradient id="wp-shade" cx=".85" cy=".7" r=".6"><stop offset="0" stop-color="#103d00" stop-opacity=".35"/><stop offset="1" stop-color="#103d00" stop-opacity="0"/></radialGradient>
+                <filter id="wp-cloud" x="-30%" y="-80%" width="160%" height="260%">
+                  <feTurbulence type="fractalNoise" baseFrequency=".012 .03" numOctaves="4" seed="7" result="n"/>
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="70" xChannelSelector="R" yChannelSelector="G"/>
+                  <feGaussianBlur stdDeviation="4"/>
+                </filter>
+                <filter id="wp-grass" x="0" y="0" width="100%" height="100%">
+                  <feTurbulence type="fractalNoise" baseFrequency=".9 .06" numOctaves="3" seed="3"/>
+                  <feColorMatrix values="0 0 0 0 0.08  0 0 0 0 0.25  0 0 0 0 0  0 0 0 .55 0"/>
+                  <feComposite in2="SourceGraphic" operator="in"/>
+                </filter>
+              </defs>
+              <rect width="1600" height="900" fill="url(#wp-sky)"/>
+              <g class="clouds" fill="#fff" filter="url(#wp-cloud)">
+                <ellipse cx="260" cy="110" rx="190" ry="44" opacity=".95"/><ellipse cx="380" cy="80" rx="110" ry="40" opacity=".9"/>
+                <ellipse cx="860" cy="215" rx="150" ry="40" opacity=".9"/><ellipse cx="960" cy="190" rx="90" ry="38" opacity=".85"/>
+                <ellipse cx="1290" cy="150" rx="200" ry="52" opacity=".95"/><ellipse cx="1420" cy="115" rx="110" ry="46" opacity=".9"/>
+                <ellipse cx="1200" cy="360" rx="300" ry="34" opacity=".85"/><ellipse cx="560" cy="330" rx="200" ry="20" opacity=".6"/>
+                <ellipse cx="120" cy="290" rx="140" ry="22" opacity=".55"/>
+              </g>
+              <path d="M1350 468 Q1440 430 1530 450 T1600 444 V520 H1350 Z" fill="#5b7a9e" opacity=".55"/>
+              <path id="wp-hill-shape" d="M0 380 C 320 330, 780 335, 1110 405 S 1500 475, 1600 485 V900 H0 Z" fill="url(#wp-hill)"/>
+              <path d="M0 380 C 320 330, 780 335, 1110 405 S 1500 475, 1600 485 V900 H0 Z" fill="#fff" filter="url(#wp-grass)"/>
+              <path d="M0 380 C 320 330, 780 335, 1110 405 S 1500 475, 1600 485 V900 H0 Z" fill="url(#wp-light)"/>
+              <path d="M0 380 C 320 330, 780 335, 1110 405 S 1500 475, 1600 485 V900 H0 Z" fill="url(#wp-shade)"/>
+              <path d="M0 740 C 420 705, 940 712, 1600 692 V900 H0 Z" fill="url(#wp-front)"/>
+              <path d="M0 740 C 420 705, 940 712, 1600 692 V900 H0 Z" fill="#fff" filter="url(#wp-grass)"/>
+              <g fill="#ffe25a"><circle cx="210" cy="820" r="2.6"/><circle cx="430" cy="790" r="2.2"/><circle cx="660" cy="852" r="2.6"/><circle cx="985" cy="805" r="2.2"/><circle cx="1260" cy="862" r="2.6"/><circle cx="1452" cy="782" r="2.2"/><circle cx="540" cy="880" r="2.4"/><circle cx="1110" cy="770" r="2"/></g>
+            </svg>
+
+            <ul class="desk-icons">
+              <li><button type="button" data-open="w-profile"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="i-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5aa7ff"/><stop offset="1" stop-color="#1f5fd6"/></linearGradient></defs><rect x="4" y="9" width="40" height="30" rx="4" fill="url(#i-card)"/><rect x="4" y="9" width="40" height="30" rx="4" fill="none" stroke="#0d3a8f" stroke-opacity=".5"/><circle cx="16" cy="21" r="5" fill="#fff"/><path d="M8 33c1.5-5 5-7 8-7s6.5 2 8 7z" fill="#fff"/><rect x="27" y="18" width="13" height="2.6" rx="1.3" fill="#fff" opacity=".95"/><rect x="27" y="24" width="10" height="2.6" rx="1.3" fill="#fff" opacity=".7"/><rect x="27" y="30" width="12" height="2.6" rx="1.3" fill="#fff" opacity=".7"/></svg><span>profile.exe</span></button></li>
+              <li><button type="button" data-open="w-whoami"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="8" width="40" height="32" rx="4" fill="#1b1d23"/><rect x="4" y="8" width="40" height="7" rx="4" fill="#33363f"/><rect x="4" y="12" width="40" height="3" fill="#33363f"/><path d="M11 22l6 4-6 4" fill="none" stroke="#3dff8f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="29" width="12" height="2.6" rx="1.3" fill="#d9dde8"/></svg><span>whoami.exe</span></button></li>
+              <li><button type="button" data-open="w-rules"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M11 4h18l10 10v30H11z" fill="#fff" stroke="#9aa3b5"/><path d="M29 4v10h10" fill="#e3e7ef" stroke="#9aa3b5"/><rect x="16" y="20" width="18" height="2.4" rx="1.2" fill="#6b7489"/><rect x="16" y="26" width="18" height="2.4" rx="1.2" fill="#6b7489"/><rect x="16" y="32" width="12" height="2.4" rx="1.2" fill="#6b7489"/><path d="M30 34l6-11 6 11z" fill="#ffc83d" stroke="#b07a00" stroke-width=".8"/><rect x="35.2" y="27" width="1.6" height="4" fill="#5a3d00"/><rect x="35.2" y="32" width="1.6" height="1.4" fill="#5a3d00"/></svg><span>rules.txt</span></button></li>
+              <li><a href="#game"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="i-pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b61"/><stop offset="1" stop-color="#c8231a"/></linearGradient></defs><path d="M14 15h20c5 0 8 4 9 10l1 6c.6 4-3.5 6.5-6.5 3.5L33 30H15l-4.5 4.5C7.5 37.5 3.4 35 4 31l1-6c1-6 4-10 9-10z" fill="url(#i-pad)"/><path d="M13 21v6M10 24h6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="33" cy="22" r="2" fill="#fff"/><circle cx="37" cy="26" r="2" fill="#fff"/></svg><span>hp_battle.exe</span></a></li>
+              <li><button type="button" data-bin><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="i-bin" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c9d4e6"/><stop offset=".5" stop-color="#f3f6fb"/><stop offset="1" stop-color="#b9c5da"/></linearGradient></defs><path d="M12 14h24l-2.5 28a3 3 0 0 1-3 2.7h-13a3 3 0 0 1-3-2.7z" fill="url(#i-bin)" stroke="#7d8aa3"/><rect x="9" y="10" width="30" height="5" rx="2" fill="#dfe6f1" stroke="#7d8aa3"/><path d="M19 19l1 21M24 19v21M29 19l-1 21" stroke="#8d99b0" stroke-width="1.4"/><path d="M20 7h8" stroke="#7d8aa3" stroke-width="2.4" stroke-linecap="round"/></svg><span>ถังขยะ</span></button></li>
+            </ul>
+
+            <div class="desk-win app card-app" id="w-profile" data-title="profile.exe" style="--x:128px;--y:6%;--w:400px">
+              <div class="win-bar"><svg viewBox="0 0 48 48" class="app-ico" aria-hidden="true"><defs><linearGradient id="i-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5aa7ff"/><stop offset="1" stop-color="#1f5fd6"/></linearGradient></defs><rect x="4" y="9" width="40" height="30" rx="4" fill="url(#i-card)"/><rect x="4" y="9" width="40" height="30" rx="4" fill="none" stroke="#0d3a8f" stroke-opacity=".5"/><circle cx="16" cy="21" r="5" fill="#fff"/><path d="M8 33c1.5-5 5-7 8-7s6.5 2 8 7z" fill="#fff"/><rect x="27" y="18" width="13" height="2.6" rx="1.3" fill="#fff" opacity=".95"/><rect x="27" y="24" width="10" height="2.6" rx="1.3" fill="#fff" opacity=".7"/><rect x="27" y="30" width="12" height="2.6" rx="1.3" fill="#fff" opacity=".7"/></svg><span class="t">profile.exe — Contact</span><span class="win-btns"><button type="button" data-act="min" aria-label="ย่อ"><svg viewBox="0 0 10 10"><path d="M1 5.5h8"/></svg></button><button type="button" data-act="max" aria-label="ขยาย"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg></button><button type="button" data-act="close" class="x" aria-label="ปิด"><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></button></span></div>
+              <div class="app-body">
+                <div class="card-head">
+                  <div class="pfp" aria-hidden="true"><span>M</span></div>
+                  <div><p class="card-name">มิช่า</p><p class="card-sub">Misha · พี่แนะแนว guide.exe</p></div>
+                </div>
+                <dl class="card-rows">
+                  <div><dt>สถานศึกษา</dt><dd>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</dd></div>
+                  <div><dt>เรียน</dt><dd><span class="fill-me">[สาขา / ปี]</span></dd></div>
+                  <div><dt>ภาษาหลัก</dt><dd><span class="fill-me">[ภาษาที่เขียนเป็นหลัก]</span></dd></div>
+                  <div><dt>งาน</dt><dd>แนะแนวรุ่นน้อง ม.ปลาย · 09/11/2026</dd></div>
+                </dl>
+              </div>
+            </div>
+
+            <div class="desk-win app term-app" id="w-whoami" data-title="whoami.exe" style="--x:52%;--y:4%;--w:500px">
+              <div class="win-bar"><svg viewBox="0 0 48 48" class="app-ico" aria-hidden="true"><rect x="4" y="8" width="40" height="32" rx="4" fill="#1b1d23"/><rect x="4" y="8" width="40" height="7" rx="4" fill="#33363f"/><rect x="4" y="12" width="40" height="3" fill="#33363f"/><path d="M11 22l6 4-6 4" fill="none" stroke="#3dff8f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="29" width="12" height="2.6" rx="1.3" fill="#d9dde8"/></svg><span class="t tab">misha@guide: ~</span><span class="win-btns"><button type="button" data-act="min" aria-label="ย่อ"><svg viewBox="0 0 10 10"><path d="M1 5.5h8"/></svg></button><button type="button" data-act="max" aria-label="ขยาย"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg></button><button type="button" data-act="close" class="x" aria-label="ปิด"><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></button></span></div>
+              <div class="whoami term-body" data-type-lines>
+            <p class="sh">whoami</p>
+            <p>มิช่า (Misha)</p>
+            <p class="sh">cat school.txt</p>
+            <p>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</p>
+            <p class="sh">cat studying.txt</p>
+            <p><span class="fill-me">[เรียนสาขาอะไร ปีไหน]</span></p>
+            <p class="sh">cat languages.txt</p>
+            <p><span class="fill-me">[ภาษาที่เขียนเป็นหลัก]</span></p>
+            <p class="sh">ls projects/</p>
+            <p><span class="fill-me">[โปรเจกต์ที่ทำอยู่]</span></p>
+            <p class="sh">cat contact.txt</p>
+            <p><span class="fill-me">[IG]</span> · <span class="fill-me">[Discord]</span> · <span class="fill-me">[อีเมล]</span></p>
+          </div>
+            </div>
+
+            <div class="desk-win app msg-app" id="w-rules" data-title="rules.txt" style="--x:30%;--y:47%;--w:460px">
+              <div class="win-bar"><svg viewBox="0 0 48 48" class="app-ico" aria-hidden="true"><path d="M11 4h18l10 10v30H11z" fill="#fff" stroke="#9aa3b5"/><path d="M29 4v10h10" fill="#e3e7ef" stroke="#9aa3b5"/><rect x="16" y="20" width="18" height="2.4" rx="1.2" fill="#6b7489"/><rect x="16" y="26" width="18" height="2.4" rx="1.2" fill="#6b7489"/><rect x="16" y="32" width="12" height="2.4" rx="1.2" fill="#6b7489"/><path d="M30 34l6-11 6 11z" fill="#ffc83d" stroke="#b07a00" stroke-width=".8"/><rect x="35.2" y="27" width="1.6" height="4" fill="#5a3d00"/><rect x="35.2" y="32" width="1.6" height="1.4" fill="#5a3d00"/></svg><span class="t">rules.txt</span><span class="win-btns"><button type="button" data-act="min" aria-label="ย่อ"><svg viewBox="0 0 10 10"><path d="M1 5.5h8"/></svg></button><button type="button" data-act="max" aria-label="ขยาย"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg></button><button type="button" data-act="close" class="x" aria-label="ปิด"><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></button></span></div>
+              <div class="msg-body">
+                <svg class="msg-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l21 37H3z" fill="#ffc83d" stroke="#b07a00" stroke-width="1.5" stroke-linejoin="round"/><rect x="22" y="17" width="4" height="13" rx="2" fill="#4a3300"/><circle cx="24" cy="35" r="2.4" fill="#4a3300"/></svg>
+                <div>
+                  <p class="msg-title">ก่อนเริ่ม อ่านนี่ก่อนนะ</p>
+                  <ul class="msg-list">
+                    <li>วันนี้ยาวประมาณ <b>2 ชั่วโมงครึ่ง</b> มีพัก 10 นาทีตรงกลาง</li>
+                    <li>มีกิจกรรมให้ลองเล่นระหว่างทาง (รวมถึงเกมในเว็บนี้)</li>
+                    <li><b>ไม่ต้องจดทุกคำ</b> — Part 3 จะเล่าว่าทำไมการจดทุกคำไม่ใช่วิธีจำที่ดีที่สุด</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="msg-btns"><button type="button" data-act="close">จดทุกคำ</button><button type="button" data-act="close" class="primary">ฟังแล้วลองทำ</button></div>
+            </div>
+
+            <div class="ctx-menu" role="menu" hidden>
+              <button type="button" role="menuitem" data-open="w-whoami">เปิด whoami.exe</button>
+              <button type="button" role="menuitem" data-open="w-profile">เปิด profile.exe</button>
+              <button type="button" role="menuitem" data-refresh>รีเฟรช</button>
+              <hr>
+              <button type="button" role="menuitem" data-about>เกี่ยวกับเครื่องนี้</button>
+            </div>
+
+            <div class="boot rd-connect" aria-live="polite">
+              <div class="rd-link" aria-hidden="true">
+                <svg viewBox="0 0 40 32"><rect x="2" y="3" width="36" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 30h12M20 25v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <span class="dots"><i></i><i></i><i></i><i></i><i></i></span>
+                <svg viewBox="0 0 40 32"><rect x="2" y="3" width="36" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 30h12M20 25v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <p class="rd-msg" data-rd-msg>พร้อมเชื่อมต่อ misha-pc</p>
+              <p class="rd-sub mono">ID 0911-2026</p>
+              <button type="button" class="rd-again" data-rd-reconnect hidden>เชื่อมต่อใหม่</button>
+            </div>
+            <div class="remote-cursor" aria-hidden="true"><svg viewBox="0 0 12 19"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg><span>Misha</span></div>
+
+            <div class="taskbar">
+              <button type="button" class="start-btn" data-start aria-expanded="false" aria-controls="start-menu" aria-label="เมนู start"><span>g</span></button>
+              <button type="button" class="search" data-start-search><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>ค้นหา</span></button>
+              <div class="tasks" data-tasks></div>
+              <div class="tray"><span class="tray-icons"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 6.2a9.5 9.5 0 0 1 13 0M3.8 8.6a6.2 6.2 0 0 1 8.4 0M6.1 11a2.9 2.9 0 0 1 3.8 0" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="13.2" r="1" fill="currentColor"/></svg><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-3v10L5 10H2z" fill="currentColor"/><path d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.8a6 6 0 0 1 0 8.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><svg viewBox="0 0 20 16" aria-hidden="true"><rect x="1" y="4" width="16" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="3" y="6" width="10" height="4" rx="1" fill="currentColor"/><rect x="17.6" y="6.5" width="1.6" height="3" rx=".6" fill="currentColor"/></svg></span><span class="clock"><time data-clock>--:--</time><span data-date></span></span></div>
+              <nav class="start-menu" id="start-menu" aria-label="เมนู start" hidden>
+                <p class="sm-label">ปักหมุด</p>
+                <div class="sm-grid">
+                  <a href="#part1"><span class="tile t1">01</span>ประวัติภาษา</a>
+                  <a href="#part2"><span class="tile t2">02</span>เริ่มต้น</a>
+                  <a href="#part3"><span class="tile t3">03</span>สมอง</a>
+                  <a href="#part4"><span class="tile t4">04</span>ซ้อมแข่ง</a>
+                  <a href="#game"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="i-pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b61"/><stop offset="1" stop-color="#c8231a"/></linearGradient></defs><path d="M14 15h20c5 0 8 4 9 10l1 6c.6 4-3.5 6.5-6.5 3.5L33 30H15l-4.5 4.5C7.5 37.5 3.4 35 4 31l1-6c1-6 4-10 9-10z" fill="url(#i-pad)"/><path d="M13 21v6M10 24h6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="33" cy="22" r="2" fill="#fff"/><circle cx="37" cy="26" r="2" fill="#fff"/></svg>เกม HP</a>
+                  <button type="button" data-open="w-whoami"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="8" width="40" height="32" rx="4" fill="#1b1d23"/><rect x="4" y="8" width="40" height="7" rx="4" fill="#33363f"/><rect x="4" y="12" width="40" height="3" fill="#33363f"/><path d="M11 22l6 4-6 4" fill="none" stroke="#3dff8f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="29" width="12" height="2.6" rx="1.3" fill="#d9dde8"/></svg>whoami</button>
+                </div>
+                <div class="sm-user"><span class="pfp sm" aria-hidden="true"><span>M</span></span><span>มิช่า</span><button type="button" class="power" data-shutdown aria-label="ปิดเครื่อง"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5v6M4.4 3.8a5.5 5.5 0 1 0 7.2 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+              </nav>
+            </div>
+          </div>
+          </div>
+          <div class="rd-statusbar mono" aria-hidden="true"><span>🔒 เข้ารหัสปลายทางถึงปลายทาง</span><span>1600 × 900</span><span data-rd-fps>— fps</span></div>
         </div>
       </div>
     </section>

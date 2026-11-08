@@ -1,5 +1,5 @@
-// หน้าแนะนำตัวแบบคอมพิวเตอร์จริง:
-// เปิดเครื่อง (โลโก้ + วงหมุน) → เดสก์ท็อป → หน้าต่างเด้งขึ้นทีละบาน
+// หน้าแนะนำตัว: หน้าต่างรีโมตเดสก์ท็อปที่เชื่อมไปยังคอมของผู้พูด (ธีมแบบ XP)
+// เชื่อมต่อ → เคอร์เซอร์ของ Misha คลิกไอคอน → หน้าต่างเด้งขึ้นทีละบาน
 // หน้าต่างลากได้ · ย่อ/ขยาย/ปิด · แถบงานพร้อมไอคอนแอป · เมนู start · คลิกขวา · นาฬิกาและวันที่
 (() => {
   "use strict";
@@ -162,7 +162,7 @@
   ctx.addEventListener("click", hideCtx);
   ctx.querySelector("[data-refresh]").addEventListener("click", () => {
     wins.forEach(close);
-    popUp();
+    setTimeout(popUp, 0);
   });
   ctx.querySelector("[data-about]").addEventListener("click", () => say("เกี่ยวกับเครื่องนี้", "GUIDE-PC · CPU: สมอง 1 ก้อน · RAM (short-term): ~4 chunks · Storage (long-term): แทบไม่จำกัด"));
 
@@ -192,18 +192,142 @@
   tick();
   setInterval(tick, 15000);
 
-  // ---------- เปิดเครื่อง แล้วหน้าต่างเด้งขึ้น ----------
+  // ---------- รีโมตเดสก์ท็อป: เชื่อมต่อ → เคอร์เซอร์ของ Misha คลิกเปิดหน้าต่างทีละบาน ----------
+  const rd = desk.closest("[data-rd]");
+  const $ = (sel) => (rd || desk).querySelector(sel);
+  const msg = $("[data-rd-msg]");
+  const stateEl = $("[data-rd-state]");
+  const statusEl = $("[data-rd-status]");
+  const pingEl = $("[data-rd-ping]");
+  const timeEl = $("[data-rd-time]");
+  const fpsEl = $("[data-rd-fps]");
+  const again = $("[data-rd-reconnect]");
+  const cursor = desk.querySelector(".remote-cursor");
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  let session = 0;      // เปลี่ยนทุกครั้งที่เชื่อมต่อ/ตัด เพื่อยกเลิกขั้นตอนเก่า
+  let timers = [];
+
   function popUp() {
     wins.forEach((w, i) => setTimeout(() => open(w), reduceMotion ? 0 : 350 + i * 700));
   }
+
+  function setState(kind, text) {
+    if (statusEl) statusEl.dataset.state = kind;
+    if (stateEl) stateEl.textContent = text;
+  }
+
+  function startMeters() {
+    const t0 = Date.now();
+    const fmt = (n) => String(n).padStart(2, "0");
+    timers.push(setInterval(() => {
+      const sec = Math.floor((Date.now() - t0) / 1000);
+      if (timeEl) timeEl.textContent = `${fmt(Math.floor(sec / 3600))}:${fmt(Math.floor(sec / 60) % 60)}:${fmt(sec % 60)}`;
+    }, 1000));
+    timers.push(setInterval(() => {
+      if (pingEl) pingEl.textContent = `${10 + Math.floor(Math.random() * 9)} ms`;
+      if (fpsEl) fpsEl.textContent = `${56 + Math.floor(Math.random() * 5)} fps`;
+    }, 1200));
+    if (pingEl) pingEl.textContent = "12 ms";
+    if (timeEl) timeEl.textContent = "00:00:00";
+  }
+  function stopMeters() { timers.forEach(clearInterval); timers = []; }
+
+  async function moveCursorTo(el, id) {
+    if (!cursor || !el) return;
+    const d = desk.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    cursor.style.setProperty("--cx", `${r.left - d.left + r.width * 0.5}px`);
+    cursor.style.setProperty("--cy", `${r.top - d.top + r.height * 0.45}px`);
+    await wait(650);
+    if (id !== session) return;
+    cursor.classList.remove("click");
+    void cursor.offsetWidth;
+    cursor.classList.add("click");
+    el.classList.add("selected");
+    setTimeout(() => el.classList.remove("selected"), 500);
+  }
+
+  async function connect() {
+    const id = ++session;
+    stopMeters();
+    wins.forEach(close);
+    if (again) again.hidden = true;
+    if (reduceMotion) {
+      desk.classList.remove("off", "booting");
+      setState("on", "เชื่อมต่อแล้ว");
+      startMeters();
+      popUp();
+      return;
+    }
+    desk.classList.remove("off");
+    desk.classList.add("booting");
+    setState("wait", "กำลังเชื่อมต่อ");
+    msg.textContent = "กำลังเชื่อมต่อ misha-pc…";
+    await wait(1000); if (id !== session) return;
+    msg.textContent = "รอเครื่องปลายทางยอมรับ…";
+    await wait(900); if (id !== session) return;
+    msg.textContent = "เชื่อมต่อแล้ว ✓";
+    setState("on", "เชื่อมต่อแล้ว");
+    startMeters();
+    await wait(500); if (id !== session) return;
+    desk.classList.remove("booting");
+    if (cursor) {
+      cursor.classList.add("show");
+      cursor.style.setProperty("--cx", "70%");
+      cursor.style.setProperty("--cy", "70%");
+    }
+    await wait(400);
+    for (const w of wins) {
+      if (id !== session) return;
+      await moveCursorTo(desk.querySelector(`.desk-icons [data-open="${w.id}"]`), id);
+      if (id !== session) return;
+      open(w);
+      await wait(450);
+    }
+    if (cursor && id === session) {
+      cursor.style.setProperty("--cx", "62%");
+      cursor.style.setProperty("--cy", "78%");
+      await wait(1600);
+      if (id === session) cursor.classList.remove("show");
+    }
+  }
+
+  function disconnect() {
+    session++;
+    stopMeters();
+    toggleMenu(false);
+    hideCtx();
+    wins.forEach(close);
+    cursor?.classList.remove("show");
+    desk.classList.remove("booting");
+    desk.classList.add("off");
+    msg.textContent = "การเชื่อมต่อสิ้นสุด";
+    setState("off", "ตัดการเชื่อมต่อแล้ว");
+    if (pingEl) pingEl.textContent = "";
+    if (fpsEl) fpsEl.textContent = "— fps";
+    if (again) again.hidden = false;
+  }
+  again?.addEventListener("click", connect);
+
+  (rd || document).querySelectorAll("[data-rd-act]").forEach((b) => b.addEventListener("click", () => {
+    const act = b.dataset.rdAct;
+    if (act === "chat") say("Misha", "สวัสดีน้อง ๆ 👋 ยินดีที่ได้รู้จักนะ");
+    if (act === "keys") say("Ctrl+Alt+Del", "ส่งไปแล้ว… แต่เครื่องนี้ไม่ยอมล็อก เพราะยังสอนไม่จบ");
+    if (act === "full" && rd) {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else rd.requestFullscreen?.();
+    }
+    if (act === "disconnect") disconnect();
+  }));
+
+  // ---------- เลื่อนมาถึงแล้วเริ่มเชื่อมต่อ ----------
   wins.forEach((w) => w.classList.add("is-closed"));
   desk.classList.add("off");
+  setState("off", "ยังไม่เชื่อมต่อ");
   const io = new IntersectionObserver((entries) => {
     if (!entries.some((e) => e.isIntersecting)) return;
     io.disconnect();
-    if (reduceMotion) { desk.classList.remove("off"); popUp(); return; }
-    desk.classList.replace("off", "booting");
-    setTimeout(() => { desk.classList.remove("booting"); popUp(); }, 1700);
+    connect();
   }, { threshold: 0.4 });
   io.observe(desk);
 })();
