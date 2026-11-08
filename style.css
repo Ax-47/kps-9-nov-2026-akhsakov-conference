@@ -1851,3 +1851,4 @@ thead th { font-size: 13px; }
 .panel-mt .days li { padding: 9px 14px; }
 @media (max-height: 820px) { .panel-mt .mt-photo img { max-height: 150px; } .hm-run .panel-mt .days li, .hm-run .panel-mt .win-body > p, .hm-run .panel-mt .mt-right > p { font-size: 16.5px; } }
 @media (max-width: 760px) { .panel-mt .mt-cols { grid-template-columns: minmax(0, 1fr); } }
+.mt-big img { width: auto; max-width: 100%; max-height: 460px; object-fit: contain; justify-self: start; }
