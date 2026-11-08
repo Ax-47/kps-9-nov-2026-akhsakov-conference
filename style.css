@@ -1613,3 +1613,15 @@ thead th { font-size: 13px; }
 .era-probs b { width: 20px; height: 20px; border-radius: 50%; background: #ff3b30; color: #fff; font: 700 11.5px/20px var(--sans); text-align: center; }
 .era-probs::before { content: "⚠ ปัญหาของโค้ดนี้"; font: 700 14px var(--head-font); color: #ff3b30; }
 @media (max-height: 820px) { .era-code .code { font-size: 12px; padding: 10px 12px; } .era-probs li { font-size: 12.5px; } }
+
+/* Go vs Rust */
+.panel-gr { width: min(1060px, 92vw); }
+.gr { width: 100%; min-width: 0; border-collapse: collapse; }
+.gr th, .gr td { border: 1.5px solid var(--line); padding: 6px 8px; vertical-align: top; }
+.gr thead th { background: var(--head); color: var(--bg); font: 400 13px var(--pixel); }
+.gr tbody th { width: 150px; text-align: left; }
+.gr tbody th b { display: block; color: var(--head); font: 700 15px var(--head-font); }
+.gr tbody th span { font: 400 12.5px var(--sans); color: var(--fg); }
+.gr .code { margin: 0; padding: 6px 10px; font-size: 12.5px; line-height: 1.45; border: 0; }
+.gr-sum { font-size: 15px; } .gr-sum b { color: var(--accent); }
+@media (max-height: 820px) { .gr .code { font-size: 11px; padding: 4px 8px; } .gr th, .gr td { padding: 4px 6px; } .panel-gr .panel-title { font-size: 24px; } }

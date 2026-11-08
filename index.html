@@ -550,6 +550,34 @@ struct Boss { health: Health }
             </dl>
             </div>
           </article>
+          <article class="panel win panel-wide panel-gr" data-era="3">
+            <div class="win-bar"><span>go_vs_rust.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+              <p class="era-tag mono">ERA 3 · OOP แบบไม่มี class</p>
+              <h3 class="panel-title">Go กับ Rust: ไม่มี extends ทั้งคู่ แต่ต่างกันตรงไหน</h3>
+              <table class="gr">
+                <thead><tr><th></th><th>Go · 2009</th><th>Rust · 2015</th></tr></thead>
+                <tbody><tr><th><b>Encapsulation</b><span>ซ่อน hp</span></th><td><pre class="code"><code>type Ally struct {
+    hp int  // ตัวเล็ก = private
+}         // ซ่อนระดับ package</code></pre></td><td><pre class="code"><code>pub struct Ally {
+    hp: i32, // ไม่มี pub = private
+}            // ซ่อนระดับ module</code></pre></td></tr><tr><th><b>Abstraction</b><span>บอกแค่ว่า “ใช้ได้”</span></th><td><pre class="code"><code>type Item interface {
+    Use(a *Ally)
+}</code></pre></td><td><pre class="code"><code>trait Item {
+    fn use_on(&amp;self, a: &amp;mut Ally);
+}</code></pre></td></tr><tr><th><b>Composition</b><span>“มี” แทน “เป็น”</span></th><td><pre class="code"><code>type Memosprite struct {
+    Health  // ฝัง: ได้เมธอดของ
+}           // Health มาใช้เลย</code></pre></td><td><pre class="code"><code>struct Memosprite {
+    health: Health, // ต้องเรียก
+}   // m.health.take(…) เอง</code></pre></td></tr><tr><th><b>Polymorphism</b><span>สั่งเหมือนกัน ทำต่างกัน</span></th><td><pre class="code"><code>func (Food) Use(a *Ally) {…}
+// มี Use() = เป็น Item อัตโนมัติ
+// ไม่ต้องประกาศ</code></pre></td><td><pre class="code"><code>impl Item for Food {
+    fn use_on(…) {…}
+} // ต้องเขียน impl ให้ชัด</code></pre></td></tr></tbody>
+              </table>
+              <p class="gr-sum"><b>Go</b> เน้นสั้น: interface ผูกกันเองแบบเงียบ ๆ ฝัง struct แล้วได้เมธอดฟรี · <b>Rust</b> เน้นชัด: ต้องเขียน impl เอง ทุกการผูกเห็นในโค้ด</p>
+            </div>
+          </article>
 
 
         </div>
@@ -1253,7 +1281,7 @@ int main() {
         <h2 class="title reveal" id="quiz-title">ทดสอบตัวเอง 4 ข้อ — นึกก่อน แล้วค่อยกดดูเฉลย</h2>
         <div class="quiz">
           <details class="reveal"><summary><span>1</span>ภาษา C ถูกสร้างมาเพื่อเขียนอะไร?</summary><p>ระบบปฏิบัติการ Unix — ให้ OS ย้ายไปเครื่องอื่นได้แค่ compile ใหม่</p></details>
-          <details class="reveal"><summary><span>2</span>ภาษาไหนใช้ ownership แทน garbage collector?</summary><p>Rust — ทุกค่ามีเจ้าของคนเดียว compiler ตรวจให้ตั้งแต่ตอน compile</p></details>
+          <details class="reveal"><summary><span>2</span>composition ต่างจาก inheritance ยังไง?</summary><p>inheritance = “เป็น” (Tank เป็น Ally เป็น Character) รับของจากแม่มาทั้งหมด ลูกแก้ทับแล้วกฎของแม่หลุดได้ · composition = “มี” (Ally มี Health) เอาชิ้นส่วนมาประกอบ กฎอยู่ในชิ้นนั้นชิ้นเดียว</p></details>
           <details class="reveal"><summary><span>3</span>HM เสียสมองส่วนไหน และอะไรที่เขายังเรียนได้?</summary><p>hippocampus (สมองส่วนขมับด้านในทั้งสองข้าง) — เลยสร้างความจำ “รู้ว่า” ใหม่ไม่ได้ แต่ยังฝึก “ทักษะ” อย่างวาดผ่านกระจกได้</p></details>
           <details class="reveal"><summary><span>4</span>ทำไมไม่ควรอดนอนติวคืนก่อนแข่ง?</summary><p>เพราะสมองย้ายสิ่งที่เรียนไปเก็บระยะยาวตอนหลับ — อดนอน = เรียนแล้วไม่ได้ save</p></details>
         </div>
