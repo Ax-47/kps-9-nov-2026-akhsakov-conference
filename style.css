@@ -1573,3 +1573,33 @@ body[data-bg="blue"] { --muted: #dfe3ff; }
 .panel .code { font-size: clamp(13.5px, 1vw, 15.5px); }
 .panel .code .c { color: #aab3ff; }
 .panel .win-body > p.era-tag { color: var(--accent); } .panel .win-body > p.punch { color: var(--head); } .panel .win-body > p.source { color: var(--muted); }
+
+/* ===================== อ่านง่ายทั้งเว็บ ===================== */
+:root { --muted: #e1e5ff; --fg: #ffffff; }
+body[data-bg="blue"] { --muted: #e1e5ff; --fg: #ffffff; }
+body[data-bg="night"] { --muted: #d6dbff; --fg: #f5f6ff; }
+body[data-bg="paper"] { --muted: #2f3aa8; --fg: #121a8c; }
+body { font-size: clamp(17px, 0.85vw + 11px, 20px); line-height: 1.75; }
+body::after { opacity: 0.1; }
+.lede { color: var(--fg); opacity: 0.92; }
+.kicker { font-size: 14px; }
+.source, .small, .viz-note { font-size: 14.5px !important; color: var(--muted); }
+.note { font-size: 1em; }
+.era-tag, .viz-h, .dbg-side h5, .part-tag, .roadmap .mono, .path span, .tree li::before, .trio span, .bfc dt, .era-langs span, .hero-meta { font-size: max(12px, 0.8em); }
+.panel .win-body p, .card p, .mem li, .pfc dd, .numbered span, .roadmap p, .works li, .links span, .quiz details p, .steps li, .first, .days li, .versus ul, .gen p, .pillars li { color: var(--fg); }
+.pfc dd, .numbered span, .links span, .quiz details p { opacity: 0.92; }
+th, td { font-size: 16px; }
+thead th { font-size: 13px; }
+.tl-card p { color: #f0f2ff; }
+.dbg-code li::before { color: #8b93e0; }
+.dbg-vars dt, .dbg-rules li { color: #c4cbff; }
+.dbg-rules em, .zero-why, .dbg-from, .dbg-stack li { color: #dfe3ff; }
+.viz-hex code { color: #d0d6ff; }
+.game-top, .cmd { font-size: 14px; }
+.term { color: #eef0ff; }
+.t-grey { color: #a3aae0; }
+.tray, .rd-statusbar { font-size: 12.5px; }
+.footer .small { color: var(--muted); }
+.qc-photo { position: relative; display: block; width: fit-content; }
+.qc-photo::before { content: ""; position: absolute; top: -8px; left: 50%; width: 58px; height: 16px; transform: translateX(-50%) rotate(-5deg); background: rgba(61, 255, 143, 0.7); z-index: 1; }
+.qc-tag { position: absolute; left: -8px; bottom: 10px; padding: 3px 8px; background: #ffe066; color: #1f2eff; font: 400 11px var(--pixel); letter-spacing: 0.06em; transform: rotate(-3deg); box-shadow: 2px 2px 0 rgba(0, 0, 30, 0.5); white-space: nowrap; z-index: 1; }
