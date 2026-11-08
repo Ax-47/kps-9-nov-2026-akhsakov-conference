@@ -1907,6 +1907,3 @@ thead th { font-size: 13px; }
   .track-panel .small { font-size: 13px; }
 }
 
-/* ต้องยากขนาดไหน */
-.hard-quote { font: 500 clamp(20px, 2vw, 26px)/1.5 var(--head-font); color: #fff; max-width: 900px; border-left: 4px solid var(--green); padding-left: 16px; margin-bottom: 22px; }
-.hard-quote b { color: var(--green); }
