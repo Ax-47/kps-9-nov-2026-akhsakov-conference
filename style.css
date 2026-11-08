@@ -1243,3 +1243,14 @@ html.rd-lock .topbar { display: none; }
 /* เต็มจอบนมือถือ: ใช้เลย์เอาต์ลอยแบบเดสก์ท็อปไม่ได้ ให้เลื่อนดูในจอได้ */
 @media (max-width: 900px) { .rd.is-full .screen { overflow: auto; } }
 @media (max-width: 900px) { .rd-full-float { display: none; } }
+
+/* akhsakov.exe: ผลลัพธ์แบบ label: value */
+.whoami p.kv { display: grid; grid-template-columns: 11ch 1fr; gap: 0 1ch; padding-left: 0 !important; margin-bottom: 2px !important; }
+.whoami p.kv b { font-weight: 400; color: #8f9bff; }
+.rd .whoami p.kv b { color: #c0c0c0; }
+.rd .whoami p.kv span { color: #fff; }
+.whoami p.kv a { color: inherit; }
+.whoami p.sh:first-child { margin-bottom: 6px; }
+.whoami .cursor-line { margin-top: 8px; }
+.whoami .cursor-line::after { content: "_"; animation: blink 1s steps(1) infinite; }
+@media (max-width: 520px) { .whoami p.kv { grid-template-columns: 1fr; } }
