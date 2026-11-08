@@ -137,7 +137,7 @@
   // ===================== การ์ดเอียงตามเมาส์ =====================
   if (finePointer && !reduceMotion) {
     document.querySelectorAll(".card, .mem, .dialog, .works > div, .block .win:not(.game)").forEach((el) => {
-      if (el.closest("[data-desktop]")) return;
+      if (el.closest("[data-desktop]") || el.querySelector("[data-viz]")) return;
       el.classList.add("tilt");
       el.addEventListener("pointermove", (e) => {
         const r = el.getBoundingClientRect();

@@ -15,6 +15,7 @@
   <script src="game.js?v=dev" defer></script>
   <script src="fun.js?v=dev" defer></script>
   <script src="desktop.js?v=dev" defer></script>
+  <script src="viz.js?v=dev" defer></script>
 </head>
 <body data-bg="blue">
   <a class="skip" href="#agenda">ข้ามไปเนื้อหา</a>
@@ -215,7 +216,7 @@
       <div class="wrap">
         <p class="kicker reveal">ก่อนเข้ายุคแรก</p>
         <h3 class="title reveal" id="pl-title">Programming language คืออะไร?</h3>
-        <div class="two-col pl-intro">
+        <div class="pl-intro">
           <div>
             <p class="lede reveal">ภาษาที่คนใช้ <strong>สั่งงานคอมพิวเตอร์</strong> — เขียนให้คนอ่านรู้เรื่อง แต่กฎชัดพอที่เครื่องจะแปลได้แบบไม่มีความกำกวม</p>
             <dl class="pfc reveal">
@@ -227,12 +228,32 @@
           <div class="win reveal">
             <div class="win-bar"><span>how_code_runs.txt</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
             <div class="win-body">
-              <ol class="pipeline">
-                <li><b>โค้ดที่คนเขียน</b><code>hp = hp - dmg</code></li>
-                <li><b>ตัวแปลภาษา</b><span>compiler แปลทั้งไฟล์ก่อนรัน · interpreter แปลไปรันไป</span></li>
-                <li><b>ภาษาเครื่อง</b><code>2B 05 04 10 00 00</code></li>
-                <li><b>CPU ทำงาน</b><span>hp ลดลงจริงในหน่วยความจำ</span></li>
-              </ol>
+              <div class="viz" data-viz>
+                <div class="viz-bar">
+                  <div class="viz-modes" role="group" aria-label="โหมดตัวแปลภาษา">
+                    <button type="button" data-mode="compile" aria-pressed="true">Compiled</button>
+                    <button type="button" data-mode="interp" aria-pressed="false">Interpreted</button>
+                  </div>
+                  <div class="viz-ctl"><button type="button" class="btn" data-viz-run>▶ รัน</button><button type="button" class="btn ghost" data-viz-reset>รีเซ็ต</button></div>
+                </div>
+                <div class="viz-stage">
+                  <div class="viz-box src"><p class="viz-h">1 · source.c <span>คนเขียน</span></p>
+                    <ol class="viz-code"><li>hp = 100;</li><li>dmg = 30;</li><li>hp = hp - dmg;</li></ol></div>
+                  <div class="viz-arrow" aria-hidden="true"><i></i></div>
+                  <div class="viz-box tr"><p class="viz-h">2 · <span data-viz-trname>compiler</span></p>
+                    <div class="gear" aria-hidden="true">⚙</div><p class="viz-sub" data-viz-trsub>แปลทั้งไฟล์ก่อนรัน</p></div>
+                  <div class="viz-arrow" aria-hidden="true"><i></i></div>
+                  <div class="viz-box mc"><p class="viz-h">3 · ภาษาเครื่อง <span data-viz-file></span></p>
+                    <ol class="viz-hex" data-viz-hex></ol></div>
+                  <div class="viz-arrow" aria-hidden="true"><i></i></div>
+                  <div class="viz-box cpu"><p class="viz-h">4 · CPU + หน่วยความจำ</p>
+                    <div class="reg"><b>EAX</b><span data-viz-eax>—</span></div>
+                    <div class="alu" aria-hidden="true">ALU</div>
+                    <div class="mem"><div><b>0x1000 hp</b><span data-viz-hp>—</span></div><div><b>0x1004 dmg</b><span data-viz-dmg>—</span></div></div></div>
+                </div>
+                <p class="viz-log" data-viz-log aria-live="polite">กด ▶ รัน เพื่อดูว่าโค้ด 3 บรรทัดนี้กลายเป็นอะไร แล้ว CPU ทำงานยังไง</p>
+                <p class="viz-note">ภาษาเครื่องเป็นคำสั่ง x86 จริง (เขียนเลขฐาน 16) โดยสมมติว่า hp อยู่ที่ตำแหน่ง 0x1000 และ dmg อยู่ที่ 0x1004</p>
+              </div>
               <div class="cmp">
                 <div><b>Compiled</b><span>C · C++ · Rust · Go</span><p>แปลครั้งเดียว ได้ไฟล์รันเร็ว</p></div>
                 <div><b>Interpreted</b><span>Python · JavaScript</span><p>แก้แล้วรันได้ทันที แต่ช้ากว่า</p></div>

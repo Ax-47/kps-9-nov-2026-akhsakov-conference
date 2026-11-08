@@ -1293,3 +1293,62 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .milestones p { font-size: 0.86em; color: var(--muted); line-height: 1.5; }
 @media (max-width: 760px) { .milestones { grid-template-columns: 1fr; } .cmp { grid-template-columns: 1fr; } }
 .panel-xwide { width: min(1080px, 90vw); } .panel-xwide .milestones li { padding: 6px 0; }
+
+/* ===================== แอนิเมชันโค้ดรันยังไง (viz.js) ===================== */
+.pl-intro { display: grid; gap: 28px; }
+.pl-intro > div:first-child { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 0 40px; align-items: start; }
+.pl-intro > div:first-child .pfc { margin-top: 0; }
+@media (max-width: 860px) { .pl-intro > div:first-child { grid-template-columns: 1fr; } .pl-intro > div:first-child .pfc { margin-top: 18px; } }
+.viz { display: grid; gap: 14px; }
+.viz-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.viz-modes { display: flex; border: 2px solid var(--line); }
+.viz-modes button { font: 600 13px var(--mono); padding: 7px 16px; background: transparent; color: var(--head); border: 0; cursor: pointer; }
+.viz-modes button[aria-pressed="true"] { background: var(--head); color: var(--bg); }
+.viz-ctl { display: flex; gap: 8px; }
+.viz-ctl .btn { padding: 7px 16px; font-size: 13px; }
+.viz-stage { display: grid; grid-template-columns: 1fr 34px 0.8fr 34px 1.25fr 34px 1fr; align-items: stretch; }
+.viz-box { border: 1.5px solid var(--line); padding: 10px 12px; display: grid; align-content: start; gap: 8px; transition: box-shadow 0.2s, background 0.2s; min-width: 0; }
+.viz-box.busy { box-shadow: 0 0 0 3px var(--accent); background: rgba(61, 255, 143, 0.07); }
+.viz-h { font: 400 11px var(--pixel); color: var(--accent); letter-spacing: 0.05em; }
+.viz-h span { color: var(--muted); }
+.viz-code { list-style: none; padding: 0; margin: 0; font: 13px/1.9 var(--mono); counter-reset: ln; }
+.viz-code li { counter-increment: ln; padding: 0 6px; color: var(--fg); transition: background 0.2s; }
+.viz-code li::before { content: counter(ln); color: var(--muted); margin-right: 10px; font-size: 11px; }
+.viz-code li.on { background: var(--accent); color: var(--bg); }
+.viz-code li.on::before { color: var(--bg); }
+.viz-code li.done:not(.on) { color: var(--accent); }
+.tr { justify-items: center; text-align: center; }
+.gear { font-size: 44px; line-height: 1; color: var(--head); }
+.tr.busy .gear { animation: spin 0.6s linear infinite; }
+.viz-sub { font-size: 12.5px; color: var(--muted); }
+.viz-hex { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; min-height: 120px; }
+.viz-hex li { display: grid; gap: 1px; padding: 4px 6px; background: var(--code-bg); animation: hex-in 0.35s steps(4); }
+.viz-hex code { font-size: 11.5px; color: var(--code-fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.viz-hex span { font: 11px var(--mono); color: var(--muted); }
+.viz-hex li.exec { box-shadow: inset 3px 0 0 var(--accent); background: rgba(61, 255, 143, 0.14); }
+@keyframes hex-in { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+.cpu .reg, .cpu .mem div { display: flex; justify-content: space-between; gap: 8px; padding: 5px 8px; border: 1.5px solid var(--line); font: 12.5px var(--mono); }
+.cpu .reg b, .cpu .mem b { font-weight: 400; color: var(--muted); }
+.cpu .reg span, .cpu .mem span { color: var(--head); font-weight: 600; }
+.cpu .mem { display: grid; gap: 4px; }
+.changed { animation: changed 0.6s ease-out; }
+@keyframes changed { 0% { background: var(--accent); } 100% { background: transparent; } }
+.changed span { color: var(--head); }
+.alu { justify-self: center; font: 400 18px var(--display); color: var(--muted); padding: 2px 14px; border: 1.5px dashed var(--line); clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%); }
+.alu.on { animation: alu 0.7s ease-out; }
+@keyframes alu { 0%, 60% { background: var(--accent); color: var(--bg); } 100% { background: transparent; } }
+.viz-arrow { position: relative; align-self: center; height: 2px; margin: 0 4px; background: var(--line); }
+.viz-arrow::after { content: ""; position: absolute; right: -2px; top: -5px; border: 6px solid transparent; border-left-color: var(--line); border-right: 0; }
+.viz-arrow i { position: absolute; left: 0; top: -4px; width: 10px; height: 10px; background: var(--accent); opacity: 0; }
+.viz-arrow.go i { animation: packet 0.45s linear; }
+@keyframes packet { 0% { left: 0; opacity: 1; } 100% { left: calc(100% - 10px); opacity: 1; } }
+.viz-log { font: 600 14px var(--mono); color: var(--head); padding: 10px 12px; border: 1.5px dashed var(--line); min-height: 44px; }
+.viz-note { font-size: 12px; color: var(--muted); }
+@media (max-width: 980px) {
+  .viz-stage { grid-template-columns: 1fr; gap: 0; }
+  .viz-arrow { width: 2px; height: 26px; justify-self: center; margin: 4px 0; }
+  .viz-arrow::after { right: auto; left: -5px; top: auto; bottom: -2px; border: 6px solid transparent; border-top-color: var(--line); border-bottom: 0; }
+  .viz-arrow i { left: -4px; top: 0; }
+  @keyframes packet { 0% { top: 0; opacity: 1; } 100% { top: calc(100% - 10px); opacity: 1; } }
+}
+@media (prefers-reduced-motion: reduce) { .viz-arrow.go i, .tr.busy .gear, .viz-hex li, .changed, .alu.on { animation: none; } }
