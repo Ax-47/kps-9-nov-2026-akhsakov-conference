@@ -1414,3 +1414,23 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .tl-card:has(.tl-photo) .tl-photo { grid-row: span 2; margin: 0; align-self: start; }
 .tl-photo img { height: 104px; }
 @media (max-height: 820px) { .tl-photo img { height: 78px; } .panel-tl .panel-title { font-size: 26px; } .panel-tl .win-body { gap: 8px; } }
+
+/* ไทม์ไลน์ ERA 0: ใหญ่ขึ้น อ่านง่ายขึ้น */
+.tl { --col: 215px; grid-template-rows: auto 44px auto; }
+.tl::before { display: none; }
+.tl-line { grid-row: 2; grid-column: 1 / -1; align-self: center; height: 4px; background: var(--accent); list-style: none; }
+.tl-ev .tl-card { margin-right: 16px; padding: 14px 16px; gap: 6px; }
+.tl-card b { font-size: 21px; }
+.tl-card p { font-size: 16px; line-height: 1.55; color: #e6e9ff; }
+.tl-year { font-size: 15px; margin-left: 36px; padding: 0 8px; }
+.tl-dot { width: 20px; height: 20px; margin-left: 10px; border-width: 4px; }
+.tl-ev .tl-card::after { left: 18px; height: 22px; width: 3px; }
+.tl-photo img { height: 150px; }
+.tl-photo figcaption { font-size: 11px; }
+.panel-tl .panel-title { font-size: clamp(30px, 3vw, 42px); }
+.panel-tl .era-tag { font-size: 13px; }
+@media (max-height: 820px) {
+  .tl-card b { font-size: 18px; } .tl-card p { font-size: 14px; line-height: 1.45; }
+  .tl-photo img { height: 104px; } .tl-ev .tl-card { padding: 10px 12px; }
+  .panel-tl .panel-title { font-size: 28px; }
+}
