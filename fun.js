@@ -246,7 +246,7 @@
     }, { rootMargin: "0px 0px -10% 0px" });
 
     document.querySelectorAll(".title, .giant, .display").forEach((el) => {
-      if (el.closest(".hero")) return;
+      if (el.closest(".hero, dialog")) return;
       const wipe = document.createElement("span");
       wipe.className = "wipe";
       const text = document.createElement("span");
@@ -278,7 +278,7 @@
     });
 
     document.querySelectorAll(".kicker, .part-tag").forEach((el) => {
-      if (el.closest(".hero")) return;
+      if (el.closest(".hero, dialog")) return;
       el.classList.add("h-type");
       headIO.observe(el);
     });
@@ -296,4 +296,16 @@
       io.observe(box);
     });
   }
+})();
+
+// หน้าต่าง OOP แบบ HSR: เปิดทับไทม์ไลน์ ปิดแล้วอยู่ที่เดิม
+(() => {
+  const dlg = document.getElementById("oop-hsr");
+  if (!dlg || !dlg.showModal) return;
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("[data-open-oop]")) { e.preventDefault(); dlg.showModal(); dlg.scrollTop = 0; }
+    if (e.target.closest("[data-close-oop]")) dlg.close();
+  });
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+  if (location.hash === "#oop-hsr") dlg.showModal();
 })();
