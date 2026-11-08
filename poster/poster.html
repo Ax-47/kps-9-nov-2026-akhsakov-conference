@@ -104,6 +104,48 @@
   .when dd.time small { display: inline; font: 600 5mm "Kanit", sans-serif; color: var(--blue); margin-left: 1.5mm; }
   .topics { top: 204mm; }
   .foot { top: 243mm; }
+
+  /* คอลลาจ */
+  .stk { position: absolute; z-index: 4; margin: 0; }
+  .stk img { display: block; height: 100%; width: auto; filter: grayscale(1) contrast(1.2) drop-shadow(2mm 2mm 0 rgba(0,0,40,.6)); }
+  .stk::before { content: ""; position: absolute; top: -2.5mm; left: 50%; width: 16mm; height: 4.5mm; transform: translateX(-50%) rotate(-6deg); background: rgba(61,255,143,.8); z-index: 1; }
+  .stk figcaption { position: absolute; left: -2mm; bottom: 3mm; padding: .8mm 2mm; background: var(--yellow); color: var(--blue); font: 400 2.8mm "Silkscreen", monospace; letter-spacing: .3mm; white-space: nowrap; box-shadow: .8mm .8mm 0 rgba(0,0,40,.5); transform: rotate(-3deg); }
+  .s-dij { right: 34mm; top: 140mm; height: 50mm; transform: rotate(-5deg); }
+  .s-hop { right: 6mm; top: 150mm; height: 52mm; transform: rotate(6deg); }
+  .s-eniac { right: 10mm; top: 203mm; height: 34mm; transform: rotate(-4deg); }
+  .s-eniac figcaption { transform: rotate(3deg); }
+
+  .term { left: 12mm; top: 201mm; width: 128mm; background: #050833; color: #e6e9ff; }
+  .term pre { margin: 0; padding: 3mm 4mm 3.5mm; font: 400 3.3mm/1.55 "JetBrains Mono", monospace; white-space: pre; }
+  .term .d { color: #8f9bff; } .term .k { color: var(--yellow); } .term .bar { color: var(--red); } .term .ok { color: var(--green); }
+  .term .bad { color: #ff6b61; font-weight: 600; } .term .cur { color: var(--green); }
+
+  .load { left: 108mm; top: 186mm; width: 50mm; transform: rotate(-3deg); z-index: 5; }
+  .load .lb { padding: 2.5mm 3mm 3mm; }
+  .load p { font: 400 2.8mm "Silkscreen", monospace; color: var(--blue); }
+  .load .bar2 { height: 4.5mm; border: .4mm solid var(--blue); padding: .5mm; margin: 1.5mm 0 1mm; }
+  .load .bar2 i { display: block; height: 100%; width: 72%; background: repeating-linear-gradient(90deg, var(--blue) 0 2mm, transparent 2mm 2.6mm); }
+  .load .pct { font: 400 6mm "Anton", sans-serif; text-align: right; }
+
+  .spark { position: absolute; color: var(--green); font-size: 7mm; z-index: 2; }
+  .s1 { left: 150mm; top: 30mm; font-size: 9mm; } .s2 { left: 6mm; top: 130mm; font-size: 5mm; color: #fff; }
+  .s3 { left: 143mm; top: 197mm; } .s4 { left: 96mm; top: 112mm; color: var(--yellow); font-size: 5mm; } .s5 { left: 185mm; top: 132mm; color: #fff; }
+  .c2 { position: absolute; left: 132mm; top: 231mm; width: 7mm; right: auto; z-index: 6; }
+  .st2 { position: absolute; left: 150mm; top: 239mm; width: 46mm; height: 4mm; z-index: 1; }
+  .pixels { position: absolute; left: 160mm; top: 22mm; width: 20mm; height: 8mm; z-index: 1;
+    background: radial-gradient(circle, #fff 35%, transparent 37%) 0 0 / 4mm 4mm; opacity: .7; }
+  .barcode { width: 30mm; height: 9mm; margin-right: 1mm; background: repeating-linear-gradient(90deg, #fff 0 .5mm, transparent .5mm 1mm, #fff 1mm 2mm, transparent 2mm 2.4mm, #fff 2.4mm 2.7mm, transparent 2.7mm 3.6mm); align-self: flex-end; }
+  .foot { top: 246mm; }
+  .term { top: 199mm; width: 122mm; }
+  .term pre { font-size: 3.1mm; padding: 2.5mm 4mm 3mm; }
+  .foot { top: 252mm; }
+  .barcode { position: absolute; right: 12mm; top: 241mm; width: 46mm; height: 6mm; margin: 0; }
+  .s-dij figcaption { bottom: auto; top: 8mm; left: -4mm; }
+  .load { left: 104mm; top: 181mm; }
+  .c2 { left: 126mm; top: 228mm; }
+  .load { left: auto; right: 9mm; top: 50mm; width: 44mm; transform: rotate(4deg); }
+  .pixels { left: 150mm; top: 54mm; }
+  .s1 { left: 146mm; top: 22mm; }
 </style>
 </head>
 <body>
@@ -133,18 +175,31 @@
     </dl>
   </div>
 
-  <div class="dialog">
-    <div class="dialog-head"><span class="warn">!</span>RUN GUIDE.EXE?</div>
-    <p>มีเกมให้เล่น · มีโค้ดจริงให้ <b>debug</b> · ได้วิธีซ้อมที่สมองจำได้จริง</p>
-    <div class="btns"><span>ไว้ก่อน</span><span class="on">ไปแน่นอน</span></div>
+
+  <!-- คอลลาจ: สติกเกอร์รูปติดเทป -->
+  <figure class="stk s-dij"><img src="../assets/dijkstra.webp" alt=""><figcaption>DIJKSTRA · 1968</figcaption></figure>
+  <figure class="stk s-hop"><img src="../assets/grace-hopper.webp" alt=""><figcaption>GRACE HOPPER · 1952</figcaption></figure>
+  <figure class="stk s-eniac"><img src="../assets/eniac.webp" alt=""><figcaption>ENIAC · 1945</figcaption></figure>
+
+  <div class="win term">
+    <div class="win-bar"><span>hp_battle.exe — C + goto build</span><i><span>_</span><span>□</span><span>×</span></i></div>
+    <pre><span class="d">L30:</span> hp = hp - 80; <span class="k">goto</span> L50;
+<span class="d">L50:</span> printf("%c %d\n", ev[k], hp);
+
+ 1) Misha    HP <span class="bar">[########--------]</span>  <span class="bad">-70</span>
+ 2) Natasha  HP <span class="ok">[################]</span>  100
+<span class="bad">!! rule 2 broken: hp &lt; 0</span>  <span class="cur">█</span></pre>
   </div>
 
-  <div class="topics">
-    <div class="topic"><b>01</b><strong>ประวัติภาษา</strong><span>แต่ละยุคเจอปัญหาอะไร แก้ยังไง C → Rust</span></div>
-    <div class="topic"><b>02</b><strong>เริ่มต้นยังไง</strong><span>ภาษาแรก และเส้นทางสายเว็บ แอป เกม</span></div>
-    <div class="topic"><b>03</b><strong>สมองเรียนรู้ยังไง</strong><span>ความจำ 2 แบบ เคส HM และการนอน</span></div>
-    <div class="topic"><b>04</b><strong>ซ้อมแข่ง</strong><span>ฝึกให้สมองเก็บเป็นทักษะ ไม่ใช่แค่ท่องจำ</span></div>
+  <div class="win load">
+    <div class="win-bar"><span>brain.exe</span><i><span>×</span></i></div>
+    <div class="lb"><p>LOADING SKILLS…</p><div class="bar2"><i></i></div><p class="pct">72%</p></div>
   </div>
+
+  <span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✦</span><span class="spark s4">✦</span><span class="spark s5">✦</span>
+  <svg class="cursor c2" viewBox="0 0 12 19" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0v16l4-4 3 7 2-1-3-7h5z"/></svg>
+  <div class="barcode" aria-hidden="true"></div>
+  <div class="pixels" aria-hidden="true"></div>
 
   <div class="foot">
     <div class="speaker">
