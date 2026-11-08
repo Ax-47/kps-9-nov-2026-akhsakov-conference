@@ -24,46 +24,57 @@ L50: printf("%c %d\\n", ev[k], hp);
 L99: return 0;
 }`,
     c: `#include <stdio.h>
-typedef struct { int hp, en; } Ally;
 
-int  is_down(Ally *a)            { return a->hp == 0; }
-void take_damage(Ally *a, int d) { a->hp -= d; }
-void heal(Ally *a, int n) {
-    a->hp += n;
-    if (a->hp > 100) a->hp = 100;
-}
+int hp = 100;   // global: ทุกไฟล์ ทุกฟังก์ชันแก้ได้
+int en = 0;
+
+/* ทีมศัตรู · enemy.c */
+void on_hit(int dmg) { hp -= dmg; }
+/* ทีมไอเทม · items.c */
+void use_food(void)  { hp += 75; if (hp > 100) hp = 100; }
+void use_drink(void) { en += 20; }
+/* ทีมตัวละคร · ally.c */
+int  is_dead(void)   { return hp == 0; }
+/* ทีมระบบเทิร์น · turn.c */
+int  can_act(void)   { return hp > 0; }
 
 int main(void) {
-    Ally misha = {100, 0};
     const char *ev = "DEBH";
     for (int k = 0; k < 4; k++) {
-        if (is_down(&misha)) break;
+        if (is_dead()) break;
+        if (!can_act()) printf("(skip turn)\\n");
         switch (ev[k]) {
-        case 'D': misha.en += 20; break;
-        case 'E': take_damage(&misha, 90); break;
-        case 'B': take_damage(&misha, 80); break;
-        case 'H': heal(&misha, 75); break;
+        case 'D': use_drink(); break;
+        case 'E': on_hit(90); break;
+        case 'B': on_hit(80); break;
+        case 'H': use_food(); break;
         }
-        printf("%c %d\\n", ev[k], misha.hp);
+        printf("%c %d\\n", ev[k], hp);
     }
     return 0;
 }`,
-    java: `class Ally {
-    private int hp = 100, en = 0;
+    java: `class GameObject {
+    protected int hp = 100;   // protected = ลูกหลานทุกชั้นแก้ได้
+}
+class Character extends GameObject {
     boolean isDown() { return hp <= 0; }
     void takeDamage(int d) { hp = Math.max(0, hp - d); }
-    boolean heal(int n) {
-        if (isDown()) return false;
-        hp = Math.min(100, hp + n);
-        return true;
-    }
-    void addEnergy(int n) { if (!isDown()) en = Math.min(100, en + n); }
-    int hp() { return hp; }
+    void heal(int n) { if (!isDown()) hp = Math.min(100, hp + n); }
 }
+class Ally extends Character {
+    protected int en = 0;
+    void addEnergy(int n) { if (!isDown()) en = Math.min(100, en + n); }
+}
+class DestructionAlly extends Ally {
+    @Override void takeDamage(int d) {   // ทับของแม่ เพื่อเพิ่มเกราะ 10%
+        hp -= d - d / 10;                // ลืม Math.max(0, …) ที่แม่มี
+    }
+}
+class Misha extends DestructionAlly { }
 
 public class Main {
     public static void main(String[] args) {
-        Ally misha = new Ally();
+        Ally misha = new Misha();
         for (char e : "DEBH".toCharArray()) {
             if (misha.isDown()) break;
             switch (e) {
@@ -72,7 +83,7 @@ public class Main {
                 case 'B' -> misha.takeDamage(80);
                 case 'H' -> misha.heal(75);
             }
-            System.out.println(e + " " + misha.hp());
+            System.out.println(e + " " + misha.hp);
         }
     }
 }`,
@@ -166,7 +177,8 @@ fn main() {
     const c = {
       vars: {}, stack: ["main"], out: [],
       rules: ["wait", "wait", "wait", "wait", "wait"], msgs: ["", "", "", "", ""],
-      viol: [], seen: new Set(), downAt: undefined,
+      viol: [], seen: new Set(), downAt: undefined, writes: [], cls: "",
+      w(line, who, key, from, to) { c.writes.push({ line, who, key, from, to }); },
       bad(n, msg) {
         if (c.seen.has(msg)) return;
         c.seen.add(msg);
@@ -189,7 +201,7 @@ fn main() {
         }
         steps.push({
           line, note, stack: [...c.stack], vars: { ...c.vars }, out: [...c.out],
-          rules: [...c.rules], msgs: [...c.msgs], viol: c.viol,
+          rules: [...c.rules], msgs: [...c.msgs], viol: c.viol, writes: [...c.writes], cls: c.cls,
         });
         c.viol = [];
       },
@@ -241,57 +253,128 @@ fn main() {
     return steps;
   }
 
-  // C แบบ procedural ที่ hp ไม่มีเจ้าของ
+  // C: hp เป็นตัวแปร global หลายทีมแก้ได้
   function traceC() {
-    const H = "misha.hp";
-    const { c, steps } = makeTracer(H);
+    const { c, steps } = makeTracer("hp");
     const v = c.vars;
-    c.s(11, "เริ่ม main");
-    v[H] = 100; v["misha.en"] = 0;
-    c.ok(1, "misha.hp = 100");
-    c.s(12, "struct ธรรมดา: ทุกฟังก์ชันแก้ misha.hp ได้ตรง ๆ");
+    c.stack = ["(global init)"];
+    v.hp = 100;
+    c.ok(1, "global hp = 100");
+    c.s(3, "hp เป็น global: ฟังก์ชันไหนในโปรเจกต์ก็อ่าน-เขียนได้");
+    v.en = 0;
+    c.s(4);
+    c.stack = ["main"];
+    c.s(16, "เริ่ม main");
     v.ev = '"DEBH"';
-    c.s(13);
+    c.s(17);
+    const call = (name, line, note, fn) => { c.stack.push(name); if (fn) fn(); c.s(line, note); c.stack.pop(); };
     for (let k = 0; ; k++) {
       v.k = k;
       v["ev[k]"] = k < 4 ? `'${EV[k]}'` : "—";
-      if (k >= 4) { c.s(14, "k = 4 → ออกจากลูป"); break; }
-      c.s(14, `k = ${k}`);
-      c.stack.push("is_down");
-      const down = v[H] === 0;
-      v["is_down()"] = down ? 1 : 0;
-      if (!down && v[H] <= 0) c.bad(4, `misha.hp = ${v[H]} แต่ is_down() คืน 0 เพราะเช็กแค่ hp == 0`);
-      c.s(4, `a->hp == 0 ? → ${down ? 1 : 0}`);
-      c.stack.pop();
-      if (down) { c.s(15, "ล้ม → break"); break; }
-      c.s(15, "is_down() = 0 → เล่นต่อ");
+      if (k >= 4) { c.s(18, "k = 4 → ออกจากลูป"); break; }
+      c.s(18, `k = ${k}`);
+      const dead = v.hp === 0;
+      v["is_dead()"] = dead ? 1 : 0;
+      if (!dead && v.hp <= 0) c.bad(4, `ally.c ว่ายังไม่ตาย (hp == 0 ?) แต่ hp = ${v.hp} — แต่ละทีมนิยาม "ตาย" ไม่ตรงกัน`);
+      call("is_dead [ally.c]", 12, `ทีมตัวละครเช็ก hp == 0 → ${dead ? 1 : 0}`);
+      if (dead) { c.s(19, "ตาย → break"); break; }
+      c.s(19, "is_dead() = 0 → เล่นต่อ");
+      const act = v.hp > 0;
+      v["can_act()"] = act ? 1 : 0;
+      call("can_act [turn.c]", 14, `ทีมระบบเทิร์นเช็ก hp > 0 → ${act ? 1 : 0}`);
+      if (!act) { c.out.push("(skip turn)"); c.s(20, "turn.c ว่าเล่นไม่ได้ แต่โค้ดก็ยังทำต่อ — สองทีมไม่คุยกัน"); }
+      else c.s(20, "can_act() = 1");
       const e = EV[k];
-      c.s(16, `switch '${e}'`);
+      c.s(21, `switch '${e}'`);
       if (e === "D") {
-        v["misha.en"] += 20;
-        c.ok(5, "en + 20");
-        c.s(17, "แก้ misha.en ตรง ๆ จาก main ได้ เพราะไม่มีใครเป็นเจ้าของ");
+        c.s(22, "use_drink()");
+        call("use_drink [items.c]", 10, "en += 20 — แก้ global ได้เลย", () => { const o = v.en; v.en += 20; c.w(10, "use_drink · items.c", "en", o, v.en); c.ok(5, "en + 20"); });
       } else if (e === "E" || e === "B") {
         const d = e === "E" ? 90 : 80;
-        c.s(e === "E" ? 18 : 19, `take_damage(&misha, ${d})`);
-        c.stack.push("take_damage");
-        v[H] -= d;
-        if (v[H] >= 0) c.ok(2, `โดนตี ${d} แล้ว hp = ${v[H]} ยังไม่ติดลบ`);
-        c.s(5, `a->hp -= ${d} — ไม่มีการกันไม่ให้ต่ำกว่า 0`);
-        c.stack.pop();
+        c.s(e === "E" ? 23 : 24, `on_hit(${d})`);
+        call("on_hit [enemy.c]", 7, `hp -= ${d} — ทีมศัตรูไม่รู้ว่ามีกฎห้ามต่ำกว่า 0`, () => {
+          const o = v.hp; v.hp -= d; c.w(7, "on_hit · enemy.c", "hp", o, v.hp);
+          if (v.hp >= 0) c.ok(2, `hp = ${v.hp} ยังไม่ติดลบ`);
+        });
       } else {
-        c.s(20, "heal(&misha, 75)");
-        c.stack.push("heal");
-        v[H] += 75;
-        c.s(7, "a->hp += 75 — ไม่ได้เช็กก่อนว่าล้มแล้วหรือยัง");
-        c.ok(3, "if (a->hp > 100) กันไม่ให้เกิน 100");
-        c.s(8, "ไม่เกิน 100 ก็ไม่ต้องตัด");
-        c.stack.pop();
+        c.s(25, "use_food()");
+        call("use_food [items.c]", 9, "hp += 75 — ทีมไอเทมไม่รู้ว่าตัวละครตายแล้ว", () => {
+          const o = v.hp; v.hp = Math.min(100, v.hp + 75); c.w(9, "use_food · items.c", "hp", o, v.hp); c.ok(3, "ทีมไอเทมกันไม่ให้เกิน 100");
+        });
+      }
+      c.out.push(`${e} ${v.hp}`);
+      c.s(27, `พิมพ์ "${e} ${v.hp}"`);
+    }
+    c.s(29, "จบ — hp ถูกแก้จาก 3 ไฟล์ ไม่มีใครเป็นเจ้าของ กฎเลยหล่นหายตรงรอยต่อ");
+    return steps;
+  }
+
+  // Java: ต้นไม้คลาสลึก ลูกทับเมธอดของแม่แล้วข้ามกฎ
+  const HIER = [
+    { name: "GameObject", has: "hp (protected)" },
+    { name: "Character", has: "isDown() · takeDamage() ✓กฎ · heal()" },
+    { name: "Ally", has: "en · addEnergy()" },
+    { name: "DestructionAlly", has: "takeDamage() ทับของแม่ ✗" },
+    { name: "Misha", has: "(ว่าง)" },
+  ];
+  function traceJava() {
+    const H = "misha.hp";
+    const { c, steps } = makeTracer(H);
+    const v = c.vars;
+    c.s(21, "เริ่ม main");
+    c.stack.push("new Misha()");
+    c.cls = "GameObject"; c.stack.push("GameObject()");
+    v[H] = 100;
+    c.ok(1, "hp = 100 (ตั้งในชั้นบนสุด GameObject)");
+    c.s(2, "สร้าง Misha ต้องไล่สร้างขึ้นไปทุกชั้น: hp อยู่ใน GameObject");
+    c.stack.pop(); c.cls = "Ally"; c.stack.push("Ally()");
+    v["misha.en"] = 0;
+    c.s(10, "en อยู่ใน Ally");
+    c.stack.pop(); c.stack.pop(); c.cls = "";
+    c.s(22, "ตัวแปรเป็นแบบ Ally แต่ของจริงคือ Misha (5 ชั้นลงมา)");
+    const isDown = () => {
+      c.cls = "Character"; c.stack.push("Character.isDown");
+      const d = v[H] <= 0;
+      v["isDown()"] = d;
+      c.s(5, `Misha ไม่มี isDown → หาขึ้นไปจนเจอใน Character · hp <= 0 ? → ${d}`);
+      c.stack.pop(); c.cls = "";
+      return d;
+    };
+    let k = 0;
+    for (; k < 4; k++) {
+      const e = EV[k];
+      v.e = `'${e}'`;
+      c.s(23, `e = '${e}'`);
+      if (isDown()) { c.ok(4, "isDown ของ Character ยังทำงาน → หยุดเล่น"); c.s(24, "ล้มแล้ว → break"); break; }
+      c.s(24, "ยังไม่ล้ม → เล่นต่อ");
+      c.s(25, `เลือกตาม '${e}'`);
+      if (e === "D") {
+        c.s(26, "misha.addEnergy(20)");
+        c.cls = "Ally"; c.stack.push("Ally.addEnergy");
+        v["misha.en"] = Math.min(100, v["misha.en"] + 20);
+        c.ok(5, "en + 20");
+        c.s(11, "addEnergy อยู่ใน Ally (ขึ้นไป 2 ชั้น)");
+        c.stack.pop(); c.cls = "";
+      } else if (e === "E" || e === "B") {
+        const d = e === "E" ? 90 : 80;
+        c.s(e === "E" ? 27 : 28, `misha.takeDamage(${d}) — คิดว่าได้ของ Character ที่มีกฎ?`);
+        c.cls = "DestructionAlly"; c.stack.push("DestructionAlly.takeDamage");
+        c.s(14, "ไม่ใช่! เจอตัวที่ทับไว้ใน DestructionAlly ก่อน — takeDamage ของ Character ที่มีกฎไม่ถูกเรียกเลย");
+        const o = v[H]; v[H] = o - (d - Math.floor(d / 10));
+        if (v[H] >= 0) c.ok(2, `hp = ${v[H]} ยังไม่ติดลบ (แต่กฎถูกข้ามไปแล้ว)`);
+        c.s(15, `hp -= ${d} - ${Math.floor(d / 10)} → ${v[H]} · แก้ hp ได้ตรง ๆ เพราะเป็น protected`);
+        c.stack.pop(); c.cls = "";
+      } else {
+        c.s(29, "misha.heal(75)");
+        c.cls = "Character"; c.stack.push("Character.heal");
+        if (v[H] > 0) v[H] = Math.min(100, v[H] + 75);
+        c.s(7, "heal อยู่ใน Character");
+        c.stack.pop(); c.cls = "";
       }
       c.out.push(`${e} ${v[H]}`);
-      c.s(22, `พิมพ์ "${e} ${v[H]}"`);
+      c.s(31, `พิมพ์ "${e} ${v[H]}"`);
     }
-    c.s(24, "จบ — ตัวละครเลือดติดลบแต่ไม่ล้ม แถมฮีลฟื้นได้ = บั๊กตัวละครอมตะ");
+    c.s(33, "จบ — กฎอยู่ใน Character แต่ลูกหลานทับเมธอดแล้วข้ามได้ แก้แม่ก็ไม่ช่วยลูก");
     return steps;
   }
 
@@ -388,7 +471,7 @@ fn main() {
 
   const TRACE = {
     goto: traceGoto, c: traceC,
-    java: () => traceOwned(OWNED.java), go: () => traceOwned(OWNED.go), rust: () => traceOwned(OWNED.rust),
+    java: traceJava, go: () => traceOwned(OWNED.go), rust: () => traceOwned(OWNED.rust),
   };
 
   // ===================== ไฮไลต์โค้ดแบบง่าย =====================
@@ -430,6 +513,8 @@ fn main() {
           <section><h5>บรรทัดนี้ทำอะไร</h5><p class="dbg-note" data-r="note"></p></section>
           <section><h5>เส้นทางที่วิ่งมา <span data-r="jumps"></span></h5><ol class="dbg-path" data-r="path"></ol><p class="dbg-from" data-r="from" hidden></p></section>
           <section><h5>Call stack</h5><ol class="dbg-stack" data-r="stack"></ol></section>
+          ${lang === "c" ? '<section><h5>ใครแก้ hp บ้าง</h5><ol class="dbg-writes" data-r="writes"></ol></section>' : ""}
+          ${lang === "java" ? '<section><h5>ต้นไม้คลาสของ Misha</h5><ol class="dbg-hier" data-r="hier"></ol></section>' : ""}
           <section><h5>ตัวแปร</h5><dl class="dbg-vars" data-r="vars"></dl></section>
           <section><h5>กฎ HP 5 ข้อ</h5><ol class="dbg-rules" data-r="rules"></ol></section>
           <section><h5>Output</h5><pre class="dbg-out" data-r="out"></pre></section>
@@ -491,6 +576,11 @@ fn main() {
         const icon = s === "ok" ? "✓" : s === "bad" ? "✗" : "·";
         return `<li class="${s}"><b>${icon}</b><span>${j + 1}. ${r}${st.msgs[j] ? `<em>${esc(st.msgs[j])}</em>` : ""}</span></li>`;
       }).join("");
+      if (R("writes")) R("writes").innerHTML = st.writes.length
+        ? st.writes.map((x) => `<li${x.to < 0 ? ' class="neg"' : ""}><span>บรรทัด ${x.line}</span><b>${esc(x.who)}</b><code>${x.key} ${x.from} → ${x.to}</code></li>`).join("")
+        : "<li><span>—</span><b>ยังไม่มีใครแก้</b></li>";
+      if (R("hier")) R("hier").innerHTML = HIER.map((h, j) =>
+        `<li class="${h.name === st.cls ? "on" : ""}${h.name === "DestructionAlly" ? " warn" : ""}" style="--d:${j}"><b>${h.name}</b><span>${esc(h.has)}</span></li>`).join("");
       R("out").textContent = st.out.join("\n") || " ";
       const alert = R("alert");
       if (st.viol.length) {

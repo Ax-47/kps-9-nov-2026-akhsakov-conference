@@ -592,11 +592,11 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
             <div class="dbg" data-dbg="goto"></div>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-c" aria-labelledby="b-c" hidden>
-            <p>procedural: ข้อมูลกับฟังก์ชันแยกกัน ใครก็แก้ misha.hp ได้ และ is_down เช็กแค่ hp == 0 — ไล่ดูบั๊กตัวละครอมตะทีละบรรทัด</p>
+            <p><b>ปัญหาของ global state:</b> hp เป็นตัวแปร global ที่ 4 ทีมแก้ได้ (enemy.c · items.c · ally.c · turn.c) แต่ละทีมเขียน “ถูก” ในมุมตัวเอง — ดูช่อง “ใครแก้ hp บ้าง” แล้วจะเห็นว่ากฎหล่นหายตรงรอยต่อระหว่างทีม</p>
             <div class="dbg" data-dbg="c"></div>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-java" aria-labelledby="b-java" hidden>
-            <p>OOP: hp เป็น private แก้ได้ผ่านเมธอดเท่านั้น — ด่านเดิม แต่ล้มเมื่อควรล้ม</p>
+            <p><b>ปัญหาของ inheritance:</b> ต้นไม้คลาส 5 ชั้น กฎ “ไม่ต่ำกว่า 0” อยู่ใน Character แต่ hp เป็น protected และ DestructionAlly ทับ takeDamage เพื่อเพิ่มเกราะ — เรียก misha.takeDamage() แล้วกฎของแม่ไม่ถูกเรียกเลย</p>
             <div class="dbg" data-dbg="java"></div>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-go" aria-labelledby="b-go" hidden>

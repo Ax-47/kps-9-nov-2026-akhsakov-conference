@@ -1526,3 +1526,17 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .why-h { font: 700 18px var(--head-font); color: var(--head); margin-bottom: 6px; }
 .why-hard ol { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; color: var(--fg); }
 .why-hard b { color: var(--accent); }
+.dbg-writes, .dbg-hier { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13.5px; }
+.dbg-writes li { display: grid; grid-template-columns: 6.5ch 1fr auto; gap: 8px; align-items: baseline; padding: 3px 6px; border-left: 3px solid #3d48c9; }
+.dbg-writes li span { color: #7d86d6; font: 12px var(--mono); }
+.dbg-writes li b { color: #fff; font-weight: 600; }
+.dbg-writes li code { color: var(--green); font: 13px var(--mono); }
+.dbg-writes li.neg { border-left-color: #ff3b30; background: rgba(255, 59, 48, 0.18); }
+.dbg-writes li.neg code { color: #ffb4ad; }
+.dbg-hier li { margin-left: calc(var(--d) * 14px); padding: 3px 8px; border: 1.5px solid #3d48c9; display: grid; }
+
+.dbg-hier li b { color: #fff; font: 600 13px var(--mono); }
+.dbg-hier li span { color: #9aa3e8; font-size: 12.5px; }
+.dbg-hier li.warn { border-color: #ff9a8f; }
+.dbg-hier li.on { background: var(--green); border-color: var(--green); }
+.dbg-hier li.on b, .dbg-hier li.on span { color: #050833; }
