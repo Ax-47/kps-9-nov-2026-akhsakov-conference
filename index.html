@@ -906,7 +906,7 @@ int take_damage(int dmg) {
     if (hp &lt; 0) hp = 0;
     return hp;
 }
-<span class="bl" data-n="2">void use_food(void) { hp += 75; }</span></code></pre><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>hp เป็นของกลาง ไฟล์ไหนก็แก้ได้</li><li><b>2</b>use_food ไม่เช็กว่าตายแล้ว — กฎมีอยู่ในฟังก์ชันเดียว แต่ไม่มีอะไรบังคับให้ทุกคนเรียกผ่านมัน</li></ol></figure>
+<span class="bl" data-n="2">void use_food(void) { hp += 75; }</span></code></pre><button type="button" class="era-more" data-open-dlg="c-dbg">▶ เปิดดู debugger ทีละบรรทัด</button><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>hp เป็นของกลาง ไฟล์ไหนก็แก้ได้</li><li><b>2</b>use_food ไม่เช็กว่าตายแล้ว — กฎมีอยู่ในฟังก์ชันเดียว แต่ไม่มีอะไรบังคับให้ทุกคนเรียกผ่านมัน</li></ol></figure>
           </article>
           <article class="panel win" data-era="1">
             <div class="win-bar"><span>goto.c</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -1349,6 +1349,20 @@ const t2 = xs.filter(x =&gt; x &gt; 0)
       </div>
     </section>
   </main>
+  <dialog class="oop-dialog" id="c-dbg" aria-labelledby="c-title">
+    <div class="oop-dlg-bar"><span>c_debug.exe — ERA 1</span><button type="button" data-close-dlg aria-label="ปิด กลับไปที่ไทม์ไลน์">✕ ปิด · กลับไปไทม์ไลน์</button></div>
+    <div class="oop-dlg-body">
+      <p class="kicker">ERA 1 · C · มีฟังก์ชันแล้ว แต่ข้อมูลยังเป็นของกลาง</p>
+      <h3 class="title" id="c-title">ไล่ C ทีละบรรทัด: ใครแก้ hp บ้าง?</h3>
+      <ol class="oop-points">
+        <li><b>ดีขึ้นกว่า FORTRAN</b> — ไม่มี GOTO แล้ว มี for / switch / ฟังก์ชัน อ่านจากบนลงล่างได้ และ call stack บอกว่าตอนนี้อยู่ในฟังก์ชันไหน</li>
+        <li><b>แต่ hp เป็นตัวแปร global</b> — 4 ไฟล์ (enemy.c · items.c · ally.c · turn.c) แก้ได้หมด ดูช่อง “ใครแก้ hp บ้าง”</li>
+        <li><b>กฎหล่นตรงรอยต่อ</b> — on_hit ไม่กันติดลบ · is_dead เช็ก hp == 0 แต่ can_act เช็ก hp &gt; 0 · use_food ฮีลคนที่ตายแล้ว</li>
+      </ol>
+      <div class="dbg" data-dbg="c"></div>
+    </div>
+  </dialog>
+
   <dialog class="oop-dialog" id="fortran-dbg" aria-labelledby="fortran-title">
     <div class="oop-dlg-bar"><span>fortran_debug.exe — ERA 0</span><button type="button" data-close-dlg aria-label="ปิด กลับไปที่ไทม์ไลน์">✕ ปิด · กลับไปไทม์ไลน์</button></div>
     <div class="oop-dlg-body">
