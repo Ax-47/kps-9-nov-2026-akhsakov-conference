@@ -1254,3 +1254,18 @@ html.rd-lock .topbar { display: none; }
 .whoami .cursor-line { margin-top: 8px; }
 .whoami .cursor-line::after { content: "_"; animation: blink 1s steps(1) infinite; }
 @media (max-width: 520px) { .whoami p.kv { grid-template-columns: 1fr; } }
+
+/* รูปโปรไฟล์เต็ม ๆ: รูปซ้าย ข้อมูลขวา */
+.card-app .app-body { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 0 18px; padding: 0 18px 0 0; align-items: stretch; }
+.card-app .card-head { display: flex; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 0; background: #111; text-align: center; }
+.pfp-photo { display: block; width: 100%; height: auto; aspect-ratio: 439 / 413; object-fit: cover; }
+.card-app .card-head > div { padding: 10px 12px 14px; }
+.card-app .card-name { color: #fff !important; }
+.card-app .card-sub { color: #c9cdd8 !important; font-size: 12px !important; }
+.card-app .card-rows { align-self: center; padding: 10px 0; border-top: 0; }
+.card-app .card-rows div:last-child { border-bottom: 0; }
+img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
+@media (max-width: 560px) {
+  .card-app .app-body { grid-template-columns: 1fr; padding: 0; }
+  .card-app .card-rows { padding: 6px 16px 12px; }
+}
