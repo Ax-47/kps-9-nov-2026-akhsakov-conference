@@ -16,6 +16,7 @@
   <script src="fun.js?v=dev" defer></script>
   <script src="desktop.js?v=dev" defer></script>
   <script src="viz.js?v=dev" defer></script>
+  <script src="debugger.js?v=dev" defer></script>
 </head>
 <body data-bg="blue">
   <a class="skip" href="#agenda">ข้ามไปเนื้อหา</a>
@@ -566,7 +567,7 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
       <div class="wrap">
         <p class="kicker reveal">โจทย์เดียว เขียนใหม่ทุกยุค · ลองเล่นเทียบกัน</p>
         <h3 class="title reveal" id="same-title">เกม HSR ในแต่ละภาษา</h3>
-        <p class="lede reveal">เลือกภาษาด้านซ้าย เกมด้านขวาจะเล่นตามกติกาของภาษานั้นด้วย seed เดิม — C ปล่อยให้ใครก็แก้ hp ได้ เลยติดลบแต่ไม่ล้ม ส่วน Java Go Rust ซ่อน hp ไว้ กฎเลยอยู่ครบ</p>
+        <p class="lede reveal">ใช้โค้ดจริงไล่ด่านเดียวกัน (D ดื่ม · E ศัตรูตี 90 · B บอสตี 80 · H ฮีล 75) ด้วยดีบักเกอร์ทีละบรรทัด แล้วลองเล่นเกมด้านล่างที่เล่นตามกติกาของภาษาที่เลือก — C ปล่อยให้ใครก็แก้ hp ได้ เลยติดลบแต่ไม่ล้ม ส่วน Java Go Rust ซ่อน hp ไว้ กฎเลยอยู่ครบ</p>
         <div class="compare reveal">
         <div class="tabs" data-tabs>
           <div class="tab-list" role="tablist" aria-label="เลือกภาษา">
@@ -577,89 +578,24 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
             <button role="tab" aria-selected="false" aria-controls="t-rust" id="b-rust" data-lang="Rust" data-noowner="0" tabindex="-1">Rust</button>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-goto" aria-labelledby="b-goto">
-            <p>วนด้วย goto ล้วน ไม่มี loop — มี goto 8 จุด ต้องไล่ลูกศรจนจบถึงจะรู้ว่า HP เป็นเท่าไร</p>
-            <pre class="code"><code>const char *ev = "DEBH";
-int hp = 100, en = 0, k = -1;
-L10: k = k + 1;
-     if (k &gt; 3) goto L99;
-     if (ev[k] == 'E') goto L20;
-     if (ev[k] == 'B') goto L30;
-     if (ev[k] == 'H') goto L40;
-     en = en + 20; goto L50;
-L20: hp = hp - 90; goto L50;
-L30: hp = hp - 80; goto L50;
-L40: hp = hp + 75;
-L50: printf("%c %d\n", ev[k], hp);
-     if (hp &gt; 0) goto L10;
-L99: return 0;</code></pre>
+            <p>โค้ดจากสไลด์ วนด้วย goto ล้วน — กด ▶ แล้วดูว่า hp ไปถึง −70 ที่บรรทัดไหน ทั้งที่ไม่มีใครตั้งใจให้ติดลบ</p>
+            <div class="dbg" data-dbg="goto"></div>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-c" aria-labelledby="b-c" hidden>
-            <p>procedural: ข้อมูลกับฟังก์ชันแยกกัน — มีฟังก์ชันคุมกฎ แต่ใครก็แก้ <span class="mono">a-&gt;hp</span> ตรง ๆ ได้ ผลลัพธ์ −70 บั๊กกลับมา</p>
-            <pre class="code"><code>typedef struct { int hp; } Ally;
-
-void take_damage(Ally *a, int dmg) {
-    a-&gt;hp -= dmg;
-    if (a-&gt;hp &lt; 0) a-&gt;hp = 0;
-}
-
-int main(void) {
-    Ally *a = malloc(sizeof *a);
-    a-&gt;hp = 100;
-    take_damage(a, 80);
-    a-&gt;hp = -70;           // แก้ตรงได้!
-    printf("%d\n", a-&gt;hp);
-    free(a);               // ต้องคืนเอง
-}</code></pre>
+            <p>procedural: ข้อมูลกับฟังก์ชันแยกกัน ใครก็แก้ misha.hp ได้ และ is_down เช็กแค่ hp == 0 — ไล่ดูบั๊กตัวละครอมตะทีละบรรทัด</p>
+            <div class="dbg" data-dbg="c"></div>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-java" aria-labelledby="b-java" hidden>
-            <p>OOP: ข้อมูลกับเมธอดอยู่ใน class เดียวกัน แตะ hp ตรง ๆ ไม่ได้ ผลลัพธ์ 20 ถูกต้อง และไม่ต้อง free เพราะ GC เก็บให้</p>
-            <pre class="code"><code>class Ally {
-    private int hp = 100;
-    void takeDamage(int dmg) {
-        hp = Math.max(0, hp - dmg);
-    }
-    int getHp() { return hp; }
-}
-
-Ally a = new Ally();
-a.takeDamage(80);
-// a.hp = -70;   ← compile error
-System.out.println(a.getHp());</code></pre>
+            <p>OOP: hp เป็น private แก้ได้ผ่านเมธอดเท่านั้น — ด่านเดิม แต่ล้มเมื่อควรล้ม</p>
+            <div class="dbg" data-dbg="java"></div>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-go" aria-labelledby="b-go" hidden>
-            <p>ไม่มี class ไม่มี extends: ตัวพิมพ์เล็ก = ซ่อนไว้ · interface บอกแค่ว่าต้องมี <span class="mono">Use()</span> · ฝัง Health แทนการสืบทอด</p>
-            <pre class="code"><code>type Ally struct {
-    hp int // ตัวเล็ก = private
-}
-func (a *Ally) TakeDamage(d int) {
-    a.hp = max(0, a.hp-d)
-}
-
-type Item interface { Use(a *Ally) }
-type Food struct{}
-func (Food) Use(a *Ally) { a.Heal(75) }
-
-type Health struct{ HP int }
-type Memosprite struct { Health } // ฝัง</code></pre>
+            <p>ไม่มี class: struct + method ตัวพิมพ์เล็ก = ซ่อนไว้ใน package — ด่านเดิม กฎครบ</p>
+            <div class="dbg" data-dbg="go"></div>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-rust" aria-labelledby="b-rust" hidden>
-            <p>struct + trait แทน class: ไม่ใส่ <span class="mono">pub</span> = ซ่อน · trait บอกว่าต้องมี <span class="mono">use_on()</span> · ต้องเขียน impl ให้ชัด</p>
-            <pre class="code"><code>pub struct Ally {
-    hp: i32, // ไม่มี pub = private
-}
-
-trait Item {
-    fn use_on(&amp;self, a: &amp;mut Ally);
-}
-
-struct Food;
-impl Item for Food {
-    fn use_on(&amp;self, a: &amp;mut Ally) {
-        a.heal(75);
-    }
-}
-
-struct Memosprite { health: Health } // มี</code></pre>
+            <p>struct + impl ไม่มี pub = ซ่อนไว้ใน module — ด่านเดิม กฎครบ</p>
+            <div class="dbg" data-dbg="rust"></div>
           </div>
         </div>
           <div class="game win" data-game>
