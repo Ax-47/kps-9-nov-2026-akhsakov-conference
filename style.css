@@ -1874,3 +1874,8 @@ thead th { font-size: 13px; }
 .hour-card p.hour-num { font: 400 clamp(64px, 7vw, 108px)/0.9 var(--display); color: #3dff8f; }
 .hour-card.big p.hour-num { color: #ffe066; }
 .hour-card.big { border-color: #ffe066; }
+.dbg-labels { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; flex-wrap: wrap; font: 13.5px var(--mono); }
+.dbg-labels li { border: 1.5px solid #3d48c9; padding: 3px 10px; display: grid; color: #dfe3ff; }
+.dbg-labels li b { color: #fff; font-weight: 600; }
+.dbg-labels li.on { background: var(--green); border-color: var(--green); }
+.dbg-labels li.on b, .dbg-labels li.on span { color: #050833; }

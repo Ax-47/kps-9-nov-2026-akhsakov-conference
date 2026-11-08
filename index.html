@@ -851,7 +851,7 @@ int main() {
       HP = HP - DMG
 <span class="bl" data-n="1">      IF (HP) 10, 10, 20</span>
 <span class="bl" data-n="2">   10 STOP</span>
-   20 CONTINUE</code></pre><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>กระโดดด้วยเลขบรรทัด 10, 10, 20 — อ่านแล้วต้องเดาว่าแต่ละเลขหมายถึงอะไร</li><li><b>2</b>แทรกบรรทัดใหม่ = ต้องไล่แก้เลขที่อ้างถึงทั้งโปรแกรม (ยุคบัตรเจาะรู 1 บรรทัด = 1 ใบ)</li></ol></figure>
+   20 CONTINUE</code></pre><button type="button" class="era-more" data-open-dlg="fortran-dbg">▶ เปิดดู debugger ทีละบรรทัด</button><ol class="era-probs" aria-label="ปัญหาของโค้ดนี้"><li><b>1</b>กระโดดด้วยเลขบรรทัด 10, 10, 20 — อ่านแล้วต้องเดาว่าแต่ละเลขหมายถึงอะไร</li><li><b>2</b>แทรกบรรทัดใหม่ = ต้องไล่แก้เลขที่อ้างถึงทั้งโปรแกรม (ยุคบัตรเจาะรู 1 บรรทัด = 1 ใบ)</li></ol></figure>
           </article>
           <article class="panel win panel-wide" data-era="0">
             <div class="win-bar"><span>era0.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -1349,6 +1349,21 @@ const t2 = xs.filter(x =&gt; x &gt; 0)
       </div>
     </section>
   </main>
+  <dialog class="oop-dialog" id="fortran-dbg" aria-labelledby="fortran-title">
+    <div class="oop-dlg-bar"><span>fortran_debug.exe — ERA 0</span><button type="button" data-close-dlg aria-label="ปิด กลับไปที่ไทม์ไลน์">✕ ปิด · กลับไปไทม์ไลน์</button></div>
+    <div class="oop-dlg-body">
+      <p class="kicker">ERA 0 · FORTRAN · กระโดดด้วยเลขบรรทัด</p>
+      <h3 class="title" id="fortran-title">ไล่ FORTRAN ทีละบรรทัด: HP หายไปทางไหน?</h3>
+      <ol class="oop-points">
+        <li><b>IF (HP) 10, 10, 20</b> — ไม่ได้บอกว่า “ล้ม” หรือ “เล่นต่อ” บอกแค่เลข ต้องจำเองว่าลบ / ศูนย์ / บวก ไปที่ไหน</li>
+        <li><b>ดูช่อง “ตาราง label → บรรทัด”</b> — ทุกครั้งที่กระโดด คนอ่านต้องหาเองว่า label 10 หรือ 20 อยู่บรรทัดไหน (ยุคบัตรเจาะรู ต้องคุ้ยหาบัตรใบนั้น)</li>
+        <li><b>HP = HP - DMG</b> ไม่มีอะไรกันไม่ให้ติดลบ — ดีบักเกอร์จะหยุดตรงที่ HP กลายเป็น -20</li>
+      </ol>
+      <div class="dbg" data-dbg="fortran"></div>
+      <p class="source">ตัวอย่างใช้รูปแบบ FORTRAN IV (มี logical IF และ PRINT *) เพื่อให้อ่านง่าย — FORTRAN รุ่นแรกปี 1957 เขียนต่างจากนี้เล็กน้อย</p>
+    </div>
+  </dialog>
+
   <dialog class="oop-dialog" id="mirror-lab" aria-labelledby="mirror-title">
     <div class="oop-dlg-bar"><span>mirror_tracing.exe — การทดลองของ Brenda Milner</span><button type="button" data-close-dlg aria-label="ปิด">✕ ปิด · กลับไปที่เดิม</button></div>
     <div class="oop-dlg-body">

@@ -152,6 +152,11 @@ fn main() {
 
   // goto: บรรทัดนี้มาถึงได้จากไหนบ้าง (ตกลงมาจากบรรทัดก่อน หรือโดนกระโดดมา)
   const COMEFROM = {
+    fortran: {
+      5: "บรรทัด 4 (ตกลงมา) · บรรทัด 14 (GO TO 5)",
+      11: "บรรทัด 10 เท่านั้น (IF … 10, 10, …)",
+      13: "บรรทัด 10 เท่านั้น (IF … , 20)",
+    },
     goto: {
       5: "บรรทัด 4 (ตกลงมา) · บรรทัด 15 (goto L10)",
       11: "บรรทัด 7 เท่านั้น (goto L20)",
@@ -645,9 +650,61 @@ fn main() {
     return steps;
   }
 
+  // ERA 0: FORTRAN กระโดดด้วยเลขบรรทัด (label)
+  CODE.fortran = `C     ด่าน: โดนตีทีละตา จนกว่า HP จะหมด
+      INTEGER HP, DMG, K
+      HP = 100
+      K = 0
+    5 K = K + 1
+      IF (K .EQ. 1) DMG = 30
+      IF (K .EQ. 2) DMG = 40
+      IF (K .GE. 3) DMG = 50
+      HP = HP - DMG
+      IF (HP) 10, 10, 20
+   10 PRINT *, 'DOWN', HP
+      STOP
+   20 PRINT *, 'HP', HP
+      GO TO 5
+      END`;
+  const FLABELS = { 5: 5, 10: 11, 20: 13 };
+  function traceFortran() {
+    const { c, steps } = makeTracer("HP");
+    const v = c.vars;
+    c.labels = FLABELS;
+    c.s(1, "บรรทัดที่ขึ้นต้นด้วย C = คอมเมนต์");
+    c.s(2, "ประกาศตัวแปร — ทุกตัวเป็นของกลางทั้งโปรแกรม");
+    v.HP = 100; c.ok(1, "HP = 100"); c.s(3);
+    v.K = 0; c.s(4);
+    for (;;) {
+      v.K++; c.s(5, `label 5 · K = ${v.K}`);
+      const d = v.K === 1 ? 30 : v.K === 2 ? 40 : 50;
+      c.s(6, v.K === 1 ? "K = 1 → DMG = 30" : "K ไม่ใช่ 1 → ข้าม");
+      c.s(7, v.K === 2 ? "K = 2 → DMG = 40" : "K ไม่ใช่ 2 → ข้าม");
+      c.s(8, v.K >= 3 ? "K ≥ 3 → DMG = 50" : "K ยังไม่ถึง 3 → ข้าม");
+      v.DMG = d;
+      const old = v.HP; v.HP -= d;
+      if (v.HP >= 0) c.ok(2, `HP = ${v.HP} ยังไม่ติดลบ`);
+      c.s(9, `HP = ${old} - ${d} = ${v.HP} — ไม่มีอะไรกันไม่ให้ติดลบ`);
+      const go = v.HP <= 0 ? 10 : 20;
+      c.s(10, `HP ${v.HP < 0 ? "ติดลบ" : v.HP === 0 ? "เป็นศูนย์" : "เป็นบวก"} → ไปเลขที่ ${go} … ต้องหาเองว่า label ${go} อยู่บรรทัดไหน`);
+      if (go === 10) {
+        c.out.push(`DOWN ${v.HP}`);
+        c.ok(4, "HP ไม่มากกว่า 0 → หยุดโปรแกรม");
+        c.s(11, `label 10 · พิมพ์ DOWN ${v.HP}`);
+        c.s(12, "STOP — จบเกม");
+        break;
+      }
+      c.out.push(`HP ${v.HP}`);
+      c.s(13, `label 20 · พิมพ์ HP ${v.HP}`);
+      c.s(14, "GO TO 5 — กระโดดกลับขึ้นไปที่ label 5");
+    }
+    c.s(15, "จบ — HP ติดลบ -20 และต้องไล่ตามเลข label เองทุกครั้งที่กระโดด");
+    return steps;
+  }
+
   const TRACE = {
     goto: traceGoto, c: traceC,
-    java: traceJava, oop: traceOop, comp: traceComp, go: () => traceOwned(OWNED.go), rust: () => traceOwned(OWNED.rust),
+    java: traceJava, oop: traceOop, comp: traceComp, fortran: traceFortran, go: () => traceOwned(OWNED.go), rust: () => traceOwned(OWNED.rust),
   };
 
   // ===================== ไฮไลต์โค้ดแบบง่าย =====================
@@ -720,7 +777,7 @@ fn main() {
     const steps = TRACE[lang]();
     root.innerHTML = `
       <div class="dbg-bar">
-        <span class="dbg-title mono">debug · ${lang === "goto" ? "c + goto" : lang === "oop" ? "c++ · misha.atk(kafka)" : lang === "comp" ? "rust · composition" : lang}</span>
+        <span class="dbg-title mono">debug · ${lang === "goto" ? "c + goto" : lang === "oop" ? "c++ · misha.atk(kafka)" : lang === "comp" ? "rust · composition" : lang === "fortran" ? "fortran · label jumps" : lang}</span>
         <div class="dbg-ctl">
           <button type="button" data-a="back" title="ย้อนกลับ 1 ก้าว">⏮ ย้อน</button>
           <button type="button" data-a="step" title="ทำทีละบรรทัด">⏭ ทีละบรรทัด</button>
@@ -737,6 +794,7 @@ fn main() {
           <section><h5>เส้นทางที่วิ่งมา <span data-r="jumps"></span></h5><ol class="dbg-path" data-r="path"></ol><p class="dbg-from" data-r="from" hidden></p></section>
           <section><h5>Call stack</h5><ol class="dbg-stack" data-r="stack"></ol></section>
           ${lang === "c" ? '<section><h5>ใครแก้ hp บ้าง</h5><ol class="dbg-writes" data-r="writes"></ol></section>' : ""}
+          ${lang === "fortran" ? '<section><h5>ตาราง label → บรรทัด</h5><ol class="dbg-labels" data-r="labels"></ol></section>' : ""}
           ${lang === "oop" || lang === "comp" ? '<section><h5>Objects ในหน่วยความจำ</h5><div class="dbg-objs" data-r="objs"></div></section>' : ""}
           ${lang === "java" ? '<section><h5>ต้นไม้คลาสของ Misha</h5><ol class="dbg-hier" data-r="hier"></ol></section>' : ""}
           <section><h5>ตัวแปร</h5><dl class="dbg-vars" data-r="vars"></dl></section>
@@ -803,6 +861,8 @@ fn main() {
       if (R("writes")) R("writes").innerHTML = st.writes.length
         ? st.writes.map((x) => `<li${x.to < 0 ? ' class="neg"' : ""}><span>บรรทัด ${x.line}</span><b>${esc(x.who)}</b><code>${x.key} ${x.from} → ${x.to}</code></li>`).join("")
         : "<li><span>—</span><b>ยังไม่มีใครแก้</b></li>";
+      if (R("labels")) R("labels").innerHTML = Object.entries(FLABELS).map(([lb, ln]) =>
+        `<li class="${st.line === ln ? "on" : ""}"><b>label ${lb}</b><span>บรรทัด ${ln}</span></li>`).join("");
       if (R("objs")) R("objs").innerHTML = st.objs ? Object.entries(st.objs).map(([k, o]) => {
         const p = steps[i - 1]?.objs?.[k];
         return `<div class="obj${st.self === k ? " self" : ""}"><b>${esc(k)}${st.self === k ? ` <em>← ${lang === "comp" ? "self" : "this"}</em>` : ""}</b>${Object.entries(o).map(([f, val]) =>
