@@ -524,6 +524,44 @@ printf("%s", name);</code></pre>
       </div>
     </section>
 
+    <section class="block" id="challenge" data-bg="night" data-label="01 · โจทย์" aria-labelledby="challenge-title">
+      <div class="wrap">
+        <p class="kicker reveal">โจทย์ · ช่วงแรก</p>
+        <h3 class="title reveal" id="challenge-title">HSR: เกมผลัดกันเล่นใน terminal ด้วยภาษา C</h3>
+        <div class="win challenge reveal">
+          <div class="win-bar"><span>challenge_01.md</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+          <div class="win-body">
+            <p class="lede">เขียนเกมผลัดกันเล่นทีละเทิร์นใน terminal ด้วยภาษา C ให้ทีม 2 คน คือ <strong>Misha</strong> กับ <strong>Natasha</strong> สู้บอส <strong>Voidranger</strong> จนชนะหรือแพ้ โดย <strong>กฎ HP 5 ข้อ</strong> จากสไลด์ต้องเป็นจริงตลอดเกม</p>
+            <div class="two-col">
+              <ol class="rules">
+                <li>เริ่มด่าน HP = 100</li>
+                <li>โดนตี HP ลด แต่ไม่ต่ำกว่า 0</li>
+                <li>ฮีล HP เพิ่ม แต่ไม่เกิน 100</li>
+                <li>HP เหลือ 0 = ล้ม ล้มแล้วฮีลไม่ได้</li>
+                <li>ดื่ม Energy Drink ได้ Energy +20</li>
+              </ol>
+              <div class="dialog" role="note" aria-label="สิ่งที่โจทย์วัด">
+                <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>สิ่งที่วัด</div>
+                <div class="dialog-body">
+                  <p class="dialog-q">โจทย์นี้<b>ไม่ได้วัดว่าเกมสนุกแค่ไหน</b> แต่วัดว่ากฎทั้งหมดอยู่ในฟังก์ชันกลุ่ม <span class="mono">ally_*</span> ที่เดียว</p>
+                  <p class="dialog-q">ส่วนอื่นของโปรแกรมเปลี่ยน HP และ Energy ได้<b>ผ่านฟังก์ชันพวกนี้เท่านั้น</b></p>
+                </div>
+              </div>
+            </div>
+            <pre class="code"><code>// ที่เดียวที่แตะ hp / energy
+int  ally_is_down(const Ally *a);
+void ally_take_damage(Ally *a, int dmg);
+int  ally_heal(Ally *a, int n);        // คืน -1 ถ้าฮีลไม่ได้
+void ally_add_energy(Ally *a, int n);
+
+// ส่วนอื่นห้ามเขียนแบบนี้
+a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
+            <p class="small">ลองเล่นเวอร์ชันเว็บของเกมนี้ได้ด้านล่าง — เลือก C จะเห็นว่าถ้า hp ไม่มีเจ้าของ กฎพังยังไง</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="block" id="game" data-bg="paper" data-label="01 · เทียบภาษา + เล่นเกม" aria-labelledby="same-title">
       <div class="wrap">
         <p class="kicker reveal">โจทย์เดียว เขียนใหม่ทุกยุค · ลองเล่นเทียบกัน</p>

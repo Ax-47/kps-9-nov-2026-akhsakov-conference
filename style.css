@@ -1459,3 +1459,5 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .tl-card:has(.tl-photo) .tl-photo { grid-row: span 2; margin: 0; }
 .tl-photo img { height: 140px; max-width: 220px; }
 @media (max-height: 820px) { .tl-photo img { height: 96px; max-width: 150px; } }
+.challenge .two-col { gap: 24px; align-items: center; }
+.challenge .dialog { max-width: none; }
