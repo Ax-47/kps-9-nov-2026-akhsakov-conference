@@ -110,7 +110,7 @@
     for (const e of entries) if (e.isIntersecting) { scramble(e.target); scrambleIO.unobserve(e.target); }
   }, { threshold: 0.5 });
   document.querySelectorAll(".mega, .era-big b").forEach((el) => {
-    scrambleIO.observe(el);
+    if (!el.matches(".mega")) scrambleIO.observe(el); // .mega ใช้แอนิเมชันตัวอักษรลอยขึ้นด้านล่างแทน
     el.addEventListener("pointerenter", () => scramble(el));
   });
 
@@ -230,4 +230,67 @@
       if (typed.endsWith(word)) { typed = ""; EGGS[word](); break; }
     }
   });
+
+  // ===================== แอนิเมชันหัวข้อ =====================
+  // หัวข้อไทย: แถบสีกวาดผ่านแล้วข้อความโผล่ · คำยักษ์อังกฤษ: ตัวอักษรลอยขึ้นทีละตัว
+  // ป้ายเล็ก (kicker): พิมพ์ออกมาแบบเครื่องพิมพ์ดีด · แถบ ///// เลื่อนเข้า
+  if (!reduceMotion) {
+    const headIO = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        e.target.classList.add("h-in");
+        headIO.unobserve(e.target);
+      }
+    }, { rootMargin: "0px 0px -10% 0px" });
+
+    document.querySelectorAll(".title, .giant, .display").forEach((el) => {
+      if (el.closest(".hero")) return;
+      const wipe = document.createElement("span");
+      wipe.className = "wipe";
+      const text = document.createElement("span");
+      text.className = "wipe-text";
+      while (el.firstChild) text.append(el.firstChild);
+      const bar = document.createElement("span");
+      bar.className = "wipe-bar";
+      bar.setAttribute("aria-hidden", "true");
+      wipe.append(text, bar);
+      el.append(wipe);
+      el.classList.add("h-wipe");
+      headIO.observe(el);
+    });
+
+    document.querySelectorAll(".mega").forEach((el) => {
+      const word = el.textContent.trim();
+      el.setAttribute("aria-label", word);
+      el.textContent = "";
+      [...word].forEach((ch, i) => {
+        const span = document.createElement("span");
+        span.className = "ch";
+        span.style.setProperty("--i", i);
+        span.textContent = ch;
+        span.setAttribute("aria-hidden", "true");
+        el.append(span);
+      });
+      el.classList.add("h-letters");
+      headIO.observe(el);
+    });
+
+    document.querySelectorAll(".kicker, .part-tag").forEach((el) => {
+      if (el.closest(".hero")) return;
+      el.classList.add("h-type");
+      headIO.observe(el);
+    });
+
+    // พิมพ์บรรทัดใน terminal แนะนำตัวทีละบรรทัด
+    document.querySelectorAll("[data-type-lines]").forEach((box) => {
+      const lines = [...box.children];
+      lines.forEach((l) => l.classList.add("tl"));
+      const io = new IntersectionObserver((entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        lines.forEach((l, i) => setTimeout(() => l.classList.add("tl-in"), 250 + i * (l.classList.contains("sh") ? 420 : 260)));
+      }, { threshold: 0.4 });
+      io.observe(box);
+    });
+  }
 })();

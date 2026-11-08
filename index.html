@@ -64,11 +64,68 @@
     </div>
 
     <!-- ===================== วาระ ===================== -->
+    <!-- ===================== แนะนำตัว speaker =====================
+         ข้อความใน <span class="fill-me">[…]</span> คือช่องที่ต้องใส่ข้อมูลจริงของผู้พูด -->
+    <section class="block speaker" id="speaker" data-bg="paper" data-label="แนะนำตัว">
+      <div class="wrap">
+        <p class="kicker">แนะนำตัว · $ whoami</p>
+        <h2 class="giant">สวัสดีน้อง ๆ<br>พี่ชื่อ มิช่า</h2>
+        <div class="speaker-grid">
+          <div class="win id-card reveal">
+            <div class="win-bar"><span>profile.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win-body">
+              <div class="avatar" aria-hidden="true">
+                <svg viewBox="0 0 12 12" shape-rendering="crispEdges"><path d="M4 1h4v1h1v1h1v4H9v1H8v1H4V8H3V7H2V3h1V2h1z" fill="currentColor"/><path d="M4 4h1v1H4zM7 4h1v1H7zM4 6h4v1H4z" class="face"/><path d="M2 10h8v1H2z" fill="currentColor"/></svg>
+                <span class="mono">avatar.png</span>
+              </div>
+              <dl class="id-fields">
+                <div><dt>NAME</dt><dd>มิช่า (Misha)</dd></div>
+                <div><dt>SCHOOL</dt><dd>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</dd></div>
+                <div><dt>ROLE</dt><dd>พี่แนะแนว · guide.exe</dd></div>
+              </dl>
+              <p class="id-code mono" aria-hidden="true">ID ▮▮▮▯▮▮▯▮▮▮▯▮ · KPS-09-11-2026</p>
+            </div>
+          </div>
+
+          <div class="win term-win reveal">
+            <div class="win-bar"><span>whoami.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="whoami mono" data-type-lines>
+              <p class="sh">whoami</p>
+              <p>มิช่า (Misha)</p>
+              <p class="sh">cat school.txt</p>
+              <p>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</p>
+              <p class="sh">cat studying.txt</p>
+              <p><span class="fill-me">[เรียนสาขาอะไร ปีไหน]</span></p>
+              <p class="sh">cat languages.txt</p>
+              <p><span class="fill-me">[ภาษาที่เขียนเป็นหลัก]</span></p>
+              <p class="sh">ls projects/</p>
+              <p><span class="fill-me">[โปรเจกต์ที่ทำอยู่]</span></p>
+              <p class="sh">cat contact.txt</p>
+              <p><span class="fill-me">[IG]</span> · <span class="fill-me">[Discord]</span> · <span class="fill-me">[อีเมล]</span></p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="dialog rules-dialog reveal" aria-label="กติกาวันนี้">
+          <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>BEFORE WE START</div>
+          <div class="dialog-body">
+            <ul class="ticks">
+              <li>วันนี้ยาวประมาณ <b>2 ชั่วโมงครึ่ง</b> มีพัก 10 นาทีตรงกลาง</li>
+              <li>มีกิจกรรมให้ลองเล่นระหว่างทาง (รวมถึงเกมในเว็บนี้)</li>
+              <li><b>ไม่ต้องจดทุกคำ</b> — Part 3 จะเล่าว่าทำไมการจดทุกคำไม่ใช่วิธีจำที่ดีที่สุด</li>
+            </ul>
+            <div class="dialog-btns" aria-hidden="true"><span>จดทุกคำ</span><span class="on">ฟังแล้วลองทำ</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <section class="block" id="agenda" data-bg="paper" data-label="วาระวันนี้">
       <div class="wrap">
         <p class="kicker reveal">วาระวันนี้ · ประมาณ 2 ชั่วโมงครึ่ง</p>
         <h2 class="display reveal">วันนี้จะคุยกัน 4 เรื่อง</h2>
         <ol class="agenda">
+          <li class="reveal muted-row"><a href="#speaker"><span class="num">00</span><span class="what">แนะนำตัว · whoami</span><span class="time">~2 นาที</span></a></li>
           <li class="reveal"><a href="#part1"><span class="num">01</span><span class="what">ประวัติภาษาโปรแกรม: แต่ละยุคเจอปัญหาอะไร แก้ยังไง</span><span class="time">~45 นาที</span></a></li>
           <li class="reveal"><a href="#part2"><span class="num">02</span><span class="what">เริ่มต้นยังไง: ภาษาแรก และเส้นทางสายแอป เว็บ เกม</span><span class="time">~25 นาที</span></a></li>
           <li class="reveal muted-row"><a href="#break"><span class="num">—</span><span class="what">พัก 10 นาที</span><span class="time">~10 นาที</span></a></li>

@@ -775,3 +775,61 @@ body.shake main { animation: page-shake 0.8s steps(10); }
 .hscroll.pinned .panel-photo .sticker img { max-height: calc((100svh - 300px) / 2); width: auto; margin: 0 auto; }
 .hscroll.pinned .panel-photo .sticker { width: fit-content; max-width: 78%; }
 .hscroll.pinned .panel-photo .sticker.tilt { margin-top: -24px; }
+
+/* ===================== แอนิเมชันหัวข้อ (fun.js) ===================== */
+.wipe { position: relative; display: inline-block; max-width: 100%; }
+.h-wipe .wipe-text { opacity: 0; }
+.h-wipe.h-in .wipe-text { animation: show-mid 0.9s steps(1) both; }
+.wipe-bar { position: absolute; inset: -0.04em -0.12em; background: var(--accent); clip-path: inset(0 100% 0 0); pointer-events: none; }
+.h-wipe.h-in .wipe-bar { animation: wipe-bar 0.9s cubic-bezier(0.7, 0, 0.3, 1) both; }
+.h-wipe:hover .wipe-text { animation: head-jitter 0.35s steps(3); }
+@keyframes show-mid { 0%, 49% { opacity: 0; } 50%, 100% { opacity: 1; } }
+@keyframes wipe-bar { 0% { clip-path: inset(0 100% 0 0); } 48% { clip-path: inset(0 0 0 0); } 52% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes head-jitter { 0% { text-shadow: -3px 0 var(--red), 3px 0 var(--accent); transform: translateX(2px); } 50% { text-shadow: 3px 0 var(--red), -3px 0 var(--accent); transform: translateX(-2px); } 100% { text-shadow: none; transform: none; } }
+
+.h-letters { overflow: hidden; padding-bottom: 0.04em; }
+.h-letters .ch { display: inline-block; transform: translateY(105%) rotate(8deg); opacity: 0; }
+.h-letters.h-in .ch { animation: ch-rise 0.75s var(--ease) both; animation-delay: calc(var(--i) * 55ms); }
+@keyframes ch-rise { from { transform: translateY(105%) rotate(8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.h-type { clip-path: inset(0 100% 0 0); }
+.h-type.h-in { animation: type-in 0.8s steps(22) both; }
+@keyframes type-in { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.part-tag.h-in .stripes { animation: stripes-in 0.6s var(--ease) 0.2s both; }
+@keyframes stripes-in { from { width: 0; } to { width: 64px; } }
+
+/* ===================== แนะนำตัว speaker ===================== */
+.speaker .giant { font-size: clamp(42px, 7vw, 112px); }
+.speaker-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 32px; align-items: start; margin-top: 12px; }
+@media (max-width: 900px) { .speaker-grid { grid-template-columns: minmax(0, 1fr); } }
+.id-card .win-body { display: grid; grid-template-columns: 120px 1fr; gap: 18px 20px; align-items: start; }
+.avatar { display: grid; gap: 6px; justify-items: center; }
+.avatar svg { width: 120px; height: 120px; background: var(--blue); color: var(--white); border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--shadow); padding: 6px; }
+.avatar .face { fill: var(--blue); }
+.avatar .mono { font-size: 11px; color: var(--muted); }
+.id-fields { display: grid; gap: 10px; }
+.id-fields div { border-bottom: 1.5px dashed var(--line); padding-bottom: 6px; }
+.id-fields dt { font: 400 11px var(--pixel); color: var(--accent); letter-spacing: 0.08em; }
+.id-fields dd { margin: 0; font: 700 1.1em var(--head-font); color: var(--head); }
+.id-code { grid-column: 1 / -1; font-size: 12px; color: var(--muted); letter-spacing: 0.1em; }
+@media (max-width: 520px) { .id-card .win-body { grid-template-columns: 1fr; } .avatar { justify-items: start; } }
+
+.term-win .whoami { background: #050833; color: #d9ddff; padding: 18px 20px; font-size: 14px; line-height: 1.7; min-height: 320px; }
+.whoami p { margin: 0; }
+.whoami .sh { color: var(--green); }
+.whoami .sh::before { content: "misha@guide:~$ "; color: #7d84b8; }
+.whoami p:not(.sh) { padding-left: 2ch; margin-bottom: 6px; }
+.whoami .tl { opacity: 0; }
+.whoami .tl.tl-in { opacity: 1; animation: type-in 0.45s steps(14) both; }
+.whoami:not(:has(.tl)) p { opacity: 1; }
+.fill-me { background: rgba(255, 224, 102, 0.18); color: #ffe066; border: 1.5px dashed #ffe066; padding: 0 6px; }
+.rules-dialog { margin-top: 36px; max-width: 640px; }
+.rules-dialog .ticks li { color: var(--blue); font-weight: 500; }
+.rules-dialog .ticks li::before { color: var(--red); }
+.rules-dialog b { color: var(--red); }
+
+@media (prefers-reduced-motion: reduce) {
+  .h-wipe .wipe-text, .h-letters .ch, .whoami .tl { opacity: 1; transform: none; animation: none; }
+  .h-type, .wipe-bar { clip-path: none; animation: none; }
+  .wipe-bar { display: none; }
+}
