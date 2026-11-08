@@ -1545,3 +1545,13 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .zero-term .p { color: var(--green); } .zero-term .ok { color: #ffe066; }
 .zero-why { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; font-size: 14px; color: #dfe3ff; }
 .zero-why b { color: var(--green); font-weight: 600; }
+
+/* การ์ดคั่นยุค: ข้อมูลซ้าย โค้ดตัวอย่างขวา */
+.era-divider { width: min(980px, 92vw); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 26px; align-items: center; }
+.era-text { display: flex; flex-direction: column; gap: 14px; }
+.era-code { margin: 0; display: grid; gap: 8px; }
+.era-code figcaption { font: 400 11px var(--pixel); color: var(--bg); letter-spacing: 0.06em; }
+.era-code .code { margin: 0; background: #050833; color: #e6e9ff; border: 2px solid var(--bg); font-size: clamp(12.5px, 1vw, 15px); box-shadow: 6px 6px 0 rgba(5, 8, 51, 0.35); }
+.era-code p { font: 600 14px/1.45 var(--head-font); color: var(--bg); }
+@media (max-width: 860px) { .era-divider { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
+@media (max-height: 820px) { .era-divider .era-big b { font-size: clamp(80px, 14svh, 140px); } .era-divider .bfc dd { font-size: 14px; } }

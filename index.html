@@ -299,6 +299,7 @@
         <div class="hscroll-track">
 
           <article class="panel era-divider" data-era="0" id="era-0">
+            <div class="era-text">
             <p class="era-big" aria-hidden="true">ERA<b>0</b></p>
             <h3 class="era-name"><span class="mono">ERA 0 · 1940s–1950s</span>ยุคบุกเบิก <em>EARLY DEVELOPMENTS</em></h3>
             <dl class="bfc">
@@ -307,6 +308,12 @@
               <div class="cost"><dt>COST</dt><dd>เครื่องแพง คนถูก — ยังต้องคิดแบบเครื่อง</dd></div>
             </dl>
             <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Machine code</b><span>1940s</span></li><li><b>Assembly</b><span>1949</span></li><li><b>FORTRAN</b><span>1957</span></li><li><b>FLOW-MATIC</b><span>1958</span></li></ul>
+            </div>
+            <figure class="era-code"><figcaption class="mono">ตัวอย่างโค้ดยุคนี้ · FORTRAN · 1957</figcaption><pre class="code"><code>C     สูตร + กระโดดด้วยเลขบรรทัด
+      HP = HP - DMG
+      IF (HP) 10, 10, 20
+   10 STOP
+   20 CONTINUE</code></pre><p>IF (HP) 10,10,20 = ติดลบ/ศูนย์ไปบรรทัด 10 · บวกไปบรรทัด 20</p></figure>
           </article>
           <article class="panel win panel-wide" data-era="0">
             <div class="win-bar"><span>era0.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -344,6 +351,7 @@
           </article>
 
           <article class="panel era-divider" data-era="1" id="era-1">
+            <div class="era-text">
             <p class="era-big" aria-hidden="true">ERA<b>1</b></p>
             <h3 class="era-name"><span class="mono">ERA 1 · 1960s–1970s</span>ยุคเมนเฟรม <em>STRUCTURED PROGRAMMING</em></h3>
             <dl class="bfc">
@@ -352,6 +360,13 @@
               <div class="cost"><dt>COST</dt><dd>ข้อมูลยังเป็นของกลาง ใครก็แก้ได้</dd></div>
             </dl>
             <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>ALGOL</b><span>1958</span></li><li><b>Pascal</b><span>1970</span></li><li><b>C</b><span>1972</span></li></ul>
+            </div>
+            <figure class="era-code"><figcaption class="mono">ตัวอย่างโค้ดยุคนี้ · C · 1972</figcaption><pre class="code"><code>/* if / loop / ฟังก์ชัน อ่านบนลงล่าง */
+int take_damage(int hp, int dmg) {
+    hp = hp - dmg;
+    if (hp &lt; 0) hp = 0;
+    return hp;
+}</code></pre><p>มีฟังก์ชันแล้ว แต่ hp ยังส่งไปมาได้ทุกที่</p></figure>
           </article>
           <article class="panel win" data-era="1">
             <div class="win-bar"><span>goto.c</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -423,6 +438,7 @@ printf("%s", name);</code></pre>
           </article>
 
           <article class="panel era-divider" data-era="2" id="era-2">
+            <div class="era-text">
             <p class="era-big" aria-hidden="true">ERA<b>2</b></p>
             <h3 class="era-name"><span class="mono">ERA 2 · 1980s–2000s</span>ยุคพีซี <em>OBJECT ORIENTED</em></h3>
             <dl class="bfc">
@@ -431,6 +447,15 @@ printf("%s", name);</code></pre>
               <div class="cost"><dt>COST</dt><dd>สืบทอดลึกจนแก้ยาก ต้นไม้คลาสงอกไม่หยุด</dd></div>
             </dl>
             <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Simula</b><span>1967</span></li><li><b>Smalltalk</b><span>1972</span></li><li><b>C++</b><span>1985</span></li><li><b>Java</b><span>1995</span></li></ul>
+            </div>
+            <figure class="era-code"><figcaption class="mono">ตัวอย่างโค้ดยุคนี้ · C++ · 1985</figcaption><pre class="code"><code>// ข้อมูลมีเจ้าของ
+class Ally {
+    int hp = 100;          // private
+public:
+    void takeDamage(int d) {
+        hp = std::max(0, hp - d);
+    }
+};</code></pre><p>แก้ hp ได้ผ่านเมธอดเท่านั้น</p></figure>
           </article>
           <article class="panel win warn" data-era="2">
             <div class="win-bar"><span>⚠ hp_bug.log</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
@@ -480,6 +505,7 @@ printf("%s", name);</code></pre>
           </article>
 
           <article class="panel era-divider" data-era="3" id="era-3">
+            <div class="era-text">
             <p class="era-big" aria-hidden="true">ERA<b>3</b></p>
             <h3 class="era-name"><span class="mono">ERA 3 · 2000s–ปัจจุบัน</span>ยุคคลาวด์ <em>COMPOSITION > INHERITANCE</em></h3>
             <dl class="bfc">
@@ -488,6 +514,15 @@ printf("%s", name);</code></pre>
               <div class="cost"><dt>COST</dt><dd>ไม่มีคลาสแม่ให้รับโค้ดฟรี ต้องเขียน impl เอง</dd></div>
             </dl>
             <ul class="era-langs" aria-label="ภาษาในยุคนี้"><li><b>Go</b><span>2009</span></li><li><b>Rust</b><span>2015</span></li><li><b>Zero</b><span>ทดลอง · ภาษาสำหรับ AI agent</span></li></ul>
+            </div>
+            <figure class="era-code"><figcaption class="mono">ตัวอย่างโค้ดยุคนี้ · Rust · 2015</figcaption><pre class="code"><code>// ประกอบชิ้นส่วน แทนการสืบทอด
+struct Health { hp: i32 }
+impl Health {
+    fn take(&amp;mut self, d: i32) {
+        self.hp = (self.hp - d).max(0);
+    }
+}
+struct Ally { health: Health } // "มี" ไม่ใช่ "เป็น"</code></pre><p>กฎอยู่ใน Health ชิ้นเดียว ใครอยากมีเลือดก็ใส่ชิ้นนี้</p></figure>
           </article>
           <article class="panel win" data-era="3">
             <div class="win-bar"><span>composition.go</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
