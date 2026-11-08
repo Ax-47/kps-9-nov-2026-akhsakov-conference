@@ -1644,3 +1644,10 @@ thead th { font-size: 13px; }
 .pd-more h5 { margin: 0 0 8px; font: 700 18px var(--head-font); color: var(--head); }
 .pd-more .code { margin: 0; }
 @media (max-width: 860px) { .pd-more { grid-template-columns: minmax(0, 1fr); } }
+.lesson-strip { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 3px solid var(--accent); }
+.lesson-strip li { position: relative; padding: 18px 12px 0 0; display: grid; gap: 4px; }
+.lesson-strip li::before { content: ""; position: absolute; top: -10px; left: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+.lesson-strip b { font: 400 clamp(26px, 2.6vw, 40px)/1 var(--display); color: var(--accent); }
+.lesson-strip span { font-size: 15px; line-height: 1.45; color: var(--fg); }
+.lesson-strip li:last-child b { color: var(--yellow); }
+@media (max-width: 860px) { .lesson-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 18px; } }
