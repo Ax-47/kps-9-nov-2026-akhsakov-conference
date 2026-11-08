@@ -1833,3 +1833,21 @@ thead th { font-size: 13px; }
 .mirror-hist li b { color: #fff; font-weight: 600; order: -1; }
 .mirror-hist li.empty { flex: 1; justify-content: center; color: #9aa3e8; font-family: var(--sans); }
 @media (max-width: 900px) { .mirror-setup, .mirror-lab { grid-template-columns: minmax(0, 1fr); } }
+
+/* ภาพอุปกรณ์ mirror tracing */
+.mt-photo { position: relative; margin: 0; width: fit-content; max-width: 100%; }
+.mt-photo img { display: block; width: 100%; max-height: 210px; object-fit: cover; border: 2px solid var(--green); box-shadow: 6px 6px 0 var(--shadow); }
+.mt-photo figcaption { position: absolute; left: -6px; bottom: 10px; padding: 3px 8px; background: #ffe066; color: #1f2eff; font: 400 11px var(--pixel); transform: rotate(-3deg); box-shadow: 2px 2px 0 rgba(0,0,30,.5); }
+.mt-photo::before { content: ""; position: absolute; top: -8px; left: 50%; width: 58px; height: 16px; transform: translateX(-50%) rotate(-5deg); background: rgba(61,255,143,.75); z-index: 1; }
+.hm-run .mt-photo + p { margin-top: 0; }
+.mt-big { margin: 0 0 22px; display: grid; gap: 8px; }
+.mt-big img { width: 100%; max-height: 420px; object-fit: cover; border: 2px solid var(--green); box-shadow: 8px 8px 0 var(--shadow); }
+.mt-big figcaption { font-size: 14.5px; color: #c9d1ff; }
+@media (max-height: 820px) { .mt-photo img { max-height: 140px; } }
+.hm-run .panel-mt { width: min(860px, 90vw); }
+.panel-mt .mt-cols { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.mt-left, .mt-right { display: grid; gap: 12px; align-content: start; }
+.panel-mt .mt-photo img { max-height: 210px; }
+.panel-mt .days li { padding: 9px 14px; }
+@media (max-height: 820px) { .panel-mt .mt-photo img { max-height: 150px; } .hm-run .panel-mt .days li, .hm-run .panel-mt .win-body > p, .hm-run .panel-mt .mt-right > p { font-size: 16.5px; } }
+@media (max-width: 760px) { .panel-mt .mt-cols { grid-template-columns: minmax(0, 1fr); } }
