@@ -17,6 +17,7 @@
   <script src="desktop.js?v=dev" defer></script>
   <script src="viz.js?v=dev" defer></script>
   <script src="debugger.js?v=dev" defer></script>
+  <script src="lsp.js?v=dev" defer></script>
 </head>
 <body data-bg="blue">
   <a class="skip" href="#agenda">ข้ามไปเนื้อหา</a>
@@ -1374,34 +1375,7 @@ int main() {
               </div>
               <ul class="inh-key"><li><b>ได้มาฟรี</b> ลูกมีทุกอย่างของแม่ ไม่ต้องเขียนซ้ำ</li><li><b><i>+</i> เพิ่ม</b> ลูกเพิ่มของใหม่ได้</li><li><b><i>↻</i> override</b> ลูกเปลี่ยนเมธอดของแม่ได้</li></ul>
             </div>
-            <pre class="code"><code>class Character {                       // แม่: ของที่ทุกตัวละครต้องมี
-protected:
-    int hp = 100;
-public:
-    void takeDamage(int d) { hp = std::max(0, hp - d); }
-    virtual int atk() { return 10; }    // virtual = ลูกเปลี่ยนได้
-};
-
-class Ally : public Character {         // ฝั่งเรา: ได้ hp, takeDamage มาฟรี
-public:
-    int energy = 0;
-    void ult() { /* ท่าไม้ตาย */ }       // เพิ่มของใหม่
-};
-
-class Misha : public Ally {             // Misha "เป็น" Ally
-public:
-    int atk() override { return 30; }   // override: ตีแรงกว่าแม่
-};
-
-class Kafka : public Character {        // ศัตรู: ได้แค่ของจาก Character
-public:
-    int atk() override { return 25; }
-};
-
-Misha misha;
-misha.takeDamage(40);   // ไม่ได้เขียนใน Misha — ได้มาจาก Character
-misha.ult();            // ได้มาจาก Ally
-misha.atk();            // 30 — ของ Misha เอง (override)</code></pre>
+            <div class="lsp" data-lsp="inh"></div>
           </div>
           <div class="two-col inh-pc">
             <p><b class="ok">ข้อดี</b> เขียน takeDamage() ครั้งเดียวใน Character — Misha, Kafka และตัวละครใหม่ทุกตัวได้กฎ “hp ไม่ต่ำกว่า 0” ไปเลย</p>

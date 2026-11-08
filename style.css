@@ -1721,3 +1721,26 @@ thead th { font-size: 13px; }
 .inh-pc b { display: inline-block; padding: 1px 8px; margin-right: 6px; color: #fff; font: 700 13px var(--head-font); }
 .inh-pc .ok { background: #12a352; } .inh-pc .bad { background: var(--red); }
 @media (max-width: 900px) { .inh-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* LSP: โค้ดที่ชี้ดูชนิด / คลิกไปนิยามได้ */
+.lsp { position: relative; background: #0b0f4f; border: 2px solid var(--green); font: 13.5px/1.7 var(--mono); color: #e6e9ff; }
+.lsp-bar { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 4px 10px; background: #050833; border-bottom: 1.5px solid #2c3596; font-size: 12px; }
+.lsp-bar span:first-child { color: #fff; border-bottom: 2px solid var(--green); padding-bottom: 2px; }
+.lsp-hint { color: var(--yellow); }
+.lsp-code { list-style: none; margin: 0; padding: 8px 0; counter-reset: ln; max-height: 560px; overflow: auto; }
+.lsp-code li { counter-increment: ln; display: grid; grid-template-columns: 3ch 1fr; padding-right: 10px; transition: background 0.3s; }
+.lsp-code li::before { content: counter(ln); text-align: right; padding-right: 10px; color: #6b74c9; font-size: 12px; }
+.lsp-code code { white-space: pre; font-family: inherit; }
+.lsp-code .k { color: #ffe066; } .lsp-code .c { color: #8f9bff; } .lsp-code .n { color: #ffa94d; }
+.lsp .sym { cursor: pointer; border-radius: 2px; text-decoration: underline dotted rgba(61, 255, 143, 0.6); text-underline-offset: 3px; }
+.lsp .sym:hover, .lsp .sym:focus-visible { background: rgba(61, 255, 143, 0.22); outline: none; text-decoration-style: solid; }
+.lsp .sym.def { color: #6ff3ff; }
+.lsp .sym.ref { background: rgba(255, 224, 102, 0.3); box-shadow: 0 0 0 1px rgba(255, 224, 102, 0.7); }
+.lsp-code li.defline { background: rgba(61, 255, 143, 0.14); box-shadow: inset 3px 0 0 var(--green); }
+.lsp-code li.hot { animation: lsp-flash 0.8s ease-out; }
+@keyframes lsp-flash { 0% { background: rgba(61, 255, 143, 0.55); } 100% { background: rgba(61, 255, 143, 0.14); } }
+.lsp-tip { position: absolute; z-index: 5; width: min(420px, 90%); background: #1b1e2e; border: 1px solid #4a5280; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); padding: 8px 10px; font: 13px/1.5 var(--sans); color: #e6e9ff; pointer-events: none; }
+.lsp-tip code { display: block; font: 13px var(--mono); color: #6ff3ff; padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px solid #3a4170; white-space: pre-wrap; }
+.lsp-tip p { margin: 0 0 4px; } .lsp-tip .ov { color: var(--yellow); } .lsp-tip .where { color: #9aa3e8; font-size: 12px; margin: 0; }
+.lsp-status { padding: 4px 10px; background: var(--green); color: #050833; font-size: 12.5px; font-weight: 600; }
+.lsp-code { max-height: none; }
