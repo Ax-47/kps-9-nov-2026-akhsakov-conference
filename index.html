@@ -579,6 +579,16 @@ a-&gt;hp -= 80;   // ✗ ข้ามกฎ</code></pre>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-goto" aria-labelledby="b-goto">
             <p>โค้ดจากสไลด์ วนด้วย goto ล้วน — กด ▶ แล้วดูว่า hp ไปถึง −70 ที่บรรทัดไหน ทั้งที่ไม่มีใครตั้งใจให้ติดลบ</p>
+            <div class="why-hard">
+              <p class="why-h">ทำไมโค้ด goto ถึง debug ยาก?</p>
+              <ol>
+                <li><b>อ่านบนลงล่างไม่ได้</b> ลำดับที่รันจริงไม่ใช่ลำดับบรรทัด — ดู “เส้นทางที่วิ่งมา” ด่านแค่ 3 ตาก็กระโดดหลายรอบ ทั้งไปข้างหน้า ↷ และย้อนกลับ ↺</li>
+                <li><b>บรรทัดเดียวมาได้หลายทาง</b> L50 (บรรทัด 14) มาถึงได้ 4 ทาง พอเห็น <span class="mono">B -70</span> ตอนพิมพ์ ต้องย้อนไล่เองว่ามาจาก L20, L30, L40 หรือตกลงมา</li>
+                <li><b>ไม่มีขอบเขต</b> ไม่มีฟังก์ชัน ไม่มี call stack มีแต่ <span class="mono">main()</span> — debugger บอกได้แค่ “ตอนนี้อยู่บรรทัดไหน” แต่บอกไม่ได้ว่า “กำลังทำงานอะไรอยู่”</li>
+                <li><b>ตัวแปรเป็นของกลาง</b> hp ถูกแก้ได้จากทุก label ไม่มีจุดเดียวให้ตั้ง breakpoint ดักว่า hp ต่ำกว่า 0 ตอนไหน</li>
+                <li><b>ลืม goto บรรทัดเดียว พังเงียบ</b> ถ้าลบ <span class="mono">goto L50</span> ท้ายบรรทัด 12 โดนบอสตีแล้วจะตกลงไปทำ L40 ฮีลฟรีทันที — compile ผ่าน ไม่มี error เตือน</li>
+              </ol>
+            </div>
             <div class="dbg" data-dbg="goto"></div>
           </div>
           <div class="tab-panel" role="tabpanel" id="t-c" aria-labelledby="b-c" hidden>

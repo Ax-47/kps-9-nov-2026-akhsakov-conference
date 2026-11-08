@@ -139,6 +139,18 @@ fn main() {
 }`,
   };
 
+  // goto: บรรทัดนี้มาถึงได้จากไหนบ้าง (ตกลงมาจากบรรทัดก่อน หรือโดนกระโดดมา)
+  const COMEFROM = {
+    goto: {
+      5: "บรรทัด 4 (ตกลงมา) · บรรทัด 15 (goto L10)",
+      11: "บรรทัด 7 เท่านั้น (goto L20)",
+      12: "บรรทัด 8 เท่านั้น (goto L30)",
+      13: "บรรทัด 9 เท่านั้น (goto L40)",
+      14: "บรรทัด 10 · 11 · 12 (goto L50) · บรรทัด 13 (ตกลงมา) — 4 ทาง!",
+      16: "บรรทัด 6 (goto L99) · บรรทัด 15 (ตกลงมา)",
+    },
+  };
+
   const RULES = [
     "เริ่มด่าน HP = 100",
     "โดนตี HP ลด แต่ไม่ต่ำกว่า 0",
@@ -416,6 +428,7 @@ fn main() {
         <ol class="dbg-code" data-r="code">${lines.map((l) => `<li><code>${hl(l)}</code></li>`).join("")}</ol>
         <div class="dbg-side">
           <section><h5>บรรทัดนี้ทำอะไร</h5><p class="dbg-note" data-r="note"></p></section>
+          <section><h5>เส้นทางที่วิ่งมา <span data-r="jumps"></span></h5><ol class="dbg-path" data-r="path"></ol><p class="dbg-from" data-r="from" hidden></p></section>
           <section><h5>Call stack</h5><ol class="dbg-stack" data-r="stack"></ol></section>
           <section><h5>ตัวแปร</h5><dl class="dbg-vars" data-r="vars"></dl></section>
           <section><h5>กฎ HP 5 ข้อ</h5><ol class="dbg-rules" data-r="rules"></ol></section>
@@ -449,6 +462,20 @@ fn main() {
       }
       R("count").textContent = `ก้าวที่ ${i + 1}/${steps.length} · บรรทัด ${st.line}`;
       R("note").textContent = st.note || "—";
+      // เส้นทาง: บรรทัดที่ผ่านมา ไม่ต่อเนื่อง = กระโดด
+      let jumps = 0;
+      const path = steps.slice(0, i + 1).map((x, j) => {
+        const p = steps[j - 1];
+        const jump = p && x.line !== p.line + 1 && x.line !== p.line;
+        if (jump) jumps++;
+        return { line: x.line, jump, up: p && x.line < p.line };
+      });
+      R("jumps").textContent = `· กระโดด ${jumps} ครั้ง`;
+      R("path").innerHTML = path.slice(-18).map((x, j, arr) =>
+        `<li class="${x.jump ? (x.up ? "jump up" : "jump") : ""}${j === arr.length - 1 ? " here" : ""}">${x.jump ? (x.up ? "↺" : "↷") : ""}${x.line}</li>`).join("");
+      const from = (COMEFROM[lang] || {})[st.line];
+      R("from").hidden = !from;
+      if (from) R("from").innerHTML = `บรรทัด ${st.line} มาถึงได้จาก: <b>${esc(from)}</b>`;
       R("stack").innerHTML = [...st.stack].reverse().map((f, j) => `<li${j === 0 ? ' class="top"' : ""}>${esc(f)}()</li>`).join("");
       R("vars").innerHTML = Object.entries(st.vars).map(([k, val]) => {
         const changed = prev && prev.vars[k] !== val;

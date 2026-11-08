@@ -239,7 +239,7 @@
         return;
       }
       if (Math.floor(rand() * 4) === 0) {  // ตีทั้งทีม
-        print("  Memory Leak hits everyone!");
+        print("  Void Storm hits everyone!");
         g.party.forEach((a) => {
           if (isDown(a)) return;
           const d = roll(8, 12);
@@ -360,16 +360,16 @@
       g = {
         party: [
           { name: "Misha", path: ATTACKER, hp: MAX_HP, energy: 0 },
-          { name: "Nova", path: HEALER, hp: MAX_HP, energy: 0 },
+          { name: "Natasha", path: HEALER, hp: MAX_HP, energy: 0 },
         ],
-        boss: { name: "SEGFAULT", hp: BOSS_MAX_HP, turn: 0, charging: false, target: 0 },
+        boss: { name: "Voidranger", hp: BOSS_MAX_HP, turn: 0, charging: false, target: 0 },
         sp: 3, drinks: 2, foods: 2, round: 1, current: 0,
       };
-      print(c("bold", `HP BATTLE (mini) — Misha & Nova vs ${g.boss.name}   seed ${s}`));
+      print(c("bold", `Honkai: Star Rail (mini) — Misha & Natasha vs ${g.boss.name}   seed ${s}`));
       if (langTag) langTag.textContent = lang;
       if (buggy) print(c("yellow", `[${lang} build] hp has no owner: anyone can write it, so it goes below 0 and nobody gets knocked down`));
       else print(c("green", `[${lang} build] hp is private: only takeDamage() and heal() can touch it`));
-      print(`Misha hits hard. Nova heals. The boss charges a BIG ATTACK (${BIG_ATTACK}) every 3rd turn.`);
+      print(`Misha hits hard. Natasha heals. The boss charges a BIG ATTACK (${BIG_ATTACK}) every 3rd turn.`);
       nextAlly(0);
       render();
     }

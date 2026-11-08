@@ -1512,3 +1512,17 @@ img.pfp.sm { object-fit: cover; padding: 0; background: #111; }
 .dbg-out { margin: 0; padding: 6px 8px; background: #000; color: #e6e9ff; font: 14px/1.5 var(--mono); min-height: 3em; }
 @media (max-width: 900px) { .dbg-main { grid-template-columns: minmax(0, 1fr); } .dbg-code { border-right: 0; border-bottom: 2px solid #1f2eff; max-height: 360px; font-size: 13px; } .dbg-count { margin-left: 0; } }
 .dbg-code { max-height: 780px; }
+
+/* goto debug: เส้นทาง + ทำไม debug ยาก */
+.dbg-path { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; font: 13px var(--mono); }
+.dbg-path li { min-width: 2.4ch; padding: 1px 6px; text-align: center; border: 1px solid #3d48c9; color: #c9d1ff; }
+.dbg-path li.jump { border-color: #ffe066; color: #ffe066; }
+.dbg-path li.jump.up { border-color: #ff9a8f; color: #ff9a8f; }
+.dbg-path li.here { background: var(--green); color: #050833; border-color: var(--green); }
+.dbg-side h5 span { color: #ffe066; font-family: var(--mono); font-size: 12px; letter-spacing: 0; }
+.dbg-from { margin: 8px 0 0; font-size: 13.5px; color: #c9d1ff; }
+.dbg-from b { color: #ffe066; font-weight: 600; }
+.why-hard { margin-top: 12px; border: 2px solid var(--line); background: var(--win-bg); padding: 14px 18px; }
+.why-h { font: 700 18px var(--head-font); color: var(--head); margin-bottom: 6px; }
+.why-hard ol { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; color: var(--fg); }
+.why-hard b { color: var(--accent); }
