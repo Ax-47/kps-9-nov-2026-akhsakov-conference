@@ -1763,3 +1763,23 @@ thead th { font-size: 13px; }
 .layer li.hidden-by { opacity: 0.55; text-decoration: line-through; }
 .layer li.hidden-by em { text-decoration: none; display: inline-block; color: #ff9a8f; }
 .inh-obj-f { font-size: 14px; color: #dfe3ff; } .inh-obj-f b { color: var(--green); }
+
+/* ปัญหาของ inheritance */
+.inh-probs { margin-top: 22px; border: 2px solid #ff6b61; background: rgba(255, 59, 48, 0.07); padding: 14px 16px; display: grid; gap: 12px; }
+.inh-probs-h { font: 700 18px var(--head-font); color: #ff9a8f; }
+.inh-probs-h span { font: 400 14px var(--sans); color: #dfe3ff; }
+.inh-pbtns { display: flex; flex-wrap: wrap; gap: 8px; }
+.inh-pbtns button { font: 600 14px var(--head-font); padding: 7px 14px; border: 2px solid #ff6b61; background: transparent; color: #fff; cursor: pointer; }
+.inh-pbtns button:hover { background: rgba(255, 107, 97, 0.2); }
+.inh-pbtns button.on { background: #ff3b30; border-color: #ff3b30; }
+.inh-pane { display: grid; gap: 10px; animation: app-open 0.2s ease-out; }
+.inh-pane .why { font-size: 15.5px; color: #fff; }
+.inh-pane .code { margin: 0; font-size: 13.5px; }
+.inh-pane .res { font: 600 15px/1.5 var(--head-font); color: #ffb4ad; }
+.inh-tree .node { transition: transform 0.2s, box-shadow 0.2s, background 0.2s; }
+.inh-tree .node.hit { background: #b3261e; border-color: #ff6b61; box-shadow: 0 0 0 3px rgba(255, 107, 97, 0.45), 4px 4px 0 var(--shadow); animation: hit-shake 0.4s steps(5); }
+.inh-tree .node.hit b, .inh-tree .node.hit span { color: #fff; }
+@keyframes hit-shake { 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-2px); } }
+@media (prefers-reduced-motion: reduce) { .inh-tree .node.hit, .inh-pane { animation: none; } }
+.inh-tree .inh-probs { margin-top: 6px; }
+.inh-pane[hidden] { display: none; }

@@ -1365,13 +1365,13 @@ int main() {
           <h4 class="inh-h">Misha <em>“เป็น”</em> Ally และ Ally <em>“เป็น”</em> Character</h4>
           <div class="inh-grid">
             <div class="inh-tree" aria-label="ต้นไม้คลาส">
-              <div class="node root"><b>Character</b><span>hp · takeDamage() · atk() = 10</span></div>
+              <div class="node root" data-node="Character"><b>Character</b><span>hp · takeDamage() · atk() = 10</span></div>
               <div class="kids">
                 <div class="branch">
-                  <div class="node"><b>Ally</b><span><i>+</i> energy · ult()</span></div>
-                  <div class="kids"><div class="node leaf"><b>Misha</b><span><i>↻</i> atk() = 30</span></div></div>
+                  <div class="node" data-node="Ally"><b>Ally</b><span><i>+</i> energy · ult()</span></div>
+                  <div class="kids"><div class="node leaf" data-node="Misha"><b>Misha</b><span><i>↻</i> atk() = 30</span></div></div>
                 </div>
-                <div class="branch"><div class="node enemy"><b>Kafka</b><span><i>↻</i> atk() = 25</span></div></div>
+                <div class="branch"><div class="node enemy" data-node="Kafka"><b>Kafka</b><span><i>↻</i> atk() = 25</span></div></div>
               </div>
               <ul class="inh-key"><li><b>ได้มาฟรี</b> ลูกมีทุกอย่างของแม่ ไม่ต้องเขียนซ้ำ</li><li><b><i>+</i> เพิ่ม</b> ลูกเพิ่มของใหม่ได้</li><li><b><i>↻</i> override</b> ลูกเปลี่ยนเมธอดของแม่ได้</li></ul><div class="inh-obj" aria-label="ของที่อยู่ใน object misha">
                 <p class="inh-obj-h"><b>misha</b> มีอะไรบ้าง? <span>(object ชนิด Misha)</span></p>
@@ -1380,11 +1380,34 @@ int main() {
                 <div class="layer from-misha"><span class="src">ของ Misha เอง</span><ul><li data-go="mAtk">atk() → 30 <em>override</em></li></ul></div>
                 <p class="inh-obj-f">เขียนใน Misha แค่บรรทัดเดียว แต่ <b>misha มีครบ 5 อย่าง</b> — กดชื่อเพื่อดูว่าประกาศไว้ตรงไหนในโค้ด</p>
               </div>
+          <div class="inh-probs">
+            <p class="inh-probs-h">ปัญหาของ inheritance — <span>ลองกดดู ต้นไม้ด้านบนจะสว่างตรงคลาสที่โดนผลกระทบ</span></p>
+            <div class="inh-pbtns"><button type="button" data-inh-p="ult" data-nodes="Kafka Ally">1. บอสอยากมี ult() บ้าง</button><button type="button" data-inh-p="parent" data-nodes="Character Ally Misha Kafka">2. แก้แม่ทีเดียว ลูกพังทั้งตระกูล</button><button type="button" data-inh-p="override" data-nodes="Misha Character">3. ลูก override แล้วลืมกฎของแม่</button></div>
+            <div class="inh-pane" data-pane="ult" hidden><p class="why">Kafka อยากใช้ท่าไม้ตาย แต่ ult() อยู่ใน Ally — Kafka ไม่ใช่ Ally เลยไม่ได้</p><pre class="code"><code>// ทางเลือก 1: ก๊อปไปใส่ Kafka → โค้ดซ้ำ 2 ที่
+class Kafka : public Character {
+    int energy = 0;          // ซ้ำกับ Ally
+    void ult() { ... }       // ซ้ำกับ Ally
+};
+// ทางเลือก 2: ย้ายขึ้นไปไว้ใน Character
+//   → ศัตรูทุกตัว (สไลม์ หุ่นยนต์ ...) ได้ energy กับ ult ไปด้วย ทั้งที่ไม่ต้องการ</code></pre><p class="res">⚠ อยากได้กล้วยลูกเดียว แต่ได้กอริลลากับทั้งป่ามาด้วย — ต้นไม้บังคับให้ของอยู่ “ชั้นเดียว”</p></div><div class="inh-pane" data-pane="parent" hidden><p class="why">ทีมบอสอยากให้ Kafka โดนดาเมจ x2 เลยไปแก้ takeDamage ใน Character</p><pre class="code"><code>class Character {
+    void takeDamage(int d) {
+        hp = std::max(0, hp - d * 2);   // แก้เพื่อ Kafka
+    }
+};
+misha.takeDamage(40);   // misha โดน 80 ด้วย! ทั้งที่ไม่ได้แก้ Misha</code></pre><p class="res">⚠ ทุกคลาสที่สืบทอดได้ผลไปด้วย — แก้บรรทัดเดียว แต่ต้องไล่ทดสอบทั้งต้นไม้</p></div><div class="inh-pane" data-pane="override" hidden><p class="why">Misha ได้เกราะ เลยเขียน takeDamage ของตัวเอง (สมมติว่าของแม่เป็น virtual)</p><pre class="code"><code>class Misha : public Ally {
+    void takeDamage(int d) override {
+        hp -= d - 5;           // ลด 5 แต่ลืม max(0, …)
+    }
+};
+misha.takeDamage(200);   // hp = 100 - 195 = -95  ✗</code></pre><p class="res">⚠ กฎ “hp ไม่ต่ำกว่า 0” อยู่ใน Character แต่ misha ไม่ได้ผ่านตรงนั้นแล้ว — ต้นไม้ยิ่งลึก ยิ่งหาไม่เจอว่ากฎหลุดชั้นไหน</p></div>
+          </div>
+
               
             </div>
             <div class="lsp" data-lsp="inh"></div>
           </div>
-          <div class="two-col inh-pc">
+          
+<div class="two-col inh-pc">
             <p><b class="ok">ข้อดี</b> เขียน takeDamage() ครั้งเดียวใน Character — Misha, Kafka และตัวละครใหม่ทุกตัวได้กฎ “hp ไม่ต่ำกว่า 0” ไปเลย</p>
             <p><b class="bad">ระวัง</b> ถ้าลูก override takeDamage() แล้วลืมกฎของแม่ กฎก็หลุด และยิ่งต้นไม้ลึก ยิ่งหายากว่าหลุดชั้นไหน (ดูโค้ด ERA 2 ข้อ ②) — ยุคถัดไปเลยหันไปใช้ composition</p>
           </div>

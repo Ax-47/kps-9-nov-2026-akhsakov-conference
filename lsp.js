@@ -161,3 +161,18 @@ document.addEventListener("click", (e) => {
   document.querySelectorAll(".inh-obj li.on").forEach((x) => x.classList.remove("on"));
   li.classList.add("on");
 });
+
+// ปัญหาของ inheritance: กดแล้วโชว์สถานการณ์ + ไฮไลต์คลาสที่โดนผลกระทบในต้นไม้
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-inh-p]");
+  if (!b) return;
+  const box = b.closest(".inh");
+  const on = !b.classList.contains("on");
+  box.querySelectorAll("[data-inh-p]").forEach((x) => x.classList.remove("on"));
+  box.querySelectorAll(".inh-pane").forEach((x) => { x.hidden = true; });
+  box.querySelectorAll(".inh-tree .node").forEach((x) => x.classList.remove("hit"));
+  if (!on) return;
+  b.classList.add("on");
+  box.querySelector(`.inh-pane[data-pane="${b.dataset.inhP}"]`).hidden = false;
+  b.dataset.nodes.split(" ").forEach((n) => box.querySelector(`.inh-tree [data-node="${n}"]`)?.classList.add("hit"));
+});
