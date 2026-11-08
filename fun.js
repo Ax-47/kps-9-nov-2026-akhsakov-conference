@@ -137,6 +137,7 @@
   // ===================== การ์ดเอียงตามเมาส์ =====================
   if (finePointer && !reduceMotion) {
     document.querySelectorAll(".card, .mem, .dialog, .works > div, .block .win:not(.game)").forEach((el) => {
+      if (el.closest("[data-desktop]")) return;
       el.classList.add("tilt");
       el.addEventListener("pointermove", (e) => {
         const r = el.getBoundingClientRect();
@@ -153,6 +154,7 @@
   const NOPE = ["ปิดไม่ได้ ต้องเรียนก่อน", "Access denied: ยังไม่ได้ save ความรู้", "หน้าต่างนี้ own โดย Rust ห้ามปิด", "segfault: core dumped (ล้อเล่น)"];
   let nope = 0;
   document.querySelectorAll(".win-btns").forEach((btns) => {
+    if (btns.closest("[data-desktop]")) return; // หน้าต่างบนเดสก์ท็อปใช้ desktop.js
     const win = btns.closest(".win, .panel, .game");
     const [minBtn, maxBtn, closeBtn] = btns.querySelectorAll("i");
     if (!win || !closeBtn) return;
@@ -283,6 +285,7 @@
 
     // พิมพ์บรรทัดใน terminal แนะนำตัวทีละบรรทัด
     document.querySelectorAll("[data-type-lines]").forEach((box) => {
+      if (box.closest("[data-desktop]")) return; // desktop.js พิมพ์เองตอนหน้าต่างเปิด
       const lines = [...box.children];
       lines.forEach((l) => l.classList.add("tl"));
       const io = new IntersectionObserver((entries) => {

@@ -14,6 +14,7 @@
   <script src="main.js" defer></script>
   <script src="game.js" defer></script>
   <script src="fun.js" defer></script>
+  <script src="desktop.js" defer></script>
 </head>
 <body data-bg="blue">
   <a class="skip" href="#agenda">ข้ามไปเนื้อหา</a>
@@ -64,15 +65,50 @@
     </div>
 
     <!-- ===================== วาระ ===================== -->
-    <!-- ===================== แนะนำตัว speaker =====================
-         ข้อความใน <span class="fill-me">[…]</span> คือช่องที่ต้องใส่ข้อมูลจริงของผู้พูด -->
+    <!-- ===================== แนะนำตัว speaker: หน้าจอ PC ที่มีหน้าต่างเด้งขึ้นมา =====================
+         ข้อความใน <span class="fill-me">[…]</span> คือช่องที่ต้องใส่ข้อมูลจริงของผู้พูด
+         ภาพพื้นหลังวาดเองด้วย SVG (ท้องฟ้า เมฆ เนินหญ้า) -->
     <section class="block speaker" id="speaker" data-bg="paper" data-label="แนะนำตัว">
       <div class="wrap">
         <p class="kicker">แนะนำตัว · $ whoami</p>
         <h2 class="giant">สวัสดีน้อง ๆ<br>พี่ชื่อ มิช่า</h2>
-        <div class="speaker-grid">
-          <div class="win id-card reveal">
-            <div class="win-bar"><span>profile.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+
+        <div class="monitor">
+          <div class="screen" data-desktop>
+            <svg class="wallpaper" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="wp-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d4fd8"/><stop offset="0.55" stop-color="#4f8df5"/><stop offset="1" stop-color="#a9cdfc"/></linearGradient>
+                <linearGradient id="wp-hill" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#7fd23f"/><stop offset="0.5" stop-color="#4fa61f"/><stop offset="1" stop-color="#2e7410"/></linearGradient>
+                <linearGradient id="wp-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f8f1a"/><stop offset="1" stop-color="#25600c"/></linearGradient>
+                <radialGradient id="wp-sun" cx="0.32" cy="0.52" r="0.45"><stop offset="0" stop-color="#c8f27a" stop-opacity="0.55"/><stop offset="1" stop-color="#c8f27a" stop-opacity="0"/></radialGradient>
+                <filter id="wp-soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+              </defs>
+              <rect width="1600" height="900" fill="url(#wp-sky)"/>
+              <g fill="#fff" filter="url(#wp-soft)" class="clouds">
+                <g opacity="0.95"><ellipse cx="230" cy="120" rx="140" ry="38"/><ellipse cx="310" cy="95" rx="90" ry="40"/><ellipse cx="170" cy="105" rx="70" ry="30"/></g>
+                <g opacity="0.9"><ellipse cx="820" cy="230" rx="120" ry="40"/><ellipse cx="900" cy="205" rx="80" ry="42"/><ellipse cx="760" cy="215" rx="60" ry="28"/></g>
+                <g opacity="0.95"><ellipse cx="1260" cy="160" rx="150" ry="44"/><ellipse cx="1350" cy="130" rx="95" ry="46"/><ellipse cx="1190" cy="145" rx="70" ry="32"/></g>
+                <g opacity="0.85"><ellipse cx="1180" cy="370" rx="230" ry="30"/><ellipse cx="1300" cy="350" rx="120" ry="32"/></g>
+                <g opacity="0.7"><ellipse cx="520" cy="330" rx="150" ry="18"/></g>
+                <g opacity="0.8"><ellipse cx="1500" cy="280" rx="110" ry="30"/></g>
+              </g>
+              <path d="M1380 470 Q1460 430 1540 452 T1600 446 V520 H1380 Z" fill="#5d7a9a" opacity="0.55"/>
+              <path d="M0 372 C 300 330, 760 340, 1100 400 S 1500 470, 1600 480 V900 H0 Z" fill="url(#wp-hill)"/>
+              <path d="M0 372 C 300 330, 760 340, 1100 400 S 1500 470, 1600 480 V900 H0 Z" fill="url(#wp-sun)"/>
+              <path d="M0 735 C 400 700, 900 710, 1600 690 V900 H0 Z" fill="url(#wp-front)"/>
+              <g fill="#ffe066" opacity="0.8"><circle cx="210" cy="820" r="3"/><circle cx="420" cy="790" r="2.5"/><circle cx="660" cy="850" r="3"/><circle cx="980" cy="800" r="2.5"/><circle cx="1260" cy="860" r="3"/><circle cx="1450" cy="780" r="2.5"/></g>
+            </svg>
+
+            <ul class="desk-icons">
+              <li><button type="button" data-open="w-profile"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="2" width="14" height="12" fill="#fff" stroke="#1f2eff"/><rect x="3" y="5" width="4" height="5" fill="#1f2eff"/><path d="M9 5h4v1H9zM9 7h4v1H9zM9 9h3v1H9z" fill="#1f2eff"/></svg><span>profile.exe</span></button></li>
+              <li><button type="button" data-open="w-whoami"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="2" width="14" height="12" fill="#050833" stroke="#fff"/><path d="M3 6h1v1h1v1H4v1H3V8h1V7H3zM6 9h4v1H6z" fill="#3dff8f"/></svg><span>whoami.exe</span></button></li>
+              <li><button type="button" data-open="w-rules"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path d="M3 1h7l3 3v11H3z" fill="#fff" stroke="#1f2eff"/><path d="M5 6h6v1H5zM5 8h6v1H5zM5 10h4v1H5z" fill="#1f2eff"/><path d="M10 1v3h3" fill="none" stroke="#1f2eff"/></svg><span>rules.txt</span></button></li>
+              <li><a href="#game"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="5" width="14" height="7" rx="0" fill="#ff3b30" stroke="#fff"/><path d="M3 8h3M4.5 6.5v3" stroke="#fff"/><rect x="10" y="7" width="1" height="1" fill="#fff"/><rect x="12" y="9" width="1" height="1" fill="#fff"/></svg><span>hp_battle.exe</span></a></li>
+              <li><button type="button" data-bin><svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path d="M3 4h10l-1 11H4z" fill="#dfe3ff" stroke="#1f2eff"/><path d="M2 3h12v1H2zM6 1h4v2H6z" fill="#1f2eff"/><path d="M6 6v7M8 6v7M10 6v7" stroke="#1f2eff"/></svg><span>ถังขยะ (goto.c)</span></button></li>
+            </ul>
+
+            <div class="win desk-win" id="w-profile" data-title="profile.exe" style="--x:112px;--y:6%;--w:420px">
+              <div class="win-bar"><span>profile.exe</span><span class="win-btns" aria-hidden="true"><i data-act="min">_</i><i data-act="max">□</i><i data-act="close">×</i></span></div>
             <div class="win-body">
               <div class="avatar" aria-hidden="true">
                 <svg viewBox="0 0 12 12" shape-rendering="crispEdges"><path d="M4 1h4v1h1v1h1v4H9v1H8v1H4V8H3V7H2V3h1V2h1z" fill="currentColor"/><path d="M4 4h1v1H4zM7 4h1v1H7zM4 6h4v1H4z" class="face"/><path d="M2 10h8v1H2z" fill="currentColor"/></svg>
@@ -85,10 +121,10 @@
               </dl>
               <p class="id-code mono" aria-hidden="true">ID ▮▮▮▯▮▮▯▮▮▮▯▮ · KPS-09-11-2026</p>
             </div>
-          </div>
+            </div>
 
-          <div class="win term-win reveal">
-            <div class="win-bar"><span>whoami.exe</span><span class="win-btns" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="win desk-win term-win" id="w-whoami" data-title="whoami.exe" style="--x:51%;--y:4%;--w:500px">
+              <div class="win-bar"><span>whoami.exe</span><span class="win-btns" aria-hidden="true"><i data-act="min">_</i><i data-act="max">□</i><i data-act="close">×</i></span></div>
             <div class="whoami mono" data-type-lines>
               <p class="sh">whoami</p>
               <p>มิช่า (Misha)</p>
@@ -103,11 +139,10 @@
               <p class="sh">cat contact.txt</p>
               <p><span class="fill-me">[IG]</span> · <span class="fill-me">[Discord]</span> · <span class="fill-me">[อีเมล]</span></p>
             </div>
-          </div>
-        </div>
+            </div>
 
-        <aside class="dialog rules-dialog reveal" aria-label="กติกาวันนี้">
-          <div class="dialog-head"><span class="warn-ico" aria-hidden="true">!</span>BEFORE WE START</div>
+            <div class="dialog desk-win rules-dialog" id="w-rules" data-title="rules.txt" style="--x:30%;--y:45%;--w:470px">
+              <div class="dialog-head"><span><span class="warn-ico" aria-hidden="true">!</span>BEFORE WE START</span><span class="win-btns" aria-hidden="true"><i data-act="min">_</i><i data-act="max">□</i><i data-act="close">×</i></span></div>
           <div class="dialog-body">
             <ul class="ticks">
               <li>วันนี้ยาวประมาณ <b>2 ชั่วโมงครึ่ง</b> มีพัก 10 นาทีตรงกลาง</li>
@@ -116,7 +151,25 @@
             </ul>
             <div class="dialog-btns" aria-hidden="true"><span>จดทุกคำ</span><span class="on">ฟังแล้วลองทำ</span></div>
           </div>
-        </aside>
+            </div>
+
+            <div class="taskbar">
+              <button type="button" class="start-btn" data-start aria-expanded="false" aria-controls="start-menu"><b>▶</b> guide</button>
+              <nav class="start-menu" id="start-menu" aria-label="เมนู" hidden>
+                <p class="start-head">guide.exe</p>
+                <a href="#part1">01 · ประวัติภาษา</a>
+                <a href="#part2">02 · เริ่มต้น</a>
+                <a href="#part3">03 · สมอง</a>
+                <a href="#part4">04 · ซ้อมแข่ง</a>
+                <a href="#game">เล่นเกม HP BATTLE</a>
+                <button type="button" data-shutdown>ปิดเครื่อง…</button>
+              </nav>
+              <div class="tasks" data-tasks></div>
+              <span class="tray mono"><span aria-hidden="true">🔊 ✦</span> <time data-clock>--:--</time></span>
+            </div>
+          </div>
+          <div class="monitor-chin" aria-hidden="true"><span>GUIDE-PC · 2026</span><i class="led"></i></div>
+        </div>
       </div>
     </section>
 
