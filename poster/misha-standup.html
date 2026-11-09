@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>มิช่า เดี่ยว Stand-up · A4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans+Thai:wght@400;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Kanit:wght@500;700;800;900&amp;family=Silkscreen&amp;display=swap">
+<style>
+  @page { size: 210mm 297mm; margin: 0; }
+  :root { --ink: #07081f; --blue: #1f2eff; --green: #3dff8f; --yellow: #ffe066; --red: #ff3b30; --paper: #f4f5ff; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 210mm; height: 297mm; }
+  body {
+    position: relative; overflow: hidden; color: #fff; font-family: "IBM Plex Sans Thai", sans-serif;
+    background: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .pix { font-family: "Silkscreen", monospace; }
+
+  /* ฉาก: ผ้าม่าน + พื้นเวที + สปอตไลต์ */
+  .curtain { position: absolute; top: 0; bottom: 70mm; width: 34mm; z-index: 1;
+    background: repeating-linear-gradient(90deg, #8f0f14 0 5mm, #c4161c 5mm 8mm, #6d0a0e 8mm 11mm); }
+  .curtain.l { left: 0; border-radius: 0 0 60% 0; box-shadow: 3mm 0 6mm rgba(0,0,0,.6); }
+  .curtain.r { right: 0; border-radius: 0 0 0 60%; box-shadow: -3mm 0 6mm rgba(0,0,0,.6); }
+  .valance { position: absolute; left: 0; right: 0; top: 0; height: 15mm; z-index: 2;
+    background: repeating-radial-gradient(circle at 50% -2mm, #c4161c 0 9mm, #8f0f14 9mm 11mm); background-size: 22mm 15mm; border-bottom: 1mm solid var(--yellow); }
+  .spot { position: absolute; left: 50%; top: 10mm; width: 190mm; height: 230mm; transform: translateX(-50%); z-index: 0;
+    background: radial-gradient(ellipse 46% 26% at 50% 88%, rgba(255,224,102,.42), transparent 70%),
+                conic-gradient(from 168deg at 50% 0%, transparent 0deg, rgba(255,240,180,.20) 8deg, rgba(255,240,180,.28) 12deg, rgba(255,240,180,.20) 16deg, transparent 24deg); }
+  .stage { position: absolute; left: 0; right: 0; bottom: 70mm; height: 16mm; z-index: 1;
+    background: repeating-linear-gradient(90deg, #3a2414 0 18mm, #2c1b0f 18mm 19mm); border-top: 1mm solid #5a3a20; }
+
+  /* หัว */
+  .meta { position: absolute; left: 40mm; right: 40mm; top: 20mm; z-index: 3; display: flex; justify-content: space-between; font: 700 3.1mm "JetBrains Mono", monospace; color: var(--yellow); letter-spacing: .3mm; }
+  .live { display: inline-flex; align-items: center; gap: 1.6mm; color: #fff; background: var(--red); padding: .6mm 2mm; }
+  .live i { width: 2.2mm; height: 2.2mm; border-radius: 50%; background: #fff; }
+
+  .name { position: absolute; left: 0; right: 0; top: 27mm; z-index: 3; text-align: center; }
+  .name .th { display: block; font: 900 46mm/0.95 "Kanit", sans-serif; color: #fff; letter-spacing: -.5mm;
+    text-shadow: 1.6mm 1.6mm 0 var(--red), 3.2mm 3.2mm 0 var(--blue); }
+  .name .solo { display: inline-block; margin-top: 1mm; font: 900 17mm/1 "Kanit", sans-serif; color: var(--ink); background: var(--yellow); padding: 0 5mm 1.5mm; transform: rotate(-3deg); box-shadow: 2mm 2mm 0 var(--red); }
+  .name .en { display: block; margin-top: 4mm; font: 400 11.5mm/1 "Anton", sans-serif; letter-spacing: 1.2mm; color: var(--green); text-transform: uppercase; }
+
+  /* มิช่า + ไมค์ */
+  .misha { position: absolute; left: 50%; bottom: 84mm; width: 66mm; height: 66mm; transform: translateX(-78%); z-index: 2;
+    border-radius: 50%; overflow: hidden; border: 1.2mm solid var(--yellow); box-shadow: 0 0 0 2mm var(--ink), 0 0 14mm rgba(255,224,102,.55); }
+  .misha img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mic { position: absolute; left: 50%; bottom: 86mm; width: 17mm; transform: translateX(120%); z-index: 3; }
+  .bubble { position: absolute; left: 118mm; bottom: 151mm; width: 60mm; z-index: 4; background: #fff; color: var(--ink); border: .8mm solid var(--ink); border-radius: 5mm; padding: 3mm 4mm; font: 700 4.4mm/1.35 "Kanit", sans-serif; box-shadow: 2mm 2mm 0 var(--red); }
+  .bubble::after { content: ""; position: absolute; left: 8mm; bottom: -5mm; border: 3mm solid transparent; border-top: 4mm solid #fff; filter: drop-shadow(0 .8mm 0 var(--ink)); }
+  .bubble .mono { font-size: 3.6mm; color: var(--blue); }
+  .laugh { position: absolute; left: 30mm; bottom: 158mm; z-index: 4; transform: rotate(-8deg); font: 400 3.3mm/1.5 "Silkscreen", monospace; color: var(--green); background: rgba(7,8,31,.85); border: .5mm dashed var(--green); padding: 1.5mm 2.5mm; }
+
+  /* รายการมุก */
+  .bits { position: absolute; left: 12mm; right: 12mm; bottom: 26mm; height: 41mm; z-index: 3; display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; align-content: start; }
+  .bits h3 { grid-column: 1 / -1; font: 400 3.4mm "Silkscreen", monospace; color: var(--yellow); letter-spacing: .6mm; margin-bottom: 2mm; border-bottom: .5mm solid rgba(255,255,255,.35); padding-bottom: 1.5mm; }
+  .bits p { font: 600 3.9mm/1.5 "IBM Plex Sans Thai", sans-serif; color: #eef0ff; padding: 1mm 0; display: flex; gap: 2.5mm; }
+  .bits p b { font: 700 3.4mm/1.8 "JetBrains Mono", monospace; color: var(--red); flex: none; }
+
+  /* ตั๋ว */
+  .ticket { position: absolute; left: 12mm; right: 12mm; bottom: 8mm; height: 16mm; z-index: 3; display: grid; grid-template-columns: 1fr auto; background: var(--yellow); color: var(--ink); }
+  .ticket::before, .ticket::after { content: ""; position: absolute; top: 50%; width: 6mm; height: 6mm; margin-top: -3mm; border-radius: 50%; background: var(--ink); }
+  .ticket::before { left: -3mm; } .ticket::after { right: -3mm; }
+  .t-main { padding: 2.4mm 7mm; display: grid; align-content: center; gap: .6mm; border-right: .6mm dashed var(--ink); }
+  .t-main b { font: 800 5mm/1.1 "Kanit", sans-serif; }
+  .t-main span { font: 600 3.3mm "JetBrains Mono", monospace; }
+  .t-stub { padding: 0 8mm; display: grid; place-items: center; text-align: center; font: 400 3.2mm/1.3 "Silkscreen", monospace; }
+  .t-stub strong { display: block; font: 400 7mm/1 "Anton", sans-serif; letter-spacing: .5mm; }
+
+  .warn { position: absolute; left: 40mm; bottom: 138mm; z-index: 4; transform: rotate(6deg); background: var(--red); color: #fff; font: 700 3.2mm/1.4 "JetBrains Mono", monospace; padding: 1.6mm 3mm; box-shadow: 1.5mm 1.5mm 0 #000; }
+</style>
+</head>
+<body>
+  <div class="spot"></div>
+  <div class="curtain l"></div>
+  <div class="curtain r"></div>
+  <div class="valance"></div>
+  <div class="stage"></div>
+
+  <div class="meta"><span class="live"><i></i>LIVE</span><span>SHOW 0x01 · ฟรี · ทุกที่นั่ง</span></div>
+
+  <h1 class="name">
+    <span class="th">มิช่า</span>
+    <span class="solo">เดี่ยว</span>
+    <span class="en">Stand-up Comedy</span>
+  </h1>
+
+  <p class="laugh">[ เสียงหัวเราะ: 404 NOT FOUND ]</p>
+  <div class="warn">⚠ อาจมีมุก C++ รุนแรง</div>
+
+  <div class="misha"><img src="../assets/avatar.webp" alt="มิช่า"></div>
+  <svg class="mic" viewBox="0 0 60 220" aria-hidden="true">
+    <rect x="17" y="2" width="26" height="40" rx="13" fill="#d9dbe8" stroke="#07081f" stroke-width="3"/>
+    <path d="M17 18h26M17 26h26M17 34h26" stroke="#9aa0bd" stroke-width="2"/>
+    <rect x="24" y="42" width="12" height="16" fill="#3b3f5c" stroke="#07081f" stroke-width="3"/>
+    <rect x="27" y="58" width="6" height="140" fill="#b7bbd0" stroke="#07081f" stroke-width="2"/>
+    <path d="M30 196 L6 216 M30 196 L54 216 M30 196 L30 218" stroke="#b7bbd0" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+  <p class="bubble">“โค้ดพี่รันผ่านรอบแรกนะ<br>…ในความฝัน”<br><span class="mono">Segmentation fault (core dumped)</span></p>
+
+  <section class="bits">
+    <h3>SETLIST · มุกคืนนี้ (เรียงตาม stack)</h3>
+    <p><b>01</b>goto: ภาษาที่สอนให้ชีวิตกระโดดข้ามบรรทัด</p>
+    <p><b>02</b>HP ติดลบ −70: บัคที่ไม่มีใครยอมรับ</p>
+    <p><b>03</b>misha.atk(kafka) แล้ว Character ทั้งตระกูลพัง</p>
+    <p><b>04</b>ดูคลิปสอน 10 ชั่วโมง เขียนเองได้ 0 บรรทัด</p>
+    <p><b>05</b>Rust compiler: แฟนที่ห่วงเราเกินไป</p>
+    <p><b>06</b>“เดี๋ยวพรุ่งนี้ค่อยนอน” — สมองที่ไม่เคยกด save</p>
+  </section>
+
+  <div class="ticket">
+    <div class="t-main">
+      <b>จันทร์ 9 พ.ย. 2569 · 10:00–11:00</b>
+      <span>โรงเรียนกาฬสินธุ์พิทยาสรรพ์ · มิช่า CS วิทยาลัยการคอมพิวเตอร์ มข.</span>
+    </div>
+    <div class="t-stub"><span><strong>ADMIT ONE</strong>ไม่มีค่าใช้จ่าย</span></div>
+  </div>
+</body>
+</html>
