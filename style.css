@@ -1936,3 +1936,10 @@ thead th { font-size: 13px; }
 .pp-list li b { color: #fff; }
 .pp-list li.hl, .pp-list li.hl b { color: var(--green); }
 @media (max-width: 860px) { .pp { grid-template-columns: minmax(0, 1fr); } }
+
+/* สายแข่ง: แหล่งฝึกในแผง hscroll */
+.cp-panel { width: min(780px, 90vw); }
+.cp-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; font-size: 16px; }
+.cp-links li { padding: 8px 0; }
+.cp-links span { font-size: 14px; }
+@media (max-width: 720px) { .cp-links { grid-template-columns: minmax(0, 1fr); } }
