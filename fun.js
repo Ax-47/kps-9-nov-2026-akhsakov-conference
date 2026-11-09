@@ -341,3 +341,36 @@
   up();
 })();
 
+
+// ปุ่มขยายตัวอักษร + ภาพ: zoom เฉพาะเนื้อหา (ไม่ zoom ตัว section ที่ปักหมุด/สูงเต็มจอ)
+(() => {
+  const ctl = document.querySelector(".zoom-ctl");
+  if (!ctl) return;
+  const LV = [0.9, 1, 1.15, 1.3, 1.5, 1.75];
+  const label = ctl.querySelector(".zv");
+  let i = 1;
+  try { const v = +localStorage.getItem("zoom"); if (LV.includes(v)) i = LV.indexOf(v); } catch (e) {}
+  const apply = () => {
+    const z = LV[i];
+    const html = document.documentElement;
+    if (z === 1) { html.removeAttribute("data-zoom"); html.style.removeProperty("--z"); }
+    else { html.setAttribute("data-zoom", ""); html.style.setProperty("--z", z); }
+    label.textContent = `${Math.round(z * 100)}%`;
+    ctl.querySelector('[data-zoom="-1"]').disabled = i === 0;
+    ctl.querySelector('[data-zoom="1"]').disabled = i === LV.length - 1;
+    try { localStorage.setItem("zoom", z); } catch (e) {}
+    dispatchEvent(new Event("resize")); // ให้แถบเลื่อนข้างคำนวณความยาวใหม่
+  };
+  const step = (d) => { i = d === 0 ? 1 : Math.min(LV.length - 1, Math.max(0, i + d)); apply(); };
+  ctl.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-zoom]");
+    if (b) step(+b.dataset.zoom);
+  });
+  // คีย์ลัดตอนพรีเซนต์บนโปรเจกเตอร์: + ขยาย · − ย่อ · 0 ปกติ
+  addEventListener("keydown", (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.target.closest("input, textarea, select, [contenteditable]")) return;
+    const d = { "+": 1, "=": 1, "-": -1, "_": -1, "0": 0 }[e.key];
+    if (d !== undefined) step(d);
+  });
+  apply();
+})();

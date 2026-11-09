@@ -1943,3 +1943,23 @@ thead th { font-size: 13px; }
 .cp-links li { padding: 8px 0; }
 .cp-links span { font-size: 14px; }
 @media (max-width: 720px) { .cp-links { grid-template-columns: minmax(0, 1fr); } }
+
+/* ปุ่มขยายตัวอักษร + ภาพ */
+.zoom-ctl { position: fixed; left: 16px; bottom: 16px; z-index: 94; display: flex; border: 2px solid var(--head); background: var(--bg); box-shadow: 4px 4px 0 var(--shadow); }
+.zoom-ctl button { font: 700 15px var(--mono, monospace); color: var(--head); background: transparent; border: 0; padding: 8px 12px; cursor: pointer; min-width: 44px; }
+.zoom-ctl button + button { border-left: 2px solid var(--head); }
+.zoom-ctl button:hover:not(:disabled) { background: var(--accent); color: var(--bg); }
+.zoom-ctl button:disabled { opacity: .35; cursor: default; }
+.zoom-ctl .zv { font-size: 12px; min-width: 58px; }
+html[data-zoom] main .wrap,
+html[data-zoom] .hscroll-track > .panel,
+html[data-zoom] dialog.oop-dialog > *,
+html[data-zoom] .footer .wrap { zoom: var(--z); }
+html[data-zoom] .hero .wrap { zoom: 1; }
+/* ค่า svh ถูกคูณด้วย zoom ด้วย: หารกลับให้แผงยังพอดีจอ */
+html[data-zoom] .hscroll.pinned .panel .win-body { max-height: calc((100svh - 200px) / var(--z)); }
+html[data-zoom] .hscroll.pinned .panel-photo { max-height: calc((100svh - 150px) / var(--z)); }
+html[data-zoom] .hscroll.pinned .panel-photo .sticker img { max-height: calc((100svh - 300px) / 2 / var(--z)); }
+html[data-zoom] .hscroll.pinned .panel-tl .win-body { max-height: none; }
+html[data-zoom] .hscroll.pinned .hscroll-track > .panel { max-height: calc((100svh - 140px) / var(--z)); overflow: auto; }
+html[data-zoom] .hscroll-head .kicker { white-space: normal; min-width: 0; }
