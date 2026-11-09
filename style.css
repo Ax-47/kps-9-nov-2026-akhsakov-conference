@@ -1917,3 +1917,22 @@ thead th { font-size: 13px; }
 .qa-qr-t { font-size: 15px; color: #dbdee1; }
 .qa-qr-u { font-size: 14px; color: #00a8fc; text-decoration: underline; }
 @media (max-width: 860px) { .qa-grid { grid-template-columns: minmax(0, 1fr); } .qa-qr { justify-self: center; width: min(280px, 100%); } }
+
+/* purposeful / deliberate practice (Peak) */
+.pp { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 28px; margin: 26px 0 22px; }
+.pp-col { border: 2px solid var(--line); background: var(--win-bg); padding: 20px 22px; box-shadow: 8px 8px 0 var(--shadow); display: grid; gap: 12px; align-content: start; }
+.pp-h { font: 700 22px var(--head-font); color: #fff; }
+.pp-h .mono { font-size: 14px; color: var(--green); margin-right: 6px; }
+.pp-flow { list-style: none; padding: 0; display: grid; gap: 22px; }
+.pp-flow li { position: relative; border-left: 6px solid var(--c); background: rgba(255, 255, 255, .06); padding: 10px 14px; display: grid; gap: 2px; }
+.pp-flow li:not(:last-child)::after { content: ""; position: absolute; left: 50%; bottom: -19px; transform: translateX(-50%); border: 8px solid transparent; border-top: 11px solid var(--red); }
+.pp-flow b { font: 600 17.5px var(--head-font); color: var(--c); }
+.pp-flow span { font-size: 15.5px; line-height: 1.55; color: #f3f5ff; }
+.pp-def { font-size: 17px; color: #f3f5ff; border: 1.5px dashed var(--green); padding: 8px 12px; }
+.pp-def b { color: var(--green); }
+.pp-list { list-style: none; padding: 0; display: grid; gap: 12px; }
+.pp-list li { font-size: 16.5px; line-height: 1.6; color: #f3f5ff; padding-left: 22px; position: relative; }
+.pp-list li::before { content: "■"; position: absolute; left: 0; color: var(--green); font-size: 12px; top: 4px; }
+.pp-list li b { color: #fff; }
+.pp-list li.hl, .pp-list li.hl b { color: var(--green); }
+@media (max-width: 860px) { .pp { grid-template-columns: minmax(0, 1fr); } }
