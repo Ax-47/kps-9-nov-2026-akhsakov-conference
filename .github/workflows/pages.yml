@@ -13,7 +13,8 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # ไม่ยกเลิกตัวเก่า: Pages deployment ฝั่ง GitHub ยังวิ่งต่อ ตัวใหม่จะชน — ให้ต่อคิวแทน
+  cancel-in-progress: false
 
 jobs:
   deploy:
