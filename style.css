@@ -692,8 +692,8 @@ body[data-bg="paper"] .verdict.tle { background: var(--blue); }
 .era-nav a:hover { background: rgba(61, 255, 143, 0.15); color: var(--head); }
 .era-nav a.on { background: var(--head); color: var(--bg); }
 @media (max-width: 760px) {
-  .era-run .hscroll-head { flex-wrap: wrap; gap: 10px; }
-  .era-run .hscroll-head .kicker { width: 100%; }
+  .hscroll-head { flex-wrap: wrap; gap: 10px; }
+  .hscroll-head .kicker { width: 100%; white-space: normal; }
   .era-nav a { padding: 4px 8px; grid-template-columns: auto; }
   .era-nav a span { display: none; }
 }
